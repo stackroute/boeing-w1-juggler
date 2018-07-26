@@ -1,4 +1,5 @@
 **Spring Boot Cloud Native Microservices Architecture**
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/636ffc56d6e84b039ed393742feba45f)](https://app.codacy.com/app/abdulrahemansyed/boeing-w1-juggler?utm_source=github.com&utm_medium=referral&utm_content=stackroute/boeing-w1-juggler&utm_campaign=badger)
 [![N|Solid](https://spring.io/img/homepage/icon-spring-cloud-data-flow.svg)](https://spring.io/img/homepage/icon-spring-cloud-data-flow.svg)
 ***Modules***
 
