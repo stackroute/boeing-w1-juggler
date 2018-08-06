@@ -1,4 +1,3 @@
-[![CircleCI](https://circleci.com/gh/stackroute/boeing-w1-e-play.svg?style=svg)](https://circleci.com/gh/stackroute/boeing-w1-e-play)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/98bb105375a44616ae536ba510cfed87)](https://www.codacy.com/app/abdulrahemansyed/boeing-w1-e-play?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stackroute/boeing-w1-e-play&amp;utm_campaign=Badge_Grade)
 
 **Spring Boot Cloud Native Microservices Architecture**
