@@ -1,4 +1,4 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/98bb105375a44616ae536ba510cfed87)](https://www.codacy.com/app/abdulrahemansyed/boeing-w1-e-play?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stackroute/boeing-w1-e-play&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/da22b311952943059c549cd7b43a6083)](https://www.codacy.com/app/abdulrahemansyed/boeing-w1-e-play?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stackroute/boeing-w1-e-play&amp;utm_campaign=Badge_Grade)
 
 [![CircleCI](https://circleci.com/gh/stackroute/boeing-w1-e-play.svg?style=svg)](https://circleci.com/gh/stackroute/boeing-w1-e-play)
 
