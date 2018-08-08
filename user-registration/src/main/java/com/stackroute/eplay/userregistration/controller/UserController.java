@@ -5,6 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +23,8 @@ import com.stackroute.eplay.userregistration.domain.User;
 import com.stackroute.eplay.userregistration.exception.UserAlreadyExistsException;
 import com.stackroute.eplay.userregistration.exception.UserNotFoundException;
 import com.stackroute.eplay.userregistration.service.UserService;
+import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 
 /*
  * Controller class for User Registration
@@ -27,13 +33,17 @@ import com.stackroute.eplay.userregistration.service.UserService;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin("*")
+
+@EnableBinding(UserRegistrationStream.class)
 public class UserController {
 
 	private UserService userService;
+	private UserRegistrationStream userRegistrationStream;
 
 	@Autowired
-	public UserController(UserService userService) {
+	public UserController(UserService userService, UserRegistrationStream userRegistrationStream) {
 		this.userService = userService;
+		this.userRegistrationStream =userRegistrationStream;
 	}
 
 	/*
@@ -45,7 +55,12 @@ public class UserController {
 	@PostMapping("/user")
 	public ResponseEntity<?> saveUser(@RequestBody User user) {
 		try {
-			return new ResponseEntity<User>(userService.saveUser(user), HttpStatus.CREATED);
+			 MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
+		        messageChannel.send(MessageBuilder
+		                .withPayload(user)
+		                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+		                .build());
+		        return new ResponseEntity<User>(userService.saveUser(user), HttpStatus.CREATED);
 		} catch (UserAlreadyExistsException e) {
 			return new ResponseEntity<String>("User Already Exists!", HttpStatus.CONFLICT);
 		}
