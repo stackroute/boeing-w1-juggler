@@ -1,11 +1,11 @@
-export class Movie{
-    id:number;
-    name:string;
-    poster:String;
-    genre:String;
-    language:String;
-    reviews:string;
-    cast:string;
-    description:string;
-    rating:number
+export class Movie {
+  id: number;
+  name: string;
+  poster: String;
+  genre: String;
+  language: String;
+  reviews: string;
+  cast: string;
+  description: string;
+  rating: number;
 }
