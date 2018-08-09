@@ -18,6 +18,7 @@ import { MovieCreationComponent } from "./movie-creation/movie-creation.componen
 import { MatSelectModule } from "@angular/material/select";
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
+import { RsvpInvitationComponent } from './rsvp-invitation/rsvp-invitation.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import {MatNativeDateModule} from '@angular/material';
     // EventTypeComponent,
     RsvpEventComponent,
 
-    MovieCreationComponent
+    MovieCreationComponent,
+
+    RsvpInvitationComponent
   ],
   imports: [
     BrowserModule,
