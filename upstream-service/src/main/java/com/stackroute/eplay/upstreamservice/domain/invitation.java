@@ -19,8 +19,8 @@ import lombok.ToString;
 public class invitation {
 
 	@Id
-	private String invitationId;
-	private String EventId;
+	private int invitationId;
+	private int EventId;
 	private String inviteeUserName;
 	private String inviteeName;
 	private String inviteeEmail;

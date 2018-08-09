@@ -20,7 +20,7 @@ import lombok.ToString;
 public class Show {
 	
 	@Id
-	private String showId;
+	private int showId;
 	private int seatRemaining;
 	private int price;
 	private Date startTime;

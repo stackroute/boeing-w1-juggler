@@ -20,7 +20,7 @@ import lombok.ToString;
 public class TicketedEvent {
 
 	@Id
-	public String id;
+	public int id;
 	public String name;
 	public Date date;
 	public Date time;
