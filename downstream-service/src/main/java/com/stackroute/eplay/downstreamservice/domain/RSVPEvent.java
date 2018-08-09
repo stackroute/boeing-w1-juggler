@@ -22,8 +22,8 @@ import lombok.ToString;
 public class RSVPEvent {
 
 	@Id
-	private String id;
-	private String userId;
+	private int id;
+	private String userName;
 	private String name;
 	private Date startDate;
 	private Date startTime;
