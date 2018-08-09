@@ -12,7 +12,13 @@ import { AppRoutingModule } from "./app.routing.module";
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { EventTypeComponent } from './event-type/event-type.component';
 import {MatCardModule} from '@angular/material/card';
-
+import { OtherTicketedEventComponent } from './other-ticketed-event/other-ticketed-event.component';
+import { MovieEventComponent } from './movie-event/movie-event.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {NativeDateModule} from '@angular/material';
+import {MatNativeDateModule} from '@angular/material';
+import { ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +26,9 @@ import {MatCardModule} from '@angular/material/card';
     HomePageComponent,
     MovieCardComponent,
     RegistrationFormComponent,
-    EventTypeComponent
+    EventTypeComponent,
+    OtherTicketedEventComponent,
+    MovieEventComponent
 
   ],
   imports: [
@@ -30,10 +38,16 @@ import {MatCardModule} from '@angular/material/card';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
+
+
 
   ],
-  providers: [],
+  providers: [MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,40 @@
+<div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Enter a Movie">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-select placeholder="Select Theater " [formControl]="pokemonControl">
+        <mat-option>-- None --</mat-option>
+        <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name" [disabled]="group.disabled">
+          <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+            {{pokemon.viewValue}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a starting date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" placeholder="Choose an ending date">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+   
+    <br>
+   
+   
+   
+   
+   
+   
+   
+   
+    <button type="submit"  class="example-button" name="button" class="btn btn-success">Submit</button>
+   
+   </div>
