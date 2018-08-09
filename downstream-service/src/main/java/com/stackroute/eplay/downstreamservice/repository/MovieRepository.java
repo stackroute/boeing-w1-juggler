@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.stackroute.eplay.downstreamservice.domain.Movie;
 
 @Repository
-public interface MovieRepository extends MongoRepository<Movie, String>{
+public interface MovieRepository extends MongoRepository<Movie, Integer>{
 
 }

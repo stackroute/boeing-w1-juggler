@@ -12,14 +12,16 @@ public class Show {
 	private int seatRemaining;
 	private Date startTime;
 	private Date date;
+	private int movieEventId;
 	public Show() {}
-	public Show(int showId, int price, int seatRemaining, Date startTime, Date date) {
+	public Show(int showId, int price, int seatRemaining, Date startTime, Date date, int movieEventId) {
 		super();
 		this.showId = showId;
 		this.price = price;
 		this.seatRemaining = seatRemaining;
 		this.startTime = startTime;
 		this.date = date;
+		this.movieEventId = movieEventId;
 	}
 	public int getShowId() {
 		return showId;
@@ -51,5 +53,12 @@ public class Show {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	public int getMovieEventId() {
+		return movieEventId;
+	}
+	public void setMovieEventId(int movieEventId) {
+		this.movieEventId = movieEventId;
+	}
+	
 	
 }

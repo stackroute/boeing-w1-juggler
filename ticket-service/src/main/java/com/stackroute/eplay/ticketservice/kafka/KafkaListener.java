@@ -6,15 +6,15 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 
 import com.stackroute.eplay.ticketservice.domain.MovieEvent;
-import com.stackroute.eplay.ticketservice.domain.TicketedEvent;
+import com.stackroute.eplay.ticketservice.domain.Show;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
 import com.stackroute.eplay.ticketservice.service.MovieEventService;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
-import com.stackroute.eplay.ticketservice.streams.TheatreStreams;
+import com.stackroute.eplay.ticketservice.streams.ShowStreams;
 import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
 
-@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class})
+@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class})
 public class KafkaListener {
 	
 	MovieEventService movieEventService;
@@ -33,6 +33,11 @@ public class KafkaListener {
 			e.printStackTrace();
 		}
 		System.out.println(event.toString()+" movie");
+	}
+	
+	@StreamListener(ShowStreams.INPUT)
+	public void updateMovieEvent(@Payload Show show) {
+		
 	}
 	
 	/*@StreamListener(TicketedEventStreams.INPUT)
