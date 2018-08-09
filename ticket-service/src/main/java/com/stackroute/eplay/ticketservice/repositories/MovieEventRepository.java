@@ -9,7 +9,7 @@ import com.stackroute.eplay.ticketservice.domain.MovieEvent;
 
 
 @Repository
-public interface MovieEventRepository extends MongoRepository<MovieEvent,String>{
+public interface MovieEventRepository extends MongoRepository<MovieEvent,Integer>{
 
 	
 //	
