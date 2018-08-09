@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>
+            <mat-card-actions>
+                <button mat-raised-button matTooltip="Trending Movies" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                    class="example-button" mat-raised-button (click)="defaultLoad()" color="primary" style="margin-left: 20px">E-Play home</button>
+            </mat-card-actions>
+        </span>
+        <span class="example-spacer" style="margin-left: 300px">
+            <mat-form-field>
+                <input mat-raised-button matTooltip="Enter the name of the movie you want to search.." matTooltipClass="example-tooltip-red"
+                    aria-label="Button that shows a red tooltip" class="example-button" matInput value="Search ImDB..." [(ngModel)]="omdbSearchTitle">
+                <button mat-raised-button matTooltip="Click to search from ImDb database" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                    class="example-button" (click)="onSearch()" mat-raised-button style="margin-left: 10px">Search for latest Movies</button>
+            </mat-form-field>
+            <button mat-raised-button matTooltip="Click to host a movie" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                class="example-button" mat-raised-button style="margin-left: 300px">Host Movie</button>
+            <button mat-raised-button matTooltip="Click to host a movie" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                class="example-button" mat-raised-button style="margin-left: 30px">Create Event</button>
+                <button mat-raised-button routerLink="/userRegistration" routerLinkActive="active" style="margin-left: 30px">SignUp</button>
+                
+            </span>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <mat-tab-group>
+            <mat-tab label="All" isActive="true"></mat-tab>
+            <mat-tab label="Movies"></mat-tab>
+            <mat-tab label="Plays"></mat-tab>
+            <mat-tab label="Comedy"></mat-tab>
+            <mat-tab label="Sports"></mat-tab>
+        </mat-tab-group>
+    </mat-toolbar-row>
+</mat-toolbar>
