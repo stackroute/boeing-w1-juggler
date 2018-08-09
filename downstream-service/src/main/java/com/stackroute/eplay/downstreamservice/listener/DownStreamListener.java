@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stackroute.eplay.downstreamservice.domain.Movie;
 import com.stackroute.eplay.downstreamservice.domain.MovieEvent;
 import com.stackroute.eplay.downstreamservice.domain.RSVPEvent;
 import com.stackroute.eplay.downstreamservice.domain.Theatre;
 import com.stackroute.eplay.downstreamservice.domain.TicketedEvent;
 import com.stackroute.eplay.downstreamservice.domain.User;
 import com.stackroute.eplay.downstreamservice.repository.MovieEventRepository;
+import com.stackroute.eplay.downstreamservice.repository.MovieRepository;
 import com.stackroute.eplay.downstreamservice.repository.RSVPEventRepository;
 import com.stackroute.eplay.downstreamservice.repository.TheatreRepository;
 import com.stackroute.eplay.downstreamservice.repository.TicketedEventRepository;
@@ -35,14 +37,16 @@ public class DownStreamListener {
 	private TicketedEventRepository ticketedEventRepository;
 	private UserRepository userRepository;
 	private TheatreRepository theatreRepository;
+	private MovieRepository movieRepository; 
 	
 	@Autowired
-	public DownStreamListener(MovieEventRepository movieEventRepository,RSVPEventRepository rsvpEventRepository, TicketedEventRepository ticketedEventRepository, TheatreRepository theatreRepository, UserRepository userRepository){
+	public DownStreamListener(MovieEventRepository movieEventRepository,RSVPEventRepository rsvpEventRepository, TicketedEventRepository ticketedEventRepository, TheatreRepository theatreRepository, UserRepository userRepository, MovieRepository movieRepository){
 		this.movieEventRepository = movieEventRepository;
 		this.rsvpEventRepository = rsvpEventRepository;
 		this.ticketedEventRepository = ticketedEventRepository;
 		this.theatreRepository = theatreRepository;
 		this.userRepository = userRepository;
+		this.movieRepository = movieRepository;
 	}
 
 	@StreamListener(MovieEventStreams.INPUT)
@@ -73,6 +77,12 @@ public class DownStreamListener {
 	public void UserPost(@Payload Theatre theatre) {
 		theatreRepository.save(theatre);
 		System.out.println(theatre.toString()+" theatre");
+	}
+	
+	@StreamListener(MovieStreams.INPUT)
+	public void movieEventPost(@Payload Movie movie) {
+		movieRepository.save(movie);
+		System.out.println(movie.toString()+" movie");
 	}
 	
 }
