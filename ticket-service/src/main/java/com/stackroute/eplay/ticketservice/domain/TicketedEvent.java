@@ -21,6 +21,7 @@ public class TicketedEvent {
 	public String performers;
 	public String termsAndConditions;
 	public String notes;
+	
 	public TicketedEvent(int id, String name, Date date, Date time, String city, String location, String poster,
 			String type, int capacity, int remainingSeats, String description, String price, String performers,
 			String termsAndConditions, String notes) {

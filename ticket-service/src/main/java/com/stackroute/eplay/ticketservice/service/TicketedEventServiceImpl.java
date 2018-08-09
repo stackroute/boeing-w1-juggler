@@ -3,11 +3,13 @@ package com.stackroute.eplay.ticketservice.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.stackroute.eplay.ticketservice.domain.TicketedEvent;
 import com.stackroute.eplay.ticketservice.exception.TicketedEventAlreadyExistException;
 import com.stackroute.eplay.ticketservice.repositories.TicketedEventRepository;
 
+@Service
 public class TicketedEventServiceImpl implements TicketedEventService{
 	TicketedEventRepository ticketedEventRepository;
 	
@@ -20,11 +22,11 @@ public class TicketedEventServiceImpl implements TicketedEventService{
 	public TicketedEvent saveTicketedEvent(TicketedEvent ticketedEvent) throws TicketedEventAlreadyExistException {
 		TicketedEvent te = getTicketedEventById(ticketedEvent.getId());
 		if(te== null) {
-			throw new TicketedEventAlreadyExistException("This event already exists");
+			te = ticketedEventRepository.save(ticketedEvent);
+			return te;	
 		}
-		te = ticketedEventRepository.save(ticketedEvent);
-		return te;
-	}
+		throw new TicketedEventAlreadyExistException("This event already exists");
+		}
 
 	@Override
 	public List<TicketedEvent> getAllTicketedEvent() {

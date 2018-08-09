@@ -16,3 +16,4 @@ com/stackroute/eplay/ticketservice/exception/MovieEventAlreadyExistException.cla
 com/stackroute/eplay/ticketservice/streams/TheatreStreams.class
 com/stackroute/eplay/ticketservice/domain/Show.class
 com/stackroute/eplay/ticketservice/TicketServiceApplication.class
+com/stackroute/eplay/ticketservice/streams/ShowStreams.class
