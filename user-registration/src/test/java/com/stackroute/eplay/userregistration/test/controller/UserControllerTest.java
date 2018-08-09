@@ -44,7 +44,7 @@ public class UserControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr");
+		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
 		users = new ArrayList<User>();
 	}
 
@@ -71,9 +71,9 @@ public class UserControllerTest {
 	@Test
 	public void testGetAllUsers() throws Exception {
 		users.add(user);
-		user = new User("garvit", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr");
+		user = new User("garvit", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
 		users.add(user);
-		user = new User("garvit8", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr");
+		user = new User("garvit8", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
 		users.add(user);
 		when(userService.getAllUsers()).thenReturn(users);
 		mockMvc.perform(get("/api/v1/users")).andExpect(status().isOk());
@@ -87,7 +87,7 @@ public class UserControllerTest {
 	public void testUpdateUser() throws Exception {
 		user.setCity("Delhi");
 		when(userService.updateUser(any(), eq("garvit88"))).thenReturn(user);
-		mockMvc.perform(put("/api/v1/user/{username}", user.getUsername()).contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(put("/api/v1/user/{username}", user.getUserName()).contentType(MediaType.APPLICATION_JSON)
 				.content(asJsonString(user))).andExpect(status().isOk());
 	}
 	
@@ -98,8 +98,8 @@ public class UserControllerTest {
 	@Test
 	public void testGetUserByUsername() throws Exception {
 		Optional<User> userOp = Optional.of(user);
-		when(userService.getUserByUsername(user.getUsername())).thenReturn(userOp);
-		mockMvc.perform(get("/api/v1/user/{username}", user.getUsername())).andExpect(status().isOk());
+		when(userService.getUserByUsername(user.getUserName())).thenReturn(userOp);
+		mockMvc.perform(get("/api/v1/user/{username}", user.getUserName())).andExpect(status().isOk());
 	}
 	
 	/*
@@ -108,8 +108,8 @@ public class UserControllerTest {
 	
 	@Test
 	public void testDeleteUser() throws Exception {
-		when(userService.deleteUser(user.getUsername())).thenReturn(true);
-		mockMvc.perform(delete("/api/v1/user/{username}", user.getUsername())).andExpect(status().isOk());
+		when(userService.deleteUser(user.getUserName())).thenReturn(true);
+		mockMvc.perform(delete("/api/v1/user/{username}", user.getUserName())).andExpect(status().isOk());
 	}
 
 	public static String asJsonString(final Object obj) {

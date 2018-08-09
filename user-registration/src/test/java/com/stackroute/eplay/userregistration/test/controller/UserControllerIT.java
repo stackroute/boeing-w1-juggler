@@ -39,7 +39,7 @@ public class UserControllerIT {
 	@Before
 	public void setUp() throws Exception {
 
-		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr");
+		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
 		entity = new HttpEntity<User>(user, headers);
 
 	}

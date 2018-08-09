@@ -27,4 +27,5 @@ public class Theatre {
 	private String theatreLocation;
 	private int capacity;
 	private File arenaFile;
+	private String userId;
 }

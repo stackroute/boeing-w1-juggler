@@ -23,6 +23,7 @@ public class RSVPEvent {
 
 	@Id
 	private String id;
+	private String userId;
 	private String name;
 	private Date startDate;
 	private Date startTime;

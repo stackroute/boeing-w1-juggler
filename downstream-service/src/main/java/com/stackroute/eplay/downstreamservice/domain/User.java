@@ -21,7 +21,7 @@ import lombok.ToString;
 public class User {
 
 	@Id
-    private String username;
+    private String userName;
     private String password;
     private String fullName;
     private String contactNo;
@@ -29,4 +29,5 @@ public class User {
     private String gender;
     private String city;
     private List<Theatre> theatres;
+    private List<RSVPEvent> rsvpEvents;
 }
