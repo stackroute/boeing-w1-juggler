@@ -59,6 +59,11 @@ public class Show {
 	public void setMovieEventId(int movieEventId) {
 		this.movieEventId = movieEventId;
 	}
+	@Override
+	public String toString() {
+		return "Show [showId=" + showId + ", price=" + price + ", seatRemaining=" + seatRemaining + ", startTime="
+				+ startTime + ", date=" + date + ", movieEventId=" + movieEventId + "]";
+	}
 	
 	
 }
