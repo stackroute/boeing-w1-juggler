@@ -1,0 +1,27 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 172.23.238.170:9092
+      bindings:
+        RSVP-event-in:
+          destination: RSVPEvent
+          contentType: application/json
+        movie-event-in:
+          destination: MovieEvent
+          contentType: application/json
+        ticketed-event-in:
+          destination: TicketedEvent
+          contentType: application/json
+        movie-in:
+          destination: Movie
+          contentType: application/json
+        user-in:
+          destination: User
+          contentType: application/json
+        theatre-in:
+          destination: Theatre
+          contentType: application/json
