@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventTypeComponent } from './event-type.component';
+import { MovieCreationComponent } from './movie-creation.component';
 
-describe('EventTypeComponent', () => {
-  let component: EventTypeComponent;
-  let fixture: ComponentFixture<EventTypeComponent>;
+describe('MovieCreationComponent', () => {
+  let component: MovieCreationComponent;
+  let fixture: ComponentFixture<MovieCreationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventTypeComponent ]
+      declarations: [ MovieCreationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EventTypeComponent);
+    fixture = TestBed.createComponent(MovieCreationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
