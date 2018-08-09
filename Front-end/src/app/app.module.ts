@@ -12,6 +12,7 @@ import { AppRoutingModule } from "./app.routing.module";
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { EventTypeComponent } from './event-type/event-type.component';
 import {MatCardModule} from '@angular/material/card';
+import { RsvpEventComponent } from './rsvp-event/rsvp-event.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatCardModule} from '@angular/material/card';
     HomePageComponent,
     MovieCardComponent,
     RegistrationFormComponent,
-    EventTypeComponent
+    EventTypeComponent,
+    RsvpEventComponent
 
   ],
   imports: [
