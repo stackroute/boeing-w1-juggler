@@ -10,7 +10,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { MovieCardComponent } from './movies/movie-card/movie-card.component';
 import { AppRoutingModule } from "./app.routing.module";
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
-
+import { EventTypeComponent } from './event-type/event-type.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     MoviesComponent,
     HomePageComponent,
     MovieCardComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    EventTypeComponent
 
   ],
   imports: [
@@ -27,7 +29,8 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatCardModule
 
   ],
   providers: [],
