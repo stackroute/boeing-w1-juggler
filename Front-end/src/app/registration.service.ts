@@ -12,14 +12,11 @@ export class RegistrationService {
   private omdbUrl: string = "http://www.omdbapi.com/?s=";
   private apiKey: string = "&apikey=6db283eb";
   private _url2: string = "http://localhost:8080/api/v1/deleteMovie/";
-  private _url3:string = "http://www.omdbapi.com/?s=batman&apikey=6db283eb";
+  private _url3: string = "http://www.omdbapi.com/?s=batman&apikey=6db283eb";
   constructor(private http: HttpClient) {}
 
   saveMovie(user: UserRegistration): Observable<UserRegistration> {
-    //let headers = new Headers({ "Content-Type": "application/json" });
-    // let options = new RequestOptions({ headers: headers });
-     return this.http.post<UserRegistration>(this._url1, user);
-    
+    return this.http.post<UserRegistration>(this._url1, user);
   }
 
   getAllMovies(): Observable<Movie[]> {
@@ -35,7 +32,7 @@ export class RegistrationService {
     return this.http.delete(this._url2 + id);
   }
 
-  defaultLoad(){
+  defaultLoad() {
     return this.http.get(this._url3);
   }
 }

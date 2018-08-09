@@ -1,5 +1,5 @@
 package com.stackroute.eplay.ticketservice.domain;
 
-public class OtherEvent {
+public class TicketedEvent {
 
 }

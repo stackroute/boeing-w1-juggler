@@ -22,9 +22,10 @@ import lombok.ToString;
 public class Show {
 
 	@Id
-	private String showId;
+	private int showId;
 	private int price;
 	private int seatRemaining;
 	private Date startTime;
 	private Date date;
+	private int movieEventId;
 }

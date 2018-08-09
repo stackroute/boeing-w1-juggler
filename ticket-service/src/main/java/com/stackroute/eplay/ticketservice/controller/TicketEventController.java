@@ -3,6 +3,7 @@ package com.stackroute.eplay.ticketservice.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.stackroute.eplay.ticketservice.domain.MovieEvent;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
 import com.stackroute.eplay.ticketservice.service.MovieEventService;
+import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
+import com.stackroute.eplay.ticketservice.streams.MovieStreams;
+import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/v1")
+@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class})
 public class TicketEventController {
 	@Autowired
 	Environment env;

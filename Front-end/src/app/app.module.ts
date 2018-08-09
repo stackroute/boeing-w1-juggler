@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -10,11 +10,15 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { MovieCardComponent } from "./movies/movie-card/movie-card.component";
 import { AppRoutingModule } from "./app.routing.module";
 import { RegistrationFormComponent } from "./registration-form/registration-form.component";
-import { MovieCreationComponent } from "./movie-creation/movie-creation.component";
+import { EventTypeComponent } from "./event-type/event-type.component";
+import { MatCardModule } from "@angular/material/card";
+import { OtherTicketedEventComponent } from "./other-ticketed-event/other-ticketed-event.component";
+import { MovieEventComponent } from "./movie-event/movie-event.component";
 import { MatSelectModule } from "@angular/material/select";
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material';
-
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { NativeDateModule } from "@angular/material";
+import { MatNativeDateModule } from "@angular/material";
+import { ReactiveFormsModule } from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +26,9 @@ import {MatNativeDateModule} from '@angular/material';
     HomePageComponent,
     MovieCardComponent,
     RegistrationFormComponent,
-    MovieCreationComponent
+    EventTypeComponent,
+    OtherTicketedEventComponent,
+    MovieEventComponent
   ],
   imports: [
     BrowserModule,
@@ -32,13 +38,13 @@ import {MatNativeDateModule} from '@angular/material';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    MatCardModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
-  ],
-  providers: [
     MatNativeDateModule,
+    ReactiveFormsModule
   ],
+  providers: [MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
