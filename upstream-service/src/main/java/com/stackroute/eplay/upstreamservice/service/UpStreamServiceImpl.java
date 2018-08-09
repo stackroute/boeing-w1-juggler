@@ -9,6 +9,7 @@ import org.springframework.util.MimeTypeUtils;
 import com.stackroute.eplay.streams.MovieEventStreams;
 import com.stackroute.eplay.streams.MovieStreams;
 import com.stackroute.eplay.streams.RSVPEventStreams;
+import com.stackroute.eplay.streams.ShowStreams;
 import com.stackroute.eplay.streams.TheatreStreams;
 import com.stackroute.eplay.streams.TicketedEventStreams;
 import com.stackroute.eplay.upstreamservice.domain.Movie;
@@ -26,15 +27,17 @@ public class UpStreamServiceImpl implements UpStreamService{
 	private final TicketedEventStreams ticketedEventStream;
 	private final TheatreStreams theatreStream;
 	private final MovieStreams movieStream;
+	private final ShowStreams showStream;
 	@Autowired
 	private NextSequenceService nextSequenceService;
 	
-	public UpStreamServiceImpl(MovieEventStreams movieEventStreams,RSVPEventStreams rsvpEventStreams,TicketedEventStreams ticketedEventStreams, TheatreStreams theatreStreams, MovieStreams movieStreams) {
+	public UpStreamServiceImpl(MovieEventStreams movieEventStreams,RSVPEventStreams rsvpEventStreams,TicketedEventStreams ticketedEventStreams, TheatreStreams theatreStreams, MovieStreams movieStreams,ShowStreams showStreams) {
 		this.movieEventStream = movieEventStreams;
 		this.rsvpEventStream= rsvpEventStreams;
 		this.ticketedEventStream= ticketedEventStreams;
 		this.theatreStream= theatreStreams;
 		this.movieStream= movieStreams;
+		this.showStream= showStreams;
 	}
 	
 
@@ -44,7 +47,10 @@ public class UpStreamServiceImpl implements UpStreamService{
 		
 		for(Show show: event.getShows()) {
             show.setShowId(nextSequenceService.getNextSequence("counter"));
+            show.setMovieEventId(event.getMovieEventId());
         }
+		
+		
 		MessageChannel messageChannel = movieEventStream.outboundEvents();
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
@@ -88,6 +94,17 @@ public class UpStreamServiceImpl implements UpStreamService{
 		event.setTheatreId(nextSequenceService.getNextSequence("counter"));
 		
 		MessageChannel messageChannel = theatreStream.outboundEvents();
+		messageChannel.send(MessageBuilder.withPayload(event)
+				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+				.build());
+	}
+
+
+	@Override
+	public void saveShow(Show event) {
+		event.setShowId(nextSequenceService.getNextSequence("counter"));
+		
+		MessageChannel messageChannel = showStream.outboundEvents();
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 				.build());

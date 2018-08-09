@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.stackroute.eplay.streams.MovieEventStreams;
 import com.stackroute.eplay.streams.MovieStreams;
 import com.stackroute.eplay.streams.RSVPEventStreams;
+import com.stackroute.eplay.streams.ShowStreams;
 import com.stackroute.eplay.streams.TheatreStreams;
 import com.stackroute.eplay.streams.TicketedEventStreams;
 import com.stackroute.eplay.upstreamservice.domain.Movie;
 import com.stackroute.eplay.upstreamservice.domain.MovieEvent;
 import com.stackroute.eplay.upstreamservice.domain.RSVPEvent;
+import com.stackroute.eplay.upstreamservice.domain.Show;
 import com.stackroute.eplay.upstreamservice.domain.Theatre;
 import com.stackroute.eplay.upstreamservice.domain.TicketedEvent;
 import com.stackroute.eplay.upstreamservice.service.UpStreamService;
 
 @RestController
-@EnableBinding({TicketedEventStreams.class,MovieEventStreams.class,RSVPEventStreams.class,TheatreStreams.class,MovieStreams.class})
+@EnableBinding({TicketedEventStreams.class,MovieEventStreams.class,RSVPEventStreams.class,TheatreStreams.class,MovieStreams.class, ShowStreams.class})
 @CrossOrigin("*")
 @RequestMapping("api/v1/upstream")
 public class UpStreamController {
@@ -56,6 +58,12 @@ public class UpStreamController {
 	@PostMapping("/theatre")
 	public Theatre ticket(@RequestBody Theatre event) {
 		upStreamService.saveTheatre(event);
+		return event;
+	}
+	
+	@PostMapping("/show")
+	public Show saveShow(@RequestBody Show event) {
+		upStreamService.saveShow(event);
 		return event;
 	}
 	
