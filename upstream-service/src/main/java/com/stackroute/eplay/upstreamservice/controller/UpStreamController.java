@@ -16,6 +16,7 @@ import com.stackroute.eplay.streams.TicketedEventStreams;
 import com.stackroute.eplay.upstreamservice.domain.Movie;
 import com.stackroute.eplay.upstreamservice.domain.MovieEvent;
 import com.stackroute.eplay.upstreamservice.domain.RSVPEvent;
+import com.stackroute.eplay.upstreamservice.domain.Show;
 import com.stackroute.eplay.upstreamservice.domain.Theatre;
 import com.stackroute.eplay.upstreamservice.domain.TicketedEvent;
 import com.stackroute.eplay.upstreamservice.service.UpStreamService;
@@ -56,6 +57,12 @@ public class UpStreamController {
 	@PostMapping("/theatre")
 	public Theatre ticket(@RequestBody Theatre event) {
 		upStreamService.saveTheatre(event);
+		return event;
+	}
+	
+	@PostMapping("/show")
+	public Show saveShow(@RequestBody Show event) {
+		upStreamService.saveShow(event);
 		return event;
 	}
 	
