@@ -18,7 +18,7 @@ import lombok.ToString;
 @Document
 public class User {
 	@Id
-	private String username;
+	private String userName;
 	private String password;
 	private String fullName;
 	private String contactNo;
@@ -31,10 +31,10 @@ public class User {
 	public User() {
 	}
 
-	public User(String username, String password, String fullName, String contactNo, String email, String gender,
+	public User(String userName, String password, String fullName, String contactNo, String email, String gender,
 			String city, List<Theatre> theatres, List<RSVPEvent> rsvpEvents) {
 		super();
-		this.username = username;
+		this.userName = userName;
 		this.password = password;
 		this.fullName = fullName;
 		this.contactNo = contactNo;
@@ -45,12 +45,12 @@ public class User {
 		this.rsvpEvents = rsvpEvents;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -119,7 +119,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", fullName=" + fullName + ", contactNo="
+		return "User [userName=" + userName + ", password=" + password + ", fullName=" + fullName + ", contactNo="
 				+ contactNo + ", email=" + email + ", gender=" + gender + ", city=" + city + ", theatres=" + theatres
 				+ ", rsvpEvents=" + rsvpEvents + "]";
 	}

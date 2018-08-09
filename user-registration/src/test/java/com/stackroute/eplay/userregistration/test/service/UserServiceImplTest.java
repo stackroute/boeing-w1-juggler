@@ -74,7 +74,7 @@ public class UserServiceImplTest {
 			actualUsers.add(s);
 		}
 		assertEquals(3, actualUsers.size());
-		assertEquals("garvit8", actualUsers.get(2).getUsername());
+		assertEquals("garvit8", actualUsers.get(2).getUserName());
 	}
 	
 	/*
@@ -95,7 +95,7 @@ public class UserServiceImplTest {
 	@Test
 	public void testUpdateUser() throws Exception {
 		when(userRepository.save(user)).thenReturn(user);
-		User actual = userServiceImpl.updateUser(user, user.getUsername());
+		User actual = userServiceImpl.updateUser(user, user.getUserName());
 		assertEquals(user, actual);
 	}
 	
@@ -106,8 +106,8 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testDeleteUser() throws Exception {
-		doNothing().when(userRepository).deleteById(user.getUsername());
-		boolean status = userServiceImpl.deleteUser(user.getUsername());
+		doNothing().when(userRepository).deleteById(user.getUserName());
+		boolean status = userServiceImpl.deleteUser(user.getUserName());
 		assertEquals(true, status);
 	}
 

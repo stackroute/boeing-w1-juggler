@@ -39,7 +39,7 @@ public class KafkaListener {
 		String userName = theatre.getUserName();
 		try {
 			User user = userService.getUserByUsername(userName).get();
-			System.out.println(user.getUsername()+ " "+user.getFullName());
+			System.out.println(user.getUserName()+ " "+user.getFullName());
 			List<Theatre> theatres;
 			if(user.getTheatres()==null)
 				theatres = new ArrayList<>();
@@ -74,7 +74,7 @@ public class KafkaListener {
 		String userName = rsvpEvent.getUserName();
 		try {
 			User user = userService.getUserByUsername(userName).get();
-			System.out.println(user.getUsername()+ " "+user.getFullName());
+			System.out.println(user.getUserName()+ " "+user.getFullName());
 			List<RSVPEvent> rsvpEvents;
 			if(user.getRsvpEvents()==null)
 				rsvpEvents = new ArrayList<>();
