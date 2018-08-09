@@ -35,7 +35,7 @@ public class UserServiceImplTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr");
+		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
 		users = new ArrayList<User>();
 	}
 
@@ -62,9 +62,9 @@ public class UserServiceImplTest {
 	public void testGetAllUsers() {
 
 		users.add(user);
-		user = new User("garvit", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr");
+		user = new User("garvit", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
 		users.add(user);
-		user = new User("garvit8", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr");
+		user = new User("garvit8", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
 		users.add(user);
 		when(userRepository.findAll()).thenReturn(users);
 		Iterable<User> allUsers = userServiceImpl.getAllUsers();
