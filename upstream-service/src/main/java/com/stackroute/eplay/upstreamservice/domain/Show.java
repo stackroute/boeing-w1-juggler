@@ -26,4 +26,5 @@ public class Show {
 	private Date startTime;
 	private Date date;
 	private int movieEventId;
+	
 }
