@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 		Iterator<User> iterator = users.iterator();
 		while (iterator.hasNext()) {
 			User alreadyUser = iterator.next();
-			if (user.getUsername().equals(alreadyUser.getUsername())) {
+			if (user.getUserName().equals(alreadyUser.getUserName())) {
 				throw new UserAlreadyExistsException("User already exists");
 			}
 		}
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
 		Iterator<User> iterator = users.iterator();
 		while (iterator.hasNext()) {
 			User alreadyUser = iterator.next();
-			if (username.equals(alreadyUser.getUsername())) {
+			if (username.equals(alreadyUser.getUserName())) {
 				userExists = true;
 			}
 		}
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user, String username) {
-		user.setUsername(username);
+		user.setUserName(username);
 		return userRepository.save(user);
 	}
 
