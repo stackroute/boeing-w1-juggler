@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.stackroute.eplay.downstreamservice.domain.Theatre;
 
 @Repository
-public interface TheatreRepository extends MongoRepository<Theatre, String>{
+public interface TheatreRepository extends MongoRepository<Theatre, Integer>{
 
 }

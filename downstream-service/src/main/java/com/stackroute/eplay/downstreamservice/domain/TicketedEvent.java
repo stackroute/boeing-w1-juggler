@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -22,8 +21,9 @@ import lombok.ToString;
 public class TicketedEvent {
 
 	@Id
-	public String id;
+	public int id;
 	public String name;
+	private String userName;
 	public Date date;
 	public Date time;
 	public String city;

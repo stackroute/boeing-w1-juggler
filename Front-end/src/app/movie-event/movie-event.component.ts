@@ -1,12 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
-
 @Component({
-  selector: "app-movie-creation",
-  templateUrl: "./movie-creation.component.html",
-  styleUrls: ["./movie-creation.component.css"]
+  selector: "app-movie-event",
+  templateUrl: "./movie-event.component.html",
+  styleUrls: ["./movie-event.component.css"]
 })
-export class MovieCreationComponent implements OnInit {
+export class MovieEventComponent implements OnInit {
   pokemonControl = new FormControl();
   pokemonGroups: PokemonGroup[] = [
     {
