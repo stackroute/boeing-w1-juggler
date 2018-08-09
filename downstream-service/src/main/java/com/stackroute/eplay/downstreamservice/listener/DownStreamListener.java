@@ -37,11 +37,12 @@ public class DownStreamListener {
 	private TheatreRepository theatreRepository;
 	
 	@Autowired
-	public DownStreamListener(MovieEventRepository movieEventRepository,RSVPEventRepository rsvpEventRepository, TicketedEventRepository ticketedEventRepository, TheatreRepository theatreRepository){
+	public DownStreamListener(MovieEventRepository movieEventRepository,RSVPEventRepository rsvpEventRepository, TicketedEventRepository ticketedEventRepository, TheatreRepository theatreRepository, UserRepository userRepository){
 		this.movieEventRepository = movieEventRepository;
 		this.rsvpEventRepository = rsvpEventRepository;
 		this.ticketedEventRepository = ticketedEventRepository;
 		this.theatreRepository = theatreRepository;
+		this.userRepository = userRepository;
 	}
 
 	@StreamListener(MovieEventStreams.INPUT)
@@ -65,7 +66,7 @@ public class DownStreamListener {
 	@StreamListener(UserStreams.INPUT)
 	public void UserPost(@Payload User user) {
 		userRepository.save(user);
-		System.out.println(user.getFullName()+" user");
+		System.out.println(user.toString()+" user");
 	}
 	
 	@StreamListener(TheatreStreams.INPUT)
