@@ -21,9 +21,9 @@ import lombok.ToString;
 public class MovieEvent {
 
 	@Id
-	private String movieEventId;
-	private String movieId;
-	private String theatreId;
+	private int movieEventId;
+	private int movieId;
+	private int theatreId;
 	private int showCount;
 	private Date bookingStartDate;
 	private Date bookingEndDate;
