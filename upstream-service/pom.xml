@@ -5,7 +5,7 @@
 
 	<groupId>com.stackroute.eplay</groupId>
 	<artifactId>upstream-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>v1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>upstream-service</name>

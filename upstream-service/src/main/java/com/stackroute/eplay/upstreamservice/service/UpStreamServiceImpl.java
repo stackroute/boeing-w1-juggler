@@ -31,6 +31,7 @@ public class UpStreamServiceImpl implements UpStreamService{
 	@Autowired
 	private NextSequenceService nextSequenceService;
 	
+	// Parameterized Constructor
 	public UpStreamServiceImpl(MovieEventStreams movieEventStreams,RSVPEventStreams rsvpEventStreams,TicketedEventStreams ticketedEventStreams, TheatreStreams theatreStreams, MovieStreams movieStreams,ShowStreams showStreams) {
 		this.movieEventStream = movieEventStreams;
 		this.rsvpEventStream= rsvpEventStreams;
@@ -40,25 +41,29 @@ public class UpStreamServiceImpl implements UpStreamService{
 		this.showStream= showStreams;
 	}
 	
-
+	// Function for posting Movie event to the Message bus
 	@Override
 	public void saveMovieEvent(MovieEvent event){
+		// Set MovieEventId 
 		event.setMovieEventId(nextSequenceService.getNextSequence("counter"));
 		
+		// Set ShowId for each show in a movie event
 		for(Show show: event.getShows()) {
             show.setShowId(nextSequenceService.getNextSequence("counter"));
             show.setMovieEventId(event.getMovieEventId());
         }
 		
-		
+		System.out.println(event.toString());
 		MessageChannel messageChannel = movieEventStream.outboundEvents();
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 				.build());
 	}
 	
+	// Function for posting Ticketed event to the Message bus
 	@Override
 	public void saveTicketedEvent(TicketedEvent event) {
+		// Set Ticket event Id
 		event.setId(nextSequenceService.getNextSequence("counter"));
 		
 		MessageChannel messageChannel = ticketedEventStream.outboundEvents();
@@ -67,8 +72,10 @@ public class UpStreamServiceImpl implements UpStreamService{
 				.build());
 	}
 	
+	// Function for posting RSVP event to the Message bus
 	@Override
 	public void saveRSVPEvent(RSVPEvent event) {
+		//Set RSVP event Id
 		event.setId(nextSequenceService.getNextSequence("counter"));
 		
 		MessageChannel messageChannel = rsvpEventStream.outboundEvents();
@@ -77,9 +84,10 @@ public class UpStreamServiceImpl implements UpStreamService{
 				.build());
 	}
 
-
+	// Function for posting Movie to the Message bus
 	@Override
 	public void saveMovie(Movie event) {
+		//Set Movie Id
 		event.setId(nextSequenceService.getNextSequence("counter"));
 		
 		MessageChannel messageChannel = movieStream.outboundEvents();
@@ -88,9 +96,10 @@ public class UpStreamServiceImpl implements UpStreamService{
 				.build());	
 	}
 
-
+	// Function for posting Theater to the Message bus
 	@Override
 	public void saveTheatre(Theatre event) {
+		// Set Theatre Id
 		event.setTheatreId(nextSequenceService.getNextSequence("counter"));
 		
 		MessageChannel messageChannel = theatreStream.outboundEvents();
@@ -99,9 +108,10 @@ public class UpStreamServiceImpl implements UpStreamService{
 				.build());
 	}
 
-
+	// Function for posting Show to the Message bus
 	@Override
 	public void saveShow(Show event) {
+		// Set show Id
 		event.setShowId(nextSequenceService.getNextSequence("counter"));
 		
 		MessageChannel messageChannel = showStream.outboundEvents();
@@ -110,5 +120,4 @@ public class UpStreamServiceImpl implements UpStreamService{
 				.build());
 	}
 	
-
 }

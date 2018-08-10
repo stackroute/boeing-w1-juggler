@@ -31,36 +31,42 @@ public class UpStreamController {
 	@Autowired
 	private UpStreamService upStreamService;
 
+   //Function for posting a new Movie event to Message Bus		
 	@PostMapping("/movieEvent")
 	public MovieEvent movie(@RequestBody MovieEvent event) {
 		upStreamService.saveMovieEvent(event);
 		return event;
 	}
 	
+	//Function for posting a new Ticketed event to Message Bus	
 	@PostMapping("/ticketedEvent")
 	public TicketedEvent ticket(@RequestBody TicketedEvent event) {
 		upStreamService.saveTicketedEvent(event);
 		return event;
 	}
 	
+	//Function for posting a new RSVP event to Message Bus	
 	@PostMapping("/rsvpEvent")
 	public RSVPEvent ticket(@RequestBody RSVPEvent event) {
 		upStreamService.saveRSVPEvent(event);
 		return event;
 	}
 	
+	//Function for posting a new Movie entry to Message Bus	
 	@PostMapping("/movie")
 	public Movie ticket(@RequestBody Movie event) {
 		upStreamService.saveMovie(event);
 		return event;
 	}
 	
+	//Function for posting a new Theatre entry to Message Bus	
 	@PostMapping("/theatre")
 	public Theatre ticket(@RequestBody Theatre event) {
 		upStreamService.saveTheatre(event);
 		return event;
 	}
 	
+	//Function for posting a new Show to Message Bus	
 	@PostMapping("/show")
 	public Show saveShow(@RequestBody Show event) {
 		upStreamService.saveShow(event);
