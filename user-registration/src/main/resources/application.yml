@@ -14,3 +14,9 @@ spring:
         rsvp-event-in:
           destination: RSVPEvent
           contentType: application/json
+        movie-event-in:
+          destination: MovieEvent
+          contentType: application/json
+        ticketed-event-in:
+          destination: TicketedEvent
+          contentType: application/json

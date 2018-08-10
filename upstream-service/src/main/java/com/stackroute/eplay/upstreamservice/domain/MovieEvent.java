@@ -1,6 +1,7 @@
 package com.stackroute.eplay.upstreamservice.domain;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -29,5 +30,6 @@ public class MovieEvent {
 	private Date bookingEndDate;
 	private List<Show> shows;
 	private String city;
+	private String userName;
 	
 }

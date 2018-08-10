@@ -44,7 +44,7 @@ public class UserControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
+		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null,null,null);
 		users = new ArrayList<User>();
 	}
 
@@ -71,9 +71,9 @@ public class UserControllerTest {
 	@Test
 	public void testGetAllUsers() throws Exception {
 		users.add(user);
-		user = new User("garvit", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
+		user = new User("garvit", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null,null,null);
 		users.add(user);
-		user = new User("garvit8", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null);
+		user = new User("garvit8", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null,null,null);
 		users.add(user);
 		when(userService.getAllUsers()).thenReturn(users);
 		mockMvc.perform(get("/api/v1/users")).andExpect(status().isOk());

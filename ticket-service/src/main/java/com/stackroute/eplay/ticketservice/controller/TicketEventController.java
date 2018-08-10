@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -118,6 +119,11 @@ public class TicketEventController {
 	@GetMapping("/getTicketedEventById/{id}")
 	public ResponseEntity<?> getTicketedEventById(@PathVariable int id){
 		return new ResponseEntity<TicketedEvent>(ticketedEventService.getTicketedEventById(id),HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateTicketedEvent")
+	public ResponseEntity<?> updateTicketedEvent(@RequestBody TicketedEvent ticketedEvent){
+		return new ResponseEntity<TicketedEvent>(ticketedEventService.updateTicketedEvent(ticketedEvent),HttpStatus.OK);
 	}
 }
 

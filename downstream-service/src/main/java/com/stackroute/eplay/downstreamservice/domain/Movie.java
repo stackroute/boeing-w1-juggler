@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -19,7 +18,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Movie {
-	
+
 	@Id
 	private int id;
 	private String name;
@@ -28,7 +27,7 @@ public class Movie {
 	private String language;
 	private String reviews;
 	private String cast;
-	private String description;  
+	private String description;
 	private int rating;
 	private int duration;
 	private List<MovieEvent> movieEvents;

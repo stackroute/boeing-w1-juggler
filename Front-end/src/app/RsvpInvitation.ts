@@ -1,11 +1,12 @@
 export class RsvpInvitation {
 
-    invitationId:string;
+    invitationId:number;
     eventId:number;
     inviteeUsername:string;
     inviteeName:string;
     inviteeEmail:string;
     inviteePhoneNo:string;
     status:boolean;
+    senderUserName:string;
 
 }
