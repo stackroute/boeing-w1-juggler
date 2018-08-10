@@ -1,0 +1,77 @@
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Event Name">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a starting date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Time">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Select City " [formControl]="otherTicketedEventControl">
+      <mat-option>-- None --</mat-option>
+      <mat-optgroup *ngFor="let group of cityGroup" [label]="group.name" [disabled]="group.disabled">
+        <mat-option *ngFor="let city of group.city" [value]="city.value">
+          {{city.viewValue}}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Location">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Poster">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Select event Type " [formControl]="otherTicketedEventControl1">
+      <mat-option>-- None --</mat-option>
+      <mat-optgroup *ngFor="let group of typegroup" [label]="group.name" [disabled]="group.disabled">
+        <mat-option *ngFor="let type of group.type" [value]="type.value">
+          {{type.viewValue}}
+        </mat-option>
+      </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Capacity">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Remaining Seats">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <textarea matInput placeholder="Description"></textarea>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Price">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Performers">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <textarea matInput placeholder="Terms and Conditions"></textarea>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <textarea matInput placeholder="Notes"></textarea>
+  </mat-form-field>
+  <br>
+  <button type="submit" class="example-button" name="button" class="btn btn-success">Submit</button>
+  <br>
+  <br>
+</div>

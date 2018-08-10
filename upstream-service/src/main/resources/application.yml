@@ -3,7 +3,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
+          brokers: 172.23.238.170:9092
       bindings:
         movie-event-out:
           destination: MovieEvent
@@ -19,4 +19,7 @@ spring:
           contentType: application/json
         movie-out    :
           destination: Movie
+          contentType: application/json
+        show-out:
+          destination: Show
           contentType: application/json

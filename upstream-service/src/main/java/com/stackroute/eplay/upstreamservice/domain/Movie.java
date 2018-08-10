@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +17,11 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Movie {
 	
 	@Id
-	private String id;
+	private int id;
 	private String name;
 	private String poster;
 	private String genre;
