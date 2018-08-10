@@ -1,4 +1,4 @@
-package com.stackroute.rsvp.services;
+package com.stackroute.eplay.rsvp.services;
 
 
 import java.util.List;
@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.stackroute.rsvp.domain.RsvpInvitation;
-import com.stackroute.rsvp.repositories.RsvpInvitationRepository;
+import com.stackroute.eplay.rsvp.domain.Invitation;
+import com.stackroute.eplay.rsvp.repositories.RsvpInvitationRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,25 +30,25 @@ public class RsvpInvitationServiceImpl implements RsvpInvitationService{
 	}
 
 	@Override
-	public RsvpInvitation saveRsvpInvitation(RsvpInvitation rsvpInvitation) {
+	public Invitation saveRsvpInvitation(Invitation rsvpInvitation) {
 		// TODO Auto-generated method stub
 		return rsvpInvitationRepository.save(rsvpInvitation);
 	}
 
 	@Override
-	public Iterable<RsvpInvitation> getAllRsvpInvitation() {
+	public Iterable<Invitation> getAllRsvpInvitation() {
 		// TODO Auto-generated method stub
 		return rsvpInvitationRepository.findAll();
 	}
 
 	@Override
-	public Optional<RsvpInvitation> getRsvpInvitationByInvitationId(String invitationId) {
+	public Optional<Invitation> getRsvpInvitationByInvitationId(int invitationId) {
 		// TODO Auto-generated method stub
 		return rsvpInvitationRepository.findById(invitationId);
 	}
 
 	@Override
-	public boolean deleteRsvpInvitation(String invitationId) {
+	public boolean deleteRsvpInvitation(int invitationId) {
 		// TODO Auto-generated method stub
 		if(rsvpInvitationRepository.existsById(invitationId))
 		{
@@ -59,9 +59,9 @@ public class RsvpInvitationServiceImpl implements RsvpInvitationService{
 	}
 
 	@Override
-	public RsvpInvitation updateRsvpInvitation(RsvpInvitation rsvpInvitation, String invitationId) {
+	public Invitation updateRsvpInvitation(Invitation rsvpInvitation, int invitationId) {
 		// TODO Auto-generated method stub
-		rsvpInvitation.setinvitationId(invitationId);
+		rsvpInvitation.setInvitationId(invitationId);
 		return rsvpInvitationRepository.save(rsvpInvitation);
 	}
 

@@ -1,21 +1,12 @@
-package com.stackroute.rsvp.services;
-
-import java.util.List;
-
-
+package com.stackroute.eplay.rsvp.services;
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.stackroute.rsvp.domain.RsvpCreate;
-import com.stackroute.rsvp.repositories.RsvpCreateRepository;
+import com.stackroute.eplay.rsvp.domain.RSVPEvent;
+import com.stackroute.eplay.rsvp.repositories.RsvpCreateRepository;
 
 @Service
 public class RsvpCreateServiceImpl implements RsvpCreateService{
@@ -30,19 +21,19 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	}
 
 	@Override
-	public RsvpCreate saveRsvpCreate(RsvpCreate rsvpCreate) {
+	public RSVPEvent saveRsvpCreate(RSVPEvent rsvpCreate) {
 		// TODO Auto-generated method stub
 		return rsvpCreateRepository.save(rsvpCreate);
 	}
 
 	@Override
-	public Iterable<RsvpCreate> getAllRsvpCreate() {
+	public Iterable<RSVPEvent> getAllRsvpCreate() {
 		// TODO Auto-generated method stub
 		return rsvpCreateRepository.findAll();
 	}
 
 	@Override
-	public Optional<RsvpCreate> getRsvpCreateById(String id) {
+	public Optional<RSVPEvent> getRsvpCreateById(int id) {
 		// TODO Auto-generated method stub
 		if(rsvpCreateRepository.existsById(id))
 		{
@@ -52,7 +43,7 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	}
 
 	@Override
-	public boolean deleteRsvpCreate(String id) {
+	public boolean deleteRsvpCreate(int id) {
 		// TODO Auto-generated method stub
 		if(rsvpCreateRepository.existsById(id))
 		{
@@ -64,7 +55,7 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	}
 
 	@Override
-	public RsvpCreate updateRsvp(RsvpCreate rsvpCreate, String id) {
+	public RSVPEvent updateRsvp(RSVPEvent rsvpCreate, int id) {
 		// TODO Auto-generated method stub
 		rsvpCreate.setId(id);
 		return rsvpCreateRepository.save(rsvpCreate);
