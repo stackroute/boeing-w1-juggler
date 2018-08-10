@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -20,7 +19,7 @@ public class invitation {
 
 	@Id
 	private int invitationId;
-	private int EventId;
+	private int eventId;
 	private String inviteeUserName;
 	private String inviteeName;
 	private String inviteeEmail;
