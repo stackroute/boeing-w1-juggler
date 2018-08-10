@@ -5,12 +5,6 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 /*
  * Model class for the User Registration
  */
@@ -27,12 +21,15 @@ public class User {
 	private String city;
 	private List<Theatre> theatres;
 	private List<RSVPEvent> rsvpEvents;
+	private List<MovieEvent> movieEvent;
+	private List<TicketedEvent> ticketedEvent;
 
 	public User() {
 	}
 
 	public User(String userName, String password, String fullName, String contactNo, String email, String gender,
-			String city, List<Theatre> theatres, List<RSVPEvent> rsvpEvents) {
+			String city, List<Theatre> theatres, List<RSVPEvent> rsvpEvents, List<MovieEvent> movieEvent,
+			List<TicketedEvent> ticketedEvent) {
 		super();
 		this.userName = userName;
 		this.password = password;
@@ -43,6 +40,8 @@ public class User {
 		this.city = city;
 		this.theatres = theatres;
 		this.rsvpEvents = rsvpEvents;
+		this.movieEvent = movieEvent;
+		this.ticketedEvent = ticketedEvent;
 	}
 
 	public String getUserName() {
@@ -117,11 +116,28 @@ public class User {
 		this.rsvpEvents = rsvpEvents;
 	}
 
+	public List<MovieEvent> getMovieEvent() {
+		return movieEvent;
+	}
+
+	public void setMovieEvent(List<MovieEvent> movieEvent) {
+		this.movieEvent = movieEvent;
+	}
+
+	public List<TicketedEvent> getTicketedEvent() {
+		return ticketedEvent;
+	}
+
+	public void setTicketedEvent(List<TicketedEvent> ticketedEvent) {
+		this.ticketedEvent = ticketedEvent;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userName=" + userName + ", password=" + password + ", fullName=" + fullName + ", contactNo="
 				+ contactNo + ", email=" + email + ", gender=" + gender + ", city=" + city + ", theatres=" + theatres
-				+ ", rsvpEvents=" + rsvpEvents + "]";
+				+ ", rsvpEvents=" + rsvpEvents + ", movieEvent=" + movieEvent + ", ticketedEvent=" + ticketedEvent
+				+ "]";
 	}
 
 }

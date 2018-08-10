@@ -25,4 +25,6 @@ public class Show {
 	private int price;
 	private Date startTime;
 	private Date date;
+	private int movieEventId;
+	
 }

@@ -19,9 +19,12 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 
 import { MatNativeDateModule, MatNavList } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
+import { RsvpInvitationComponent } from './rsvp-invitation/rsvp-invitation.component';
+import { RsvpEventComponent } from './rsvp-event/rsvp-event.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import {MatSidenavModule} from '@angular/material/sidenav';
-
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { EventCardComponent } from './home-page/event-card/event-card.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +34,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     RegistrationFormComponent,
     EventTypeComponent,
     OtherTicketedEventComponent,
+    RsvpEventComponent,
     MovieEventComponent,
-    
+    RsvpInvitationComponent,
+    LandingPageComponent,
+    EventCardComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +54,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    FlexLayoutModule,MatSidenavModule,
-    
-    
+    FlexLayoutModule
   ],
   providers: [MatNativeDateModule],
   bootstrap: [AppComponent]

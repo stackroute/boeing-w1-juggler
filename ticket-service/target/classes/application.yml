@@ -14,15 +14,17 @@ spring:
   data:
       mongodb:
          uri: mongodb://0.0.0.0:27000/test
-         spring:
   cloud:
     stream:
       kafka:
         binder:
-          brokers: 172.23.238.170:9092
+          brokers: localhost:9092
       bindings:
         movie-event-in:
           destination: MovieEvent
+          contentType: application/json
+        show-in:
+          destination: Show
           contentType: application/json
         ticketed-event-in:
           destination: TicketedEvent

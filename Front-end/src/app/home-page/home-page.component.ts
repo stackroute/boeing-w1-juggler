@@ -1,48 +1,28 @@
 import { Component, OnInit } from "@angular/core";
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, OnDestroy} from '@angular/core';
+import { SearchDataService } from "../search-data.service";
+import { Router } from "@angular/router";
+
 @Component({
-  selector: 'app-home-page',
-  templateUrl: "./home-page.component.html",
-  styleUrls:  ["./home-page.component.css"],
+ selector: "app-home-page",
+ templateUrl: "./home-page.component.html",
+ styleUrls: ["./home-page.component.css"]
 })
-export class HomePageComponent implements OnDestroy {
-  mobileQuery: MediaQueryList;
-
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-
-  fillerContent = Array.from({length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
-
-  private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
-
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
-
+export class HomePageComponent implements OnInit {
+ event$: any;
+ message:string;
+ constructor(
+   private data: SearchDataService,
+   private router: Router,
+ ) {}
+ ngOnInit() {
+   this.data.currentMessage.subscribe(message => this.message = message)
+   this.fetchEvents();
+ }
+ fetchEvents(){
+   console.log("Hi fetchMovies is called ", this.message);
+   this.data.getMyEvents(this.message).subscribe(data => {
+     this.event$ = data;
+     console.log(data);
+   });
+ }
 }
-
-
-
-
-
-// @Component({
-//   selector: "app-home-page",
-//   templateUrl: "./home-page.component.html",
-//   styleUrls: ["./home-page.component.css"]
-// })
-// export class HomePageComponent implements OnInit {
-//   constructor() {}
-
-//   ngOnInit() {}
-// }
