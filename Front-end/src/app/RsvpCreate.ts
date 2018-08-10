@@ -1,6 +1,7 @@
 export class RsvpCreate{
-    id:string;
+    id:number;
     name:string;
+    userName:string;
     startDate:Date;
     startTime:Date;
     endDate:Date;
