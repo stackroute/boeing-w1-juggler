@@ -35,7 +35,7 @@ public class TicketedEventServiceTest {
 	public void setupMock() {
 		MockitoAnnotations.initMocks(this);
 		id =22;
-		ticketedEvent = new TicketedEvent(id,"shivangi",new Date(),new Date(),"patna","bihar","abc","play",100,1,"sing","22","shivangi","nmn","mnb");
+		ticketedEvent = new TicketedEvent(id,"shivangi",new Date(),new Date(),"patna","bihar","abc","play",100,1,"sing","22","shivangi","nmn","mnb","username");
 	}
 	
 	@Test

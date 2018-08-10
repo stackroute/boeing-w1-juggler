@@ -19,6 +19,7 @@ public class MovieEvent {
 	private Date bookingEndDate;
 	private List<Show> shows;
 	private String city;
+	private String userName;
 	
 	public MovieEvent() {
 		
@@ -35,6 +36,7 @@ public class MovieEvent {
 		this.bookingStartDate = bookingStartDate;
 		this.bookingEndDate = bookingEndDate;
 		this.shows = shows;
+		this.userName=userName;
 		this.city = city;
 	}
 
@@ -66,6 +68,16 @@ public class MovieEvent {
 	public int getShowCount() {
 		return showCount;
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 
 	public void setShowCount(int showCount) {
 		this.showCount = showCount;

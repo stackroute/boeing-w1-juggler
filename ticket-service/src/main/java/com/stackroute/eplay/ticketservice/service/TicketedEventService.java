@@ -10,4 +10,5 @@ public interface TicketedEventService {
 	public TicketedEvent saveTicketedEvent(TicketedEvent ticketedEvent) throws TicketedEventAlreadyExistException;
 	public List<TicketedEvent> getAllTicketedEvent();
 	public TicketedEvent getTicketedEventById(int id);
+	public TicketedEvent updateTicketedEvent(TicketedEvent ticketedEvent);
 }

@@ -19,7 +19,7 @@ public class Invitation {
 
 	@Id
 	private int invitationId;
-	private String EventId;
+	private int eventId;
 	private String inviteeUserName;
 	private String inviteeName;
 	private String inviteeEmail;

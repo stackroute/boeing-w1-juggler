@@ -11,6 +11,7 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MimeTypeUtils;
 
+import com.stackroute.eplay.ticketservice.domain.Movie;
 import com.stackroute.eplay.ticketservice.domain.MovieEvent;
 import com.stackroute.eplay.ticketservice.domain.Show;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
@@ -41,6 +42,8 @@ public class MovieEventServiceImpl implements MovieEventService{
 		
 		return movieEventRepository.save(movieEvent);
 	}
+
+	
 
 
 	public Iterable<MovieEvent> getAllMovieEvent() {

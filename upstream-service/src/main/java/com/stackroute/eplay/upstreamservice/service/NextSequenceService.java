@@ -1,5 +1,4 @@
 package com.stackroute.eplay.upstreamservice.service;
-//package com.stackroute.eplay.ticketservice.service;
 
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
@@ -11,6 +10,8 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.stackroute.eplay.upstreamservice.domain.Counter;
+
+// Class containing a function for performing increments in an id field 
 
 @Service
 public class NextSequenceService {
