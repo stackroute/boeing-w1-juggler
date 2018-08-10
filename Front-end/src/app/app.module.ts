@@ -16,9 +16,12 @@ import { OtherTicketedEventComponent } from "./other-ticketed-event/other-ticket
 import { MovieEventComponent } from "./movie-event/movie-event.component";
 import { MatSelectModule } from "@angular/material/select";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { NativeDateModule } from "@angular/material";
-import { MatNativeDateModule } from "@angular/material";
+
+import { MatNativeDateModule, MatNavList } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     RegistrationFormComponent,
     EventTypeComponent,
     OtherTicketedEventComponent,
-    MovieEventComponent
+    MovieEventComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FlexLayoutModule,MatSidenavModule,
+    
+    
   ],
   providers: [MatNativeDateModule],
   bootstrap: [AppComponent]
