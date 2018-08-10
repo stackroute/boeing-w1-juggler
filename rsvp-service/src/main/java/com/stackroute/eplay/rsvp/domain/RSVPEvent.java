@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Document
 @Getter
 @Setter
@@ -40,5 +39,5 @@ public class RSVPEvent {
 	private int numberOfAttendees;
 	private boolean isCompleted;
 	private List<Invitation> rsvpInvitation;
-  
+
 }

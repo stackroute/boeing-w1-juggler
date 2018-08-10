@@ -13,13 +13,13 @@ import com.stackroute.eplay.rsvp.streams.RSVPEventStreams;
 public class KafkaListener {
 
 	private RsvpCreateServiceImpl rsvpCreateServiceImpl;
-	
+
 	@Autowired
 	public KafkaListener(RsvpCreateServiceImpl rsvpCreateServiceImpl) {
 		super();
 		this.rsvpCreateServiceImpl = rsvpCreateServiceImpl;
 	}
-	
+
 	@StreamListener(RSVPEventStreams.INPUT)
 	public void postEvents(@Payload RSVPEvent resvpEvent) {
 		rsvpCreateServiceImpl.saveRsvpCreate(resvpEvent);
