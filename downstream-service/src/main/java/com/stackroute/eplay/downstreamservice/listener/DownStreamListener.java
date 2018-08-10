@@ -85,8 +85,6 @@ public class DownStreamListener {
 	public void moviePost(@Payload Movie movie) {
 		movieRepository.save(movie);
 		logger.info(movie.toString()+" movie");
-		System.out.println("===================================");
-		System.out.println("=========="+movie+"==========");
 	}
 	
 }
