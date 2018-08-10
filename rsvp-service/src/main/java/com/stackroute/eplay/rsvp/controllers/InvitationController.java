@@ -28,10 +28,13 @@ import com.stackroute.eplay.rsvp.services.RsvpCreateServiceImpl;
 import com.stackroute.eplay.rsvp.services.RsvpInvitationServiceImpl;
 import com.stackroute.eplay.rsvp.streams.RSVPEventStreams;
 
+import lombok.NoArgsConstructor;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1")
 @EnableBinding(RSVPEventStreams.class)
+@NoArgsConstructor
 public class InvitationController {
 
 	private RsvpInvitationServiceImpl rsvpInvitationServiceImpl;
