@@ -38,7 +38,9 @@ public class KafkaListener {
 	@StreamListener(ShowStreams.INPUT)
 	public void updateMovieEvent(@Payload Show show) {
 		System.out.println(show.toString());
+
 		movieEventService.updateMovieEvent(show);
+		
 	}
 	
 	

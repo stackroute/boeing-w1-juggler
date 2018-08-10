@@ -1,5 +1,4 @@
-<!-- <mat-grid-tile colspan="1" rowspan="6"> -->
-<!-- <mat-card class="example-card"> -->
+<app-nav-bar></app-nav-bar>
 <mat-grid-list cols="12" rowHeight="100px">
   <mat-grid-tile colspan="4" rowspan="6">
     <mat-card class="example-card">
@@ -28,7 +27,7 @@
         alt="Movie Poster">
 
       <mat-card-actions>
-        <button mat-raised-button color="primary">Create RSVP Event</button>
+        <button mat-raised-button color="primary" routerLink="/createRSVPEvent" routerLinkActive="active">Create RSVP Event</button>
       </mat-card-actions>
     </mat-card>
   </mat-grid-tile>
@@ -48,10 +47,3 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
-<!-- <mat-card-header>
-  <div mat-card-avatar class="example-header-image"></div>
-  <mat-card-title>dsds</mat-card-title>
-  <mat-card-subtitle>sfdsdfsd</mat-card-subtitle>
-</mat-card-header>
-<img mat-card-image src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350"
-  alt="Movie Poster"> -->

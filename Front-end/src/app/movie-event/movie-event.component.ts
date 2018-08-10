@@ -6,38 +6,31 @@ import { FormControl } from "@angular/forms";
   styleUrls: ["./movie-event.component.css"]
 })
 export class MovieEventComponent implements OnInit {
-  pokemonControl = new FormControl();
-  pokemonGroups: PokemonGroup[] = [
+  movieEventControl = new FormControl();
+  theatreGroups: TheatreGroup[] = [
     {
       name: "PVR",
-      pokemon: [
-        { value: "PVR INOX", viewValue: "PVR INOX" },
-        { value: "PVR GOLDCLASS", viewValue: "PVR GOLDCLASS" },
-        { value: "PVR FAMILY", viewValue: "PVR FAMILY" }
+      theatre: [
+        { value: "PVR INOX", viewValue: "PVR Kormangla" },
+        { value: "PVR GOLDCLASS", viewValue: "PVR Orion Mall" },
+        { value: "PVR FAMILY", viewValue: "PVR Arena Mall" }
       ]
     },
     {
-      name: "Water",
-      pokemon: [
-        { value: "squirtle-3", viewValue: "Squirtle" },
-        { value: "psyduck-4", viewValue: "Psyduck" },
-        { value: "horsea-5", viewValue: "Horsea" }
+      name: "Imax",
+      theatre: [
+        { value: "Imax Gold", viewValue: "Imax Mantri Mall" },
+        { value: "Imax Silver", viewValue: "Imax Forum" },
+        { value: "Imax Platinum", viewValue: "Imax Phoenix marketcity" }
       ]
     },
     {
-      name: "Fire",
-      disabled: true,
-      pokemon: [
-        { value: "charmander-6", viewValue: "Charmander" },
-        { value: "vulpix-7", viewValue: "Vulpix" },
-        { value: "flareon-8", viewValue: "Flareon" }
-      ]
-    },
-    {
-      name: "Psychic",
-      pokemon: [
-        { value: "mew-9", viewValue: "Mew" },
-        { value: "mewtwo-10", viewValue: "Mewtwo" }
+      name: "Wave",
+      // disabled: true,
+      theatre: [
+        { value: "Wave red", viewValue: "Wave red" },
+        { value: "Wave Gold", viewValue: "Wave Gold" },
+        { value: "Wave Balcony", viewValue: "Wave Balcony" }
       ]
     }
   ];
@@ -47,13 +40,13 @@ export class MovieEventComponent implements OnInit {
   ngOnInit() {}
 }
 
-export interface Pokemon {
+export interface Theatre {
   value: string;
   viewValue: string;
 }
 
-export interface PokemonGroup {
+export interface TheatreGroup {
   disabled?: boolean;
   name: string;
-  pokemon: Pokemon[];
+  theatre: Theatre[];
 }

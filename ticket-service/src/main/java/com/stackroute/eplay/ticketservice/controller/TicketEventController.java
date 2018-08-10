@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.ticketservice.domain.MovieEvent;
+import com.stackroute.eplay.ticketservice.domain.TicketedEvent;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
+import com.stackroute.eplay.ticketservice.exception.TicketedEventAlreadyExistException;
 import com.stackroute.eplay.ticketservice.service.MovieEventService;
+import com.stackroute.eplay.ticketservice.service.TicketedEventService;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
 import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
@@ -36,10 +40,12 @@ public class TicketEventController {
 	Environment env;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	MovieEventService movieEventService;
+	TicketedEventService ticketedEventService;
 
 	@Autowired
-	TicketEventController(MovieEventService movieEventService){
+	TicketEventController(MovieEventService movieEventService, TicketedEventService ticketedEventService){
 		this.movieEventService=movieEventService;
+		this.ticketedEventService = ticketedEventService;
 	}
 
 	@PostMapping("/saveMovieEvent")
@@ -61,8 +67,28 @@ public class TicketEventController {
 	    
 	}
 	 @GetMapping("/getAllMovies")
-	    public ResponseEntity<?> getAllMovieEvent(){
+	public ResponseEntity<?> getAllMovieEvent(){
 	    	return new ResponseEntity<Iterable<MovieEvent>> (movieEventService.getAllMovieEvent(),HttpStatus.OK);
 	    }
+	 
+	 @PostMapping("/saveTicketedEvent")
+	 public ResponseEntity<?> saveTicketedEvent(@RequestBody TicketedEvent ticketedEvent){
+		 try {
+			 ticketedEventService.saveTicketedEvent(ticketedEvent);
+			 return new ResponseEntity<TicketedEvent> (ticketedEvent,HttpStatus.CREATED);
+		 }catch(TicketedEventAlreadyExistException e) {
+			 return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+		 }
+	 }
+	 
+	@GetMapping("/getAllTicketedEvent")
+	public ResponseEntity<?> getAllTicketedEvent(){
+		return new ResponseEntity<Iterable<TicketedEvent>>(ticketedEventService.getAllTicketedEvent(),HttpStatus.OK);
+	}
 	
+	@GetMapping("/getTicketedEventById/{id}")
+	public ResponseEntity<?> getTicketedEventById(@PathVariable int id){
+		return new ResponseEntity<TicketedEvent>(ticketedEventService.getTicketedEventById(id),HttpStatus.OK);
+	}
 }
+

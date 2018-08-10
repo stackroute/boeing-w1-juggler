@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Document
 public class MovieEvent {
 	@Id
@@ -102,7 +103,34 @@ public class MovieEvent {
 		this.city = city;
 	}
 
+
+
 	
 	
+//	@Override
+//	public boolean equals (Object o) {
+//	    if (!(o instanceof MovieEvent)) {
+//	        return false;
+//	    }
+//	    MovieEvent movieEvent = (MovieEvent)o;
+//	    return  getMovieEventId()==(movieEvent.getMovieEventId()) &&
+//	    		getMovieId()==(movieEvent.getMovieEventId()) &&
+//	    		getTheatreId()==(movieEvent.getTheatreId()) &&
+//	    		getShowCount()==(movieEvent.getShowCount()) &&
+//	    		getBookingStartDate().equals(movieEvent.getBookingStartDate())&&
+//	    		getBookingEndDate().equals(movieEvent.getBookingEndDate())&&
+//	    		getShows().equals(movieEvent.getShows())&&
+//	    		getCity().equals(movieEvent.getCity());
+//
+//	    		
+//	}
+
+
+	@Override
+	public String toString() {
+		return "MovieEvent [movieEventId=" + movieEventId + ", movieId=" + movieId + ", theatreId=" + theatreId
+				+ ", showCount=" + showCount + ", bookingStartDate=" + bookingStartDate + ", bookingEndDate="
+				+ bookingEndDate + ", shows=" + shows + ", city=" + city + "]";
+	}
 	
 }

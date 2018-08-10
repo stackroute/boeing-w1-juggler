@@ -1,8 +1,9 @@
+<app-nav-bar></app-nav-bar>
 <div class="example-container">
 
 
   <mat-form-field>
-    <input matInput placeholder="Username" [(ngModel)]="userModel.username">
+    <input matInput placeholder="Username" [(ngModel)]="userModel.userName">
   </mat-form-field>
 
   <mat-form-field>
@@ -11,44 +12,53 @@
   </mat-form-field>
 
   <mat-form-field>
-    <textarea matInput placeholder="FullName" [(ngModel)]="userModel.fullName" ngModel #fullNameUser="ngModel" required pattern="[a-zA-Z][a-zA-Z]+"></textarea>
+    <textarea matInput placeholder="FullName" [(ngModel)]="userModel.fullName"></textarea>
+    <!-- <textarea matInput placeholder="FullName" [(ngModel)]="userModel.fullName" ngModel #fullNameUser="ngModel" required pattern="[a-zA-Z][a-zA-Z]+"></textarea> -->
   </mat-form-field>
-  <div *ngIf="fullNameUser.touched" class="alert alert-danger">
-    <div *ngIf="fullNameUser.errors?.required">
-      please enter fullname
-    </div>
-  </div>
+  <!-- <div *ngIf="fullNameUser.touched" class="alert alert-danger"> -->
+  <!-- <div *ngIf="fullNameUser.errors?.required"> -->
+  <!-- please enter fullname -->
+  <!-- </div> -->
+  <!-- </div> -->
 
 
   <mat-form-field>
-    <textarea matInput placeholder="Contact Number" [(ngModel)]="userModel.contactNo" ngModel #contactNoUser="ngModel" required
-      pattern="[0-9]*"></textarea>
+    <!-- <textarea matInput placeholder="Contact Number" [(ngModel)]="userModel.contactNo" ngModel #contactNoUser="ngModel" required
+      pattern="[0-9]*"></textarea> -->
+    <textarea matInput placeholder="Contact Number" [(ngModel)]="userModel.contactNo"></textarea>
   </mat-form-field>
-  <div *ngIf="contactNoUser.touched" class="alert alert-danger">
+  <!-- <div *ngIf="contactNoUser.touched" class="alert alert-danger">
     <div *ngIf="contactNoUser.errors?.required">
       please enter fullname
     </div>
-  </div>
+  </div> -->
 
   <mat-form-field>
-    <textarea matInput placeholder="Email id" [(ngModel)]="userModel.email" ngModel #emailUser="ngModel" required pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></textarea>
+    <textarea matInput placeholder="Email id" [(ngModel)]="userModel.email"></textarea>
+    <!-- <textarea matInput placeholder="Email id" [(ngModel)]="userModel.email" ngModel #emailUser="ngModel" required pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></textarea> -->
   </mat-form-field>
-  <div *ngIf="emailUser.touched" class="alert alert-danger">
+  <!-- <div *ngIf="emailUser.touched" class="alert alert-danger">
     <div *ngIf="emailUser.errors?.required">
       please enter fullname
     </div>
-  </div>
+  </div> -->
 
   <mat-form-field>
-    <textarea matInput placeholder="City" [(ngModel)]="userModel.city" ngModel #cityUser="ngModel" required></textarea>
+    <textarea matInput placeholder="City" [(ngModel)]="userModel.city"></textarea>
+    <!-- <textarea matInput placeholder="City" [(ngModel)]="userModel.city" ngModel #cityUser="ngModel" required></textarea> -->
   </mat-form-field>
-  <div *ngIf="cityUser.touched" class="alert alert-danger">
+
+  <mat-form-field>
+    <textarea matInput placeholder="Gender" [(ngModel)]="userModel.gender"></textarea>
+    <!-- <textarea matInput placeholder="City" [(ngModel)]="userModel.city" ngModel #cityUser="ngModel" required></textarea> -->
+  </mat-form-field>
+  <!-- <div *ngIf="cityUser.touched" class="alert alert-danger">
     <div *ngIf="cityUser.errors?.required">
       please enter fullname
     </div>
-  </div>
+  </div> -->
 
 
-  <button type="submit" class="example-button" name="button" class="btn btn-success">Submit</button>
+  <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">Submit</button>
 
 </div>

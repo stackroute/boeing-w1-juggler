@@ -35,7 +35,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 		while (iterator.hasNext()) {
 			MovieEvent m = iterator.next();
 			if (movieEvent.equals(m)) {
-				throw new MovieEventAlreadyExistException("Movie already exists");
+				throw new MovieEventAlreadyExistException("Movie Event already exists");
 			}
 		}
 		

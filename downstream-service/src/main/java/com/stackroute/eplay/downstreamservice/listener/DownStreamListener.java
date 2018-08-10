@@ -3,12 +3,7 @@ package com.stackroute.eplay.downstreamservice.listener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.downstreamservice.domain.Movie;
 import com.stackroute.eplay.downstreamservice.domain.MovieEvent;
