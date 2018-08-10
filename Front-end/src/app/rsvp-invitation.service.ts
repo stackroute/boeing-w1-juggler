@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class RsvpInvitationService {
 
-  private _url: string="http://localhost:8080/api/v1/invitation";
-  private _url1: string="http://localhost:8080/api/v1/invitations";
-  private _url2: string="http://localhost:8080/api/v1/invitation";
+  private _url: string="http://localhost:8092/api/v1/invitation";
+  private _url1: string="http://localhost:8092/api/v1/invitations";
+  private _url2: string="http://localhost:8092/api/v1/invitation";
 
   constructor(private http:HttpClient) { }
 
