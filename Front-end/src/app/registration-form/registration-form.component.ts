@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UserRegistration } from "../user-registration";
 import { RegistrationService } from "../registration.service";
+import {MatSnackBar} from '@angular/material';
+
 @Component({
   selector: "app-registration-form",
   templateUrl: "./registration-form.component.html",
@@ -17,3 +19,7 @@ export class RegistrationFormComponent implements OnInit {
 
   ngOnInit() {}
 }
+// openSnackBar(message: string, action: string) {
+//   this.snackBar.open(message, action, {
+//     duration: 2000,
+//   });
