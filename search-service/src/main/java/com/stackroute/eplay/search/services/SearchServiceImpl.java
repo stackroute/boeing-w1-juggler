@@ -69,9 +69,7 @@ public class SearchServiceImpl implements SearchService{
 	
 	@Override
 	public Movie getMovieById(int id) {
-		if(movieRepository.existsById(id)) {
-			return movieRepository.findById(id);
-		} else return null;
+		return movieRepository.findById(id);
 	}
 
 	@Override
@@ -84,6 +82,7 @@ public class SearchServiceImpl implements SearchService{
 		query.setTimeStamp(now);
 		queryRepository.save(query);
 		
+		//System.out.println(cityRepository.findById(city).get());
 		return cityRepository.findById(city).get().getMovieList();
 	}	
 	
