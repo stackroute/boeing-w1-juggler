@@ -4,11 +4,11 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <mat-select placeholder="Select Theater " [formControl]="pokemonControl">
+    <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
       <mat-option>-- None --</mat-option>
-      <mat-optgroup *ngFor="let group of pokemonGroups" [label]="group.name" [disabled]="group.disabled">
-        <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
-          {{pokemon.viewValue}}
+      <mat-optgroup *ngFor="let group of theatreGroups" [label]="group.name" [disabled]="group.disabled">
+        <mat-option *ngFor="let theatre of group.theatre" [value]="theatre.value">
+          {{theatre.viewValue}}
         </mat-option>
       </mat-optgroup>
     </mat-select>
@@ -26,6 +26,16 @@
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
 
+
+  <!-- <span
+            ion-button
+            float-left
+            icon-left
+            clear
+            (click)="addNewInputField()">
+               <ion-icon name="add"></ion-icon>
+               Add a new technology
+         </span> -->
   <br>
 
 

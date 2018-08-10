@@ -19,6 +19,8 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { NativeDateModule } from "@angular/material";
 import { MatNativeDateModule } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
+import { RsvpInvitationComponent } from './rsvp-invitation/rsvp-invitation.component';
+import { RsvpEventComponent } from './rsvp-event/rsvp-event.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,9 @@ import { ReactiveFormsModule } from "@angular/forms";
     RegistrationFormComponent,
     EventTypeComponent,
     OtherTicketedEventComponent,
-    MovieEventComponent
+    RsvpEventComponent,
+    MovieEventComponent,
+    RsvpInvitationComponent
   ],
   imports: [
     BrowserModule,

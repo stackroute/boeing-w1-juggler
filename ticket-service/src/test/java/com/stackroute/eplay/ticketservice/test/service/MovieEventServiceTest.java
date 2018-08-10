@@ -1,0 +1,138 @@
+package com.stackroute.eplay.ticketservice.test.service;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.stackroute.eplay.ticketservice.domain.MovieEvent;
+import com.stackroute.eplay.ticketservice.domain.Show;
+import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
+import com.stackroute.eplay.ticketservice.repositories.MovieEventRepository;
+import com.stackroute.eplay.ticketservice.service.MovieEventServiceImpl;
+
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
+
+
+@RunWith(SpringRunner.class)
+public class MovieEventServiceTest {
+
+	@Mock
+	private MovieEventRepository movieEventRepository;
+	private MovieEvent movieEvent1;
+	private MovieEvent movieEvent2;
+	private Show show1;
+	private Show show2;
+
+	/**
+	 * injecting mocks in MovieServiceImpl object
+	 */
+	@InjectMocks
+	private MovieEventServiceImpl movieServiceImpl;
+
+	/**
+	 * variable to hold user defined movies list
+	 */
+	private Optional<MovieEvent> optionMovie;
+
+	/**
+	 * Initializing the declarations
+	 */
+	@Before
+	public void setupMock() {
+		MockitoAnnotations.initMocks(this);
+		show1 =new Show(20,30,100,new Date(),new Date(),50);
+		show2 =new Show(30,30,100,new Date(),new Date(),50);
+		List<Show> shows=new ArrayList<Show>();
+		shows.add(show1);
+		shows.add(show2);
+		movieEvent1 = new MovieEvent(10, 20, 30, 40,new Date(),new Date(),shows,"bangalore");
+		movieEvent2 = new MovieEvent(20, 20, 30, 40,new Date(),new Date(),shows,"chennai");
+		optionMovie = Optional.of(movieEvent1);
+
+	}
+
+	/**
+	 * testing mock creation
+	 */
+	@Test
+	public void testMockCreation() {
+		assertNotNull("jpaRepository creation fails: use @injectMocks on movieServicempl", movieEventRepository);
+	}
+
+	/**
+	 * testing the save method
+	 * 
+	 * @throws MovieAlreadyExistsException
+	 */
+	@Test
+	public void testSaveMovieSuccess() throws MovieEventAlreadyExistException {
+		ArrayList<MovieEvent> movieEventList = new ArrayList<MovieEvent>();
+		movieEventList.add(movieEvent1);
+//		Iterable<MovieEvent> movieIterable = movieEventList;
+
+		when(movieEventRepository.findAll()).thenReturn(movieEventList);
+		when(movieEventRepository.save(movieEvent2)).thenReturn(movieEvent2);
+	//	when(nextSequenceService.getNextSequence(anyString())).thenReturn(1);
+		assertEquals(movieEvent2, movieServiceImpl.saveMovieEvent(movieEvent2));
+	}
+
+	@Test(expected = MovieEventAlreadyExistException.class)
+	public void testSaveMovieFailure() throws MovieEventAlreadyExistException {
+		ArrayList<MovieEvent> movieEventList = new ArrayList<MovieEvent>();
+		movieEventList.add(movieEvent1);
+	//	Iterable<MovieEvent> movieIterable = movieEventList;
+		when(movieEventRepository.findAll()).thenReturn(movieEventList);
+		movieServiceImpl.saveMovieEvent(movieEvent1);
+
+	}
+
+//	@Test
+//	public void testGetMovieByIdSuccess() throws MovieNotFoundException {
+//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
+//		assertEquals(optionMovie, movieServiceImpl.getMovieById(1));
+//	}
+//
+//	@Test(expected = MovieNotFoundException.class)
+//	public void testGetMovieByIdFailure() throws MovieNotFoundException {
+//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
+//		movieServiceImpl.getMovieById(1);
+//	}
+//	@Test
+//	public void testDeleteMovieByIdSuccess() throws  MovieNotFoundException{
+//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
+//		 doNothing().when(movieRepo).deleteById(anyInt());
+//		 assertTrue(movieServiceImpl.deleteMovie(anyInt()));
+//	}
+//	@Test(expected = MovieNotFoundException.class)
+//	public void testDeleteMovieByIdFailure() throws MovieNotFoundException{
+//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
+//		movieServiceImpl.deleteMovie(anyInt());
+//	}
+//	@Test
+//	public void testUpdateMovieByIdSuccess() throws  MovieNotFoundException{
+//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
+//		when(movieRepo.save(movie)).thenReturn(movie);
+//		assertEquals(movie,movieServiceImpl.updateMovie(movie, anyInt()));
+//	}
+//	@Test(expected = MovieNotFoundException.class)
+//	public void testUpdateMovieByIdFailure() throws MovieNotFoundException{
+//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
+//		movieServiceImpl.updateMovie(movie,anyInt());
+//	}
+}

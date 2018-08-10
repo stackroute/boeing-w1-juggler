@@ -4,7 +4,12 @@ import { RegistrationFormComponent } from "./registration-form/registration-form
 import { EventTypeComponent } from "./event-type/event-type.component";
 import { OtherTicketedEventComponent } from "./other-ticketed-event/other-ticketed-event.component";
 import { MovieEventComponent } from "./movie-event/movie-event.component";
+import { HomePageComponent } from "./home-page/home-page.component";
 const routes: Routes = [
+  {
+    path :" ",
+    component :HomePageComponent
+  },
   {
     path: "userRegistration",
     component: RegistrationFormComponent
