@@ -3,12 +3,14 @@
     flex-direction: column;
     padding-top: 10px;
     margin-left: 435px;
-  }
-  
-  .example-container > * {
+    
+   }
+   
+   .example-container > * {
     width: 50%;
-  }
-  
-  /* .example-button {
+
+   }
+   
+   .example-button {
     margin-left: 20px;
-  } */
+   }
