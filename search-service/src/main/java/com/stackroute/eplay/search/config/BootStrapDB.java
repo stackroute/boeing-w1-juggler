@@ -104,8 +104,8 @@ private MovieRepository movieRepo;
         cityRepo.save(city3);
         cityRepo.save(city4);
         
-        System.out.println(cityRepo.findById("hyderabad").toString());
-        System.out.println(cityRepo.findById("banglore").toString());
+//        System.out.println(cityRepo.findById("hyderabad").toString());
+//        System.out.println(cityRepo.findById("banglore").toString());
 
 	}
 
