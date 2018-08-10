@@ -12,6 +12,10 @@
 .example-button {
   margin-left: 20px;
 }
+
+.mat-radio-button ~ .mat-radio-button {
+  padding-right: 16px;
+}
 /* .button-row.bu  button,
    .button-row a {
     margin-right: 28px;
