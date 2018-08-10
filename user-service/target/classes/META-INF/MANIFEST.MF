@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: restaurant-springboot
+Implementation-Version: 1.0.0
+Built-By: shivangi
+Implementation-Vendor-Id: com.stackroute
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/boeing-w1-test/user-service
+Created-By: Maven Integration for Eclipse
+

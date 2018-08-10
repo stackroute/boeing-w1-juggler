@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -21,13 +20,13 @@ import lombok.ToString;
 public class User {
 
 	@Id
-    private String userName;
-    private String password;
-    private String fullName;
-    private String contactNo;
-    private String email;
-    private String gender;
-    private String city;
-    private List<Theatre> theatres;
-    private List<RSVPEvent> rsvpEvents;
+	private String userName;
+	private String password;
+	private String fullName;
+	private String contactNo;
+	private String email;
+	private String gender;
+	private String city;
+	private List<Theatre> theatres;
+	private List<RSVPEvent> rsvpEvents;
 }
