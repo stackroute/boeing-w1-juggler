@@ -102,37 +102,5 @@ public class MovieEventServiceTest {
 
 	}
 
-//	@Test
-//	public void testGetMovieByIdSuccess() throws MovieNotFoundException {
-//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
-//		assertEquals(optionMovie, movieServiceImpl.getMovieById(1));
-//	}
-//
-//	@Test(expected = MovieNotFoundException.class)
-//	public void testGetMovieByIdFailure() throws MovieNotFoundException {
-//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
-//		movieServiceImpl.getMovieById(1);
-//	}
-//	@Test
-//	public void testDeleteMovieByIdSuccess() throws  MovieNotFoundException{
-//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
-//		 doNothing().when(movieRepo).deleteById(anyInt());
-//		 assertTrue(movieServiceImpl.deleteMovie(anyInt()));
-//	}
-//	@Test(expected = MovieNotFoundException.class)
-//	public void testDeleteMovieByIdFailure() throws MovieNotFoundException{
-//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
-//		movieServiceImpl.deleteMovie(anyInt());
-//	}
-//	@Test
-//	public void testUpdateMovieByIdSuccess() throws  MovieNotFoundException{
-//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
-//		when(movieRepo.save(movie)).thenReturn(movie);
-//		assertEquals(movie,movieServiceImpl.updateMovie(movie, anyInt()));
-//	}
-//	@Test(expected = MovieNotFoundException.class)
-//	public void testUpdateMovieByIdFailure() throws MovieNotFoundException{
-//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
-//		movieServiceImpl.updateMovie(movie,anyInt());
-//	}
+
 }
