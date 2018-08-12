@@ -70,19 +70,19 @@ public class DownStreamListener {
 	}
 	
 	@StreamListener(UserStreams.INPUT)
-	public void UserPost(@Payload User user) {
+	public void userPost(@Payload User user) {
 		userRepository.save(user);
 		logger.info(user.toString()+" user");
 	}
 	
 	@StreamListener(TheatreStreams.INPUT)
-	public void UserPost(@Payload Theatre theatre) {
+	public void theatrePost(@Payload Theatre theatre) {
 		theatreRepository.save(theatre);
 		logger.info(theatre.toString()+" theatre");
 	}
 	
 	@StreamListener(MovieStreams.INPUT)
-	public void movieEventPost(@Payload Movie movie) {
+	public void moviePost(@Payload Movie movie) {
 		movieRepository.save(movie);
 		logger.info(movie.toString()+" movie");
 	}
