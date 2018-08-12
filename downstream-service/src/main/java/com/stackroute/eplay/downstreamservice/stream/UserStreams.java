@@ -9,9 +9,4 @@ public interface UserStreams {
 	String INPUT = "user-in";
     @Input(INPUT)
     SubscribableChannel inboundUser();
-    
-    String OUTPUT = "user-out";
-    @Output(OUTPUT)
-    MessageChannel outboundUser();
-
 }

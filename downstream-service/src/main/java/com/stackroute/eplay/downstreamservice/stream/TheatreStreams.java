@@ -9,9 +9,4 @@ public interface TheatreStreams {
 	String INPUT = "theatre-in";
     @Input(INPUT)
     SubscribableChannel inboundTheatre();
-    
-    String OUTPUT = "theatre-out";
-    @Output(OUTPUT)
-    MessageChannel outboundTheatre();
-
 }

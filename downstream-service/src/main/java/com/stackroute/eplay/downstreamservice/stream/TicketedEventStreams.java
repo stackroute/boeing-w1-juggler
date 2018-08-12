@@ -9,9 +9,4 @@ public interface TicketedEventStreams {
 	String INPUT = "ticketed-event-in";
     @Input(INPUT)
     SubscribableChannel inboundTicketedEvent();
-    
-    String OUTPUT = "ticketed-event-out";
-    @Output(OUTPUT)
-    MessageChannel outboundTicketedEvent();
-
 }

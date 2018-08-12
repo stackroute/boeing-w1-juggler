@@ -9,9 +9,4 @@ public interface RSVPEventStreams {
 	String INPUT = "RSVP-event-in";
     @Input(INPUT)
     SubscribableChannel inboundRSVPEvent();
-    
-    String OUTPUT = "RSVP-event-out";
-    @Output(OUTPUT)
-    MessageChannel outboundRSVPEvent();
-
 }

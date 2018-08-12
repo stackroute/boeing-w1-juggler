@@ -9,8 +9,4 @@ public interface MovieEventStreams {
 	String INPUT = "movie-event-in";
     @Input(INPUT)
     SubscribableChannel inboundMovieEvent();
-    
-    String OUTPUT = "movie-event-out";
-    @Output(OUTPUT)
-    MessageChannel outboundMovieEvent();
 }
