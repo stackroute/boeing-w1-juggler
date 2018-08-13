@@ -46,7 +46,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Start containers
-          command: docker-compose up -H 35.196.20.88:2376 --build -d
+          command: docker-compose -H ${DOCKER_HOST} up --build -d
       - run: mvn dependency:go-offline
 
       - save_cache:
