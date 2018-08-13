@@ -18,6 +18,6 @@ export class SearchDataService {
  }
  constructor(private http: HttpClient, private router: Router) { }
  getMyEvents(city) {
-   return this.http.get('http://172.23.238.219:8080/api/v1/'+city)
+   return this.http.get('http://172.23.238.221:8093/api/v1/'+city)
  }
 }

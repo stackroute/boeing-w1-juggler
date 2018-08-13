@@ -7,7 +7,7 @@ import { TicketedEvent } from './ticketedEvent';
 })
 export class TicketedEventService {
 
-  private _url: string = "http://172.23.238.220:8080/api/v1/upstream";
+  private _url: string = "http://172.23.238.220:8094/api/v1/upstream";
   constructor(private http: HttpClient) { }
   saveTicketedEvent(ticketedEvent : TicketedEvent){
     return this.http.post<TicketedEvent>(this._url+"/ticketedEvent", ticketedEvent);
