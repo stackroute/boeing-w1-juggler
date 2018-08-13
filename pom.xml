@@ -78,21 +78,11 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 	<modules>
 		<module>config-service</module>
 		<module>eureka-server</module>
 		<module>zuul-apigateway</module>
-		<module>downstream-service</module>
-		<module>upstream-service</module>
+		
 	</modules>
 </project>
