@@ -15,16 +15,16 @@ services:
     healthcheck:
       test: "exit 0"
 
-#  config-service:
-#    build: config-service/
-#    restart: always
-#    network_mode: "host"
-#    image: config-service
-#    hostname: localhost
-#    ports:
-#      - 8891:8891
-#    healthcheck:
-#      test: "exit 0"
+  config-service:
+    build: config-service/
+    restart: always
+    network_mode: "host"
+    image: config-service
+    hostname: localhost
+    ports:
+      - 8891:8891
+    healthcheck:
+      test: "exit 0"
 
 #  api-gateway:
 #    build: zuul-apigateway/
