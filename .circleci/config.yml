@@ -46,7 +46,7 @@ jobs:
           command: sudo chmod +x /usr/local/bin/docker-compose
       - run:
           name: Start containers
-          command: sudo docker-compose up -d
+          command: docker-compose -H tcp://35.231.132.195:2376 up --build -d
 
       - run: mvn dependency:go-offline
 
