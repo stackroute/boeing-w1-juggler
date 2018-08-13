@@ -32,7 +32,7 @@ jobs:
           - v1-dependencies-{{ checksum "pom.xml" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
+      - setup_remote_docker
       - run:
           name: Does docker even exist
           command: docker -v
