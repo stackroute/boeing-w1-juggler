@@ -46,7 +46,7 @@ jobs:
       - setup_remote_docker
       - run: docker run -d -p 8891:8891 --name config-service deepakbalyan/config-service
       - run: docker run -d -p 2181:2181 --name zookeeper wurstmeister/zookeeper
-      - run: docker run -d -p 9092:9092 --name kafka --env KAFKA_ZOOKEEPER_CONNECT=${DOCKER_HOST_IP}:2181 --env KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${DOCKER_HOST_IP}:9092 --env KAFKA_LISTENERS=PLAINTEXT://${DOCKER_HOST_IP}:9092  wurstmeister/kafka
+      - run: docker run -d -p 9092:9092 --name kafka --env KAFKA_ZOOKEEPER_CONNECT=${DOCKER_HOST_IP}:2181 --env KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${DOCKER_HOST_IP}:9092 --env KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092  wurstmeister/kafka
       - run: docker logs kafka
       - run: mvn dependency:go-offline
 
