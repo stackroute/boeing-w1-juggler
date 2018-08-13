@@ -44,6 +44,7 @@ jobs:
           name: changing permission docker-compose-file
           command: sudo chmod +x /usr/local/bin/docker-compose
       - setup_remote_docker
+      - run: mvn clean compile package
       - run: ls config-service/target
       - run:
           name: Start containers
