@@ -44,6 +44,7 @@ jobs:
           name: changing permission docker-compose-file
           command: sudo chmod +x /usr/local/bin/docker-compose
       - setup_remote_docker
+      - run: ls
       - run:
           name: Start containers
           command: docker-compose -H ${DOCKER_HOST} up --build -d
