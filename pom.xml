@@ -83,6 +83,7 @@
 		<module>config-service</module>
 		<module>eureka-server</module>
 		<module>zuul-apigateway</module>
-		
+		<module>upstream-service</module>
+		<module>downstream-service</module>
 	</modules>
 </project>
