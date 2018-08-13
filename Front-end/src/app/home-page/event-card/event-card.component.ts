@@ -8,7 +8,7 @@ import { Component, OnInit,Input } from '@angular/core';
 export class EventCardComponent {
 
  constructor() { }
- @Input() title;
+ @Input() name;
  @Input() poster;
  @Input() city;
 
