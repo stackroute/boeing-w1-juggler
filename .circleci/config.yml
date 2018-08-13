@@ -32,7 +32,6 @@ jobs:
           - v1-dependencies-{{ checksum "pom.xml" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-      - setup_remote_docker
       - run:
           name: Does docker even exist
           command: docker -v
@@ -44,10 +43,10 @@ jobs:
       - run:
           name: changing permission docker-compose-file
           command: sudo chmod +x /usr/local/bin/docker-compose
+      - setup_remote_docker
       - run:
           name: Start containers
-          command: docker-compose -H tcp://35.231.132.195:2376 up --build -d
-
+          command: docker-compose --build -d
       - run: mvn dependency:go-offline
 
       - save_cache:
