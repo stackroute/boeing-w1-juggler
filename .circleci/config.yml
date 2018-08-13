@@ -33,7 +33,18 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: docker-compose up --build -d
+      - run:
+          name: Does docker even exist
+          command: docker -v
+      - run:
+          name: Install docker-compose
+          command: |
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
+      - run:
+          name: Start containers
+          command: docker-compose up -d
 
       - run: mvn dependency:go-offline
 
