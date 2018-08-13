@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.stackroute.eplay.rsvp.domain.Invitation;
 import com.stackroute.eplay.rsvp.repositories.RsvpInvitationRepository;
 
+
 @Service
 public class RsvpInvitationServiceImpl implements RsvpInvitationService {
 
@@ -19,9 +20,13 @@ public class RsvpInvitationServiceImpl implements RsvpInvitationService {
 		this.rsvpInvitationRepository = rsvpInvitationRepository;
 	}
 
+	@Autowired
+	NextSequenceService nextSequenceService;
+
 	@Override
 	public Invitation saveRsvpInvitation(Invitation rsvpInvitation) {
 		// TODO Auto-generated method stub
+		rsvpInvitation.setInvitationId(nextSequenceService.getNextSequence("counter"));
 		return rsvpInvitationRepository.save(rsvpInvitation);
 	}
 
