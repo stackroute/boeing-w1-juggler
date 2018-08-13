@@ -46,7 +46,7 @@ jobs:
       - setup_remote_docker
       - run:
           name: Start containers
-          command: docker-compose --build -d
+          command: docker-compose up --build -d
       - run: mvn dependency:go-offline
 
       - save_cache:
