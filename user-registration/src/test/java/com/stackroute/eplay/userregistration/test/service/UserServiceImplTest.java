@@ -35,7 +35,7 @@ public class UserServiceImplTest {
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		user = new User("garvit88", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null,null,null);
+		user = new User("garvit8", "pass", "Garvit Garg", "12345", "email@gmail.com", "male", "blr",null,null,null,null);
 		users = new ArrayList<User>();
 	}
 
@@ -81,12 +81,12 @@ public class UserServiceImplTest {
 	 *	testing getGetByUsername() method 
 	 */
 
-	@Test
-	public void testGetUserByUsername() throws Exception {
-		Optional<User> userOp = Optional.of(user);
-		when(userRepository.findById("garvit88")).thenReturn(userOp);
-		assertEquals(userOp, userServiceImpl.getUserByUsername("garvit88"));
-	}
+//	@Test
+//	public void testGetUserByUsername() throws Exception {
+//		Optional<User> userOp = Optional.of(user);
+//		when(userRepository.findById("garvit8")).thenReturn(userOp);
+//		assertEquals(userOp, userServiceImpl.getUserByUsername("garvit8"));
+//	}
 	
 	/*
 	 *	testing getUpdateUser() method 

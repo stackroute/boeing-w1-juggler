@@ -6,7 +6,7 @@
 
 	<groupId>com.stackroute.eplay</groupId>
 	<artifactId>user-registration</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>v1.0.0</version>
 	<packaging>jar</packaging>
 
 	<name>user-registration</name>
