@@ -23,7 +23,12 @@ import com.stackroute.eplay.downstreamservice.stream.RSVPEventStreams;
 import com.stackroute.eplay.downstreamservice.stream.TheatreStreams;
 import com.stackroute.eplay.downstreamservice.stream.TicketedEventStreams;
 import com.stackroute.eplay.downstreamservice.stream.UserStreams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 @EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, RSVPEventStreams.class, MovieStreams.class, TheatreStreams.class, UserStreams.class})
 public class DownStreamListener {
 	
@@ -43,41 +48,43 @@ public class DownStreamListener {
 		this.userRepository = userRepository;
 		this.movieRepository = movieRepository;
 	}
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@StreamListener(MovieEventStreams.INPUT)
 	public void movieEventPost(@Payload MovieEvent event) {
 		movieEventRepository.save(event);
-		System.out.println(event.toString()+" movie");
+		logger.info(event.toString()+" movie");
 	}
 	
 	@StreamListener(TicketedEventStreams.INPUT)
 	public void ticketedEventPost(@Payload TicketedEvent event) {
 		ticketedEventRepository.save(event);
-		System.out.println(event.toString()+" ticketedmovie");
+		logger.info(event.toString()+" ticketedmovie");
 	}
 	
 	@StreamListener(RSVPEventStreams.INPUT)
 	public void rsvpEventPost(@Payload RSVPEvent event) {
 		rsvpEventRepository.save(event);
-		System.out.println(event.toString()+" movieevent");
+		logger.info(event.toString()+" movieevent");
 	}
 	
 	@StreamListener(UserStreams.INPUT)
-	public void UserPost(@Payload User user) {
+	public void userPost(@Payload User user) {
 		userRepository.save(user);
-		System.out.println(user.toString()+" user");
+		logger.info(user.toString()+" user");
 	}
 	
 	@StreamListener(TheatreStreams.INPUT)
-	public void UserPost(@Payload Theatre theatre) {
+	public void theatrePost(@Payload Theatre theatre) {
 		theatreRepository.save(theatre);
-		System.out.println(theatre.toString()+" theatre");
+		logger.info(theatre.toString()+" theatre");
 	}
 	
 	@StreamListener(MovieStreams.INPUT)
-	public void movieEventPost(@Payload Movie movie) {
+	public void moviePost(@Payload Movie movie) {
 		movieRepository.save(movie);
-		System.out.println(movie.toString()+" movie");
+		logger.info(movie.toString()+" movie");
 	}
 	
 }

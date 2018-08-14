@@ -65,7 +65,48 @@ private MovieRepository movieRepo;
 //		cityRepo.save(city1);
 //		cityRepo.save(city2);
 //		cityRepo.save(city3);
-		
+		Movie movie1 = new Movie(1, "dunkirk", "1", null, null, null, null, null, 0, 0, null);
+		Movie movie2 = new Movie(2, "movie1", "2", null, null, null, null, null, 0, 0, null);
+		Movie movie3 = new Movie(3, "spiderman", "3", null, null, null, null, null, 0, 0, null);
+        movie1.setPoster("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXIQwwW7u0f5LL-qPk0IF2RrPqdEhmMl1JHY9nd1-ZFeVLRq6ygw");
+        movie2.setPoster("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8vAl8ZSWzc87lwVHBl3UzOjdizeemQahgYXHFFD2MZYChKzwy");
+        movie3.setPoster("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1BHFbPMqoKRwI14fWQO5_8G9O4d1ZsGSkuP75e8bSXGMr0uau");
+		Movie movie4 = new Movie(1, "some one", "1", null, null, null, null, null, 0, 0, null);
+		Movie movie5 = new Movie(1, "movie x", "1", null, null, null, null, null, 0, 0, null);
+		Movie movie6 = new Movie(1, "x men", "1", null, null, null, null, null, 0, 0, null);
+		Movie movie7 = new Movie(1, "y men", "1", null, null, null, null, null, 0, 0, null);
+		Movie movie8 = new Movie(1, "z men", "1", null, null, null, null, null, 0, 0, null);
+
+		movie4.setPoster("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPg_RTDdLvJXxkDyXIEt_g7jZhW-8El-N6MpYO3NOP7v4Ke6Fs");
+		movie5.setPoster("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUSfmdPO6Bg5kmfvWNrCFcERY-Mv-aZHsQzsVmTVQEvu3RZjCP");
+		movie6.setPoster("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPg_RTDdLvJXxkDyXIEt_g7jZhW-8El-N6MpYO3NOP7v4Ke6Fs");
+		movie7.setPoster("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp726spazkEswmUlQNBhMivFKWXOh31ivSu4S92QUYnbJG5vtS");
+		movie8.setPoster("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqs7cylAMJ3TeKDzxtlMibqUMsYof1wNG0C0oSol0blDFtjqm");
+
+		List<Movie> movieList1 = new ArrayList<Movie>();
+        movieList1.add(movie1);movieList1.add(movie3);
+        
+        List<Movie> movieList2 = new ArrayList<Movie>();
+        movieList2.add(movie2); movieList2.add(movie3);
+        
+        List<Movie> movieList3 = new ArrayList<Movie>();
+        movieList3.add(movie4); movieList3.add(movie5);
+        
+        List<Movie> movieList4 = new ArrayList<Movie>();
+        movieList4.add(movie8); movieList4.add(movie6);
+        
+        City city1 = new City("mumbai",  movieList1);
+        City city2 = new City("delhi", movieList2);
+        City city3 = new City("hyderabad",  movieList3);
+        City city4 = new City("banglore", movieList4);
+        cityRepo.save(city1);
+        cityRepo.save(city2);
+        cityRepo.save(city3);
+        cityRepo.save(city4);
+        
+//        System.out.println(cityRepo.findById("hyderabad").toString());
+//        System.out.println(cityRepo.findById("banglore").toString());
+
 	}
 
 }

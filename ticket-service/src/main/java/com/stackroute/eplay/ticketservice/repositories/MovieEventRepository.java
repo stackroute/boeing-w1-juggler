@@ -1,7 +1,6 @@
 package com.stackroute.eplay.ticketservice.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.stackroute.eplay.ticketservice.domain.MovieEvent;

@@ -13,6 +13,7 @@ public class Show {
 	private Date startTime;
 	private Date date;
 	private int movieEventId;
+	
 	public Show() {}
 	public Show(int showId, int price, int seatRemaining, Date startTime, Date date, int movieEventId) {
 		super();

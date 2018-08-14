@@ -18,7 +18,7 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: localhost:9092
+          brokers: 172.23.238.170:9092
       bindings:
         movie-event-in:
           destination: MovieEvent

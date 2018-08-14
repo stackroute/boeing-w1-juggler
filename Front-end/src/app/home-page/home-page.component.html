@@ -3,7 +3,7 @@
   <div *ngFor="let movie of event$">
     <mat-grid-tile colspan="4" rowspan="6">
       <mat-card class="example-card">
-        <app-event-card [title]="movie.title" [poster]="movie.poster" [city]="movie.city"></app-event-card>
+        <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
         <!-- <mat-card-actions>
           <button mat-button (click)="saveMovie(movie)">Save</button>
         </mat-card-actions> -->

@@ -22,4 +22,4 @@ spring:
 #         uri: mongodb://172.23.238.255:27000/test
 
 server:
- port: 8080
+ port: 8092
