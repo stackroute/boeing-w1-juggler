@@ -5,6 +5,9 @@ import org.springframework.messaging.MessageChannel;
 
 //Stream defined for writing messages to Message Bus
 public interface ShowStreams {
+	String INPUT ="show-in";
+	@Output(INPUT)
+	MessageChannel inboundEvents();
 	
 	String OUTPUT = "show-out";
     @Output(OUTPUT)

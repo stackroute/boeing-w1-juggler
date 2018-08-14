@@ -9,10 +9,10 @@ import com.stackroute.eplay.upstreamservice.domain.Theatre;
 
 public interface UpStreamService {
 
-	public void saveMovieEvent(MovieEvent event);
-	public void saveTicketedEvent(TicketedEvent event);
-	public void saveRSVPEvent(RSVPEvent event);
-	public void saveMovie(Movie event);
-	public void saveTheatre(Theatre event);
-	public void saveShow(Show show);
+	public void postMovieEvent(MovieEvent event);
+	public void postTicketedEvent(TicketedEvent event);
+	public void postRSVPEvent(RSVPEvent event);
+	public void postMovie(Movie event);
+	public void postTheatre(Theatre event);
+	public void postShow(Show show);
 }
