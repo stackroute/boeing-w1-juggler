@@ -1,5 +1,7 @@
 package com.stackroute.eplay.upstreamservice.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
@@ -41,9 +43,11 @@ public class UpStreamServiceImpl implements UpStreamService{
 		this.showStream= showStreams;
 	}
 	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	// Function for posting Movie event to the Message bus
 	@Override
-	public void saveMovieEvent(MovieEvent event){
+	public void postMovieEvent(MovieEvent event){
 		// Set MovieEventId 
 		event.setMovieEventId(nextSequenceService.getNextSequence("counter"));
 		
@@ -53,16 +57,16 @@ public class UpStreamServiceImpl implements UpStreamService{
             show.setMovieEventId(event.getMovieEventId());
         }
 		
-		System.out.println(event.toString());
 		MessageChannel messageChannel = movieEventStream.outboundEvents();
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 				.build());
+		logger.info(event.toString());
 	}
 	
 	// Function for posting Ticketed event to the Message bus
 	@Override
-	public void saveTicketedEvent(TicketedEvent event) {
+	public void postTicketedEvent(TicketedEvent event) {
 		// Set Ticket event Id
 		event.setId(nextSequenceService.getNextSequence("counter"));
 		
@@ -70,11 +74,12 @@ public class UpStreamServiceImpl implements UpStreamService{
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 				.build());
+		logger.info(event.toString());
 	}
 	
 	// Function for posting RSVP event to the Message bus
 	@Override
-	public void saveRSVPEvent(RSVPEvent event) {
+	public void postRSVPEvent(RSVPEvent event) {
 		//Set RSVP event Id
 		event.setId(nextSequenceService.getNextSequence("counter"));
 		
@@ -82,11 +87,12 @@ public class UpStreamServiceImpl implements UpStreamService{
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 				.build());
+		logger.info(event.toString());
 	}
 
 	// Function for posting Movie to the Message bus
 	@Override
-	public void saveMovie(Movie event) {
+	public void postMovie(Movie event) {
 		//Set Movie Id
 		event.setId(nextSequenceService.getNextSequence("counter"));
 		
@@ -94,11 +100,12 @@ public class UpStreamServiceImpl implements UpStreamService{
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 				.build());	
+		logger.info(event.toString());
 	}
 
 	// Function for posting Theater to the Message bus
 	@Override
-	public void saveTheatre(Theatre event) {
+	public void postTheatre(Theatre event) {
 		// Set Theatre Id
 		event.setTheatreId(nextSequenceService.getNextSequence("counter"));
 		
@@ -106,11 +113,12 @@ public class UpStreamServiceImpl implements UpStreamService{
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 				.build());
+		logger.info(event.toString());
 	}
 
 	// Function for posting Show to the Message bus
 	@Override
-	public void saveShow(Show event) {
+	public void postShow(Show event) {
 		// Set show Id
 		event.setShowId(nextSequenceService.getNextSequence("counter"));
 		
@@ -118,6 +126,7 @@ public class UpStreamServiceImpl implements UpStreamService{
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 				.build());
+		logger.info(event.toString());
 	}
 	
 }
