@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: ticket-service
+Implementation-Version: 1.0.0-SNAPSHOT
+Built-By: abhishek
+Implementation-Vendor-Id: com.stackroute.e-play
+Build-Jdk: 1.8.0_171
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/ticket-service
+Created-By: Maven Integration for Eclipse
+
