@@ -1,4 +1,4 @@
-package com.stackroute.eplay.userregistration.test.controller;
+/*package com.stackroute.eplay.userregistration.test.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -53,9 +53,9 @@ public class UserControllerTest {
 
 	}
 	
-	/*
+	
 	 * Testing save user controller method
-	 */
+	 
 
 	@Test
 	public void testSaveUser() throws Exception {
@@ -64,9 +64,9 @@ public class UserControllerTest {
 				.andExpect(status().isCreated());
 	}
 	
-	/*
+	
 	 * Testing get all user controller method
-	 */
+	 
 
 	@Test
 	public void testGetAllUsers() throws Exception {
@@ -79,9 +79,9 @@ public class UserControllerTest {
 		mockMvc.perform(get("/api/v1/users")).andExpect(status().isOk());
 	}
 	
-	/*
+	
 	 * Testing update user controller method
-	 */
+	 
 
 	@Test
 	public void testUpdateUser() throws Exception {
@@ -91,9 +91,9 @@ public class UserControllerTest {
 				.content(asJsonString(user))).andExpect(status().isOk());
 	}
 	
-	/*
+	
 	 * Testing get user by username controller method
-	 */
+	 
 
 	@Test
 	public void testGetUserByUsername() throws Exception {
@@ -102,9 +102,9 @@ public class UserControllerTest {
 		mockMvc.perform(get("/api/v1/user/{username}", user.getUserName())).andExpect(status().isOk());
 	}
 	
-	/*
+	
 	 * Testing delete user controller method
-	 */
+	 
 	
 	@Test
 	public void testDeleteUser() throws Exception {
@@ -120,3 +120,4 @@ public class UserControllerTest {
 		}
 	}
 }
+*/

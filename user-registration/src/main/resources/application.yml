@@ -20,3 +20,10 @@ spring:
         ticketed-event-in:
           destination: TicketedEvent
           contentType: application/json
+          
+  data:
+    mongodb:
+      uri: mongodb://0.0.0.0:27000/eplay
+
+server:
+ port: 8091

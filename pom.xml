@@ -85,5 +85,9 @@
 		<module>zuul-apigateway</module>
 		<module>upstream-service</module>
 		<module>downstream-service</module>
+		<module>ticket-service</module>
+		<module>search-service</module>
+		<module>rsvp-service</module>
+		<module>user-registration</module>
 	</modules>
 </project>

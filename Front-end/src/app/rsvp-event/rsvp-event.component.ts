@@ -8,12 +8,16 @@ import{RsvpCreateService} from '../rsvp-create.service';
 })
 export class RsvpEventComponent implements OnInit {
 
-
+  
+ 
   rsvpModel=new RsvpCreate;
+  
   constructor(private rsvpCreateService:RsvpCreateService) { }
 
   onSubmit(){
-    this.rsvpCreateService.saveRsvpEvent(this.rsvpModel).subscribe(res=>console.log('saved'));
+    this.rsvpCreateService.saveRsvpEvent(this.rsvpModel).subscribe(res=>{console.log('saved')
+    this.rsvpModel=res;
+  });
   }
 
   ngOnInit() {

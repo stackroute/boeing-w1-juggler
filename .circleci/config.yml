@@ -49,6 +49,8 @@ jobs:
       - run:
           name: Start containers
           command: docker-compose up --build -d
+      - run: docker logs repo_kafka_1
+      - run: docker logs repo_zookeeper_1
       - run: mvn dependency:go-offline
 
       - save_cache:
