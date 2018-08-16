@@ -12,7 +12,7 @@ export class RsvpCreateService {
   private _url1: string="http://172.23.238.218:8092/api/v1/rsvpEvents";
   private _url2: string="http://172.23.238.218:8092/api/v1/rsvpEvent";
 
-
+  rsvpCreate:RsvpCreate;
   constructor(private http:HttpClient) { }
 
   saveRsvpEvent(rsvpCreate:RsvpCreate):Observable<RsvpCreate>
@@ -23,6 +23,11 @@ export class RsvpCreateService {
   getAllRsvpEvents(): Observable<RsvpCreate[]>{
     return this.http.get<RsvpCreate[]>(this._url1);
   }
+
+getRsvpEventById(id):Observable<RsvpCreate>
+{
+  return this.http.get<RsvpCreate>(this._url2+id);
+}
 
   deleteRsvp(id){
     return this.http.delete(this._url2+id);
