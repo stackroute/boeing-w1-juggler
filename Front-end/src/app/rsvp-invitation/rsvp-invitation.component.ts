@@ -13,7 +13,7 @@ export class RsvpInvitationComponent implements OnInit {
 
   rsvpInvitationModel= new RsvpInvitation;
   rsvpModel=new RsvpCreate;
-  id;
+  id=4;
   constructor(private rsvpCreateService:RsvpCreateService,
     private rsvpInvitationService:RsvpInvitationService,
     private activatedRoute:ActivatedRoute
@@ -26,7 +26,7 @@ export class RsvpInvitationComponent implements OnInit {
 
 
   onSubmit1(){
-    this.id=this.rsvpModel.id;
+    //this.id=this.rsvpModel.id;
     this.router.navigate(['/rsvpEvent/'+this.id]);
     
   }
