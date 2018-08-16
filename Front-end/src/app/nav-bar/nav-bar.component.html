@@ -1,0 +1,53 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>
+      <mat-card-actions>
+        <button mat-raised-button matTooltip="Recommended Events" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+          class="example-button" mat-raised-button routerLink="/home" color="primary" style="margin-left: 8px;margin-top: 4px">E-Play home</button>
+      </mat-card-actions>
+    </span>
+    <span>
+      <mat-card-actions>
+        <button mat-raised-button matTooltip="Recommended Events" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+          class="example-button" mat-raised-button routerLink="/changeCity" color="primary" style="margin-left: 38px;margin-top: 4px">Change City</button>
+      </mat-card-actions>
+    </span>
+    <span class="example-spacer" style="margin-left: 300px">
+      <mat-form-field>
+        <input mat-raised-button matTooltip="Enter the name of the movie you want to search.." matTooltipClass="example-tooltip-red"
+          aria-label="Button that shows a red tooltip" class="example-button" matInput value="Search ImDB..." [(ngModel)]="omdbSearchTitle">
+        <button mat-raised-button matTooltip="Click to search Movies" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+          class="example-button" (click)="onSearch()" mat-raised-button style="margin-left: 10px">Search for latest Movies</button>
+      </mat-form-field>
+      <button mat-raised-button matTooltip="Click to create an Event" routerLink="/createEvent" routerLinkActive="active" matTooltipClass="example-tooltip-red"
+        aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 300px;color:black">Create Event</button>
+      <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" style="margin-left: 30px">SignUp</button>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- <mat-toolbar-row>
+    <mat-tab-group>
+      <mat-tab label="All" isActive="true"></mat-tab>
+      <mat-tab label="Movies"></mat-tab>
+      <mat-tab label="Plays"></mat-tab>
+      <mat-tab label="Comedy"></mat-tab>
+      <mat-tab label="Sports"></mat-tab>
+    </mat-tab-group>
+  </mat-toolbar-row> -->
+
+
+
+<!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div fxFlex="20%">
+    <img mat-card-image class="img" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/8V46UZCS0V.jpg">
+  </div>
+  <div fxFlex="20%">
+    <img mat-card-image class="img" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/LTLE4QGRVQ.jpg">
+  </div>
+  <div fxFlex="20%">
+    <img mat-card-image class="img" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/R926LU1YEA.jpg">
+  </div>
+  <div fxFlex="20%">
+    <img mat-card-image class="img" src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/U9PP3KXXY2.jpg">
+  </div>
+</div> -->

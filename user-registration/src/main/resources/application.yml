@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 172.23.238.170:9092
+      bindings:
+        user-registration-out:
+          destination: User
+          contentType: application/json
+        theatre-in:
+          destination: Theatre
+          contentType: application/json
+        rsvp-event-in:
+          destination: RSVPEvent
+          contentType: application/json
+        movie-event-in:
+          destination: MovieEvent
+          contentType: application/json
+        ticketed-event-in:
+          destination: TicketedEvent
+          contentType: application/json
+          
+  data:
+    mongodb:
+      uri: mongodb://0.0.0.0:27000/eplay
+
+server:
+ port: 8091
