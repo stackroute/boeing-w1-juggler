@@ -26,6 +26,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { EventCardComponent } from './home-page/event-card/event-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,7 @@ import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.componen
     MaterialModule,
     AppRoutingModule,
     MatCardModule,
+    MatRadioModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,

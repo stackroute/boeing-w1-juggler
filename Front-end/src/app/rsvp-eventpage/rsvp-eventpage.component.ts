@@ -3,6 +3,8 @@ import{RsvpCreate} from '../RsvpCreate';
 import{RsvpInvitation} from '../RsvpInvitation';
 import{RsvpInvitationService} from '../rsvp-invitation.service';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 import{RsvpCreateService} from '../rsvp-create.service';
 @Component({
@@ -14,9 +16,14 @@ export class RsvpEventpageComponent implements OnInit {
 
 
   rsvpInvitationModel= new RsvpInvitation;
-  rsvpModel=new RsvpCreate;
+  rsvpModel=new RsvpCreate();
   id:number;
-  constructor(private rsvpCreateService:RsvpCreateService,
+//  name:string;
+  name="bhai";
+ 
+  
+  constructor(
+    private rsvpCreateService:RsvpCreateService,
     private rsvpInvitationService:RsvpInvitationService,
     private activatedRoute:ActivatedRoute
   ,private router:Router
@@ -25,4 +32,14 @@ export class RsvpEventpageComponent implements OnInit {
   ngOnInit() {
   }
 
+ // this.rsvpModel=this.rsvpCreateService.getRsvpEventById(id);
+
+ getRsvpEventById(id:number){
+ this.rsvpCreateService.getRsvpEventById(id).subscribe(rsvpCreateService=>{
+   this.rsvpModel=rsvpCreateService;
+ });
+ }
+
+ 
 }
+
