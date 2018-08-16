@@ -1,4 +1,5 @@
 com/stackroute/eplay/ticketservice/service/TicketedEventService.class
+com/stackroute/eplay/ticketservice/service/NextSequenceService.class
 com/stackroute/eplay/ticketservice/service/MovieEventServiceImpl.class
 com/stackroute/eplay/ticketservice/repositories/TicketedEventRepository.class
 com/stackroute/eplay/ticketservice/service/TicketedEventServiceImpl.class
@@ -19,7 +20,9 @@ com/stackroute/eplay/ticketservice/streams/ShowStreams.class
 com/stackroute/eplay/ticketservice/streams/TicketedEventStreams.class
 com/stackroute/eplay/ticketservice/service/MovieEventService.class
 com/stackroute/eplay/ticketservice/service/MovieServiceImpl.class
+com/stackroute/eplay/ticketservice/domain/Counter.class
 com/stackroute/eplay/ticketservice/domain/Movie.class
 com/stackroute/eplay/ticketservice/domain/MovieEvent.class
+com/stackroute/eplay/ticketservice/domain/ArenaLayout.class
 com/stackroute/eplay/ticketservice/repositories/MovieEventRepository.class
 com/stackroute/eplay/ticketservice/streams/TheatreStreams.class
