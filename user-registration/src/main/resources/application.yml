@@ -23,7 +23,7 @@ spring:
           
   data:
     mongodb:
-      uri: mongodb://127.0.0.1:27000/eplay
+      uri: mongodb://0.0.0.0:27000/eplay
 
 server:
  port: 8091
