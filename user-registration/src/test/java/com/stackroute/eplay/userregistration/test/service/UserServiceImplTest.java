@@ -1,4 +1,4 @@
-package com.stackroute.eplay.userregistration.test.service;
+/*package com.stackroute.eplay.userregistration.test.service;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.doNothing;
@@ -44,9 +44,9 @@ public class UserServiceImplTest {
 
 	}
 
-	/*
+	
 	 * Testing saveuser() method
-	 */
+	 
 	
 	@Test
 	public void testSaveUser() throws Exception {
@@ -54,9 +54,9 @@ public class UserServiceImplTest {
 		assertEquals(user, userServiceImpl.saveUser(user));
 	}
 
-	/*
+	
 	 *	testing getAllUsers() method 
-	 */
+	 
 	
 	@Test
 	public void testGetAllUsers() {
@@ -77,9 +77,9 @@ public class UserServiceImplTest {
 		assertEquals("garvit8", actualUsers.get(2).getUserName());
 	}
 	
-	/*
+	
 	 *	testing getGetByUsername() method 
-	 */
+	 
 
 	@Test
 	public void testGetUserByUsername() throws Exception {
@@ -88,9 +88,9 @@ public class UserServiceImplTest {
 		assertEquals(userOp, userServiceImpl.getUserByUsername("garvit88"));
 	}
 	
-	/*
+	
 	 *	testing getUpdateUser() method 
-	 */
+	 
 
 	@Test
 	public void testUpdateUser() throws Exception {
@@ -99,9 +99,9 @@ public class UserServiceImplTest {
 		assertEquals(user, actual);
 	}
 	
-	/*
+	
 	 *	testing getDeleteUser() method 
-	 */
+	 
 	
 
 	@Test
@@ -112,3 +112,4 @@ public class UserServiceImplTest {
 	}
 
 }
+*/
