@@ -18,22 +18,23 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TicketedEvent {
-	@Id
-	public int id;
-	public String name;
-	public Date date;
-	public Date time;
-	public String city;
-	public String location;
-	public String poster;
-	public String type;
-	public int capacity;
-	public int remainingSeats;
-	public String description;
-	public String price;
-	public String performers;
-	public String termsAndConditions;
-	public String notes;
-	public String userName;
-	
+
+    @Id
+    private int id;
+    private String name;
+    private Date date;
+    private Date time;
+    private String city;
+    private String location;
+    private String poster;
+    private String type;
+    private int capacity;
+    private int remainingSeats;
+    private String description;
+    private String price;
+    private String performers;
+    private String termsAndConditions;
+    private String notes;
+    private String userName;
+
 }
