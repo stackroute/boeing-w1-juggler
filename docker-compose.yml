@@ -98,6 +98,8 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+      kafka:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
     
@@ -118,6 +120,8 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+      kafka:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
@@ -135,6 +139,8 @@ services:
       eureka-server:
         condition: service_healthy
       mongodb:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
     healthcheck:
       test: "exit 0"
@@ -154,6 +160,8 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+      kafka:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
@@ -172,6 +180,8 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+      kafka:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
@@ -189,6 +199,8 @@ services:
       eureka-server:
         condition: service_healthy
       mongodb:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
     healthcheck:
       test: "exit 0"
