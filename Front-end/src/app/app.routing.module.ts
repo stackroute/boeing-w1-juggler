@@ -8,6 +8,7 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { RsvpEventComponent } from "./rsvp-event/rsvp-event.component";
 import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
 const routes: Routes = [
   {
     path: "",
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: "createMovieEvent",
     component: MovieEventComponent
+  },
+  {
+    path:'rsvpEvent/:id',
+    component:RsvpEventpageComponent
   }
 ];
 
