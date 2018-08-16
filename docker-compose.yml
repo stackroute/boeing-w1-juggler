@@ -26,21 +26,21 @@ services:
     healthcheck:
       test: "exit 0"
 
-  api-gateway:
-    build: zuul-apigateway/
-    depends_on:
-      config-service:
-        condition: service_healthy
-      eureka-server:
-        condition: service_healthy
-    restart: always
-    network_mode: "host"
-    image: zuul-service
-    hostname: localhost
-    ports:
-      - 8092:8092
-    healthcheck:
-      test: "exit 0"
+#  api-gateway:
+#    build: zuul-apigateway/
+#    depends_on:
+#      config-service:
+#        condition: service_healthy
+#      eureka-server:
+#        condition: service_healthy
+#    restart: always
+#    network_mode: "host"
+#    image: zuul-service
+#    hostname: localhost
+#    ports:
+#      - 8092:8092
+#    healthcheck:
+#      test: "exit 0"
 
  
   zookeeper:
