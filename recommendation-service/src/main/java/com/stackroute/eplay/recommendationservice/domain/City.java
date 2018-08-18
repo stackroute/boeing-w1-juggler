@@ -12,31 +12,22 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity
 public class City {
 	@Id
-	private int cityId;
-	private String cityName;
+	private String name;
 	@Relationship(type="RELEASED_IN",direction=Relationship.INCOMING)
 	private List<Movie> movies;
 	
 	public City() {
 		super();
 	}
-	public City(int cityId, String cityName) {
-		super();
-		this.cityId = cityId;
-		this.cityName = cityName;
+	public City(String name) {
+	    this.name = name;
 	}
 	
-	public int getCityId() {
-		return cityId;
+	public String getName() {
+		return name;
 	}
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
-	}
-	public String getCityName() {
-		return cityName;
-	}
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public List<Movie> getMovies() {
