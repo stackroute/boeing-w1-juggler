@@ -4,10 +4,10 @@ import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-@RelationshipEntity(type="RELEASED_IN")
-public class Release {
+@RelationshipEntity(type="HOSTED_IN")
+public class Hosting {
 	@StartNode
-	Movie movie;
+	TicketedEvent ticketedevent;
 	@EndNode
 	City city;
 }

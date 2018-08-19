@@ -14,14 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stackroute.eplay.recommendationservice.domain.Category;
 import com.stackroute.eplay.recommendationservice.domain.City;
 import com.stackroute.eplay.recommendationservice.domain.Genre;
 import com.stackroute.eplay.recommendationservice.domain.Movie;
 import com.stackroute.eplay.recommendationservice.domain.MovieEvent;
 import com.stackroute.eplay.recommendationservice.domain.MovieKafka;
+import com.stackroute.eplay.recommendationservice.domain.TicketedEvent;
+import com.stackroute.eplay.recommendationservice.domain.TicketedEventKafka;
 import com.stackroute.eplay.recommendationservice.domain.User;
 import com.stackroute.eplay.recommendationservice.services.CityService;
 import com.stackroute.eplay.recommendationservice.services.MovieService;
+import com.stackroute.eplay.recommendationservice.services.TicketedEventService;
 import com.stackroute.eplay.recommendationservice.services.UserService;
 
 @CrossOrigin("*")
@@ -31,12 +35,14 @@ public class RecommendationServiceController {
 	private MovieService movieservice;
 	private UserService userservice;
 	private CityService cityservice;
+	private TicketedEventService ticketedEventService;
 	
 	@Autowired
-	public RecommendationServiceController(MovieService movieservice, UserService userservice,CityService cityservice) {
+	public RecommendationServiceController(MovieService movieservice, UserService userservice,CityService cityservice,TicketedEventService ticketedEventService) {
 		this.movieservice = movieservice;
 		this.userservice = userservice;
 		this.cityservice = cityservice;
+		this.ticketedEventService = ticketedEventService;
 	}
 	
 	//taking moviekafka and mapping to movie
@@ -54,6 +60,16 @@ public class RecommendationServiceController {
 		return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);		
 	}
 	
+	@PostMapping("/saveTicketedEvent")
+	public ResponseEntity<?> createTicketedEventNode(@RequestBody TicketedEventKafka ticketedEventKafka) {
+		int id = ticketedEventKafka.getId();
+		String name = ticketedEventKafka.getName();
+		Date date = ticketedEventKafka.getDate();
+		City city = new City(ticketedEventKafka.getCity());
+		Category category =  new Category(ticketedEventKafka.getType());
+		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category);
+		return new ResponseEntity<TicketedEvent> (ticketedEventService.saveTicketedEvent(ticketedEvent),HttpStatus.OK);		
+	}
 	@PostMapping("/saveUser")	
 	public ResponseEntity<?> createUserNode(@RequestBody User user){
 		user.setMovies(user.getMovies());
@@ -98,6 +114,7 @@ public class RecommendationServiceController {
 	public ResponseEntity<?> getMoviesByGenre(@RequestParam String genreName){
 		return new ResponseEntity<List<Movie>> (movieservice.getMoviesByGenre(genreName),HttpStatus.OK);
 	}
+	
 	
 	@GetMapping("/getMoviesByCity")
 	public ResponseEntity<?> getMoviesByCity(@RequestParam String name){

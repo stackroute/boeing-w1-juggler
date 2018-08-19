@@ -4,10 +4,11 @@ import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-@RelationshipEntity(type="RELEASED_IN")
-public class Release {
+@RelationshipEntity(type="IS_OF_TYPE")
+public class CategoryType {
 	@StartNode
-	Movie movie;
+	TicketedEvent ticketedevent;
+	
 	@EndNode
-	City city;
+	Category category;
 }

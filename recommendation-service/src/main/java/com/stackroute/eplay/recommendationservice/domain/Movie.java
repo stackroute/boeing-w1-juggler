@@ -23,7 +23,7 @@ public class Movie {
 	@Relationship(type="IS_OF_GENRE",direction=Relationship.OUTGOING)
 	private Genre genre;
 	
-	@JsonIgnoreProperties("movie")
+	//@JsonIgnoreProperties("movie")
 	@Relationship(type="VIEWED",direction=Relationship.INCOMING)
 	private List<User> user;
 		
