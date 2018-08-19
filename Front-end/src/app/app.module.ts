@@ -26,6 +26,9 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { EventCardComponent } from './home-page/event-card/event-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TheatreComponent } from './theatre/theatre.component';
+import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +44,8 @@ import { TheatreComponent } from './theatre/theatre.component';
     LandingPageComponent,
     EventCardComponent,
     NavBarComponent,
-    TheatreComponent
+    TheatreComponent,
+    RsvpEventpageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,7 @@ import { TheatreComponent } from './theatre/theatre.component';
     MaterialModule,
     AppRoutingModule,
     MatCardModule,
+    MatRadioModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,

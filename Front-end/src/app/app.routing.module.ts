@@ -9,6 +9,7 @@ import { RsvpEventComponent } from "./rsvp-event/rsvp-event.component";
 import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { TheatreComponent } from "./theatre/theatre.component";
+import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
 const routes: Routes = [
   {
     path: "",
@@ -49,6 +50,11 @@ const routes: Routes = [
   {
     path: "theatre",
     component: TheatreComponent
+  },
+  {
+
+    path:'rsvpEvent/:id',
+    component:RsvpEventpageComponent
   }
 ];
 

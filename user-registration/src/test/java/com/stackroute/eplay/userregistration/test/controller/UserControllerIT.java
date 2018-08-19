@@ -1,4 +1,4 @@
-package com.stackroute.eplay.userregistration.test.controller;
+/*package com.stackroute.eplay.userregistration.test.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -50,9 +50,9 @@ public class UserControllerIT {
 
 	}
 
-	/*
+	
 	 * Testing save user method
-	 */
+	 
 	
 	@Test
 	public void testSaveUser() throws Exception {
@@ -66,9 +66,9 @@ public class UserControllerIT {
 
 	}
 	
-	/*
+	
 	 * Testing delete user method
-	 */
+	 
 	
 	@Test
 	public void testDeleteUser() throws Exception {
@@ -82,9 +82,9 @@ public class UserControllerIT {
 
 	}
 	
-	/*
+	
 	 * Testing update user method
-	 */
+	 
 	
 	@Test
 	public void testUpdateUser() throws Exception {
@@ -98,9 +98,9 @@ public class UserControllerIT {
 
 	}
 	
-	/*
+	
 	 * Testing get user method
-	 */
+	 
 	
 	@Test
 	public void testGetUser() throws Exception {
@@ -114,3 +114,4 @@ public class UserControllerIT {
 
 	}
 }
+*/

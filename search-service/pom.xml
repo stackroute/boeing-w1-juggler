@@ -4,7 +4,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.stackroute</groupId>
 	<artifactId>search-service</artifactId>
 	<version>v1.0.0</version>
 	<packaging>jar</packaging>
@@ -13,10 +12,9 @@
 	<description>Search service for E play</description>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<groupId>com.stackroute</groupId>
+		<artifactId>boeing-w1-test</artifactId>
+		<version>1.0.0</version>
 	</parent>
 
 	<properties>
