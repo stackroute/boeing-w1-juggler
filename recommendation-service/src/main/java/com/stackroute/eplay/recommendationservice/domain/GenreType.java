@@ -6,6 +6,7 @@ import org.neo4j.ogm.annotation.StartNode;
 
 @RelationshipEntity(type="IS_OF_GENRE")
 public class GenreType {
+	
 	@StartNode
 	Movie movie;
 	

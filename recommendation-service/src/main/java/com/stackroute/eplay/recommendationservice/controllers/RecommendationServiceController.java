@@ -1,5 +1,6 @@
 package com.stackroute.eplay.recommendationservice.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import com.stackroute.eplay.recommendationservice.domain.MovieKafka;
 import com.stackroute.eplay.recommendationservice.domain.TicketedEvent;
 import com.stackroute.eplay.recommendationservice.domain.TicketedEventKafka;
 import com.stackroute.eplay.recommendationservice.domain.User;
+import com.stackroute.eplay.recommendationservice.domain.UserKafka;
 import com.stackroute.eplay.recommendationservice.services.CityService;
 import com.stackroute.eplay.recommendationservice.services.MovieService;
 import com.stackroute.eplay.recommendationservice.services.TicketedEventService;
@@ -70,9 +72,21 @@ public class RecommendationServiceController {
 		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category);
 		return new ResponseEntity<TicketedEvent> (ticketedEventService.saveTicketedEvent(ticketedEvent),HttpStatus.OK);		
 	}
+	
 	@PostMapping("/saveUser")	
-	public ResponseEntity<?> createUserNode(@RequestBody User user){
-		user.setMovies(user.getMovies());
+	public ResponseEntity<?> createUserNode(@RequestBody UserKafka userKafka){
+		String userName = userKafka.getUserName();
+		String fullName = userKafka.getFullName();
+		City city = new City(userKafka.getCity());
+		List<Movie> movies = new ArrayList<>();	
+		List<TicketedEvent> events = new ArrayList<>();
+		for(int id:userKafka.getMovieId()) {
+			movies.add(movieservice.findById(id));
+		}
+		for(int id:userKafka.getTicketedEventId()) {
+			events.add(ticketedEventService.findById(id));
+		}
+		User user = new User(userName,fullName,city,movies,events);
 		return new ResponseEntity<User>(userservice.saveUser(user),HttpStatus.OK);
 	}
 	
@@ -100,9 +114,19 @@ public class RecommendationServiceController {
 			return new ResponseEntity<Movie> (movieservice.findByName(name),HttpStatus.OK);	
 	}
 	
+	@GetMapping("/getTicketedEventByName")
+    public ResponseEntity <?> getTicketedEventByName(@RequestParam String name) {
+			return new ResponseEntity<TicketedEvent> (ticketedEventService.findByName(name),HttpStatus.OK);	
+	}
+	
 	@GetMapping("/getMovieById")
 	public ResponseEntity<?> getMovieById(@RequestParam int id){
 		return new ResponseEntity<Movie> (movieservice.findById(id),HttpStatus.OK);
+	}
+	
+	@GetMapping("/getTicketedEventById")
+	public ResponseEntity<?> getTicketedEventById(@RequestParam int id){
+		return new ResponseEntity<TicketedEvent> (ticketedEventService.findById(id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/getCityByName")

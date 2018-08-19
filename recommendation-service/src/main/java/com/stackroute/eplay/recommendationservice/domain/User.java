@@ -26,7 +26,7 @@ public class User {
 	private String userName;
 	private String fullName;
 	
-	@Relationship(type="HOSTED_IN",direction=Relationship.OUTGOING)
+	@Relationship(type="LIVES_IN",direction=Relationship.OUTGOING)
 	private City city ;
 	
 	@Relationship(type = "VIEWED", direction = Relationship.OUTGOING)
@@ -35,6 +35,11 @@ public class User {
 	@Relationship(type = "ATTENDED", direction = Relationship.OUTGOING)
 	private List<TicketedEvent> ticketedEvent;
 	
+	public User(String userName, String fullName, City city) {
+		this.userName = userName;
+		this.fullName = fullName;
+		this.city = city;
+	}
 //	@Relationship(type="FOLLOWS",direction = Relationship.OUTGOING)
 //	private List<User> users;
 //	
