@@ -8,7 +8,6 @@ import org.neo4j.ogm.annotation.StartNode;
 public class Release {
 	@StartNode
 	Movie movie;
-	
 	@EndNode
 	City city;
 }
