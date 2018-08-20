@@ -5,5 +5,6 @@ export class Show {
     startTime: string;
     date: Date;
     movieEventId: number;
+    status:boolean;
   }
 
