@@ -1,0 +1,23 @@
+<app-nav-bar></app-nav-bar>
+<div class="poster-container">
+    <img src="https://picsum.photos/1300/300?image=992" alt="Sorry photo not available"/>
+    <h2>Movie Name</h2>
+</div>
+<div class="date-menu">
+<mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<mat-form-field class="filter-price">
+        <mat-select placeholder="Filter Price Range">
+          <mat-checkbox>100-200</mat-checkbox>
+          <!-- <mat-checkbox value="premium">201-300</mat-checkbox>
+          <mat-checkbox value="lounge">301-400</mat-checkbox>  -->
+        </mat-select>
+        <mat-hint align="end">Check the lowest prices</mat-hint>
+</mat-form-field>
+</div>
+<div> <!-- display the list -->
+    <app-movie-theatre-list></app-movie-theatre-list> 
+</div>

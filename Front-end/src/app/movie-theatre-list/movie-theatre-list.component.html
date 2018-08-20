@@ -1,0 +1,9 @@
+<div class="theatre-container" *ngFor="let theatre of theatreList">
+  <div class="theatre-name">
+          <a mat-button routerLink=".">{{theatre.name}} | {{theatre.location}}</a>
+  </div>
+
+  <div class="show-time">  
+       <button *ngFor="let show of shows" mat-stroked-button color="primary">{{show.showTime}}</button>
+  </div>
+</div>
