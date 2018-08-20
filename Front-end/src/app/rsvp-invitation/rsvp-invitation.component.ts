@@ -4,6 +4,7 @@ import{RsvpInvitationService} from '../rsvp-invitation.service';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import{RsvpCreate} from '../RsvpCreate';
 import{RsvpCreateService} from '../rsvp-create.service';
+
 @Component({
   selector: 'app-rsvp-invitation',
   templateUrl: './rsvp-invitation.component.html',
@@ -14,11 +15,18 @@ export class RsvpInvitationComponent implements OnInit {
   rsvpInvitationModel= new RsvpInvitation;
   rsvpModel=new RsvpCreate;
   id=78;
-  constructor(private rsvpCreateService:RsvpCreateService,
+ // backgroundImg;
+  constructor(
+    private rsvpCreateService:RsvpCreateService,
     private rsvpInvitationService:RsvpInvitationService,
     private activatedRoute:ActivatedRoute
   ,private router:Router
-  ) { }
+  ) {
+
+    
+   // this.backgroundImg = sanitizer.bypassSecurityTrustStyle('url(http://www.freephotos.se/images/photos_medium/white-flower-4.jpg)');
+  
+   }
   ngOnInit() {
     console.log("visha");
    }
@@ -26,7 +34,7 @@ export class RsvpInvitationComponent implements OnInit {
   console.log(this.rsvpInvitationModel);
    this.rsvpCreateService.updateRsvp(this.rsvpInvitationModel,78).subscribe(res=>{console.log('saved')
   });
-
+  
   }
   onSubmit1(){
     //this.id=this.rsvpModel.id;
