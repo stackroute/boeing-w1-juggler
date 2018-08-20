@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-
+declare var test: any;
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -7,4 +7,7 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   title = "E-Play";
+  f(){
+    new test();
+  }
 }

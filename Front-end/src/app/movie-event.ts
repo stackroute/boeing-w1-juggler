@@ -1,11 +1,16 @@
 import { Show } from "./Show";
 export class MovieEvent {
-    movieId: number;
+    movieEventId: number;
+    movieId:number;
     theatreId: number;
+    theatreName:string;
     showCount: number;
     bookingStartDate: Date;
     bookingEndDate: Date;
-    shows: Show[];
-    city: string;
+    weeks:number;
+    shows:Show[];
+    city:string;
+    userName:string;
+    timings:string;
   }
  
