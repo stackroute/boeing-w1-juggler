@@ -1,4 +1,4 @@
-
+<div class="image">
 <div class="example-container">
 <h2>
   Event name:{{rsvpModel.name}}
@@ -44,10 +44,11 @@
   <input type="radio" value="female" name="gender" ngModel> Female -->
 
   <mat-radio-group>
-      <mat-radio-button value="1" [(ngModel)]="rsvpInvitationModel.Status" name="Status" ngModel #status="ngModel">I am attending</mat-radio-button>
+      <mat-radio-button value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am attending</mat-radio-button>
       <br>
-      <mat-radio-button value="2" [(ngModel)]="rsvpInvitationModel.Status" name="Status" ngModel #status="ngModel">I am not attending</mat-radio-button>
+      <mat-radio-button value=false name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am not attending</mat-radio-button>
 
     </mat-radio-group>  
     <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">submit </button>
   </div>
+</div>

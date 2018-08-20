@@ -1,6 +1,6 @@
 <!-- <app-nav-bar></app-nav-bar> -->
-
-<div class="example-container">
+<div class="image">
+<div class="example-container" >
   <mat-form-field>
     <textarea matInput placeholder="Invitee name" [(ngModel)]="rsvpInvitationModel.inviteeName" ngModel #inviteeName="ngModel"
       required pattern="[a-zA-Z][a-zA-Z]+"></textarea>
@@ -22,11 +22,11 @@
     <textarea matInput placeholder="phone no" [(ngModel)]="rsvpInvitationModel.inviteePhoneNo" ngModel #inviteeName="ngModel"
       required ></textarea>
   </mat-form-field>
-  <div ng-controller="MyCtrl">
-  <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()" ng-click="reloadPage();">save </button>
-  </div>
+
+  <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()" >save </button>
   <br>
   <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit1()" >My RSVP event </button>
 
 
+</div>
 </div>
