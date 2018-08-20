@@ -28,4 +28,7 @@ public interface MovieRepository extends Neo4jRepository<Movie, Integer> {
 	
 	@Query("MATCH (c:City)<- [:RELEASED_IN]-(m:Movie)-[:IS_OF_GENRE]->(g:Genre) where g.genreName={genreName} and  c.name={name} RETURN m")
     List<Movie> getMovieByCityGenre(@Param("name") String name, @Param("genreName") String genreName);
+    
+	@Query("MATCH (m:Movie)-[r:RELEASED_IN]->(c:City) where c.name= {name}  RETURN m")
+    List<Movie> getMoviesInCity(@Param("name") String name);
 }
