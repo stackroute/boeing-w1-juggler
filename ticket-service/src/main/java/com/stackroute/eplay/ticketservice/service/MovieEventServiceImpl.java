@@ -69,6 +69,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 				LocalTime showTime=sdf.parse(showTimes[j].trim()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
 				show.setStartTime(showTime);
 				show.setDate(releaseDate.plusDays(i));
+				show.setStatus(true);
 				shows.add(show);
 			}
 		}
@@ -81,7 +82,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 			}
 		}
 		
-	//  return  movieEventRepository.save(movieEvent);
+	    movieEventRepository.save(movieEvent);
 		MessageChannel messageChannel = updateMovieEventStreams.outboundUpdateMovieEvent();
         messageChannel.send(MessageBuilder.withPayload(movieEvent)
                 .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
