@@ -1,4 +1,5 @@
 .example-container {
+    
     display: flex;
     flex-direction: column;
     padding-top: 10px;
@@ -17,4 +18,9 @@
 
    .mat-radio-button ~ .mat-radio-button {
     padding-right: 16px;
+  }
+
+  .image{
+    background-image: url("3.jpg");
+
   }

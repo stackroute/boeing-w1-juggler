@@ -17,7 +17,7 @@ export class RsvpEventpageComponent implements OnInit {
 
   rsvpInvitationModel= new RsvpInvitation();
   rsvpModel=new RsvpCreate();
-  name="bhai";
+  
 
   constructor(
     private rsvpCreateService:RsvpCreateService,
@@ -36,8 +36,11 @@ export class RsvpEventpageComponent implements OnInit {
    console.log(this.rsvpModel);
   }
 
-  onSubmit(){
-    
+  onSubmit(){console.log("to change status");
+  console.log(this.rsvpInvitationModel);
+   this.rsvpCreateService.updateRsvp(this.rsvpInvitationModel,78).subscribe(res=>{console.log('saved')
+  });
+  
   }
   
  // this.rsvpModel=this.rsvpCreateService.getRsvpEventById(id);
