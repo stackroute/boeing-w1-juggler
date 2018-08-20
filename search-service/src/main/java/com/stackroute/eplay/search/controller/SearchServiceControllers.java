@@ -39,6 +39,7 @@ public class SearchServiceControllers {
 		try {
 			logger.info("Getting events in " + city);
 			session.setAttribute("selectedCity", city);
+			System.out.println("====================="+session.getAttribute("selectedCity"));
 			return new ResponseEntity<Iterable<Movie>>(searchService.getEventsByCity(city), HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Could not fetch events in " + city);
