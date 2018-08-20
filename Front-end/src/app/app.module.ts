@@ -25,8 +25,10 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { EventCardComponent } from './home-page/event-card/event-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TheatreComponent } from './theatre/theatre.component';
 import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { SearchResultsComponent } from './search-results/search-results.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MovieTheatreListComponent } from './movie-theatre-list/movie-theatre-list.component';
 
@@ -46,8 +48,10 @@ import { MovieTheatreListComponent } from './movie-theatre-list/movie-theatre-li
     EventCardComponent,
     NavBarComponent,
     RsvpEventpageComponent,
+    SearchResultsComponent,
     MovieInfoComponent,
-    MovieTheatreListComponent
+    MovieTheatreListComponent,
+    TheatreComponent,
   ],
   imports: [
     BrowserModule,
