@@ -1,5 +1,7 @@
 package com.stackroute.eplay.ticketservice.controller;
 
+import java.text.ParseException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +71,11 @@ public class TicketEventController {
 		 catch(MovieEventAlreadyExistException e){
 			 logger.error("This is an MovieAlreadyExistsException error");
 	         return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
-	     }
+	     } catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	    
 	}
 	@PostMapping("/saveMovie")
