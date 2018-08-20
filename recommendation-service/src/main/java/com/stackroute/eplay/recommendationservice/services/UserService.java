@@ -11,6 +11,7 @@ public interface UserService {
 	public City getCityOfUser(String userName);
 	// public User getAllFollowers(String name);
 	public List<Movie> getGenreBasedMoviesForUser(String userName);
+	public List<Movie> getTypeBasedTicketedEventsForUser(String userName);
 //	public User getAllFollowers(String name);
 
 }
