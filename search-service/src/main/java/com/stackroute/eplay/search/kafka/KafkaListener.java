@@ -35,6 +35,8 @@ public class KafkaListener {
 		Movie movie = searchService.getMovieById(movieId);
 		Theatre theatre = searchService.getTheatreById(movieEvent.getTheatreId());
 		theatre.setShows(movieEvent.getShows());
+		System.out.println("Movie "+movie);
+		System.out.println("Theatre "+theatre);
 		searchService.updateCityMovies(city, movie, theatre);
 	}
 
