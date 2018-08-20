@@ -89,6 +89,8 @@ public class SearchServiceControllers {
 	public ResponseEntity<?> getMovieById(@PathVariable int id, HttpSession session) {
 		System.out.println("Id "+id);
 		String city = (String) session.getAttribute("selectedCity");
+		System.out.println("---------------------------------"+ city);
+		System.out.println(session.getAttribute("selectedCity")+"---------------------------------");
 		return new ResponseEntity<Movie>(searchService.getMoviesByIdAndCity(city, id), HttpStatus.OK);
 	}
 
