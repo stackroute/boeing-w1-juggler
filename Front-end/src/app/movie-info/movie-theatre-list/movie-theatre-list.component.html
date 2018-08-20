@@ -1,0 +1,13 @@
+<div class="theatre-container" *ngFor="let theatre of movie.theatreList">
+  <!--let theatre of theatreList-->
+  <div class="theatre-name">
+      <!--theatre.name || theatre.location-->
+      <a mat-button routerLink=".">{{theatre.theatreName}} | {{theatre.theatreLocation}}</a>
+  </div>
+
+  <div class="show-time">  
+      <!--let show of shows-->
+      <!--show.showTime-->
+      <button *ngFor="let show of movie.shows" mat-stroked-button color="primary">{{show.startTime}}</button>
+  </div>
+</div>

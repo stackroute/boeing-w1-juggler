@@ -29,7 +29,7 @@ import { TheatreComponent } from './theatre/theatre.component';
 import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
-import { MovieTheatreListComponent } from './movie-theatre-list/movie-theatre-list.component';
+import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie-theatre-list.component';
 
 @NgModule({
   declarations: [

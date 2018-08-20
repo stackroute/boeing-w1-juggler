@@ -1,3 +1,5 @@
+import {Theatre} from "./theatre";
+
 export class Movie {
   id: number;
   name: string;
@@ -9,4 +11,5 @@ export class Movie {
   description: string;
   rating: number;
   duration:number;
+  theatre: Array<Theatre>;
 }
