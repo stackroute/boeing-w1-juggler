@@ -9,6 +9,8 @@ import { RsvpEventComponent } from "./rsvp-event/rsvp-event.component";
 import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
+import { SearchResultsComponent } from "./search-results/search-results.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -21,6 +23,10 @@ const routes: Routes = [
   {
     path :"home",
     component :HomePageComponent
+  },
+  {
+    path :"search",
+    component :SearchResultsComponent
   },
   {
     path: "userRegistration",
@@ -62,5 +68,6 @@ export const routingComponents = [
   EventTypeComponent,
   OtherTicketedEventComponent,
   MovieEventComponent,
-  RsvpEventComponent
+  RsvpEventComponent,
+  SearchResultsComponent
 ];

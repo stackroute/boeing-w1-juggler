@@ -27,6 +27,7 @@ import { EventCardComponent } from './home-page/event-card/event-card.component'
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatRadioModule} from '@angular/material/radio';
     LandingPageComponent,
     EventCardComponent,
     NavBarComponent,
-    RsvpEventpageComponent
+    RsvpEventpageComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
