@@ -145,6 +145,11 @@ public class RecommendationServiceController {
 		return new ResponseEntity<List<Movie>> (movieservice.getMoviesByCity(name),HttpStatus.OK);
 	}
 	
+	@GetMapping("/getTicketedEventByCity")
+	public ResponseEntity<?> getTicketedEventByCity(@RequestParam String name){
+		return new ResponseEntity<List<TicketedEvent>> (ticketedEventService.getTicketedEventsByCity(name),HttpStatus.OK);
+	}
+	
 	//http://localhost:8080/api/v1/getMovieByCityGenre?name=Bangalore&genreName=comedy
 	@GetMapping("/getMovieByCityGenre")
 	public ResponseEntity<?> getMovieByCityGenre(@RequestParam String name,@RequestParam String genreName){
