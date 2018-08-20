@@ -28,6 +28,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TheatreComponent } from './theatre/theatre.component';
 import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
 import {MatRadioModule} from '@angular/material/radio';
+import { SearchResultsComponent } from './search-results/search-results.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie-theatre-list.component';
 
@@ -47,6 +48,7 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     EventCardComponent,
     NavBarComponent,
     RsvpEventpageComponent,
+    SearchResultsComponent,
     MovieInfoComponent,
     MovieTheatreListComponent,
     TheatreComponent,
