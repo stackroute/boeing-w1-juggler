@@ -16,6 +16,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
@@ -29,27 +30,30 @@ import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistExcept
 import com.stackroute.eplay.ticketservice.repositories.MovieEventRepository;
 import com.stackroute.eplay.ticketservice.repositories.MovieRepository;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
+import com.stackroute.eplay.ticketservice.streams.UpdateMovieEventStreams;
 
 
 
 @Service
+@EnableBinding(UpdateMovieEventStreams.class)
 public class MovieEventServiceImpl implements MovieEventService{
 	MovieEventRepository movieEventRepository;
 	MovieRepository movieRepository;
 	MovieEventStreams movieEventStreams;
+	UpdateMovieEventStreams updateMovieEventStreams;
 	
 	@Autowired
 	NextSequenceService nextSequenceService;
 	@Autowired
-	public MovieEventServiceImpl(MovieEventRepository movieEventRepository,MovieEventStreams movieEventStreams,MovieRepository movieRepository) {
+	public MovieEventServiceImpl(MovieEventRepository movieEventRepository,MovieEventStreams movieEventStreams,MovieRepository movieRepository,UpdateMovieEventStreams updateMovieEventStreams) {
 		this.movieRepository=movieRepository;
 		this.movieEventRepository = movieEventRepository;
 		this.movieEventStreams= movieEventStreams;
-		//this.updatedMovieEventStreams=updatedMovieEventStreams;
+		this.updateMovieEventStreams=updateMovieEventStreams;
 	}
 	public MovieEventServiceImpl() {}
 
-	public MovieEvent saveMovieEvent(MovieEvent movieEvent) throws MovieEventAlreadyExistException, ParseException {
+	public void saveMovieEvent(MovieEvent movieEvent) throws MovieEventAlreadyExistException, ParseException {
 		Iterable<MovieEvent> movies = getAllMovieEvent();
 		Iterator<MovieEvent> iterator = movies.iterator();
 		Movie movie =movieRepository.findById(movieEvent.getMovieId()).get();
@@ -65,6 +69,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 				LocalTime showTime=sdf.parse(showTimes[j].trim()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
 				show.setStartTime(showTime);
 				show.setDate(releaseDate.plusDays(i));
+				show.setStatus(true);
 				shows.add(show);
 			}
 		}
@@ -77,11 +82,11 @@ public class MovieEventServiceImpl implements MovieEventService{
 			}
 		}
 		
-	  return  movieEventRepository.save(movieEvent);
-//		MessageChannel messageChannel = updatedMovieEventStreams.outboundUpdatedMovieEvent();
-//        messageChannel.send(MessageBuilder.withPayload(movieEvent)
-//                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-//                .build());
+	    movieEventRepository.save(movieEvent);
+		MessageChannel messageChannel = updateMovieEventStreams.outboundUpdateMovieEvent();
+        messageChannel.send(MessageBuilder.withPayload(movieEvent)
+                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+                .build());
 	}
 
 	

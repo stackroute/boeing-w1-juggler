@@ -1,3 +1,5 @@
+import {Theatre} from "./theatre";
+
 export class Movie {
   id: number;
   name: string;
@@ -11,5 +13,6 @@ export class Movie {
   duration:number;
   releaseDate: string
   movieEvents: string
-  theatres: string
+
+  theatre: Array<Theatre>;
 }

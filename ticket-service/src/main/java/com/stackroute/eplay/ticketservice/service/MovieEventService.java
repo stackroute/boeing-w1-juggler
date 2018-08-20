@@ -7,7 +7,7 @@ import com.stackroute.eplay.ticketservice.domain.Show;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
 
 public interface MovieEventService {
-	public MovieEvent saveMovieEvent(MovieEvent movieEvent) throws MovieEventAlreadyExistException, ParseException;
+	public void saveMovieEvent(MovieEvent movieEvent) throws MovieEventAlreadyExistException, ParseException;
 	public Iterable<MovieEvent> getAllMovieEvent();
 	public void updateMovieEvent(Show show);
 

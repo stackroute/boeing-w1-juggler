@@ -62,20 +62,20 @@ public class BootStrapDB implements ApplicationListener<ContextRefreshedEvent> {
 //		cityRepo.save(city1);
 //		cityRepo.save(city2);
 //		cityRepo.save(city3);
-		Movie movie1 = new Movie(1, "dunkirk", "1", null, null, null, null, null, 0, 0, null, null);
-		Movie movie2 = new Movie(2, "movie1", "2", null, null, null, null, null, 0, 0, null, null);
-		Movie movie3 = new Movie(3, "spiderman", "3", null, null, null, null, null, 0, 0, null, null);
+		Movie movie1 = new Movie(1, "dunkirk", "1", null, null, null, null, null, 0, 0, null, null, null);
+		Movie movie2 = new Movie(2, "movie1", "2", null, null, null, null, null, 0, 0, null, null, null);
+		Movie movie3 = new Movie(3, "spiderman", "3", null, null, null, null, null, 0, 0, null, null, null);
 		movie1.setPoster(
 				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXIQwwW7u0f5LL-qPk0IF2RrPqdEhmMl1JHY9nd1-ZFeVLRq6ygw");
 		movie2.setPoster(
 				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8vAl8ZSWzc87lwVHBl3UzOjdizeemQahgYXHFFD2MZYChKzwy");
 		movie3.setPoster(
 				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1BHFbPMqoKRwI14fWQO5_8G9O4d1ZsGSkuP75e8bSXGMr0uau");
-		Movie movie4 = new Movie(4, "some one", "1", null, null, null, null, null, 0, 0, null, null);
-		Movie movie5 = new Movie(5, "movie x", "1", null, null, null, null, null, 0, 0, null, null);
-		Movie movie6 = new Movie(6, "x men", "1", null, null, null, null, null, 0, 0, null, null);
-		Movie movie7 = new Movie(7, "y men", "1", null, null, null, null, null, 0, 0, null, null);
-		Movie movie8 = new Movie(8, "z men", "1", null, null, null, null, null, 0, 0, null, null);		movie4.setPoster(
+		Movie movie4 = new Movie(4, "some one", "1", null, null, null, null, null, 0, 0, null, null, null);
+		Movie movie5 = new Movie(5, "movie x", "1", null, null, null, null, null, 0, 0, null, null, null);
+		Movie movie6 = new Movie(6, "x men", "1", null, null, null, null, null, 0, 0, null, null, null);
+		Movie movie7 = new Movie(7, "y men", "1", null, null, null, null, null, 0, 0, null, null, null);
+		Movie movie8 = new Movie(8, "z men", "1", null, null, null, null, null, 0, 0, null, null, null);		movie4.setPoster(
 				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPg_RTDdLvJXxkDyXIEt_g7jZhW-8El-N6MpYO3NOP7v4Ke6Fs");
 		movie5.setPoster(
 				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUSfmdPO6Bg5kmfvWNrCFcERY-Mv-aZHsQzsVmTVQEvu3RZjCP");

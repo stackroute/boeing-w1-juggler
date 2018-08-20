@@ -1,5 +1,6 @@
-package com.stackroute.eplay.upstreamservice.domain;
+package com.stackroute.eplay.search.domain;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -17,17 +18,14 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class MovieEvent {
+public class Theatre {
 
 	@Id
-	private int movieEventId;
-	private int movieId;
 	private int theatreId;
-	private int showCount;
-	private String showTimes;
-	private String city;
+	private String theatreName;
+	private String theatreLocation;
+	private int capacity;
+	private File arenaFile;
 	private String userName;
 	private List<Show> shows;
-	private int week;
-
 }
