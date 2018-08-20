@@ -8,4 +8,5 @@ export class Movie {
   cast: string;
   description: string;
   rating: number;
+  duration:number;
 }

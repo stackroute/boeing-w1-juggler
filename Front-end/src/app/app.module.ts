@@ -25,6 +25,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { EventCardComponent } from './home-page/event-card/event-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TheatreComponent } from './theatre/theatre.component';
 import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
 import {MatRadioModule} from '@angular/material/radio';
 
@@ -43,6 +44,7 @@ import {MatRadioModule} from '@angular/material/radio';
     LandingPageComponent,
     EventCardComponent,
     NavBarComponent,
+    TheatreComponent,
     RsvpEventpageComponent
   ],
   imports: [
