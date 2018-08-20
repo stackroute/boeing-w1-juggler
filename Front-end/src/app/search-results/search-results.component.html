@@ -26,19 +26,21 @@
     </span>
   </mat-toolbar-row>
 </mat-toolbar>
-<h2>your search results are</h2>
 <mat-grid-list cols="12" rowHeight="100px">
 <div *ngIf="event$[0]; else elseBlock">
+    <h4>your search results are</h4>
     <div *ngFor="let movie of event$"> 
       <mat-grid-tile colspan="4" rowspan="6">
         <mat-card class="example-card">
           <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
-          <!-- <mat-card-actions>
-            <button mat-button (click)="saveMovie(movie)">Save</button>
-          </mat-card-actions> -->
+          <mat-card-actions>
+            <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie.id)" >go</button>
+          </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
     </div>
   </div>
-  <ng-template #elseBlock>no result found</ng-template>
+  <ng-template #elseBlock>
+      <h4 >No movies found!!</h4>
+  </ng-template>
 </mat-grid-list>

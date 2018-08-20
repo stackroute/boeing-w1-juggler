@@ -39,6 +39,7 @@ public class SearchServiceControllers {
 		try {
 			logger.info("Getting events in " + city);
 			session.setAttribute("selectedCity", city);
+			System.out.println("====================="+session.getAttribute("selectedCity"));
 			return new ResponseEntity<Iterable<Movie>>(searchService.getEventsByCity(city), HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Could not fetch events in " + city);
@@ -86,8 +87,11 @@ public class SearchServiceControllers {
 
 	// get movie by id
 	@GetMapping("/movie/{id}")
-	public ResponseEntity<?> getMovieById(@PathVariable("id") Integer id, HttpSession session) {
+	public ResponseEntity<?> getMovieById(@PathVariable int id, HttpSession session) {
+		System.out.println("Id "+id);
 		String city = (String) session.getAttribute("selectedCity");
+		System.out.println("---------------------------------"+ city);
+		System.out.println(session.getAttribute("selectedCity")+"---------------------------------");
 		return new ResponseEntity<Movie>(searchService.getMoviesByIdAndCity(city, id), HttpStatus.OK);
 	}
 

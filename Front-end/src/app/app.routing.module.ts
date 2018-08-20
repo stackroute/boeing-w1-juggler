@@ -11,6 +11,7 @@ import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { TheatreComponent } from "./theatre/theatre.component";
 import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
+import { MovieInfoComponent } from "./movie-info/movie-info.component";
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: "rsvpInvitation",
     component: RsvpInvitationComponent
+  },
+  {
+    path: "movieinfo",
+    component: MovieInfoComponent
   },
   {
     path: "createOtherTicketedEvent",
