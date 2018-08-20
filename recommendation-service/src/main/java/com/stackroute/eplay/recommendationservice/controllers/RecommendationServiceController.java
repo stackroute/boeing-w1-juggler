@@ -155,6 +155,13 @@ public class RecommendationServiceController {
 	public ResponseEntity<?> getMovieByCityGenre(@RequestParam String name,@RequestParam String genreName){
 		return new ResponseEntity<List<Movie>> (movieservice.getMovieByCityGenre(name,genreName),HttpStatus.OK);
 	}
+	
+	@GetMapping("/getCityOfUser")
+	public ResponseEntity<?> getCityOfUser(@RequestParam String userName){
+		return new ResponseEntity<City>(userservice.getCityOfUser(userName),HttpStatus.OK) ;
+	}
+	
+
 //	@PostMapping("/getAllFollowers/{name}")
 //	public ResponseEntity<?> getAllFollowers(@PathVariable String name){
 //		return new ResponseEntity<User>(userservice.getAllFollowers(name),HttpStatus.OK);

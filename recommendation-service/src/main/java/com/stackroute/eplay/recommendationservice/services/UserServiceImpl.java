@@ -1,8 +1,13 @@
 package com.stackroute.eplay.recommendationservice.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.andrewoma.dexx.collection.ArrayList;
+import com.stackroute.eplay.recommendationservice.domain.City;
+import com.stackroute.eplay.recommendationservice.domain.Movie;
 import com.stackroute.eplay.recommendationservice.domain.User;
 import com.stackroute.eplay.recommendationservice.repositories.UserRepository;
 
@@ -20,6 +25,11 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public City getCityOfUser(String userName) {
+		return userrepository.getCityOfUser(userName);
+	}
+	
 //	public User getAllFollowers(String name) {
 //		// TODO Auto-generated method stub
 //		return (User) userrepository.findAll();

@@ -5,6 +5,6 @@ import com.stackroute.eplay.recommendationservice.domain.User;
 
 public interface UserService {
 	public User saveUser(User user);
-
-//	public User getAllFollowers(String name);
+	public City getCityOfUser(String userName);
+	// public User getAllFollowers(String name);
 }
