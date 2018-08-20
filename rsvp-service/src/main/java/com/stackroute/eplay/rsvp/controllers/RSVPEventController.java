@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stackroute.eplay.rsvp.domain.Invitation;
 import com.stackroute.eplay.rsvp.domain.RSVPEvent;
 import com.stackroute.eplay.rsvp.services.RsvpCreateServiceImpl;
 import com.stackroute.eplay.rsvp.streams.RSVPEventStreams;
@@ -26,7 +27,7 @@ import lombok.NoArgsConstructor;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/event")
 @EnableBinding(RSVPEventStreams.class)
 @NoArgsConstructor
 public class RSVPEventController {
@@ -44,6 +45,11 @@ public class RSVPEventController {
 	public ResponseEntity<?> saveRsvpEvent(@RequestBody RSVPEvent rsvpCreate) {
 		return new ResponseEntity<RSVPEvent>(rsvpCreateServiceImpl.saveRsvpCreate(rsvpCreate), HttpStatus.CREATED);
 	}
+	@PutMapping("/invitation/{id}")
+	   public ResponseEntity<?> updateRSVPEvent(@RequestBody Invitation invitation,@PathVariable int id){
+		return new ResponseEntity<RSVPEvent>(rsvpCreateServiceImpl.updateRSVPEvent(invitation,id), HttpStatus.CREATED);
+
+	   }
 
 	@GetMapping("/rsvpEvents")
 	public ResponseEntity<?> getAllRsvpEvents() {
@@ -60,12 +66,12 @@ public class RSVPEventController {
 		rsvpCreateServiceImpl.deleteRsvpCreate(id);
 		return new ResponseEntity<String>("Deleted", HttpStatus.OK);
 	}
-
-	@PutMapping("/rsvpEvent/{id}")
-	public ResponseEntity<?> updateRsvp(@PathVariable int id, @RequestBody RSVPEvent rsvpCreate) {
-		MessageChannel messageChannel = rsvpEventStreams.outboundRSVPEvent();
-		messageChannel.send(MessageBuilder.withPayload(rsvpCreate)
-				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
-		return new ResponseEntity<RSVPEvent>(rsvpCreateServiceImpl.updateRsvp(rsvpCreate, id), HttpStatus.OK);
-	}
+//
+//	@PutMapping("/rsvpEvent/{id}")
+//	public ResponseEntity<?> updateRsvp(@PathVariable int id, @RequestBody RSVPEvent rsvpCreate) {
+//		MessageChannel messageChannel = rsvpEventStreams.outboundRSVPEvent();
+//		messageChannel.send(MessageBuilder.withPayload(rsvpCreate)
+//				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+//		return new ResponseEntity<RSVPEvent>(rsvpCreateServiceImpl.updateRsvp(rsvpCreate, id), HttpStatus.OK);
+//	}
 }
