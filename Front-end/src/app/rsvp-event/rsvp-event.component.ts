@@ -12,7 +12,6 @@ export class RsvpEventComponent implements OnInit {
   
  
   rsvpModel=new RsvpCreate;
-  id=100;
   
   constructor(private rsvpCreateService:RsvpCreateService,
   private router:Router,

@@ -6,7 +6,7 @@ export class RsvpInvitation {
     inviteeName:string;
     inviteeEmail:string;
     inviteePhoneNo:string;
-    status:boolean;
+    status:boolean=false;
     senderUserName:string;
 
 }

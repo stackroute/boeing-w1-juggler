@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class RsvpInvitationService {
 
-  private _url: string="http://localhost:8092/api/v1/invitation";
-  private _url1: string="http://localhost:8092/api/v1/invitations";
-  private _url2: string="http://localhost:8092/api/v1/invitation";
+  private _url: string="http://172.23.238.218:8097/api/v1/invitation";
+  private _url1: string="http://172.23.238.218:8097/api/v1/invitations";
+  private _url2: string="http://172.23.238.218:8097/api/v1/invitation";
 
   constructor(private http:HttpClient) { }
 
@@ -29,4 +29,6 @@ export class RsvpInvitationService {
   {
     return this.http.delete(this._url2+invitationId);
   }
+
+  
 }
