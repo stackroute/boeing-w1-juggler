@@ -1,5 +1,7 @@
 package com.stackroute.eplay.ticketservice.domain;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -23,8 +25,8 @@ public class Show {
     private int showId;
     private int seatRemaining;
     private int price;
-    private Date startTime;
-    private Date date;
+    private LocalTime startTime;
+    private LocalDate date;
     private int movieEventId;
     private boolean status;
     private ArenaLayout layout;

@@ -1,12 +1,22 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
+import { MovieEvent } from "../movie-event";
+import { MovieEventService } from "../movie-event.service";
 @Component({
   selector: "app-movie-event",
   templateUrl: "./movie-event.component.html",
   styleUrls: ["./movie-event.component.css"]
 })
 export class MovieEventComponent implements OnInit {
+  movieEventModel = new MovieEvent();
   movieEventControl = new FormControl();
+  constructor(private movieEventService :MovieEventService) {}
+  onSubmit() {
+    this.movieEventService
+      .saveMovieEvent(this.movieEventModel)
+      .subscribe(res => console.log("Saved Movie Event"));
+  }
+
   theatreGroups: TheatreGroup[] = [
     {
       name: "PVR",
@@ -35,7 +45,7 @@ export class MovieEventComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  
 
   ngOnInit() {}
 }
