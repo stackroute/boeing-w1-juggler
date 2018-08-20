@@ -5,6 +5,7 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface MovieEventStream {
 	String INPUT = "movie-event-in";
-    @Input(INPUT)
-    SubscribableChannel inboundMovieEvent();
+
+	@Input(INPUT)
+	SubscribableChannel inboundMovieEvent();
 }
