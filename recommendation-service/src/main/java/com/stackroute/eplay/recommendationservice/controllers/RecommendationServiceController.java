@@ -168,6 +168,12 @@ public class RecommendationServiceController {
 		return new ResponseEntity<List<Movie>>(userservice.getGenreBasedMoviesForUser(userName),HttpStatus.OK);
 		
 	}
+	
+	@GetMapping("/getTypeBasedTicketedEventsForUser")
+	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName){
+		return new ResponseEntity<List<Movie>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);
+		
+	}
 
 //	@PostMapping("/getAllFollowers/{name}")
 //	public ResponseEntity<?> getAllFollowers(@PathVariable String name){
