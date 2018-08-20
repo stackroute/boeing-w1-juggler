@@ -20,6 +20,9 @@ export class SearchDataService {
  getMyEvents(city) {
    return this.http.get('http://172.23.238.221:8093/api/v1/city/'+city)
  }
+ getAllMovies() {
+  return this.http.get('http://172.23.238.221:8093/api/v1/movies')
+}
  getSearchedEvents(name) {
    console.log(name);
   return this.http.get('http://172.23.238.221:8093/api/v1/movie/'+name)
