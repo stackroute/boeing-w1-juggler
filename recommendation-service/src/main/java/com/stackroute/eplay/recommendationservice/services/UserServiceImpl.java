@@ -37,7 +37,9 @@ public class UserServiceImpl implements UserService {
 		return userrepository.getGenreBasedMoviesForUser(userName);
 	}
 
-	
+	public List<Movie> getTypeBasedTicketedEventsForUser(String userName){
+		return userrepository.getTypeBasedTicketedEventsForUser(userName);
+	}
 	
 /*	public List<Movie> getGenreBasedMoviesForUser(User user){
 		List<Movie> moviesToBeRecommended = new ArrayList<>();

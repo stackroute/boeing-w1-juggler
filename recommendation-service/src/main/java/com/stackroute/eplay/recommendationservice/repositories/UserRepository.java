@@ -12,4 +12,7 @@ import com.stackroute.eplay.recommendationservice.domain.User;
 public interface UserRepository extends Neo4jRepository<User,Integer>{
 	@Query("Match (u:User)-[:VIEWED]->(m:Movie)-[:IS_OF_GENRE]->(g:Genre)<-[:IS_OF_GENRE]-(r:Movie) where u.userName= {userName} Match (r)-[:RELEASED_IN]->(c:City)<-[:LIVES_IN]-(u) return (r)")
     public List<Movie> getGenreBasedMoviesForUser(@Param("userName") String userName);
+	
+	@Query("Match (u:User)-[:ATTENDED]->(t:TicketedEvent)-[:IS_OF_TYPE]->(cat:Category)<-[:IS_OF_TYPE]-(e:TicketedEvent) where u.userName= {userName} Match (e)-[:HOSTED_IN]->(c:City)<-[:LIVES_IN]-(u) return (e)")
+    public List<Movie> getTypeBasedTicketedEventsForUser(@Param("userName") String userName);
 }
