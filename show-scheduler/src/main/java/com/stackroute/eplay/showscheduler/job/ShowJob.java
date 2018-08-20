@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.stackroute.eplay.showscheduler.domain.Show;
 
+/*
+ * Job class for Show Scheduling 
+ */
+
 @Service
 public class ShowJob implements Job {
 
@@ -23,6 +27,12 @@ public class ShowJob implements Job {
 
 		SchedulerContext schedulerContext;
 		try {
+			
+			/*
+			 * Getting all the shows from the trigger class in the form of Hashmap and changing the 
+			 * status of the each show as soon as their time is triggered.
+			 */
+			
 			schedulerContext = context.getScheduler().getContext();
 			HashMap<Integer, Show> showMap = (HashMap<Integer, Show>) schedulerContext.get("show");
 			String[] trigger = context.getTrigger().toString().split(":");
@@ -34,7 +44,7 @@ public class ShowJob implements Job {
 			Show show = showMap.get(index);
 			System.out.println("For Show: " + show);
 			System.out.println("Before: " + show.isStatus());
-			show.setStatus(true);
+			show.setStatus(false);
 			System.out.println("After: " + show.isStatus());
 
 		} catch (SchedulerException e) {
