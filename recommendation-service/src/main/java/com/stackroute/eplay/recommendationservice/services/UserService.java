@@ -8,7 +8,10 @@ import com.stackroute.eplay.recommendationservice.domain.User;
 
 public interface UserService {
 	public User saveUser(User user);
+	public City getCityOfUser(String userName);
+	// public User getAllFollowers(String name);
 	public List<Movie> getGenreBasedMoviesForUser(String userName);
 	public List<Movie> getTypeBasedTicketedEventsForUser(String userName);
 //	public User getAllFollowers(String name);
+
 }

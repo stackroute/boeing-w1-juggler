@@ -27,5 +27,6 @@ public class Movie {
 	private int duration;
 	private List<MovieEvent> movieEvents;
 	private Date releaseDate;
+	private List<Theatre> theatres;
 
 }

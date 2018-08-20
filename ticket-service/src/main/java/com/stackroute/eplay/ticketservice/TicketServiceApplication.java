@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
-//@SpringBootApplication(scanBasePackages={"com.stackroute.eplay.*"})
+@SpringBootApplication
 public class TicketServiceApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

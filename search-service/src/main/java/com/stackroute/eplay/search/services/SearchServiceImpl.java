@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 import com.stackroute.eplay.search.domain.City;
 import com.stackroute.eplay.search.domain.Movie;
 import com.stackroute.eplay.search.domain.Query;
+import com.stackroute.eplay.search.domain.Theatre;
 import com.stackroute.eplay.search.exceptions.MovieNotFoundException;
 import com.stackroute.eplay.search.repositories.CityRepository;
 import com.stackroute.eplay.search.repositories.MovieRepository;
 import com.stackroute.eplay.search.repositories.QueryRepository;
+import com.stackroute.eplay.search.repositories.TheatreRepository;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -23,17 +25,19 @@ public class SearchServiceImpl implements SearchService {
 	private QueryRepository queryRepository;
 	private CityRepository cityRepository;
 	private MovieRepository movieRepository;
+	private TheatreRepository theatreRepository;
 
 	@SuppressWarnings("unused")
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	public SearchServiceImpl(QueryRepository queryRepository, CityRepository cityRepository,
-			MovieRepository movieRepository) {
+			MovieRepository movieRepository, TheatreRepository theatreRepository) {
 		super();
 		this.queryRepository = queryRepository;
 		this.cityRepository = cityRepository;
 		this.movieRepository = movieRepository;
+		this.theatreRepository = theatreRepository;
 	}
 
 	// save movie to movie repository
@@ -45,11 +49,25 @@ public class SearchServiceImpl implements SearchService {
 		return null;
 	}
 
+	@Override
+	public Theatre saveTheatre(Theatre theatre) {
+		if (!theatreRepository.existsById(theatre.getTheatreId())) {
+			return theatreRepository.save(theatre);
+		}
+		return null;
+	}
+
 	// update list of movies of given city
 	@Override
-	public City updateCityMovies(String cityName, Movie movie) {
+	public City updateCityMovies(String cityName, Movie movie, Theatre theatre) {
 		City city;
-
+		List<Theatre> theatres;
+		if (movie.getTheatres() == null)
+			theatres = new ArrayList<Theatre>();
+		else
+			theatres = movie.getTheatres();
+		theatres.add(theatre);
+		movie.setTheatres(theatres);
 		if (!cityRepository.existsById(cityName)) {
 			List<Movie> movieList = new ArrayList<Movie>();
 			movieList.add(movie);
@@ -72,6 +90,12 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public Movie getMovieById(int id) {
 		return movieRepository.findById(id);
+	}
+
+	// get theatre by theatre id
+	@Override
+	public Theatre getTheatreById(int id) {
+		return theatreRepository.findById(id).get();
 	}
 
 	// get all events of given city
@@ -100,7 +124,7 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public List<Movie> getMovieAutoSuggestions(String searchstr) {
 		ArrayList<Movie> suggestions = new ArrayList<>();
-		
+
 		List<Movie> movieList = movieRepository.findAll();
 
 		for (Movie movie : movieList) {
@@ -128,5 +152,16 @@ public class SearchServiceImpl implements SearchService {
 		} else {
 			throw new MovieNotFoundException("Movie not found");
 		}
+	}
+
+	// Get all movie by id from movie list
+	@Override
+	public Movie getMoviesByIdAndCity(String city, int movieId){
+		for(Movie movie: getEventsByCity(city)) {
+			if(movie.getId()==movieId) {
+				return movie;
+			}
+		}
+		return null;
 	}
 }
