@@ -11,32 +11,34 @@ import com.stackroute.eplay.search.services.SearchService;
 import com.stackroute.eplay.search.streams.MovieEventStream;
 import com.stackroute.eplay.search.streams.MovieStream;
 
-@EnableBinding({MovieEventStream.class, MovieStream.class})
+@EnableBinding({ MovieEventStream.class, MovieStream.class })
 public class KafkaListener {
-	
+
 	private SearchService searchService;
-	private MovieEventStream movieEventStream;
-	private MovieStream movieStream;
-	
+	// private MovieEventStream movieEventStream;
+	// private MovieStream movieStream;
+
 	@Autowired
-	public KafkaListener(SearchService searchService, MovieEventStream movieEventStream, MovieStream movieStream) {
+	public KafkaListener(SearchService searchService) {
 		this.searchService = searchService;
-		this.movieEventStream = movieEventStream;
-		this.movieStream = movieStream;
+		// this.movieEventStream = movieEventStream;
+		// this.movieStream = movieStream;
 	}
 
+	// Listener for movie event object stream
 	@StreamListener(MovieEventStream.INPUT)
 	public void movieEventPost(@Payload MovieEvent movieEvent) {
 		String city = movieEvent.getCity();
 		int movieId = movieEvent.getMovieId();
 		Movie movie = searchService.getMovieById(movieId);
-		
+
 		searchService.updateCityMovies(city, movie);
 	}
-	
+
+	// Listener for movie object stream
 	@StreamListener(MovieStream.INPUT)
 	public void moviePost(@Payload Movie movie) {
-		//save movie in repo
 		searchService.saveMovie(movie);
+
 	}
 }

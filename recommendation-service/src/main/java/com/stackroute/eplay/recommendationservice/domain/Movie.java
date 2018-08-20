@@ -41,12 +41,12 @@ public class Movie {
 	public void releasedIn(City city) {
 		cities.add(city);
 	}
-	public Movie(int movieId, String title, String language, int rating) {
+	/*public Movie(int movieId, String title, String language, int rating) {
 		this.id = movieId;
 		this.name = title;
 		this.language = language;
 		this.rating = rating;
-	}	
+	}	*/
 	
 	
 	public int getRating() {

@@ -1,5 +1,6 @@
 package com.stackroute.eplay.ticketservice.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -32,5 +33,5 @@ public class Movie {
     private int rating;
     private int duration;
     private List<MovieEvent> movieEvents;
-    private Date releaseDate;
+    private LocalDate releaseDate;
 }

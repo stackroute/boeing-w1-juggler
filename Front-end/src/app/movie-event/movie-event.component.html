@@ -1,11 +1,12 @@
 <app-nav-bar></app-nav-bar>
+<button type="submit" class="example-button" name="button" class="btn btn-success" style="margin-top: 20px;margin-left:  1150px" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Enter a Movie">
+    <input matInput placeholder="Enter Movie Name" [(ngModel)]="movieEventModel.userName">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
+    <mat-select placeholder="Select Theater " [formControl]="movieEventControl" [(ngModel)]="movieEventModel.theatreName">
       <mat-option>-- None --</mat-option>
       <mat-optgroup *ngFor="let group of theatreGroups" [label]="group.name" [disabled]="group.disabled">
         <mat-option *ngFor="let theatre of group.theatre" [value]="theatre.value">
@@ -16,6 +17,14 @@
   </mat-form-field>
   <br>
   <mat-form-field>
+    <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.weeks">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.timings">
+  </mat-form-field>
+  <br>
+  <!-- <mat-form-field>
     <input matInput [matDatepicker]="picker" placeholder="Choose a starting date">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
@@ -25,8 +34,9 @@
     <input matInput [matDatepicker]="picker1" placeholder="Choose an ending date">
     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
-  </mat-form-field>
+  </mat-form-field> -->
   <br>
-  <button type="submit" class="example-button" name="button" class="btn btn-success">Submit</button>
+  <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">Create Movie Event</button>
 
 </div>
+
