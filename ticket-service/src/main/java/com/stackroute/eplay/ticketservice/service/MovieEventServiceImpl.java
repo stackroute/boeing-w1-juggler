@@ -29,7 +29,6 @@ import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistExcept
 import com.stackroute.eplay.ticketservice.repositories.MovieEventRepository;
 import com.stackroute.eplay.ticketservice.repositories.MovieRepository;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
-import com.stackroute.eplay.ticketservice.streams.UpdatedMovieEventStreams;
 
 
 
@@ -38,9 +37,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 	MovieEventRepository movieEventRepository;
 	MovieRepository movieRepository;
 	MovieEventStreams movieEventStreams;
-	@Autowired
-	UpdatedMovieEventStreams updatedMovieEventStreams;
-
+	
 	@Autowired
 	NextSequenceService nextSequenceService;
 	@Autowired
