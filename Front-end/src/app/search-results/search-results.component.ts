@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 })
 export class SearchResultsComponent implements OnInit {
   event$: any;
+  movies: any;
   message:string;
   omdbSearchTitle:string
   constructor(    private data: SearchDataService,
@@ -21,6 +22,7 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit() {this.data.currentMessage.subscribe(message => this.message = message)
     console.log("in search result compoment",this.message);
     this.fetchEvents();
+    
   }
   onSearch(){
     console.log("Hi on searchevents for search is called ", this.message);
@@ -36,5 +38,11 @@ export class SearchResultsComponent implements OnInit {
       this.event$ = data;
       console.log(data);
     });
+  }
+  goMoviePage(id){
+    this.data.changeMessage(id);
+    console.log(id);
+    this.router.navigate(['/movieinfo']);
+
   }
 }

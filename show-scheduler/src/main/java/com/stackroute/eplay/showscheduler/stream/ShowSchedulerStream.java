@@ -7,12 +7,11 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface ShowSchedulerStream {
 
-	String OUTPUT = "show-scheduler-out";
-	String INPUT = "show-scheduler-in";
 
+	String INPUT = "show-scheduler-in";
 	@Input(INPUT)
 	SubscribableChannel inboundShowScheduler();
-
+	String OUTPUT = "show-scheduler-out";
 	@Output(OUTPUT)
 	MessageChannel outboundShowScheduler();
 }

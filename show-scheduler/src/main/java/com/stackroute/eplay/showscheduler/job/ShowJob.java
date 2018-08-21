@@ -7,9 +7,15 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.SchedulerContext;
 import org.quartz.SchedulerException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MimeTypeUtils;
 
 import com.stackroute.eplay.showscheduler.domain.Show;
+import com.stackroute.eplay.showscheduler.stream.ShowSchedulerStream;
 
 /*
  * Job class for Show Scheduling 
@@ -17,6 +23,13 @@ import com.stackroute.eplay.showscheduler.domain.Show;
 
 @Service
 public class ShowJob implements Job {
+
+//	public static ShowSchedulerStream showSchedulerStream;
+//
+//	@Autowired
+//	public ShowJob(ShowSchedulerStream showSchedulerStream) {
+//		ShowJob.showSchedulerStream = showSchedulerStream;
+//	}
 
 	public ShowJob() {
 
@@ -26,15 +39,17 @@ public class ShowJob implements Job {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 
 		SchedulerContext schedulerContext;
+
 		try {
-			
+
 			/*
-			 * Getting all the shows from the trigger class in the form of Hashmap and changing the 
-			 * status of the each show as soon as their time is triggered.
+			 * Getting all the shows from the trigger class in the form of Hashmap and
+			 * changing the status of the each show as soon as their time is triggered.
 			 */
-			
+
 			schedulerContext = context.getScheduler().getContext();
 			HashMap<Integer, Show> showMap = (HashMap<Integer, Show>) schedulerContext.get("show");
+
 			String[] trigger = context.getTrigger().toString().split(":");
 
 			int beginIndex = trigger[0].indexOf("trigger") + 7;
@@ -46,6 +61,11 @@ public class ShowJob implements Job {
 			System.out.println("Before: " + show.isStatus());
 			show.setStatus(false);
 			System.out.println("After: " + show.isStatus());
+
+			// MessageChannel messageChannel = showSchedulerStream.outboundShowScheduler();
+			// messageChannel.send(MessageBuilder.withPayload(show)
+			// .setHeader(MessageHeaders.CONTENT_TYPE,
+			// MimeTypeUtils.APPLICATION_JSON).build());
 
 		} catch (SchedulerException e) {
 			e.printStackTrace();

@@ -30,7 +30,7 @@ import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.componen
 import {MatRadioModule} from '@angular/material/radio';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
-import { MovieTheatreListComponent } from './movie-theatre-list/movie-theatre-list.component';
+import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie-theatre-list.component';
 
 @NgModule({
   declarations: [

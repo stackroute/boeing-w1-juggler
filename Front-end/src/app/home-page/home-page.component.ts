@@ -25,4 +25,9 @@ export class HomePageComponent implements OnInit {
      console.log(data);
    });
  }
+ goMoviePage(id){
+  this.data.changeMessage(id);
+  console.log(id);
+
+}
 }
