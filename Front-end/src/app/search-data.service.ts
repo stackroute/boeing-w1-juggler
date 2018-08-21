@@ -34,6 +34,6 @@ export class SearchDataService {
 }
  getSearchedEvents(name) {
    console.log(name);
-  return this.http.get('http://172.23.238.221:8093/api/v1/movie/'+name)
+  return this.http.get('http://172.23.238.221:8093/api/v1/movies/'+name)
 }
 }
