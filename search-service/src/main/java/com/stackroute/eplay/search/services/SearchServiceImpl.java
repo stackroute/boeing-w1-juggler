@@ -83,12 +83,14 @@ public class SearchServiceImpl implements SearchService {
 			}
 		}
 		List<Theatre> theatres;
+		List<Movie> movieList = city.getMovieList();
 		if(currMovie !=null) {
 			if (currMovie.getTheatres() == null)
 				theatres = new ArrayList<Theatre>();
 			else
 				theatres = currMovie.getTheatres();
 			theatres.add(theatre);
+			movieList.remove(currMovie);
 			currMovie.setTheatres(theatres);
 		} else {
 			theatres = new ArrayList<Theatre>();
@@ -96,7 +98,7 @@ public class SearchServiceImpl implements SearchService {
 			currMovie = movie;
 			currMovie.setTheatres(theatres);
 		}
-		List<Movie> movieList = city.getMovieList();
+		
 		movieList.add(currMovie);
 		city.setMovieList(movieList);
 		return cityRepository.save(city);
