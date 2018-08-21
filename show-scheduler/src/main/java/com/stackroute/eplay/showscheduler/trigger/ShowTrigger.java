@@ -21,11 +21,17 @@ import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.quartz.DateBuilder.IntervalUnit;
 import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MimeTypeUtils;
 
 import com.stackroute.eplay.showscheduler.domain.MovieEvent;
 import com.stackroute.eplay.showscheduler.domain.Show;
 import com.stackroute.eplay.showscheduler.job.ShowJob;
+import com.stackroute.eplay.showscheduler.stream.ShowSchedulerStream;
 
 /*
  * Trigger class for Show Scheduling
@@ -40,32 +46,35 @@ public class ShowTrigger {
 		showMap = new HashMap<Integer, Show>();
 	}
 
+	
+
 	public void trigger(MovieEvent movieEvent) throws SchedulerException {
-		
+
 		/*
-		 * Getting all the shows from the movie event and storing all the shows in the list
+		 * Getting all the shows from the movie event and storing all the shows in the
+		 * list
 		 */
 
 		List<Show> shows = movieEvent.getShows();
 
 		Scheduler sc = StdSchedulerFactory.getDefaultScheduler();
-		
+
 		for (Show show : shows) {
 			System.out.println("shows: " + show);
 
 			/*
 			 * Creating a new job for every show with the job key as the show id
 			 */
-			
+
 			JobKey jobKey = JobKey.jobKey("job" + Integer.toString(show.getShowId()));
 			JobDetail job = JobBuilder.newJob(ShowJob.class).withIdentity(jobKey).build();
-			
+
 			/*
 			 * taking current time in milliseconds
 			 */
 
 			long currentTimeInMilliSeconds = System.currentTimeMillis();
-			
+
 			/*
 			 * taking show time in milliseconds
 			 */
@@ -74,16 +83,16 @@ public class ShowTrigger {
 			LocalDate showDate = show.getDate();
 			LocalDateTime showDateTime = LocalDateTime.of(showDate, showTime);
 			long showTimeInMilliSeconds = Timestamp.valueOf(showDateTime).getTime();
-			
+
 			/*
-			 * calculating the difference between the current time and the show time so that the 
-			 * job can be scheduled to run after that much time
+			 * calculating the difference between the current time and the show time so that
+			 * the job can be scheduled to run after that much time
 			 */
 
 			long secondsDiff = (showTimeInMilliSeconds - currentTimeInMilliSeconds) / 1000;
 
 			System.out.println("time diff: " + (int) secondsDiff);
-			
+
 			/*
 			 * creating a trigger for each show with the trigger name as the show id
 			 */
@@ -94,7 +103,7 @@ public class ShowTrigger {
 					.withSchedule(simpleSchedule()).build();
 
 			showMap.put(show.getShowId(), show);
-			
+
 			/*
 			 * passing all the shows in the job class and scheduling the job
 			 */
@@ -105,6 +114,8 @@ public class ShowTrigger {
 			// showServiceImpl.updateShow(show, show.getShowId());
 			// Show updatedShow = showServiceImpl.updateShow(show, show.getShowId());
 			// return updatedShow;
+
+		
 		}
 		sc.start();
 

@@ -18,13 +18,12 @@ import com.stackroute.eplay.showscheduler.trigger.ShowTrigger;
 public class KafkaListener {
 
 	private ShowTrigger showTrigger;
-	private ShowSchedulerStream showSchedulerStream;
+	//private ShowSchedulerStream showSchedulerStream;
 
 	@Autowired
-	public KafkaListener(ShowTrigger showTrigger, ShowSchedulerStream showSchedulerStream) {
+	public KafkaListener(ShowTrigger showTrigger) {
 		super();
 		this.showTrigger = showTrigger;
-		this.showSchedulerStream = showSchedulerStream;
 	}
 
 	@StreamListener(ShowSchedulerStream.INPUT)
@@ -36,9 +35,7 @@ public class KafkaListener {
 			e.printStackTrace();
 		}
 
-		MessageChannel messageChannel = showSchedulerStream.outboundShowScheduler();
-		messageChannel.send(MessageBuilder.withPayload(movieEvent)
-				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+		
 	}
 
 }
