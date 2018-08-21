@@ -53,29 +53,5 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public City getCityOfUser(String userName) {
 		return userrepository.getCityOfUser(userName);
-	}
-	
-
-
-	
-/*	public List<Movie> getGenreBasedMoviesForUser(User user){
-		List<Movie> moviesToBeRecommended = new ArrayList<>();
-		Set<Genre> genresOfviewedMovies =new HashSet<>();
-		for(Movie movie:user.getMovies()) {
-			genresOfviewedMovies.add(movie.getGenre());
-		}
-		
-		for(Genre genre :genresOfviewedMovies) {
-			List<Movie> particularGenreMovies = movierepository.getMoviesByGenre(genre.toString());
-			for(Movie movie :particularGenreMovies) {
-				moviesToBeRecommended.add(movie);
-			}	
-		}
-		return moviesToBeRecommended;
-	}*/
-
-//	public User getAllFollowers(String name) {
-//		// TODO Auto-generated method stub
-//		return (User) userrepository.findAll();
-//	}	 
+	}	 
 }

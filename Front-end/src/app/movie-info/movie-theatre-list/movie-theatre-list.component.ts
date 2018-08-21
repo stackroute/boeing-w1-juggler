@@ -10,14 +10,13 @@ import {SearchDataService} from "../../search-data.service";
 export class MovieTheatreListComponent implements OnInit {
   
   public movie;
-  public id;
 
   constructor(private _movieService : MovieInfoService, private _searchDataService:SearchDataService){
   }
   ngOnInit() {
-    this._searchDataService.currentMessage.subscribe(id => this.id = id)
-    console.log("print in child" , this.id);
-    this._movieService.getMovieById(this.id).subscribe(data=> this.movie=data);
+    this._searchDataService.movieMessage.subscribe(movie => this.movie = movie)
+    console.log("print in child" , this.movie);
+    //this._movieService.getMovieById(this.id).subscribe(data=> this.movie=data);
   } 
 
   shows=[

@@ -10,7 +10,6 @@ import com.stackroute.eplay.recommendationservice.domain.Movie;
 
 public interface MovieRepository extends Neo4jRepository<Movie, Integer> {
 	
-//	Movie findByTitleLike(@Param("title") String title);
 	@Query("MATCH (m:Movie) WHERE m.name ={name} RETURN m")
 	Movie findByName(@Param("name") String name);
 	
@@ -28,7 +27,4 @@ public interface MovieRepository extends Neo4jRepository<Movie, Integer> {
 	
 	@Query("MATCH (c:City)<- [:RELEASED_IN]-(m:Movie)-[:IS_OF_GENRE]->(g:Genre) where g.genreName={genreName} and  c.name={name} RETURN m")
     List<Movie> getMovieByCityGenre(@Param("name") String name, @Param("genreName") String genreName);
-    
-	@Query("MATCH (m:Movie)-[r:RELEASED_IN]->(c:City) where c.name= {name}  RETURN m")
-    List<Movie> getMoviesInCity(@Param("name") String name);
 }

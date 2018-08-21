@@ -1,4 +1,4 @@
-<div class="theatre-container" *ngFor="let theatre of movie.theatreList">
+<div class="theatre-container" *ngFor="let theatre of movie.theatre">
   <!--let theatre of theatreList-->
   <div class="theatre-name">
       <!--theatre.name || theatre.location-->
@@ -8,6 +8,6 @@
   <div class="show-time">  
       <!--let show of shows-->
       <!--show.showTime-->
-      <button *ngFor="let show of movie.shows" mat-stroked-button color="primary">{{show.startTime}}</button>
+      <button *ngFor="let show of theatre.shows" mat-stroked-button color="primary">{{show.startTime}}</button>
   </div>
 </div>
