@@ -5,9 +5,9 @@ spring:
         binder:
           brokers: 172.23.238.198:9092
       bindings:
-        show-scheduler-in:
+        updated-movie-event-in:
           destination: UpdatedMovieEvent
           contentType: application/json
-        show-scheduler-out:
-          destination: UpdatedMovieEvent
+        updated-movie-event-out:
+          destination: UpdatedShowEvent
           contentType: application/json
