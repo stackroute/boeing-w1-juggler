@@ -13,14 +13,14 @@ export class RsvpCreateService {
   private _url2: string = "http://172.23.238.218:8097/api/v1/event/rsvpEvent";
   private _url4: string = "http://172.23.238.218:8097/api/v1/event/invitation";
   private _url3: string =
-    "http://172.23.238.220:8097/api/v1/upstream/rsvpEvent";
+    "http://172.23.238.220:8097/api/v1/event/upstream/rsvpEvent";
 
   rsvpCreate: RsvpCreate;
   // rsvpInvitationModel: RsvpInvitation;
   constructor(private http: HttpClient) {}
 
   saveRsvpEvent(rsvpCreate: RsvpCreate): Observable<RsvpCreate> {
-    return this.http.post<RsvpCreate>(this._url, rsvpCreate);
+    return this.http.post<RsvpCreate>(this._url3, rsvpCreate);
   }
 
   getAllRsvpEvents(): Observable<RsvpCreate[]> {
