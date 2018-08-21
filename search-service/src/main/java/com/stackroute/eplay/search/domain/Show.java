@@ -17,7 +17,7 @@ public class Show {
 	private int showId;
 	private int seatRemaining;
 	private int price;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "hh:mm:ss")
 	private LocalTime startTime;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate date;
