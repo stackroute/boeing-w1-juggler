@@ -36,7 +36,7 @@ public class TicketedEventServiceImpl implements TicketedEventService {
 	public void hostedIn(String cityName,int id) {
 		ticketedEventRepository.hostedIn(cityName, id);		
 	}
-
+	
 	@Override
 	public List<TicketedEvent> getTicketedEventsByType(String categoryName) {
 		return ticketedEventRepository.getTicketedEventsByType(categoryName);
