@@ -6,12 +6,12 @@ import { SearchDataService } from '../search-data.service';
   styleUrls: ['./movie-info.component.css']
 })
 export class MovieInfoComponent implements OnInit {
-  public id;
+  public movie;
   constructor(private _searchDataService:SearchDataService) {}
 
   ngOnInit() {
-    this._searchDataService.currentMessage.subscribe(id => this.id = id);
-    console.log("my theatre",this.id);
+    this._searchDataService.movieMessage.subscribe(movie => this.movie = movie);
+    console.log("my theatre",this.movie);
   }
 
   movieName="Movie Name";

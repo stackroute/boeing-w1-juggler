@@ -39,9 +39,9 @@ export class SearchResultsComponent implements OnInit {
       console.log(data);
     });
   }
-  goMoviePage(id){
-    this.data.changeMessage(id);
-    console.log(id);
+  goMoviePage(movie){
+    this.data.changeMovieMessage(movie);
+    console.log(movie);
     this.router.navigate(['/movieinfo']);
 
   }
