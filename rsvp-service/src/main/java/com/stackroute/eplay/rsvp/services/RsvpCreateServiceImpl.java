@@ -1,10 +1,13 @@
 package com.stackroute.eplay.rsvp.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stackroute.eplay.rsvp.domain.Invitation;
 import com.stackroute.eplay.rsvp.domain.RSVPEvent;
 import com.stackroute.eplay.rsvp.repositories.RsvpCreateRepository;
 
@@ -13,6 +16,8 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	
 	
 	private RsvpCreateRepository rsvpCreateRepository;
+	@Autowired
+	NextSequenceService nextSequenceService;
 
 	@Autowired
 	public RsvpCreateServiceImpl(RsvpCreateRepository rsvpCreateRepository) {
@@ -20,19 +25,20 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 		this.rsvpCreateRepository = rsvpCreateRepository;
 	}
 
-	@Override
+	
 	public RSVPEvent saveRsvpCreate(RSVPEvent rsvpCreate) {
 		// TODO Auto-generated method stub
+		rsvpCreate.setId(nextSequenceService.getNextSequence("counter"));
 		return rsvpCreateRepository.save(rsvpCreate);
 	}
 
-	@Override
+
 	public Iterable<RSVPEvent> getAllRsvpCreate() {
 		// TODO Auto-generated method stub
 		return rsvpCreateRepository.findAll();
 	}
 
-	@Override
+
 	public Optional<RSVPEvent> getRsvpCreateById(int id) {
 		// TODO Auto-generated method stub
 		if(rsvpCreateRepository.existsById(id))
@@ -54,11 +60,19 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 		return false;
 	}
 
-	@Override
-	public RSVPEvent updateRsvp(RSVPEvent rsvpCreate, int id) {
+	
+	public RSVPEvent updateRSVPEvent(Invitation invitation, int id) {
 		// TODO Auto-generated method stub
-		rsvpCreate.setId(id);
-		return rsvpCreateRepository.save(rsvpCreate);
+		RSVPEvent rsvpEvent=getRsvpCreateById(id).get();
+		invitation.setInvitationId(nextSequenceService.getNextSequence("counter"));
+		List<Invitation> invitiesList=rsvpEvent.getRsvpInvitation();
+		if(invitiesList==null) {
+			invitiesList=new ArrayList<Invitation>();
+		}
+		invitiesList.add(invitation);
+		rsvpEvent.setRsvpInvitation(invitiesList);
+		return rsvpCreateRepository.save(rsvpEvent);
+
 	}
 
 }
