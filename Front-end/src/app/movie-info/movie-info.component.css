@@ -1,0 +1,23 @@
+.poster-container{
+    width: 100%;
+    background-color: gold;
+    height: 300px;  
+    align-content: center;
+    position: relative;
+  }
+  
+  .poster-container h2 { 
+      position: absolute; 
+      top: 200px; 
+      left: 20px; 
+      width: 100%; 
+      color: antiquewhite;
+   }
+  
+  .menu mat-form-field{
+      margin-left: 20px;
+  }
+  
+  .filter-price{
+      margin-left: 10px;
+  }

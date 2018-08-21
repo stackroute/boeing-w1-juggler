@@ -17,7 +17,7 @@
         <input mat-raised-button matTooltip="Enter the name of the movie you want to search.." matTooltipClass="example-tooltip-red"
           aria-label="Button that shows a red tooltip" class="example-button" matInput value="Search ImDB..." [(ngModel)]="omdbSearchTitle">
         <button mat-raised-button matTooltip="Click to search Movies" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
-          class="example-button" (click)="onSearch()" mat-raised-button style="margin-left: 10px">Search for latest Movies</button>
+          class="example-button" (click)="onSearch()" routerLink="/search"  mat-raised-button style="margin-left: 10px">Search for latest Movies</button>
       </mat-form-field>
       <button mat-raised-button matTooltip="Click to create an Event" routerLink="/createEvent" routerLinkActive="active" matTooltipClass="example-tooltip-red"
         aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 300px;color:black">Create Event</button>

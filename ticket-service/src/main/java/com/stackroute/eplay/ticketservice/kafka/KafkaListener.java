@@ -1,5 +1,7 @@
 package com.stackroute.eplay.ticketservice.kafka;
 
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -39,8 +41,12 @@ public class KafkaListener {
 	@StreamListener(MovieEventStreams.INPUT)
 	public void movieEventPost(@Payload MovieEvent event) {
 		try {
+			System.out.println(event.toString());
 			movieEventService.saveMovieEvent(event);
 		} catch (MovieEventAlreadyExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

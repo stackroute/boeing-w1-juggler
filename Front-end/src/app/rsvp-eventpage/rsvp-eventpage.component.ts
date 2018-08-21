@@ -15,31 +15,47 @@ import{RsvpCreateService} from '../rsvp-create.service';
 export class RsvpEventpageComponent implements OnInit {
 
 
-  rsvpInvitationModel= new RsvpInvitation;
+  rsvpInvitationModel= new RsvpInvitation();
   rsvpModel=new RsvpCreate();
-  id:number;
-//  name:string;
-  name="bhai";
- 
   
+
   constructor(
     private rsvpCreateService:RsvpCreateService,
     private rsvpInvitationService:RsvpInvitationService,
     private activatedRoute:ActivatedRoute
   ,private router:Router
   ) { }
+
+  
   
   ngOnInit() {
+    console.log(this.rsvpModel);
+   this.rsvpCreateService.getRsvpEventById(78).subscribe(p=>{
+     this.rsvpModel=p;
+   });
+   console.log(this.rsvpModel);
   }
 
+  onSubmit(){console.log("to change status");
+  console.log(this.rsvpInvitationModel);
+   this.rsvpCreateService.updateRsvp(this.rsvpInvitationModel,78).subscribe(res=>{console.log('saved')
+  });
+  
+  }
+  
  // this.rsvpModel=this.rsvpCreateService.getRsvpEventById(id);
 
- getRsvpEventById(id:number){
- this.rsvpCreateService.getRsvpEventById(id).subscribe(rsvpCreateService=>{
-   this.rsvpModel=rsvpCreateService;
- });
- }
+//  getRsvpEventById(id:number){
+//  this.rsvpCreateService.getRsvpEventById(id).subscribe(rsvpCreateService=>{
+//    this.rsvpModel=rsvpCreateService;
+//  });
+//  }
 
  
+//  onSubmit(){
+
+
+//   this.rsvpInvitationService.saveRsvpInvitation(this.rsvpInvitationModel).subscribe(res=>console.log('saved'));
+// }
 }
 

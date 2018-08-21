@@ -8,7 +8,11 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { RsvpEventComponent } from "./rsvp-event/rsvp-event.component";
 import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { TheatreComponent } from "./theatre/theatre.component";
 import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
+import { SearchResultsComponent } from "./search-results/search-results.component";
+import { MovieInfoComponent } from "./movie-info/movie-info.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -21,6 +25,10 @@ const routes: Routes = [
   {
     path :"home",
     component :HomePageComponent
+  },
+  {
+    path :"search",
+    component :SearchResultsComponent
   },
   {
     path: "userRegistration",
@@ -39,6 +47,10 @@ const routes: Routes = [
     component: RsvpInvitationComponent
   },
   {
+    path: "movieinfo",
+    component: MovieInfoComponent
+  },
+  {
     path: "createOtherTicketedEvent",
     component: OtherTicketedEventComponent
   },
@@ -47,6 +59,11 @@ const routes: Routes = [
     component: MovieEventComponent
   },
   {
+    path: "theatre",
+    component: TheatreComponent
+  },
+  {
+
     path:'rsvpEvent/:id',
     component:RsvpEventpageComponent
   }
@@ -62,5 +79,7 @@ export const routingComponents = [
   EventTypeComponent,
   OtherTicketedEventComponent,
   MovieEventComponent,
-  RsvpEventComponent
+  RsvpEventComponent,
+  SearchResultsComponent,
+  TheatreComponent
 ];

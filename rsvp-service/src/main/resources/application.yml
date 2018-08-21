@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 spring:
   data:
      mongodb:
@@ -15,3 +16,27 @@ spring:
           destination: RSVPEvent
           contentType: application/json
 
+=======
+#spring:
+#  cloud:
+#    stream:
+#      kafka:
+#        binder:
+#          brokers: 172.23.238.170:9092
+#      bindings:
+#        rsvp-event-in:
+#          destination: RSVPEvent
+#          contentType: application/json
+#        rsvp-event-out:
+#          destination: RSVPEvent
+#          contentType: application/json
+## data: 
+##  mongodb:
+##   port: 27017
+##   host: localhost
+##   database: test
+##   uri: mongodb://172.23.238.255:27017/user_movie
+## data:
+##      mongodb:
+##         uri: mongodb://172.23.238.255:27000/test
+>>>>>>> ec664c158479fc00588f310f2735db1bb45fff6e

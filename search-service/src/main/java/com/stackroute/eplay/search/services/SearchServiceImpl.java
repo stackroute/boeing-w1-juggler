@@ -1,11 +1,8 @@
 package com.stackroute.eplay.search.services;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,80 +12,156 @@ import org.springframework.stereotype.Service;
 import com.stackroute.eplay.search.domain.City;
 import com.stackroute.eplay.search.domain.Movie;
 import com.stackroute.eplay.search.domain.Query;
-import com.stackroute.eplay.search.domain.TicketedEvent;
+import com.stackroute.eplay.search.domain.Theatre;
+import com.stackroute.eplay.search.exceptions.MovieNotFoundException;
 import com.stackroute.eplay.search.repositories.CityRepository;
 import com.stackroute.eplay.search.repositories.MovieRepository;
 import com.stackroute.eplay.search.repositories.QueryRepository;
+import com.stackroute.eplay.search.repositories.TheatreRepository;
 
 @Service
-public class SearchServiceImpl implements SearchService{
+public class SearchServiceImpl implements SearchService {
 
 	private QueryRepository queryRepository;
 	private CityRepository cityRepository;
 	private MovieRepository movieRepository;
+	private TheatreRepository theatreRepository;
 
+	@SuppressWarnings("unused")
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
-	public SearchServiceImpl(QueryRepository queryRepository,CityRepository cityRepository, MovieRepository movieRepository) {
+	public SearchServiceImpl(QueryRepository queryRepository, CityRepository cityRepository,
+			MovieRepository movieRepository, TheatreRepository theatreRepository) {
 		super();
 		this.queryRepository = queryRepository;
 		this.cityRepository = cityRepository;
 		this.movieRepository = movieRepository;
+		this.theatreRepository = theatreRepository;
 	}
-	
+
+	// save movie to movie repository
 	@Override
 	public Movie saveMovie(Movie movie) {
 		if (!movieRepository.existsById(movie.getId())) {
 			return movieRepository.save(movie);
-		} 
+		}
 		return null;
 	}
-	
+
 	@Override
-	public City updateCityMovies(String cityName, Movie movie) {
+	public Theatre saveTheatre(Theatre theatre) {
+		if (!theatreRepository.existsById(theatre.getTheatreId())) {
+			return theatreRepository.save(theatre);
+		}
+		return null;
+	}
+
+	// update list of movies of given city
+	@Override
+	public City updateCityMovies(String cityName, Movie movie, Theatre theatre) {
 		City city;
-		
-		if(!cityRepository.existsById(cityName)) {
+		List<Theatre> theatres;
+		if (movie.getTheatres() == null)
+			theatres = new ArrayList<Theatre>();
+		else
+			theatres = movie.getTheatres();
+		theatres.add(theatre);
+		movie.setTheatres(theatres);
+		if (!cityRepository.existsById(cityName)) {
 			List<Movie> movieList = new ArrayList<Movie>();
 			movieList.add(movie);
-			
+
 			city = new City(cityName, movieList);
 			return cityRepository.save(city);
 		}
-		
+
 		city = cityRepository.findById(cityName).get();
-		if(!city.getMovieList().contains(movie)) {
+		if (!city.getMovieList().contains(movie)) {
 			city.getMovieList().add(movie);
 			return cityRepository.save(city);
 		}
-		
+
 		return null;
 
 	}
-	
+
+	// get movie by movie id
 	@Override
 	public Movie getMovieById(int id) {
 		return movieRepository.findById(id);
 	}
 
+	// get theatre by theatre id
+	@Override
+	public Theatre getTheatreById(int id) {
+		return theatreRepository.findById(id).get();
+	}
+
+	// get all events of given city
 	@Override
 	public Iterable<Movie> getEventsByCity(String city) {
 		// TODO Auto-generated method stub
-		Query query=new Query();
+		Query query = new Query();
 		LocalDateTime now = LocalDateTime.now();
-		query.setQuery("city="+city);
+		query.setQuery("city=" + city);
 		query.setUserId("guest");
 		query.setTimeStamp(now);
 		queryRepository.save(query);
-		
-		//System.out.println(cityRepository.findById(city).get());
+
+		// System.out.println(cityRepository.findById(city).get());
 		return cityRepository.findById(city).get().getMovieList();
-	}	
-	
+	}
+
+	// get all queries
 	@Override
 	public Iterable<Query> getAllQueries() {
 		// TODO Auto-generated method stub
 		return queryRepository.findAll();
-	}	
+	}
+
+	// get auto-complete suggestions for search bar
+	@Override
+	public List<Movie> getMovieAutoSuggestions(String searchstr) {
+		ArrayList<Movie> suggestions = new ArrayList<>();
+
+		List<Movie> movieList = movieRepository.findAll();
+
+		for (Movie movie : movieList) {
+
+			if (movie.getName() != null && movie.getName().toLowerCase().contains(searchstr.toLowerCase())) {
+				suggestions.add(movie);
+			}
+		}
+
+		// truncate the list to the first n, max 10 elements
+		int n = suggestions.size() > 9 ? 9 : suggestions.size();
+		movieList = new ArrayList<>(suggestions.subList(0, n));
+
+		return movieList;
+	}
+
+	// Get all movies by given name
+	@Override
+	public Iterable<Movie> getMoviesByName(String name) throws MovieNotFoundException {
+		// TODO Auto-generated method stub
+		Iterable<Movie> movies = movieRepository.getMovieByNameIgnoreCaseContaining(name);
+
+		if (movies != null) {
+			return movies;
+		} else {
+			throw new MovieNotFoundException("Movie not found");
+		}
+	}
+
+	// Get all movie by id from movie list
+	@Override
+	public Movie getMoviesByIdAndCity(String city, int movieId){
+		for(Movie movie: getEventsByCity(city)) {
+			if(movie.getId()==movieId) {
+				return movie;
+			}
+		}
+		return null;
+	}
 }
