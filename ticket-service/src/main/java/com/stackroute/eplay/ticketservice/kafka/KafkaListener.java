@@ -41,6 +41,7 @@ public class KafkaListener {
 	@StreamListener(MovieEventStreams.INPUT)
 	public void movieEventPost(@Payload MovieEvent event) {
 		try {
+			System.out.println(event.toString());
 			movieEventService.saveMovieEvent(event);
 		} catch (MovieEventAlreadyExistException e) {
 			// TODO Auto-generated catch block

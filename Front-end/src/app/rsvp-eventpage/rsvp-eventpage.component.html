@@ -1,10 +1,10 @@
-
+<div class="image">
 <div class="example-container">
 <h2>
   Event name:{{rsvpModel.name}}
 </h2>
 <h3>
-     Location:{{rsvpModel.location}} in city {{rsvpModel.city}}
+     Location in city {{rsvpModel.location}} {{rsvpModel.city}}
    </h3>
 <h3>
        Start Date:{{rsvpModel.startDate}} at start time {{rsvpModel.startTime}}
@@ -40,10 +40,15 @@
       
   </h3>
 
-
+  <!-- <input type="radio" value="male" name="gender" ngModel> Male
+  <input type="radio" value="female" name="gender" ngModel> Female -->
 
   <mat-radio-group>
-      <mat-radio-button value="1">I am attending</mat-radio-button>
-      <mat-radio-button value="2">I am not attending</mat-radio-button>
-    </mat-radio-group>
+      <mat-radio-button value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am attending</mat-radio-button>
+      <br>
+      <mat-radio-button value=false name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am not attending</mat-radio-button>
+
+    </mat-radio-group>  
+    <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">submit </button>
   </div>
+</div>

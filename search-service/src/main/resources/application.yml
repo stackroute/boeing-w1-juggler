@@ -8,6 +8,18 @@
 #   org.springframework.web: DEBUG
 #   com.stackroute.controllers: DEBUG
 #   org.hibernate: DEBUG
+
+# data:
+#  mongodb:
+#   authentication-database: admin
+#   username: root123 
+#   password: root123
+#   database: movie
+#   port: 27017 
+#   host: localhost     
+#   
+#         
+
 # cloud:
 #    stream:
 #      kafka:
@@ -26,6 +38,12 @@
 ##   host: localhost
 ##   database: test
 ##   uri: mongodb://172.23.238.255:27017/user_movie
+
+## 
+#
+#server:
+# port: 8093
+
 ## data:
 ##      mongodb:
 ##         uri: mongodb://172.23.238.255:27000/test
@@ -33,3 +51,4 @@
 #server:
 # port: 8093
 # 
+

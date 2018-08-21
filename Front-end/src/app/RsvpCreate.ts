@@ -1,3 +1,4 @@
+import{RsvpInvitation} from './RsvpInvitation';
 export class RsvpCreate{
     id:number;
     name:string;
@@ -16,6 +17,7 @@ export class RsvpCreate{
     notes:string;
     numberOfAttendees:number;
     isCompleted:boolean;
+    rsvpInvitationList: RsvpInvitation[];
     
 
     

@@ -2,6 +2,8 @@ package com.stackroute.eplay.recommendationservice.services;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.stackroute.eplay.recommendationservice.domain.Movie;
 
 public interface MovieService {
@@ -12,4 +14,5 @@ public interface MovieService {
     public List<Movie> getMoviesByGenre(String genreName);
     public List<Movie> getMoviesByCity(String name);
     public List<Movie> getMovieByCityGenre(String name,String genreName);
+    
 }
