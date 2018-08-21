@@ -1,6 +1,7 @@
 package com.stackroute.eplay.search.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,11 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Show {
-	private int showId; 
+	private int showId;
 	private int seatRemaining;
 	private int price;
-	private Date startTime; 
-	private Date date;
+	private LocalTime startTime;
+	private LocalDate date;
 	private int movieEventId;
 	private boolean status;
 	//private ArenaLayout layout;
