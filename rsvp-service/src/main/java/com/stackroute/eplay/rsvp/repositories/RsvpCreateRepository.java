@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.stackroute.eplay.rsvp.domain.RSVPEvent;
 
-@Repository
+@Repository // 
 public interface RsvpCreateRepository extends MongoRepository<RSVPEvent, Integer> {
 
 }

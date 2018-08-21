@@ -5,7 +5,7 @@
       <mat-card class="example-card">
         <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
         <mat-card-actions>
-            <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie.id)">go</button>
+            <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">go</button>
           </mat-card-actions>
       </mat-card>
     </mat-grid-tile>

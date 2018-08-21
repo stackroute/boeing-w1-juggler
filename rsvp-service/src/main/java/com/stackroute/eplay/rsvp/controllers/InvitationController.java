@@ -49,6 +49,7 @@ public class InvitationController {
 		this.rsvpCreateServiceImpl = rsvpCreateServiceImpl;
 		this.rsvpEventStreams = rsvpEventStreams;
 	}
+	
 
 	@PostMapping("/invitation")
 	public ResponseEntity<?> saveInvitation(@RequestBody Invitation rsvpInvitation) {
@@ -86,9 +87,9 @@ public class InvitationController {
 		return new ResponseEntity<String>("Deleted", HttpStatus.OK);
 	}
 
-	@PutMapping("/invitation/{invitationId}")
-	public ResponseEntity<?> updateInvitation(@PathVariable int invitationId, @RequestBody Invitation rsvpInvitation) {
-		return new ResponseEntity<Invitation>(
-				rsvpInvitationServiceImpl.updateRsvpInvitation(rsvpInvitation, invitationId), HttpStatus.OK);
-	}
+//	@PutMapping("/invitation/{invitationId}")
+//	public ResponseEntity<?> updateInvitation(@PathVariable int invitationId, @RequestBody Invitation rsvpInvitation) {
+//		return new ResponseEntity<Invitation>(
+//				rsvpInvitationServiceImpl.updateRsvpInvitation(rsvpInvitation, invitationId), HttpStatus.OK);
+//	}
 }

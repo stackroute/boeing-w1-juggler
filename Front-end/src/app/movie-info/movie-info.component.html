@@ -1,7 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <div class="poster-container">
-    <img src="https://picsum.photos/1300/300?image=992" alt="Sorry photo not available"/>
-    <h2>{{movieName}}</h2>
+    <!--"https://picsum.photos/1300/300?image=992"-->
+    <img src={{movie.poster}} alt="Sorry movie not available"/>
+    <h2>{{movie.name}}</h2>
 </div>
 <div class="menu">
 <mat-form-field>
