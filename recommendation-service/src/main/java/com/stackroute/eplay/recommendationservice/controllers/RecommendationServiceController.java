@@ -38,7 +38,7 @@ public class RecommendationServiceController {
 	private UserService userservice;
 	private CityService cityservice;
 	private TicketedEventService ticketedEventService;
-	
+		
 	@Autowired
 	public RecommendationServiceController(MovieService movieservice, UserService userservice,CityService cityservice,TicketedEventService ticketedEventService) {
 		this.movieservice = movieservice;
@@ -47,8 +47,12 @@ public class RecommendationServiceController {
 		this.ticketedEventService = ticketedEventService;
 	}
 	
-	//taking moviekafka and mapping to movie
-	//We will get data from kafka in movieKafka format 
+	/*
+	 * createMovieNode() method is used to create movie node in neo4j database,
+	 * taking moviekafka and mapping to movie model ,getting data from Kafka in MovieKafka 
+	 * format.Rest end point for this method will be "api/v1/saveMovie"
+	 * If the movie node  is successfully created then it will give the HTTP status code 201 
+	 */
 	@PostMapping("/saveMovie")
 	public ResponseEntity<?> createMovieNode(@RequestBody MovieKafka movieKafka) {
 		int id = movieKafka.getId();
@@ -62,6 +66,12 @@ public class RecommendationServiceController {
 		return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);		
 	}
 	
+	/*
+	 * createTicketedEventNode() method is used to create Ticketed Event node in neo4j database,
+	 * taking TicketedEventKafka and mapping to TicketedEvent model ,getting data from Kafka in 
+ 	 * TicketedEventKafka format.Rest end point for this method will be "api/v1/saveTicketedEvent"
+	 * If the TicketedEvent node  is successfully created then it will give the HTTP status code 201 
+	 */
 	@PostMapping("/saveTicketedEvent")
 	public ResponseEntity<?> createTicketedEventNode(@RequestBody TicketedEventKafka ticketedEventKafka) {
 		int id = ticketedEventKafka.getId();
@@ -73,6 +83,12 @@ public class RecommendationServiceController {
 		return new ResponseEntity<TicketedEvent> (ticketedEventService.saveTicketedEvent(ticketedEvent),HttpStatus.OK);		
 	}
 	
+	/*
+	 * createUserNode() method is used to create User node in neo4j database,
+	 * taking UserKafka and mapping to User model ,getting data from Kafka in 
+ 	 * UserKafka format.Rest end point for this method will be "api/v1/saveUser"
+	 * If the User node  is successfully created then it will give the HTTP status code 201 
+	 */
 	@PostMapping("/saveUser")	
 	public ResponseEntity<?> createUserNode(@RequestBody UserKafka userKafka){
 		String userName = userKafka.getUserName();
@@ -90,6 +106,11 @@ public class RecommendationServiceController {
 		return new ResponseEntity<User>(userservice.saveUser(user),HttpStatus.OK);
 	}
 	
+	/*
+	 * createCityNode() method is used to create city node showing the release cities of movies ,
+	 * in neo4j database.Rest end point for this method will be "api/v1/ReleasedIn"
+	 * If the city node  is successfully created then it will give the HTTP status code 201 
+	 */
 	@PostMapping("/ReleasedIn")
 	public ResponseEntity<?> createCityNode(@RequestBody MovieEvent movieEvent){
 		int movieId = movieEvent.getMovieId();
@@ -101,83 +122,145 @@ public class RecommendationServiceController {
 		Movie movie = movieservice.findById(movieId);
 		movieservice.releasedIn(cityName, movieId);
 		return new ResponseEntity<Movie> (movie,HttpStatus.OK);
-		/*City city = cityservice.saveCity(new City(cityName));
-		movie.getCities().add(city);*/
-		//return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);
-		//movieservice.saveMovie(movie);
-//		city.setMovies(city.getMovies());
-//		return new ResponseEntity<City>(cityservice.saveCity(city),HttpStatus.OK);
 	}
 	
+	/*
+	 * getMovieByName() method is used for getting Movie by name,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getMovieByName"
+	 * If successful,it will give the HTTP status code 201 
+	 */
 	@GetMapping("/getMovieByName")
     public ResponseEntity <?> getMovieByName(@RequestParam String name) {
 			return new ResponseEntity<Movie> (movieservice.findByName(name),HttpStatus.OK);	
 	}
 	
+	/*
+	 * getTicketedEventByName() method is used for getting Ticketed Event by name,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getTicketedEventByName"
+	 * If successful,it will give the HTTP status code 201 
+	 */
 	@GetMapping("/getTicketedEventByName")
     public ResponseEntity <?> getTicketedEventByName(@RequestParam String name) {
 			return new ResponseEntity<TicketedEvent> (ticketedEventService.findByName(name),HttpStatus.OK);	
 	}
 	
+	/*
+	 * getMovieById() method is used for getting Movie by Id ,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getMovieById"
+	 * If successful,it will give the HTTP status code 201 
+	 */
 	@GetMapping("/getMovieById")
 	public ResponseEntity<?> getMovieById(@RequestParam int id){
 		return new ResponseEntity<Movie> (movieservice.findById(id),HttpStatus.OK);
 	}
 	
+	/*
+	 * getTicketedEventById() method is used for getting Ticketed Event by Id ,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getTicketedEventById"
+	 * If successful,it will give the HTTP status code 201 
+	 */
 	@GetMapping("/getTicketedEventById")
 	public ResponseEntity<?> getTicketedEventById(@RequestParam int id){
 		return new ResponseEntity<TicketedEvent> (ticketedEventService.findById(id),HttpStatus.OK);
 	}
 	
-	@GetMapping("/getCityByName")
-	public ResponseEntity<?> getCityById(@RequestParam String name){
-		return new ResponseEntity<City> (cityservice.findBycityName(name),HttpStatus.OK);
-	}
-	
+	/*
+	 * getMoviesByGenre() method is used for getting Movies by Genre ,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getMoviesByGenre"
+	 * If successful,it will give the HTTP status code 201 
+	 */
 	@GetMapping("/getMoviesByGenre")
 	public ResponseEntity<?> getMoviesByGenre(@RequestParam String genreName){
 		return new ResponseEntity<List<Movie>> (movieservice.getMoviesByGenre(genreName),HttpStatus.OK);
 	}
 	
+	/*
+	 * getTicketedEventsByType() method is used for getting Ticketed Events by Category(type) ,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getTicketedEventsByType"
+	 * If successful,it will give the HTTP status code 201 
+	 */
+	@GetMapping("/getTicketedEventsByType")
+	public ResponseEntity<?> getTicketedEventsByType(@RequestParam String categoryName){
+		return new ResponseEntity<List<TicketedEvent>> (ticketedEventService.getTicketedEventsByType(categoryName),HttpStatus.OK);
+	}
 	
+	/*
+	 * getMoviesByCity() method is used for getting Movies in a particular city ,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getMoviesByCity"
+	 * If successful,it will give the HTTP status code 201 
+	 */
 	@GetMapping("/getMoviesByCity")
 	public ResponseEntity<?> getMoviesByCity(@RequestParam String name){
 		return new ResponseEntity<List<Movie>> (movieservice.getMoviesByCity(name),HttpStatus.OK);
 	}
 	
-	@GetMapping("/getTicketedEventByCity")
-	public ResponseEntity<?> getTicketedEventByCity(@RequestParam String name){
+	/*
+	 * getTicketedEventsByCity() method is used for getting Ticketed Events in a particular city ,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getTicketedEventsByCity"
+	 * If successful,it will give the HTTP status code 201 
+	 */
+	@GetMapping("/getTicketedEventsByCity")
+	public ResponseEntity<?> getTicketedEventsByCity(@RequestParam String name){
 		return new ResponseEntity<List<TicketedEvent>> (ticketedEventService.getTicketedEventsByCity(name),HttpStatus.OK);
 	}
 	
-	//http://localhost:8080/api/v1/getMovieByCityGenre?name=Bangalore&genreName=comedy
+	/*
+	 * getMovieByCityGenre() method is used for getting movies by genre in a particular city ,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getMovieByCityGenre"
+	 * If successful,it will give the HTTP status code 201 
+	 */
 	@GetMapping("/getMovieByCityGenre")
 	public ResponseEntity<?> getMovieByCityGenre(@RequestParam String name,@RequestParam String genreName){
 		return new ResponseEntity<List<Movie>> (movieservice.getMovieByCityGenre(name,genreName),HttpStatus.OK);
 	}
-
+	
+	/*
+	 * getTicketedEventByCityType() method is used for getting Ticketed Events by Category(type) in a 
+	 * particular city ,from neo4j database.Rest end point for this method will be 
+	 * "api/v1/getTicketedEventByCityType".If successful,it will give the HTTP status code 201 
+	 */
+	@GetMapping("/getTicketedEventByCityType")
+	public ResponseEntity<?> getTicketedEventByCityType(@RequestParam String name,@RequestParam String categoryName){
+		return new ResponseEntity<List<TicketedEvent>> (ticketedEventService.getTicketedEventByCityType(name,categoryName),HttpStatus.OK);
+	}
+	
+	/*
+	 * getGenreBasedMoviesForUser() method is used for recommending Movies based on a genre to a particular user,
+	 * from neo4j database.Rest end point for this method will be "api/v1/getGenreBasedMoviesForUser"
+	 * If successful,it will give the HTTP status code 201 
+	 */
+	@GetMapping("/getGenreBasedMoviesForUser")
+	public ResponseEntity<?> getGenreBasedMoviesForUser(@RequestParam String userName){
+		return new ResponseEntity<List<Movie>>(userservice.getGenreBasedMoviesForUser(userName),HttpStatus.OK);	
+	}
+	
+	/*
+	 * getTypeBasedTicketedEventsForUser() method is used for recommending Ticketed Events based on 
+	 * Category(type) to a particular user,from neo4j database.Rest end point for this method 
+	 * will be "api/v1/getGenreBasedMoviesForUser".If successful,it will give the HTTP status code 201
+	 */
+	@GetMapping("/getTypeBasedTicketedEventsForUser")
+	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName){
+		return new ResponseEntity<List<Movie>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);	
+	}	
+	
+	/*
+	 * getCityOfUser() method is used for getting city of a particular user,from neo4j database.
+	 * Rest end point for this method will be "api/v1/getCityOfUser".
+	 * If successful,it will give the HTTP status code 201
+	 */
 	@GetMapping("/getCityOfUser")
 	public ResponseEntity<?> getCityOfUser(@RequestParam String userName){
 		return new ResponseEntity<City>(userservice.getCityOfUser(userName),HttpStatus.OK) ;
 	}
 	
-
-
-	@GetMapping("/getGenreBasedMoviesForUser")
-	public ResponseEntity<?> getGenreBasedMoviesForUser(@RequestParam String userName){
-		return new ResponseEntity<List<Movie>>(userservice.getGenreBasedMoviesForUser(userName),HttpStatus.OK);
-		
+	/*
+	 * getCityByName() method is used for getting city by name,from neo4j database.
+	 * Rest end point for this method will be "api/v1/getCityByName".
+	 * If successful,it will give the HTTP status code 201
+	 */
+	@GetMapping("/getCityByName")
+	public ResponseEntity<?> getCityByName(@RequestParam String name){
+		return new ResponseEntity<City> (cityservice.findBycityName(name),HttpStatus.OK);
 	}
-	
-	@GetMapping("/getTypeBasedTicketedEventsForUser")
-	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName){
-		return new ResponseEntity<List<Movie>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);
-		
-	}
-
-//	@PostMapping("/getAllFollowers/{name}")
-//	public ResponseEntity<?> getAllFollowers(@PathVariable String name){
-//		return new ResponseEntity<User>(userservice.getAllFollowers(name),HttpStatus.OK);
-//	}
-	
 }

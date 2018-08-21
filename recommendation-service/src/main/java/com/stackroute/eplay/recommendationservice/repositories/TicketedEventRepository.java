@@ -28,5 +28,4 @@ public interface TicketedEventRepository extends Neo4jRepository<TicketedEvent,I
 	
 	@Query("MATCH (c:City)<- [:HOSTED_IN]-(t:TicketedEvent)-[:IS_OF_TYPE]->(c:Category) where c.categoryName={categoryName} and  c.name={name} RETURN t")
     List<TicketedEvent> getTicketedEventByCityType(@Param("name") String name, @Param("categoryName") String categoryName);
-
 }
