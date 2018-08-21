@@ -2,7 +2,6 @@ package com.stackroute.eplay.search.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -33,17 +32,13 @@ public class SearchServiceControllers {
 	public SearchServiceControllers(SearchServiceImpl searchService) {
 		this.searchService = searchService;
 	}
-	
-	private HttpServletRequest request;
-	private HttpSession session;
+
 	// get events by city name
 	@GetMapping("/city/{city}")
 	public ResponseEntity<?> getEventsBycity(@PathVariable String city) {
 		try {
 			logger.info("Getting events in " + city);
-			session = request.getSession(); 
-			session.setAttribute("selectedCity", city);
-			System.out.println("====================="+session.getAttribute("selectedCity"));
+			//session.setAttribute("selectedCity", city);
 			return new ResponseEntity<Iterable<Movie>>(searchService.getEventsByCity(city), HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Could not fetch events in " + city);
@@ -89,15 +84,14 @@ public class SearchServiceControllers {
 		}
 	}
 
-	// get movie by id
+	/*// get movie by id
 	@GetMapping("/movie/{id}")
 	public ResponseEntity<?> getMovieById(@PathVariable int id, HttpSession session) {
 		System.out.println("Id "+id);
-		session = request.getSession(false); 
 		String city = (String) session.getAttribute("selectedCity");
 		System.out.println("---------------------------------"+ city);
 		System.out.println(session.getAttribute("selectedCity")+"---------------------------------");
 		return new ResponseEntity<Movie>(searchService.getMoviesByIdAndCity(city, id), HttpStatus.OK);
-	}
+	}*/
 
 }
