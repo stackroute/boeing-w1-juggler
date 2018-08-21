@@ -1,6 +1,6 @@
 package com.stackroute.eplay.search.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -26,7 +26,7 @@ public class Movie {
 	private int rating;
 	private int duration;
 	private List<MovieEvent> movieEvents;
-	private Date releaseDate;
+	private LocalDate releaseDate;
 	private List<Theatre> theatres;
 
 }
