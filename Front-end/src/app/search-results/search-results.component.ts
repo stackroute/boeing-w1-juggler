@@ -45,4 +45,8 @@ export class SearchResultsComponent implements OnInit {
     this.router.navigate(['/movieinfo']);
 
   }
+  gocheck(){
+    console.log("something just like this");
+
+  }
 }
