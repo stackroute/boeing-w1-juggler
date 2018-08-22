@@ -15,7 +15,7 @@ export class RsvpCreateService {
   private _url3: string =
     "http://172.23.238.220:8097/api/v1/event/upstream/rsvpEvent";
 
-    private _url5: string = "http://172.23.238.218:8097/api/v1/invitation/";
+   
 
   rsvpCreate: RsvpCreate;
   // rsvpInvitationModel: RsvpInvitation;
@@ -46,8 +46,5 @@ export class RsvpCreateService {
     );
   }
 
-  getInvitaionByInviteeEmail(inviteeEmail):Observable<RsvpInvitation>
-  {
-    return this.http.get<RsvpInvitation>(this._url5+inviteeEmail);
-  }
+  
 }
