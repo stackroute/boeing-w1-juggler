@@ -87,8 +87,15 @@ public class SearchServiceImpl implements SearchService {
 		if(currMovie !=null) {
 			if (currMovie.getTheatres() == null)
 				theatres = new ArrayList<Theatre>();
-			else
+			else {
 				theatres = currMovie.getTheatres();
+				for(Theatre tempTheatre: theatres) {
+					if(tempTheatre.getTheatreId()==theatre.getTheatreId()) {
+						theatres.remove(tempTheatre);
+						break;
+					}
+				}
+			}
 			theatres.add(theatre);
 			movieList.remove(currMovie);
 			currMovie.setTheatres(theatres);

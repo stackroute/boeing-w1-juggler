@@ -41,4 +41,5 @@ getMovieByCitynId(movieId) {
   let city=localStorage.getItem('city');
    return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movie/'+movieId+'/city'+city)
   }
+
 }

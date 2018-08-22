@@ -69,7 +69,9 @@ public class MovieEventServiceImpl implements MovieEventService{
 				show.setStartTime(showTime);
 				show.setDate(releaseDate.plusDays(i));
 				show.setStatus(true);
+				show.setMovieEventId(movieEvent.getMovieEventId());
 				shows.add(show);
+				
 			}
 		}
 		movieEvent.setShows(shows);
@@ -102,17 +104,28 @@ public class MovieEventServiceImpl implements MovieEventService{
 	public void updateMovieEvent(Show show) {
 		
 		MovieEvent movieEvent= getMovieEventById(show.getMovieEventId()).get();
-		int showCount=movieEvent.getShowCount()+1;
-		movieEvent.setShowCount(showCount);
+		//int showCount=movieEvent.getShowCount()+1;
+		//movieEvent.setShowCount(showCount);
 		List<Show> shows=movieEvent.getShows();
+	
+		int showId=show.getShowId();
+		Show oldShow = null;
+		for(Show showSaved: shows) {
+			if(showSaved.getShowId()==showId) {
+				oldShow=showSaved;
+			}
+		}
+		
+		shows.remove(oldShow);
 		shows.add(show);
 		movieEvent.setShows(shows);
 		
 		movieEventRepository.save(movieEvent);
-		MessageChannel messageChannel = movieEventStreams.outboundMovieEvent();
-        messageChannel.send(MessageBuilder.withPayload(movieEvent)
-                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-                .build());
+		   movieEventRepository.save(movieEvent);
+			MessageChannel messageChannel = updateMovieEventStreams.outboundUpdateMovieEvent();
+	        messageChannel.send(MessageBuilder.withPayload(movieEvent)
+	                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+	                .build());
 		
 	}
 

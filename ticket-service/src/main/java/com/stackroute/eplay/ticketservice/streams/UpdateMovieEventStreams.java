@@ -6,9 +6,9 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 public interface UpdateMovieEventStreams {
-	/*String INPUT = "updated-movie-event-in";
+	String INPUT = "updated-movie-event-in";
     @Input(INPUT)
-    SubscribableChannel inboundTicketedEvent();*/
+    SubscribableChannel inboundTicketedEvent();
     String OUTPUT = "updated-movie-event-out";
     @Output(OUTPUT)
 	MessageChannel outboundUpdateMovieEvent();
