@@ -121,10 +121,11 @@ public class MovieEventServiceImpl implements MovieEventService{
 		movieEvent.setShows(shows);
 		
 		movieEventRepository.save(movieEvent);
-//		MessageChannel messageChannel = movieEventStreams.outboundMovieEvent();
-//        messageChannel.send(MessageBuilder.withPayload(movieEvent)
-//                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-//                .build());
+		   movieEventRepository.save(movieEvent);
+			MessageChannel messageChannel = updateMovieEventStreams.outboundUpdateMovieEvent();
+	        messageChannel.send(MessageBuilder.withPayload(movieEvent)
+	                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+	                .build());
 		
 	}
 
