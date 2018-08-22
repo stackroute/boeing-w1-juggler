@@ -13,4 +13,3 @@ export class MovieEvent {
     userName:string;
     timings:string;
   }
- 

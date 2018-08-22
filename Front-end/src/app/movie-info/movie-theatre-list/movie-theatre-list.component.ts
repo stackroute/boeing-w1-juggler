@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MovieInfoService } from '../../movie-info.service';
 import {SearchDataService} from "../../search-data.service";
 
 @Component({
@@ -11,7 +10,7 @@ export class MovieTheatreListComponent implements OnInit {
   
   public movie;
 
-  constructor(private _movieService : MovieInfoService, private _searchDataService:SearchDataService){
+  constructor(private _searchDataService:SearchDataService){
   }
   ngOnInit() {
     this._searchDataService.movieMessage.subscribe(movie => this.movie = movie)
