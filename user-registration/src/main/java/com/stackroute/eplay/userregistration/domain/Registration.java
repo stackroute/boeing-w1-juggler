@@ -21,7 +21,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Registration {
 	@Id
 	private String userName;
 	private String password;

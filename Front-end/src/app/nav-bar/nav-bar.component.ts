@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchDataService } from "../search-data.service";
 
+import { AuthenticationService } from '../authentication.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -10,7 +11,8 @@ export class NavBarComponent implements OnInit {
   omdbSearchTitle: string;
 
   constructor(
-    private data: SearchDataService
+    private data: SearchDataService,
+    private authenticationService:AuthenticationService
   ) { }
 
   ngOnInit() {

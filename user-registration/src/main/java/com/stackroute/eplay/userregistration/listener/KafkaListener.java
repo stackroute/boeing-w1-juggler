@@ -14,11 +14,11 @@ import org.springframework.util.MimeTypeUtils;
 
 import com.stackroute.eplay.userregistration.domain.MovieEvent;
 import com.stackroute.eplay.userregistration.domain.RSVPEvent;
+import com.stackroute.eplay.userregistration.domain.Registration;
 import com.stackroute.eplay.userregistration.domain.Theatre;
 import com.stackroute.eplay.userregistration.domain.TicketedEvent;
-import com.stackroute.eplay.userregistration.domain.User;
 import com.stackroute.eplay.userregistration.exception.UserNotFoundException;
-import com.stackroute.eplay.userregistration.service.UserService;
+import com.stackroute.eplay.userregistration.service.RegisterUser;
 import com.stackroute.eplay.userregistration.stream.MovieEventStream;
 import com.stackroute.eplay.userregistration.stream.RSVPEventStream;
 import com.stackroute.eplay.userregistration.stream.TheatreStream;
@@ -28,12 +28,12 @@ import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
 @EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class })
 public class KafkaListener {
 
-	private UserService userService;
+	private RegisterUser registerUser;
 	private UserRegistrationStream userRegistrationStream;
 
 	@Autowired
-	public KafkaListener(UserService userService, UserRegistrationStream userRegistrationStream) {
-		this.userService = userService;
+	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream) {
+		this.registerUser = registerUser;
 		this.userRegistrationStream = userRegistrationStream;
 	}
 
@@ -41,7 +41,7 @@ public class KafkaListener {
 	public void theatrePost(@Payload Theatre theatre) {
 		String userName = theatre.getUserName();
 		try {
-			User user = userService.getUserByUsername(userName).get();
+			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
 			List<Theatre> theatres;
 			if (user.getTheatres() == null)
@@ -55,7 +55,7 @@ public class KafkaListener {
 			 * updating the content in database
 			 */
 
-			userService.updateUser(user, userName);
+			registerUser.updateUser(user, userName);
 
 			/*
 			 * putting content in the message bus
@@ -64,7 +64,7 @@ public class KafkaListener {
 			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
 			messageChannel.send(MessageBuilder.withPayload(user)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
-		} catch (UserNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -75,7 +75,7 @@ public class KafkaListener {
 
 		String userName = rsvpEvent.getUserName();
 		try {
-			User user = userService.getUserByUsername(userName).get();
+			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
 			List<RSVPEvent> rsvpEvents;
 			if (user.getRsvpEvents() == null)
@@ -89,7 +89,7 @@ public class KafkaListener {
 			 * updating the content in database
 			 */
 
-			userService.updateUser(user, userName);
+			registerUser.updateUser(user, userName);
 
 			/*
 			 * putting content in the message bus
@@ -98,7 +98,7 @@ public class KafkaListener {
 			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
 			messageChannel.send(MessageBuilder.withPayload(user)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
-		} catch (UserNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -110,7 +110,7 @@ public class KafkaListener {
 
 		String userName = ticketedEvent.getUserName();
 		try {
-			User user = userService.getUserByUsername(userName).get();
+			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
 			List<TicketedEvent> ticketedEvents;
 			if (user.getTicketedEvent() == null)
@@ -124,7 +124,7 @@ public class KafkaListener {
 			 * updating the content in database
 			 */
 
-			userService.updateUser(user, userName);
+			registerUser.updateUser(user, userName);
 
 			/*
 			 * putting content in the message bus
@@ -133,7 +133,7 @@ public class KafkaListener {
 			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
 			messageChannel.send(MessageBuilder.withPayload(user)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
-		} catch (UserNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -145,7 +145,7 @@ public class KafkaListener {
 
 		String userName = movieEvent.getUserName();
 		try {
-			User user = userService.getUserByUsername(userName).get();
+			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
 			List<MovieEvent> movieEvents;
 			if (user.getTicketedEvent() == null)
@@ -159,7 +159,7 @@ public class KafkaListener {
 			 * updating the content in database
 			 */
 
-			userService.updateUser(user, userName);
+			registerUser.updateUser(user, userName);
 
 			/*
 			 * putting content in the message bus
@@ -168,7 +168,7 @@ public class KafkaListener {
 			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
 			messageChannel.send(MessageBuilder.withPayload(user)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
-		} catch (UserNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
