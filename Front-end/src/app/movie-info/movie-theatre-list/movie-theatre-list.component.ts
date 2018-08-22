@@ -18,7 +18,7 @@ export class MovieTheatreListComponent implements OnInit {
     this._searchDataService.movieMessage.subscribe(movie => this.movie = movie)
     console.log("print in child" , this.movie);
     this.theatreList= this.movie.theatres;
-    console.log("theatre list" + this.theatreList[0]);
+    this.theatreList=this.theatreList[0];
     this._searchDataService.getMovieByCitynId(this.movie.id).subscribe(movieRecommend => this.movieRecommend = movieRecommend)
   } 
 }

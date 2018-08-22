@@ -1,4 +1,6 @@
-<div *ngIf="theatreList[0]; else elseBlock">
+<div *ngIf="theatreList; else elseBlock">
+        <p>if Block</p>
+
     <div class="theatre-container" *ngFor="let theatre of movie.theatres">
         <div class="theatre-name">
             <a mat-button routerLink=".">{{theatre.theatreName}}</a>
@@ -18,7 +20,9 @@
     </div>
 </div>
 <ng-template #elseBlock>
-    <div class="theatre-container" *ngFor="let theatre of movieRecommend.theatres">
+        <p>elseBlock</p>
+        <div class="theatre-container" *ngFor="let theatre of movieRecommend.theatres">
+            <p>From movieRecommend data</p>
             <div class="theatre-name">
                 <a mat-button routerLink=".">{{theatre.theatreName}} | {{theatre.theatreLocation}}</a>
             </div>
