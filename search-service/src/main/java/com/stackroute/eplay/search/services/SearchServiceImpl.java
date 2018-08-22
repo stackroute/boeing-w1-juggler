@@ -13,6 +13,7 @@ import com.stackroute.eplay.search.domain.City;
 import com.stackroute.eplay.search.domain.Movie;
 import com.stackroute.eplay.search.domain.Query;
 import com.stackroute.eplay.search.domain.Theatre;
+import com.stackroute.eplay.search.domain.TicketedEvent;
 import com.stackroute.eplay.search.exceptions.MovieNotFoundException;
 import com.stackroute.eplay.search.repositories.CityRepository;
 import com.stackroute.eplay.search.repositories.MovieRepository;
@@ -56,6 +57,28 @@ public class SearchServiceImpl implements SearchService {
 		}
 		return null;
 	}
+	
+	@Override
+	public City saveTicketedEvent(TicketedEvent ticketedEvent) {
+		City city;
+		
+		if (!cityRepository.existsById(ticketedEvent.getCity())) {
+			List<TicketedEvent> ticketedEventsList = new ArrayList<TicketedEvent>();
+			ticketedEventsList.add(ticketedEvent);
+
+			city = new City(ticketedEvent.getCity(), null, ticketedEventsList);
+			return cityRepository.save(city);
+		}
+		
+		city = cityRepository.findById(ticketedEvent.getCity()).get();
+		List<TicketedEvent> ticketedEventsList = city.getTicketedEventsList();
+		
+		ticketedEventsList.add(ticketedEvent);
+		
+		city.setTicketedEventsList(ticketedEventsList);
+		
+		return  cityRepository.save(city);
+	}
 
 	// update list of movies of given city
 	@Override
@@ -69,7 +92,7 @@ public class SearchServiceImpl implements SearchService {
 			movie.setTheatres(theatres);
 			movieList.add(movie);
 
-			city = new City(cityName, movieList);
+			city = new City(cityName, movieList, null);
 			return cityRepository.save(city);
 		}
 
@@ -123,9 +146,9 @@ public class SearchServiceImpl implements SearchService {
 		return theatreRepository.findById(id).get();
 	}
 
-	// get all events of given city
+	// get all movies of given city
 	@Override
-	public Iterable<Movie> getEventsByCity(String city) {
+	public Iterable<Movie> getMoviesByCity(String city) {
 		// TODO Auto-generated method stub
 		Query query = new Query();
 		LocalDateTime now = LocalDateTime.now();
@@ -136,6 +159,13 @@ public class SearchServiceImpl implements SearchService {
 
 		// System.out.println(cityRepository.findById(city).get());
 		return cityRepository.findById(city).get().getMovieList();
+	}
+	
+	//get all ticketed events of given city
+	@Override 
+	public Iterable<TicketedEvent> getEventsByCity(String city)  {
+		
+		return cityRepository.findById(city).get().getTicketedEventsList();		
 	}
 
 	// get all queries
@@ -182,11 +212,13 @@ public class SearchServiceImpl implements SearchService {
 	// Get all movie by id from movie list
 	@Override
 	public Movie getMoviesByIdAndCity(String city, int movieId){
-		for(Movie movie: getEventsByCity(city)) {
+		for(Movie movie: getMoviesByCity(city)) {
 			if(movie.getId()==movieId) {
 				return movie;
 			}
 		}
 		return null;
 	}
+	
+	
 }

@@ -18,4 +18,5 @@ public class City {
 	@Id
 	private String city;
 	private List<Movie> movieList;
+	private List<TicketedEvent> ticketedEventsList;
 }
