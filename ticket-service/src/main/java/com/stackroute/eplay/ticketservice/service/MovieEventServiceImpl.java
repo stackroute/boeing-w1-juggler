@@ -35,7 +35,6 @@ import com.stackroute.eplay.ticketservice.streams.UpdateMovieEventStreams;
 
 
 @Service
-@EnableBinding(UpdateMovieEventStreams.class)
 public class MovieEventServiceImpl implements MovieEventService{
 	MovieEventRepository movieEventRepository;
 	MovieRepository movieRepository;

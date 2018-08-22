@@ -22,10 +22,6 @@ public class CityServiceImpl implements CityService{
 
 	@Override
 	public City findBycityName(String cityName) {
-		System.out.println(cityrepository.findBycityName(cityName));
 		return cityrepository.findBycityName(cityName);
-	}
-		
-	
-	
+	}	
 }

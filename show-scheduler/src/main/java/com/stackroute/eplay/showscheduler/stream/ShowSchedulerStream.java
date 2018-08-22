@@ -7,11 +7,14 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface ShowSchedulerStream {
 
+	String INPUT = "updated-movie-event-in";
 
-	String INPUT = "show-scheduler-in";
 	@Input(INPUT)
 	SubscribableChannel inboundShowScheduler();
-	String OUTPUT = "show-scheduler-out";
+
+	String OUTPUT = "updated-movie-event-out";
+
 	@Output(OUTPUT)
 	MessageChannel outboundShowScheduler();
+
 }

@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.quartz.DateBuilder.IntervalUnit;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;
@@ -19,19 +20,13 @@ import org.quartz.SchedulerException;
 import org.quartz.SimpleTrigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
-import org.quartz.DateBuilder.IntervalUnit;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MimeTypeUtils;
 
 import com.stackroute.eplay.showscheduler.domain.MovieEvent;
 import com.stackroute.eplay.showscheduler.domain.Show;
 import com.stackroute.eplay.showscheduler.job.ShowJob;
-import com.stackroute.eplay.showscheduler.stream.ShowSchedulerStream;
 
 /*
  * Trigger class for Show Scheduling
@@ -45,8 +40,6 @@ public class ShowTrigger {
 	public ShowTrigger() {
 		showMap = new HashMap<Integer, Show>();
 	}
-
-	
 
 	public void trigger(MovieEvent movieEvent) throws SchedulerException {
 
@@ -111,11 +104,6 @@ public class ShowTrigger {
 			sc.getContext().put("show", showMap);
 			sc.scheduleJob(job, trigger);
 
-			// showServiceImpl.updateShow(show, show.getShowId());
-			// Show updatedShow = showServiceImpl.updateShow(show, show.getShowId());
-			// return updatedShow;
-
-		
 		}
 		sc.start();
 
