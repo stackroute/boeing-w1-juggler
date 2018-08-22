@@ -36,9 +36,9 @@ public class RSVPEvent {
 	public RSVPEvent() {
 	}
 
-	public RSVPEvent(String id, String userName, String name, Date startDate, Date startTime, Date endDate, Date endTime,
-			String city, String location, String poster, String type, String description, String performers,
-			String termsAndConditions, String notes, int numberOfAttendees, boolean isCompleted,
+	public RSVPEvent(String id, String userName, String name, Date startDate, Date startTime, Date endDate,
+			Date endTime, String city, String location, String poster, String type, String description,
+			String performers, String termsAndConditions, String notes, int numberOfAttendees, boolean isCompleted,
 			List<Invitation> rsvpInvitation) {
 		super();
 		this.id = id;

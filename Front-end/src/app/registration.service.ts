@@ -7,14 +7,14 @@ import { UserRegistration } from "./user-registration";
 })
 export class RegistrationService {
   // private _url: string = "http://localhost:8080/api/v1/getAllMovies";
-  private _url1: string = "http://172.23.238.222:8091/api/v1/user";
+  private _url1: string = "http://localhost:8091/api/v1/register";
   // private omdbUrl: string = "http://www.omdbapi.com/?s=";
   // private apiKey: string = "&apikey=6db283eb";
   // private _url2: string = "http://localhost:8080/api/v1/deleteMovie/";
   // private _url3: string = "http://www.omdbapi.com/?s=batman&apikey=6db283eb";
   constructor(private http: HttpClient) {}
 
-  saveMovie(user: UserRegistration): Observable<UserRegistration> {
+  addUser(user: UserRegistration): Observable<UserRegistration> {
     return this.http.post<UserRegistration>(this._url1, user);
   }
 

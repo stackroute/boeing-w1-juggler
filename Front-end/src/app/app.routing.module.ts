@@ -8,6 +8,8 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { RsvpEventComponent } from "./rsvp-event/rsvp-event.component";
 import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { UserLoginComponent } from "./user-login/user-login.component"
+import { AuthGuard } from "./guards/auth.guard"
 const routes: Routes = [
   {
     path: "",
@@ -26,8 +28,12 @@ const routes: Routes = [
     component: RegistrationFormComponent
   },
   {
+    path: "userLogin",
+    component: UserLoginComponent
+  },
+  {
     path: "createEvent",
-    component: EventTypeComponent
+    component: EventTypeComponent, canActivate:[AuthGuard]
   },
   {
     path: "createRSVPEvent",
@@ -57,5 +63,6 @@ export const routingComponents = [
   EventTypeComponent,
   OtherTicketedEventComponent,
   MovieEventComponent,
-  RsvpEventComponent
+  RsvpEventComponent,
+  UserLoginComponent
 ];

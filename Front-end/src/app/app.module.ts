@@ -24,6 +24,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { EventCardComponent } from './home-page/event-card/event-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { UserLoginComponent } from "./user-login/user-login.component"
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     RsvpInvitationComponent,
     LandingPageComponent,
     EventCardComponent,
-    NavBarComponent
+    NavBarComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,

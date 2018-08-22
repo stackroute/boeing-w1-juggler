@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { UserRegistration } from "../user-registration";
 import { RegistrationService } from "../registration.service";
 import {MatSnackBar} from '@angular/material';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-registration-form",
@@ -9,17 +10,38 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ["./registration-form.component.css"]
 })
 export class RegistrationFormComponent implements OnInit {
-  userModel = new UserRegistration();
-  constructor(private registrationService: RegistrationService) {}
+  user= new UserRegistration();
+  registerForm: FormGroup;
+  hide = true;
+  ;
+
+  constructor(private formBuilder: FormBuilder,private registrationService: RegistrationService) { }
+
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      'userName': ["", [
+        Validators.required
+      ]],
+      'email': ["", [
+        Validators.required,
+        Validators.email
+      ]],
+      'password': ["", [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(30)
+      ]]
+    });
+  }
+  // onRegisterSubmit() {
+  //   alert(this.user.userName + ' ' + this.user.email + ' ' + this.user.password);
+  //  }
   onSubmit() {
     this.registrationService
-      .saveMovie(this.userModel)
+      .addUser(this.user)
       .subscribe(res => console.log("Saved"));
   }
-
-  ngOnInit() {}
+  get userName() {
+    return this.registerForm.get('userName');
+  }
 }
-// openSnackBar(message: string, action: string) {
-//   this.snackBar.open(message, action, {
-//     duration: 2000,
-//   });

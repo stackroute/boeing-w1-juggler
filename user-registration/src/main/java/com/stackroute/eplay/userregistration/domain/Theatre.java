@@ -5,12 +5,6 @@ import java.io.File;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 /*
  * Model class for the Theatre
  */
@@ -91,7 +85,8 @@ public class Theatre {
 	@Override
 	public String toString() {
 		return "Theatre [theatreId=" + theatreId + ", theatreName=" + theatreName + ", theatreLocation="
-				+ theatreLocation + ", capacity=" + capacity + ", arenaFile=" + arenaFile + ", userName=" + userName + "]";
+				+ theatreLocation + ", capacity=" + capacity + ", arenaFile=" + arenaFile + ", userName=" + userName
+				+ "]";
 	}
 
 }

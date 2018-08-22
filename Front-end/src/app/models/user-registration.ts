@@ -1,5 +1,5 @@
 export class UserRegistration {
-  username: string;
+  userName: string;
   password: string;
   fullName: String;
   contactNo: String;
@@ -11,3 +11,6 @@ export class UserRegistration {
   movieEvent:string;
   ticketedEvent:string;
 }
+
+
+

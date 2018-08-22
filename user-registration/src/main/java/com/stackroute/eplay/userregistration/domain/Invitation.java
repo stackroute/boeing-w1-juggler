@@ -3,12 +3,6 @@ package com.stackroute.eplay.userregistration.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 /*
  * Model class for the Invitation
  */
@@ -16,16 +10,17 @@ import lombok.ToString;
 @Document
 public class Invitation {
 
-    @Id
-    private String invitationId;
-    private String EventId;
-    private String inviteeUserName;
-    private String inviteeName;
-    private String inviteeEmail;
-    private String inviteePhoneNo;
-    private boolean status;
-    
-    public Invitation() { }
+	@Id
+	private String invitationId;
+	private String EventId;
+	private String inviteeUserName;
+	private String inviteeName;
+	private String inviteeEmail;
+	private String inviteePhoneNo;
+	private boolean status;
+
+	public Invitation() {
+	}
 
 	public Invitation(String invitationId, String eventId, String inviteeUserName, String inviteeName,
 			String inviteeEmail, String inviteePhoneNo, boolean status) {
@@ -101,6 +96,5 @@ public class Invitation {
 				+ inviteeUserName + ", inviteeName=" + inviteeName + ", inviteeEmail=" + inviteeEmail
 				+ ", inviteePhoneNo=" + inviteePhoneNo + ", status=" + status + "]";
 	}
-    
-    
+
 }
