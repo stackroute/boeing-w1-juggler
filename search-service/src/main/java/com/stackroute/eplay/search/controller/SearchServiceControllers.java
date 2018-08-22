@@ -84,14 +84,16 @@ public class SearchServiceControllers {
 		}
 	}
 
-	/*// get movie by id
-	@GetMapping("/movie/{id}")
-	public ResponseEntity<?> getMovieById(@PathVariable int id, HttpSession session) {
-		System.out.println("Id "+id);
-		String city = (String) session.getAttribute("selectedCity");
-		System.out.println("---------------------------------"+ city);
-		System.out.println(session.getAttribute("selectedCity")+"---------------------------------");
-		return new ResponseEntity<Movie>(searchService.getMoviesByIdAndCity(city, id), HttpStatus.OK);
-	}*/
+	// get movie by movie id and city name
+	@GetMapping("/movie/{id}/city/{city}")
+	public ResponseEntity<?> getMovieById(@PathVariable int id, @PathVariable String city) {
+		try {
+			logger.info("Getting movie by movie id " + id + " and city name " + city);
+			return new ResponseEntity<Movie>(searchService.getMoviesByIdAndCity(city, id), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Could not fetch movie by movie id" + id + " and city name " + city);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+		}
+	}
 
 }
