@@ -1,9 +1,11 @@
 package com.stackroute.eplay.search.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +28,8 @@ public class Movie {
 	private int rating;
 	private int duration;
 	private List<MovieEvent> movieEvents;
-	private Date releaseDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private LocalDate releaseDate;
 	private List<Theatre> theatres;
 
 }

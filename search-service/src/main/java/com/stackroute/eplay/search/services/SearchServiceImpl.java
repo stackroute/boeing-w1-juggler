@@ -61,15 +61,12 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public City updateCityMovies(String cityName, Movie movie, Theatre theatre) {
 		City city;
-		List<Theatre> theatres;
-		if (movie.getTheatres() == null)
-			theatres = new ArrayList<Theatre>();
-		else
-			theatres = movie.getTheatres();
-		theatres.add(theatre);
-		movie.setTheatres(theatres);
+		
 		if (!cityRepository.existsById(cityName)) {
 			List<Movie> movieList = new ArrayList<Movie>();
+			List<Theatre> theatres = new ArrayList<Theatre>();
+			theatres.add(theatre);
+			movie.setTheatres(theatres);
 			movieList.add(movie);
 
 			city = new City(cityName, movieList);
@@ -77,13 +74,34 @@ public class SearchServiceImpl implements SearchService {
 		}
 
 		city = cityRepository.findById(cityName).get();
-		if (!city.getMovieList().contains(movie)) {
-			city.getMovieList().add(movie);
-			return cityRepository.save(city);
+		
+		Movie currMovie =null;
+		for(Movie tempMovie: city.getMovieList()){
+			if(tempMovie.getId()==movie.getId()) {
+				currMovie = tempMovie;
+				break;
+			}
 		}
-
-		return null;
-
+		List<Theatre> theatres;
+		List<Movie> movieList = city.getMovieList();
+		if(currMovie !=null) {
+			if (currMovie.getTheatres() == null)
+				theatres = new ArrayList<Theatre>();
+			else
+				theatres = currMovie.getTheatres();
+			theatres.add(theatre);
+			movieList.remove(currMovie);
+			currMovie.setTheatres(theatres);
+		} else {
+			theatres = new ArrayList<Theatre>();
+			theatres.add(theatre);
+			currMovie = movie;
+			currMovie.setTheatres(theatres);
+		}
+		
+		movieList.add(currMovie);
+		city.setMovieList(movieList);
+		return cityRepository.save(city);
 	}
 
 	// get movie by movie id

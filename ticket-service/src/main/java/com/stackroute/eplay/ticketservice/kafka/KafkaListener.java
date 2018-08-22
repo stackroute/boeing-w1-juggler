@@ -23,8 +23,9 @@ import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
 import com.stackroute.eplay.ticketservice.streams.ShowStreams;
 import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
+import com.stackroute.eplay.ticketservice.streams.UpdateMovieEventStreams;
 
-@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class})
+@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class, UpdateMovieEventStreams.class})
 public class KafkaListener {
 	
 	MovieEventService movieEventService;
