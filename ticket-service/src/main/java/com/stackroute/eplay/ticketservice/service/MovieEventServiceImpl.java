@@ -103,9 +103,11 @@ public class MovieEventServiceImpl implements MovieEventService{
 	public void updateMovieEvent(Show show) {
 		
 		MovieEvent movieEvent= getMovieEventById(show.getMovieEventId()).get();
-		int showCount=movieEvent.getShowCount()+1;
-		movieEvent.setShowCount(showCount);
+		//int showCount=movieEvent.getShowCount()+1;
+		//movieEvent.setShowCount(showCount);
 		List<Show> shows=movieEvent.getShows();
+		int showId=show.getShowId();
+		shows.remove(showId);
 		shows.add(show);
 		movieEvent.setShows(shows);
 		
