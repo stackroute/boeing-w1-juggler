@@ -13,8 +13,8 @@ export class EmailService {
   
  // inputEmailsDetails:InputEmailsDetails;
   constructor(private http: HttpClient) {}
-  sendInvitations(inputEmailsDetails:InputEmailsDetails):string
+  sendInvitations(inputEmailsDetails:InputEmailsDetails):Observable<string>
   {
-    return this.http.post(this._url);
+    return this.http.post<string>(this._url,inputEmailsDetails);
   }
 }
