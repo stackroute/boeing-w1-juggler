@@ -1,9 +1,11 @@
 package com.stackroute.eplay.recommendationservice.domain;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 import org.springframework.data.annotation.Id;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,5 +30,7 @@ public class MovieKafka {
     private String description;
     private int rating;
     private int duration;
-    private Date releaseDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private LocalDate releaseDate;
+
 }

@@ -1,5 +1,6 @@
 package com.stackroute.eplay.recommendationservice.controllers;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,7 +61,7 @@ public class RecommendationServiceController {
 		String language = movieKafka.getLanguage();
 		int ratings = movieKafka.getRating();
 		String g = movieKafka.getGenre();
-		Date releaseDate = movieKafka.getReleaseDate();
+		LocalDate releaseDate = movieKafka.getReleaseDate();
 		Genre genre = new Genre(g);
 		Movie movie = new Movie(id,name,language,ratings,genre,releaseDate);
 		return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);		
