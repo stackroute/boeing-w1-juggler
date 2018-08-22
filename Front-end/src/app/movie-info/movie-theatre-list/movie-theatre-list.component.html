@@ -8,6 +8,7 @@
   <div class="show-time">  
       <!--let show of shows-->
       <!--show.showTime-->
-      <button *ngFor="let show of theatre.shows" mat-stroked-button color="primary">{{show.startTime}}</button>
+      <button *ngFor="let show of theatre.shows" mat-stroked-button color="primary">
+          {{show.date}} | {{show.startTime}}</button>
   </div>
 </div>
