@@ -1,3 +1,5 @@
+server:
+  port: 8094
 spring:
   cloud:
     stream:
@@ -21,5 +23,11 @@ spring:
           destination: Movie
           contentType: application/json
         show-out:
+          destination: Show
+          contentType: application/json
+        movie-in    :
+          destination: Movie
+          contentType: application/json
+        show-in:
           destination: Show
           contentType: application/json

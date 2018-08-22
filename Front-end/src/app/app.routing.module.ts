@@ -10,6 +10,8 @@ import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.compo
 import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { UserLoginComponent } from "./user-login/user-login.component"
 import { AuthGuard } from "./guards/auth.guard"
+import { TheatreComponent } from "./theatre/theatre.component";
+import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
 const routes: Routes = [
   {
     path: "",
@@ -50,6 +52,15 @@ const routes: Routes = [
   {
     path: "createMovieEvent",
     component: MovieEventComponent
+  },
+  {
+    path: "theatre",
+    component: TheatreComponent
+  },
+  {
+
+    path:'rsvpEvent/:id',
+    component:RsvpEventpageComponent
   }
 ];
 
@@ -64,5 +75,6 @@ export const routingComponents = [
   OtherTicketedEventComponent,
   MovieEventComponent,
   RsvpEventComponent,
-  UserLoginComponent
+  UserLoginComponent,
+  TheatreComponent
 ];

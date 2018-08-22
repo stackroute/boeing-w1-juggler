@@ -19,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.stackroute.eplay.ticketservice.domain.ArenaLayout;
 import com.stackroute.eplay.ticketservice.domain.MovieEvent;
 import com.stackroute.eplay.ticketservice.domain.Show;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
@@ -56,13 +57,14 @@ public class MovieEventServiceTest {
 	@Before
 	public void setupMock() {
 		MockitoAnnotations.initMocks(this);
-		show1 =new Show(20,30,100,new Date(),new Date(),50);
-		show2 =new Show(30,30,100,new Date(),new Date(),50);
+		ArenaLayout arenaLayout=new ArenaLayout();
+		show1 =new Show(20,30,100,new Date(),new Date(),50,true,arenaLayout);
+		show2 =new Show(30,30,100,new Date(),new Date(),50,true,arenaLayout);
 		List<Show> shows=new ArrayList<Show>();
 		shows.add(show1);
 		shows.add(show2);
-		movieEvent1 = new MovieEvent(10, 20, 30, 40,new Date(),new Date(),shows,"bangalore");
-		movieEvent2 = new MovieEvent(20, 20, 30, 40,new Date(),new Date(),shows,"chennai");
+		movieEvent1 = new MovieEvent(10, 20, 30, 40,shows,"bangalore","abhishek",1);
+		movieEvent2 = new MovieEvent(20, 20, 30, 40,shows,"chennai","deepak",1);
 		optionMovie = Optional.of(movieEvent1);
 
 	}
@@ -102,37 +104,5 @@ public class MovieEventServiceTest {
 
 	}
 
-//	@Test
-//	public void testGetMovieByIdSuccess() throws MovieNotFoundException {
-//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
-//		assertEquals(optionMovie, movieServiceImpl.getMovieById(1));
-//	}
-//
-//	@Test(expected = MovieNotFoundException.class)
-//	public void testGetMovieByIdFailure() throws MovieNotFoundException {
-//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
-//		movieServiceImpl.getMovieById(1);
-//	}
-//	@Test
-//	public void testDeleteMovieByIdSuccess() throws  MovieNotFoundException{
-//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
-//		 doNothing().when(movieRepo).deleteById(anyInt());
-//		 assertTrue(movieServiceImpl.deleteMovie(anyInt()));
-//	}
-//	@Test(expected = MovieNotFoundException.class)
-//	public void testDeleteMovieByIdFailure() throws MovieNotFoundException{
-//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
-//		movieServiceImpl.deleteMovie(anyInt());
-//	}
-//	@Test
-//	public void testUpdateMovieByIdSuccess() throws  MovieNotFoundException{
-//		when(movieRepo.findById(anyInt())).thenReturn(optionMovie);
-//		when(movieRepo.save(movie)).thenReturn(movie);
-//		assertEquals(movie,movieServiceImpl.updateMovie(movie, anyInt()));
-//	}
-//	@Test(expected = MovieNotFoundException.class)
-//	public void testUpdateMovieByIdFailure() throws MovieNotFoundException{
-//		when(movieRepo.findById(anyInt())).thenReturn(Optional.empty());
-//		movieServiceImpl.updateMovie(movie,anyInt());
-//	}
+
 }

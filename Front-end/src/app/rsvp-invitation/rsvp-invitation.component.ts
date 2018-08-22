@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import{RsvpInvitation} from '../RsvpInvitation';
 import{RsvpInvitationService} from '../rsvp-invitation.service';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
+import{RsvpCreate} from '../RsvpCreate';
+import{RsvpCreateService} from '../rsvp-create.service';
 @Component({
   selector: 'app-rsvp-invitation',
   templateUrl: './rsvp-invitation.component.html',
@@ -9,14 +12,30 @@ import{RsvpInvitationService} from '../rsvp-invitation.service';
 export class RsvpInvitationComponent implements OnInit {
 
   rsvpInvitationModel= new RsvpInvitation;
-
-  constructor(private rsvpInvitationService:RsvpInvitationService) { }
+  rsvpModel=new RsvpCreate;
+  id=4;
+  constructor(private rsvpCreateService:RsvpCreateService,
+    private rsvpInvitationService:RsvpInvitationService,
+    private activatedRoute:ActivatedRoute
+  ,private router:Router
+  ) { }
 
   onSubmit(){
     this.rsvpInvitationService.saveRsvpInvitation(this.rsvpInvitationModel).subscribe(res=>console.log('saved'));
   }
 
-  ngOnInit() {
+
+  onSubmit1(){
+    //this.id=this.rsvpModel.id;
+    this.router.navigate(['/rsvpEvent/'+this.id]);
+    
   }
+
+
+  ngOnInit() {
+   
+  }
+
+
 
 }
