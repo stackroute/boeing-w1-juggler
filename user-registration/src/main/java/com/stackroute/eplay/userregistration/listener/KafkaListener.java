@@ -25,7 +25,7 @@ import com.stackroute.eplay.userregistration.stream.TheatreStream;
 import com.stackroute.eplay.userregistration.stream.TicketedEventStream;
 import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
 
-@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class })
+@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class })
 public class KafkaListener {
 
 	private RegisterUser registerUser;

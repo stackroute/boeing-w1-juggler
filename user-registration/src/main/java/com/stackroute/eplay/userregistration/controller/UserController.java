@@ -1,6 +1,7 @@
 package com.stackroute.eplay.userregistration.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.MessageChannel;
@@ -28,7 +29,7 @@ import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin("*")
-//@EnableBinding(UserRegistrationStream.class)
+@EnableBinding(UserRegistrationStream.class)
 public class UserController {
 
 	private RegisterUser registerUser;
