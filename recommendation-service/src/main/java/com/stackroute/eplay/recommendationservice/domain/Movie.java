@@ -1,12 +1,14 @@
 package com.stackroute.eplay.recommendationservice.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @NodeEntity
 public class Movie {
@@ -15,7 +17,8 @@ public class Movie {
 	private String name;
 	private String language;
 	private int rating;
-	private Date releaseDate;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private LocalDate releaseDate;
 	
 	@Relationship(type="RELEASED_IN",direction=Relationship.OUTGOING)
 	private List<City> cities ;
@@ -30,7 +33,7 @@ public class Movie {
 	public Movie() {
 		
 	}
-	public Movie(int id, String name, String language, int rating, Genre genre, Date releaseDate) {
+	public Movie(int id, String name, String language, int rating, Genre genre, LocalDate releaseDate) {
 		this.id = id;
 		this.name = name;
 		this.language = language;
@@ -55,10 +58,10 @@ public class Movie {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public Date getReleaseDate() {
+	public LocalDate getReleaseDate() {
 		return releaseDate;
 	}
-	public void setReleaseDate(Date releaseDate) {
+	public void setReleaseDate(LocalDate releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 	public Genre getGenre() {
