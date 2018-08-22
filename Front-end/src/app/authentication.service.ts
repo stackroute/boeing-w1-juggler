@@ -8,7 +8,7 @@ export class AuthenticationService {
     constructor(private http: HttpClient) { }
 
     login(username, password) {
-        return this.http.post<any>(`http://localhost:8091/api/v1/login`, { username, password })
+        return this.http.post<any>(`http://172.23.238.198:8092/user-registration/api/v1/login`, { username, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user) {

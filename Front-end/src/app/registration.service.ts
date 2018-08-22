@@ -7,7 +7,7 @@ import { UserRegistration } from "./user-registration";
 })
 export class RegistrationService {
   // private _url: string = "http://localhost:8080/api/v1/getAllMovies";
-  private _url1: string = "http://localhost:8091/api/v1/register";
+  private _url1: string = "http://172.23.238.198:8092/user-registration/api/v1/register";
   // private omdbUrl: string = "http://www.omdbapi.com/?s=";
   // private apiKey: string = "&apikey=6db283eb";
   // private _url2: string = "http://localhost:8080/api/v1/deleteMovie/";
