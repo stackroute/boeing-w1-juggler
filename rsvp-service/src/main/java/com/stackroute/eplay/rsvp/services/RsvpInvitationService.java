@@ -3,10 +3,11 @@ package com.stackroute.eplay.rsvp.services;
 import java.util.Optional;
 
 import com.stackroute.eplay.rsvp.domain.Invitation;
+import com.stackroute.eplay.rsvp.exceptions.InviteeEmailAlreadyExistException;
 
 public interface RsvpInvitationService {
 	
-public Invitation saveRsvpInvitation(Invitation rsvpInvitation);
+public Invitation saveRsvpInvitation(Invitation rsvpInvitation) throws InviteeEmailAlreadyExistException;
 	
 	public Iterable<Invitation> getAllRsvpInvitation();
 	
@@ -16,5 +17,5 @@ public Invitation saveRsvpInvitation(Invitation rsvpInvitation);
 	
 	public Invitation updateRsvpInvitation (Invitation rsvpInvitation,int invitationId);
 	
-
+	public Optional<Invitation> getInvitationByInviteeEmail(String inviteeEmail);
 }

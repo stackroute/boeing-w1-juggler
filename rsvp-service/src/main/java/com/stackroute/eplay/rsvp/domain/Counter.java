@@ -4,6 +4,8 @@ package com.stackroute.eplay.rsvp.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+// to update id for new events created
+
 @Document(collection = "counters")
 public class Counter {
     @Id
