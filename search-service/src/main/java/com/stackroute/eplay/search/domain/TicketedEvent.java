@@ -1,5 +1,6 @@
 package com.stackroute.eplay.search.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -25,7 +26,7 @@ public class TicketedEvent {
 	private int capacity;
 	private int remainingSeats;
 	private String description;
-	private String price;
+	private BigDecimal price;
 	private String performers;
 	private String termsAndConditions;
 	private String notes;
