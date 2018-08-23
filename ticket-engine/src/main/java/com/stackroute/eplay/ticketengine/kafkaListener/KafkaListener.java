@@ -2,6 +2,7 @@ package com.stackroute.eplay.ticketengine.kafkaListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -19,6 +20,12 @@ public class KafkaListener {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private ShowRepository showRepository;
+	
+	@Autowired
+	KafkaListener(ShowRepository showRepository){
+		this.showRepository = showRepository;
+	}
+	
 	@StreamListener(MovieEventStream.INPUT)
 	public void movieEventPost(@Payload MovieEvent event) {
 		for(Show show: event.getShows()) {
