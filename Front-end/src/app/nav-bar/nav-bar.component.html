@@ -21,7 +21,8 @@
       </mat-form-field>
       <button mat-raised-button matTooltip="Click to create an Event" routerLink="/createEvent" routerLinkActive="active" matTooltipClass="example-tooltip-red"
         aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 300px;color:black">Create Event</button>
-      <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" style="margin-left: 30px">SignUp</button>
+      <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" *ngIf="!authenticationService.loggedIn()" style="margin-left: 10px">Login/SignUp</button>
+      <button mat-raised-button matTooltip="Click to quickly Logout" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()" style="margin-left: 10px">Logout</button>
     </span>
   </mat-toolbar-row>
 </mat-toolbar>

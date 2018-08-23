@@ -16,8 +16,7 @@ import { OtherTicketedEventComponent } from "./other-ticketed-event/other-ticket
 import { MovieEventComponent } from "./movie-event/movie-event.component";
 import { MatSelectModule } from "@angular/material/select";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { NativeDateModule } from "@angular/material";
-import { MatNativeDateModule } from "@angular/material";
+import { MatNativeDateModule, MatNavList } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RsvpInvitationComponent } from './rsvp-invitation/rsvp-invitation.component';
 import { RsvpEventComponent } from './rsvp-event/rsvp-event.component';
@@ -25,6 +24,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { EventCardComponent } from './home-page/event-card/event-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { UserLoginComponent } from "./user-login/user-login.component"
 import { TheatreComponent } from './theatre/theatre.component';
 import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
 import {MatRadioModule} from '@angular/material/radio';
@@ -51,6 +51,7 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     SearchResultsComponent,
     MovieInfoComponent,
     MovieTheatreListComponent,
+    UserLoginComponent,
     TheatreComponent,
   ],
   imports: [

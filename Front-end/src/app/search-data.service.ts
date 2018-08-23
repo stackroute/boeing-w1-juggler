@@ -27,17 +27,19 @@ export class SearchDataService {
  
  constructor(private http: HttpClient, private router: Router) { }
  getMyEvents(city) {
-   return this.http.get('http://172.23.238.221:8093/api/v1/city/'+city)
+   return this.http.get('http://172.23.238.198:8092/search-service/api/v1/city/'+city)
  }
  getAllMovies() {
-  return this.http.get('http://172.23.238.221:8093/api/v1/movies')
+  return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movies')
 }
  getSearchedEvents(name) {
    console.log(name);
-  return this.http.get('http://172.23.238.221:8093/api/v1/movies/'+name)
+  return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movies/'+name)
 }
+
 getMovieByCitynId(movieId) {
- let city=localStorage.getItem('city');
-  return this.http.get('http://172.23.238.221:8093/api/v1/movie/'+movieId+'/city'+city)
-}
+  let city=localStorage.getItem('city');
+   return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movie/'+movieId+'/city/'+city)
+  }
+
 }
