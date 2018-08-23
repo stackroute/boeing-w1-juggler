@@ -35,4 +35,5 @@ public interface SearchService {
 
 	public Iterable<TicketedEvent> getEventsByCity(String city);
 
+	public Iterable<TicketedEvent> getEventsByName(String name);
 }
