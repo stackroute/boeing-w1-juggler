@@ -10,8 +10,10 @@
 //
 //import com.stackroute.eplay.search.domain.City;
 //import com.stackroute.eplay.search.domain.Movie;
+//import com.stackroute.eplay.search.domain.TicketedEvent;
 //import com.stackroute.eplay.search.repositories.CityRepository;
 //import com.stackroute.eplay.search.repositories.MovieRepository;
+//import com.stackroute.eplay.search.repositories.TicketedEventRepository;
 //
 //@Configuration
 //public class BootStrapDB implements ApplicationListener<ContextRefreshedEvent> {
@@ -20,11 +22,14 @@
 //	private CityRepository cityRepo;
 //	@SuppressWarnings("unused")
 //	private MovieRepository movieRepo;
+//	private TicketedEventRepository eventRepo;
 //
 //	@Autowired
-//	public BootStrapDB(CityRepository cityRepo, MovieRepository movieRepo) {
+//	public BootStrapDB(CityRepository cityRepo, MovieRepository movieRepo, TicketedEventRepository eventRepo) {
 //		this.cityRepo = cityRepo;
 //		this.movieRepo = movieRepo;
+//		this.eventRepo = eventRepo;
+//
 //	}
 //
 //	@Override
@@ -62,25 +67,38 @@
 ////		cityRepo.save(city1);
 ////		cityRepo.save(city2);
 ////		cityRepo.save(city3);
+//
+//		TicketedEvent ticketedEvent1 = new TicketedEvent(777, "ticketed event 1", null, null, "mumbai", null, null,
+//				null, 100, 100, null, null, null, null, null, null);
+//		TicketedEvent ticketedEvent2 = new TicketedEvent(778, "ticketed event 2", null, null, "mumbai", null, null,
+//				null, 100, 100, null, null, null, null, null, null);
+//
+//		List<TicketedEvent> ticketedEventList1 = new ArrayList<TicketedEvent>();
+//		ticketedEventList1.add(ticketedEvent1);
+//		ticketedEventList1.add(ticketedEvent2);
+//
 //		Movie movie1 = new Movie(1, "dunkirk", "1", null, null, null, null, "kjkhkj", 0, 0, null, null, null);
-//		Movie movie2 = new Movie(1, "dunkirk", "1", null, null, null, null, "abcdef", 0, 0, null, null, null);
-//		Movie movie3 = new Movie(2, "dunkirk", "1", null, null, null, null, "lol", 0, 0, null, null, null);
-//		Movie movie4 = new Movie(3, "dunkirk", "1", null, null, null, null, "123", 0, 0, null, null, null);
-//		
-//		
-//		//Movie movie2 = new Movie(2, "movie1", "2", null, null, null, null, null, 0, 0, null, null, null);
-//		//Movie movie3 = new Movie(3, "spiderman", "3", null, null, null, null, null, 0, 0, null, null, null);
+//		Movie movie2 = new Movie(2, "spiderman", "1", null, null, null, null, "abcdef", 0, 0, null, null, null);
+//		Movie movie3 = new Movie(3, "batman", "1", null, null, null, null, "lol", 0, 0, null, null, null);
+//		Movie movie4 = new Movie(4, "superman", "1", null, null, null, null, "123", 0, 0, null, null, null);
+//
+//		// Movie movie2 = new Movie(2, "movie1", "2", null, null, null, null, null, 0,
+//		// 0, null, null, null);
+//		// Movie movie3 = new Movie(3, "spiderman", "3", null, null, null, null, null,
+//		// 0, 0, null, null, null);
 //		movie1.setPoster(
 //				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXIQwwW7u0f5LL-qPk0IF2RrPqdEhmMl1JHY9nd1-ZFeVLRq6ygw");
 //		movie2.setPoster(
 //				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8vAl8ZSWzc87lwVHBl3UzOjdizeemQahgYXHFFD2MZYChKzwy");
 //		movie3.setPoster(
 //				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1BHFbPMqoKRwI14fWQO5_8G9O4d1ZsGSkuP75e8bSXGMr0uau");
-//		//Movie movie4 = new Movie(4, "some one", "1", null, null, null, null, null, 0, 0, null, null, null);
+//		// Movie movie4 = new Movie(4, "some one", "1", null, null, null, null, null, 0,
+//		// 0, null, null, null);
 //		Movie movie5 = new Movie(5, "movie x", "1", null, null, null, null, null, 0, 0, null, null, null);
 //		Movie movie6 = new Movie(6, "x men", "1", null, null, null, null, null, 0, 0, null, null, null);
 //		Movie movie7 = new Movie(7, "y men", "1", null, null, null, null, null, 0, 0, null, null, null);
-//		Movie movie8 = new Movie(8, "z men", "1", null, null, null, null, null, 0, 0, null, null, null);		movie4.setPoster(
+//		Movie movie8 = new Movie(8, "z men", "1", null, null, null, null, null, 0, 0, null, null, null);
+//		movie4.setPoster(
 //				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPg_RTDdLvJXxkDyXIEt_g7jZhW-8El-N6MpYO3NOP7v4Ke6Fs");
 //		movie5.setPoster(
 //				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUSfmdPO6Bg5kmfvWNrCFcERY-Mv-aZHsQzsVmTVQEvu3RZjCP");
@@ -106,17 +124,21 @@
 //		List<Movie> movieList4 = new ArrayList<Movie>();
 //		movieList4.add(movie8);
 //		movieList4.add(movie6);
+//		List<TicketedEvent> eventList = new ArrayList<TicketedEvent>();
 //
-//		City city1 = new City("mumbai", movieList1);
-//		City city2 = new City("delhi", movieList2);
-//		City city3 = new City("hyderabad", movieList3);
-//		City city4 = new City("bangalore", movieList4);
-//		
+//		City city1 = new City("mumbai", movieList1, ticketedEventList1);
+//		City city2 = new City("delhi", movieList2, eventList);
+//		City city3 = new City("hyderabad", movieList3, eventList);
+//		City city4 = new City("bangalore", movieList4, eventList);
+//
 //		movieRepo.saveAll(movieList1);
 //		movieRepo.saveAll(movieList2);
 //		movieRepo.saveAll(movieList3);
 //		movieRepo.saveAll(movieList4);
-//		
+//
+//		eventRepo.save(ticketedEvent1);
+//		eventRepo.save(ticketedEvent2);
+//
 //		cityRepo.save(city1);
 //		cityRepo.save(city2);
 //		cityRepo.save(city3);
