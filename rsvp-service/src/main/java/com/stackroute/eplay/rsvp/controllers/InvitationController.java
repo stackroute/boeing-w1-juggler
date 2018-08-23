@@ -24,8 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.rsvp.domain.Invitation;
 import com.stackroute.eplay.rsvp.domain.RSVPEvent;
-import com.stackroute.eplay.rsvp.services.RsvpCreateServiceImpl;
-import com.stackroute.eplay.rsvp.services.RsvpInvitationServiceImpl;
+import com.stackroute.eplay.rsvp.exceptions.InviteeEmailAlreadyExistException;
+import com.stackroute.eplay.rsvp.services.RsvpCreateService;
+import com.stackroute.eplay.rsvp.services.RsvpInvitationService;
 import com.stackroute.eplay.rsvp.streams.RSVPEventStreams;
 
 import lombok.NoArgsConstructor;
@@ -37,23 +38,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class InvitationController {
 
-	private RsvpInvitationServiceImpl rsvpInvitationServiceImpl;
-	private RsvpCreateServiceImpl rsvpCreateServiceImpl;
+	private RsvpInvitationService rsvpInvitationService;
+	private RsvpCreateService rsvpCreateService;
 	private RSVPEventStreams rsvpEventStreams;
 
 	@Autowired
-	public InvitationController(RsvpInvitationServiceImpl rsvpInvitationServiceImpl,
-			RsvpCreateServiceImpl rsvpCreateServiceImpl, RSVPEventStreams rsvpEventStreams) {
+	public InvitationController(RsvpInvitationService rsvpInvitationService,
+			RsvpCreateService rsvpCreateService, RSVPEventStreams rsvpEventStreams) {
 		super();
-		this.rsvpInvitationServiceImpl = rsvpInvitationServiceImpl;
-		this.rsvpCreateServiceImpl = rsvpCreateServiceImpl;
+		this.rsvpInvitationService = rsvpInvitationService;
+		this.rsvpCreateService = rsvpCreateService;
 		this.rsvpEventStreams = rsvpEventStreams;
 	}
 	
 
 	@PostMapping("/invitation")
 	public ResponseEntity<?> saveInvitation(@RequestBody Invitation rsvpInvitation) {
-		RSVPEvent rsvpEvent = rsvpCreateServiceImpl.getRsvpCreateById(rsvpInvitation.getEventId()).get();
+		RSVPEvent rsvpEvent = rsvpCreateService.getRsvpCreateById(rsvpInvitation.getEventId()).get();
 		List<Invitation> invitations;
 		if (rsvpEvent.getRsvpInvitation() == null)
 			invitations = new ArrayList<>();
@@ -61,35 +62,47 @@ public class InvitationController {
 			invitations = rsvpEvent.getRsvpInvitation();
 		invitations.add(rsvpInvitation);
 		rsvpEvent.setRsvpInvitation(invitations);
-		rsvpCreateServiceImpl.saveRsvpCreate(rsvpEvent);
+		rsvpCreateService.saveRsvpCreate(rsvpEvent);
 		MessageChannel messageChannel = rsvpEventStreams.outboundRSVPEvent();
 		messageChannel.send(MessageBuilder.withPayload(rsvpEvent)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
-		return new ResponseEntity<Invitation>(rsvpInvitationServiceImpl.saveRsvpInvitation(rsvpInvitation),
+		try {
+		return new ResponseEntity<Invitation>(rsvpInvitationService.saveRsvpInvitation(rsvpInvitation),
 				HttpStatus.CREATED);
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+		}
 	}
 
 	@GetMapping("/invitations")
 	public ResponseEntity<?> getAllInvitations() {
-		return new ResponseEntity<Iterable<Invitation>>(rsvpInvitationServiceImpl.getAllRsvpInvitation(),
+		return new ResponseEntity<Iterable<Invitation>>(rsvpInvitationService.getAllRsvpInvitation(),
 				HttpStatus.OK);
 	}
 
 	@GetMapping("/invitation/{invitationId}")
 	public ResponseEntity<?> getInvitationById(@PathVariable int invitationId) {
 		return new ResponseEntity<Optional<Invitation>>(
-				rsvpInvitationServiceImpl.getRsvpInvitationByInvitationId(invitationId), HttpStatus.OK);
+				rsvpInvitationService.getRsvpInvitationByInvitationId(invitationId), HttpStatus.OK);
 	}
 
 	@DeleteMapping(path = "/invitation/{invitationId}")
 	public ResponseEntity<?> deleteInvitation(@PathVariable int invitationId) {
-		rsvpInvitationServiceImpl.deleteRsvpInvitation(invitationId);
+		rsvpInvitationService.deleteRsvpInvitation(invitationId);
 		return new ResponseEntity<String>("Deleted", HttpStatus.OK);
 	}
 
 //	@PutMapping("/invitation/{invitationId}")
 //	public ResponseEntity<?> updateInvitation(@PathVariable int invitationId, @RequestBody Invitation rsvpInvitation) {
 //		return new ResponseEntity<Invitation>(
-//				rsvpInvitationServiceImpl.updateRsvpInvitation(rsvpInvitation, invitationId), HttpStatus.OK);
+//				rsvpInvitationService.updateRsvpInvitation(rsvpInvitation, invitationId), HttpStatus.OK);
 //	}
+	
+	@GetMapping("/invitation/{inviteeEmail}")
+	public ResponseEntity <?> getInvitationByInviteeEmail(@PathVariable String inviteeEmail)
+	{
+		return new ResponseEntity<Optional<Invitation>>(rsvpInvitationService.getInvitationByInviteeEmail(inviteeEmail),HttpStatus.OK);
+	}
 }
