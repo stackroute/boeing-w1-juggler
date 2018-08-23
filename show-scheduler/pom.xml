@@ -6,7 +6,6 @@
 
 	<groupId>com.stackroute.eplay</groupId>
 	<artifactId>show-scheduler</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>show-scheduler</name>
