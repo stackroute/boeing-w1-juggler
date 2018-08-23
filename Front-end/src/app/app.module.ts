@@ -31,6 +31,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie-theatre-list.component';
+// import { ArenaLayoutSocketComponent } from './arena-layout-socket/arena-layout-socket.component';
+import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     MovieTheatreListComponent,
     UserLoginComponent,
     TheatreComponent,
+    // ArenaLayoutSocketComponent,
+    TheatreLayoutComponent,
   ],
   imports: [
     BrowserModule,

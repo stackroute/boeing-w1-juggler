@@ -26,15 +26,24 @@ export class SearchDataService {
 
  
  constructor(private http: HttpClient, private router: Router) { }
- getMyEvents(city) {
-   return this.http.get('http://172.23.238.198:8092/search-service/api/v1/city/'+city)
+ getMyMovies(city) {
+   return this.http.get('http://172.23.238.198:8092/search-service/api/v1/city/'+city+'/movies')
  }
+
  getAllMovies(): Observable<Movie[]>{
   return this.http.get<Movie[]>('http://172.23.238.198:8090/ticket-service/api/v1/getAllMovie')
+ }
+ getMyEvents(city) {
+  return this.http.get('http://172.23.238.198:8092/search-service/api/v1/city/'+city+'/events')
 }
+
  getSearchedEvents(name) {
    console.log(name);
-  return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movies/'+name)
+  return this.http.get('http://172.23.238.198:8092/search-service/api/v1/events/'+name)
+}
+getSearchedMovies(name) {
+  console.log(name);
+ return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movies/'+name)
 }
 
 getMovieByCitynId(movieId) {

@@ -1,3 +1,5 @@
+import { ArenaLayout } from "./models/ArenaLayout";
+
 export class Show {
     showId: number;
     price: number;
@@ -6,5 +8,6 @@ export class Show {
     date: Date;
     movieEventId: number;
     status:boolean;
+    layout: ArenaLayout;
 }
 

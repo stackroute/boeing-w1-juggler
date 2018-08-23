@@ -25,8 +25,8 @@ public class Movie {
 	private String reviews;
 	private String cast;
 	private String description;
-	private int rating;
-	private int duration;
+	private float rating;
+	private float duration;
 	private List<MovieEvent> movieEvents;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate releaseDate;

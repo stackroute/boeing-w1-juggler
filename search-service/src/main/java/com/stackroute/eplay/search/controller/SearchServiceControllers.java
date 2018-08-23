@@ -84,17 +84,17 @@ public class SearchServiceControllers {
 		}
 	}
 
-//	// get events by name
-//	@GetMapping("/events/{name}")
-//	public ResponseEntity<?> getEventByName(@PathVariable String name) {
-//		try {
-//			logger.info("Getting events by name " + name);
-//			return new ResponseEntity<Iterable<TicketedEvent>>(searchService.getEventsByName(name), HttpStatus.OK);
-//		} catch (Exception e) {
-//			logger.error("Could not fetch movies by name " + name);
-//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
-//		}
-//	}
+	// get events by name
+	@GetMapping("/events/{name}")
+	public ResponseEntity<?> getEventByName(@PathVariable String name) {
+		try {
+			logger.info("Getting events by name " + name);
+			return new ResponseEntity<Iterable<TicketedEvent>>(searchService.getEventsByName(name), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Could not fetch events by name " + name);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+		}
+	}
 
 	// get auto-complete suggestions by search string
 	@GetMapping("/suggestion/{searchstr}")
