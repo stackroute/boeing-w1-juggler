@@ -1,5 +1,6 @@
 package com.stackroute.eplay.search.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class Show {
 	private int showId;
 	private int seatRemaining;
-	private int price;
+	private BigDecimal price;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
 	private LocalTime startTime;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

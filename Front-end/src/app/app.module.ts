@@ -16,8 +16,7 @@ import { OtherTicketedEventComponent } from "./other-ticketed-event/other-ticket
 import { MovieEventComponent } from "./movie-event/movie-event.component";
 import { MatSelectModule } from "@angular/material/select";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { NativeDateModule } from "@angular/material";
-import { MatNativeDateModule } from "@angular/material";
+import { MatNativeDateModule, MatNavList } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RsvpInvitationComponent } from './rsvp-invitation/rsvp-invitation.component';
 import { RsvpEventComponent } from './rsvp-event/rsvp-event.component';
@@ -25,12 +24,19 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { EventCardComponent } from './home-page/event-card/event-card.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { UserLoginComponent } from "./user-login/user-login.component"
 import { TheatreComponent } from './theatre/theatre.component';
 import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie-theatre-list.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import {MultipleCheckboxesModule} from 'multiple-checkboxes';
+// import { ArenaLayoutSocketComponent } from './arena-layout-socket/arena-layout-socket.component';
+import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +57,12 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     SearchResultsComponent,
     MovieInfoComponent,
     MovieTheatreListComponent,
+    UserLoginComponent,
     TheatreComponent,
+    SideNavComponent,
+    UserProfileComponent,
+    // ArenaLayoutSocketComponent,
+    TheatreLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +78,9 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCheckboxModule,
+    MultipleCheckboxesModule
   ],
   providers: [MatNativeDateModule],
   bootstrap: [AppComponent]

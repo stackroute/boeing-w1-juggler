@@ -6,13 +6,14 @@ import com.stackroute.eplay.search.domain.City;
 import com.stackroute.eplay.search.domain.Movie;
 import com.stackroute.eplay.search.domain.Query;
 import com.stackroute.eplay.search.domain.Theatre;
+import com.stackroute.eplay.search.domain.TicketedEvent;
 import com.stackroute.eplay.search.exceptions.MovieNotFoundException;
 
 public interface SearchService {
 
 	public Movie saveMovie(Movie movie);
 
-	public Iterable<Movie> getEventsByCity(String city);
+	public Iterable<Movie> getMoviesByCity(String city);
 
 	public Iterable<Query> getAllQueries();
 
@@ -30,4 +31,9 @@ public interface SearchService {
 	
 	public Movie getMoviesByIdAndCity(String city, int movieId);
 
+	public City saveTicketedEvent(TicketedEvent ticketedEvent);
+
+	public Iterable<TicketedEvent> getEventsByCity(String city);
+
+	public Iterable<TicketedEvent> getEventsByName(String name);
 }

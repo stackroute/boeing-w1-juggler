@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stackroute.eplay.rsvp.domain.Invitation;
+import com.stackroute.eplay.rsvp.exceptions.InviteeEmailAlreadyExistException;
 import com.stackroute.eplay.rsvp.repositories.RsvpInvitationRepository;
 
 
@@ -24,7 +25,7 @@ public class RsvpInvitationServiceImpl implements RsvpInvitationService {
 	NextSequenceService nextSequenceService;
 
 	@Override
-	public Invitation saveRsvpInvitation(Invitation rsvpInvitation) {
+	public Invitation saveRsvpInvitation(Invitation rsvpInvitation) throws InviteeEmailAlreadyExistException {
 		// TODO Auto-generated method stub
 		rsvpInvitation.setInvitationId(nextSequenceService.getNextSequence("counter"));
 		return rsvpInvitationRepository.save(rsvpInvitation);
@@ -57,6 +58,13 @@ public class RsvpInvitationServiceImpl implements RsvpInvitationService {
 		// TODO Auto-generated method stub
 		rsvpInvitation.setInvitationId(invitationId);
 		return rsvpInvitationRepository.save(rsvpInvitation);
+	}
+
+	@Override
+	public Optional<Invitation> getInvitationByInviteeEmail(String inviteeEmail) {
+		// TODO Auto-generated method stub
+		Optional<Invitation> invitation=rsvpInvitationRepository.getInvitationByInviteeEmail(inviteeEmail);
+		return invitation;
 	}
 
 }
