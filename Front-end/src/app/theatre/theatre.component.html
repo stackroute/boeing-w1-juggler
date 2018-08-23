@@ -1,15 +1,15 @@
 <app-nav-bar></app-nav-bar>
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Enter Theatre Name">
+    <input matInput placeholder="Enter Theatre Name" [(ngModel)]="theatreModel.theatreName">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Enter Theatre Location">
+    <input matInput placeholder="Enter Theatre Location"  [(ngModel)]="theatreModel.theatreLocation">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Enter Theatre Capacity">
+    <input matInput placeholder="Enter Theatre Capacity" [(ngModel)]="theatreModel.capacity" >
   </mat-form-field>
   <br>
   <mat-form-field>
