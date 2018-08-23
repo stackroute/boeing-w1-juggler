@@ -32,7 +32,7 @@ public class Movie {
     private String reviews;
     private String cast;
     private String description;
-    private int rating;
+    private float rating;
     private int duration;
     private List<MovieEvent> movieEvents;
 //    @JsonFormat
