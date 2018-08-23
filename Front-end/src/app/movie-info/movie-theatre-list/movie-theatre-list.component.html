@@ -7,7 +7,7 @@
         </div>
         <div class="show-time">
            <ng-container *ngFor="let show of theatre.shows">   
-                <button *ngIf="show.status; else disableButton" mat-stroked-button color="primary">
+                <button *ngIf="show.status; else disableButton" routerLink="/theatreLayout" mat-stroked-button color="primary">
                         {{show.date}} || {{show.startTime}}
                 </button>
                 <ng-template #disableButton>
@@ -20,7 +20,6 @@
     </div>
 </div>
 <ng-template #elseBlock>
-        <p>elseBlock</p>
         <div class="theatre-container" *ngFor="let theatre of movieRecommend.theatres">
             <p>From movieRecommend data</p>
             <div class="theatre-name">
