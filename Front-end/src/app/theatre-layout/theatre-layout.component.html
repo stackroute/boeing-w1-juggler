@@ -10,7 +10,7 @@
 <div class="ArenaLayout">
   <div class="rows" *ngFor= "let row of totalRow">
     <div class="columns" *ngFor= "let col of totalCol"> 
-      <div class="seat available">
+      <div id= {{row}}{{col}} class="seat available">
       </div> 
     </div>
   </div>
