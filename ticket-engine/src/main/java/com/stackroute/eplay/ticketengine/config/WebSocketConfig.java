@@ -14,14 +14,14 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	public void configureMessageBroker(MessageBrokerRegistry config) {
 		// clients will subscribe to this subscription and will wait from messages from
 		// the server
-		config.enableSimpleBroker("/topic");
+		config.enableSimpleBroker("/chat");
 		// when our client will send message through socket
 		config.setApplicationDestinationPrefixes("/app");
 	}
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/gs-guide-websocket").setAllowedOrigins("*").withSockJS();
+		registry.addEndpoint("/socket").withSockJS();
 	}
 
 }

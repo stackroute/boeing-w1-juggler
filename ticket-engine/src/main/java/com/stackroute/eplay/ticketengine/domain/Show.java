@@ -1,5 +1,6 @@
 package com.stackroute.eplay.ticketengine.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -12,13 +13,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Document
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Show {
+public class Show  implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	private Long showId;
 	private int seatRemaining;

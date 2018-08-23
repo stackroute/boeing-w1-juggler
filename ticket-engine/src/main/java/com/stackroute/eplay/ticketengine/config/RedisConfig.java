@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
-
+ 
 @Configuration
-@ComponentScan("com.javasampleapproach.redis")
+@ComponentScan("com.stackroute.eplay.ticketengine")
 public class RedisConfig {
  
 	@Bean
