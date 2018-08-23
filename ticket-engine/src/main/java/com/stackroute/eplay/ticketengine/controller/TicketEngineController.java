@@ -3,6 +3,8 @@ package com.stackroute.eplay.ticketengine.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,5 +38,12 @@ public class TicketEngineController {
 	public ResponseEntity<?> getShowById(@PathVariable Long id) {
 		return new ResponseEntity<Show>(showRepository.find(id), HttpStatus.OK);
 	}
+	
+	@MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public Show show(Show showDetail) throws Exception {
+		// return new Show("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+		return showDetail;
+    }
 
 }
