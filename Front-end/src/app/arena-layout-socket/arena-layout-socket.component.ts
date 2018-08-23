@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as Stomp from 'stompjs';
-import * as SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+import SockJS from 'sockjs-client';
 import $ from 'jquery';
+import * as Socket from 'socket.io-client';
 
 @Component({
   selector: 'app-arena-layout-socket',
@@ -19,7 +20,7 @@ export class ArenaLayoutSocketComponent {
   }
 
   initializeWebSocketConnection(){
-    let ws = new SockJS(this.serverUrl);
+    let ws = Socket(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     let that = this;
     this.stompClient.connect({}, function(frame) {
