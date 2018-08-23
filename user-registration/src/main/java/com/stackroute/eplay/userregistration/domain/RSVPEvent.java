@@ -45,5 +45,3 @@ public class RSVPEvent {
 	private List<Invitation> rsvpInvitation;
 
 }
-
-

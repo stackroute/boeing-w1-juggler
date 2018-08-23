@@ -1,0 +1,23 @@
+<app-nav-bar></app-nav-bar>     
+<div class="name">
+  <h2>Theatre Layout</h2>
+</div>
+<hr>
+<!--  <button id="btnSeating" >Fill Seating</button>
+  <div id="messagePanel" class="messagePanel" ng-bind="seatingValue">
+  {{seatingValue}}
+</div> -->
+<div class="ArenaLayout">
+  <div class="rows" *ngFor= "let row of totalRow">
+    <div class="columns" *ngFor= "let col of totalCol"> 
+      <div id= {{row}}{{col}} class="seat available">
+      </div> 
+    </div>
+  </div>
+</div>
+<div class="screen">
+    Screen this way
+</div>
+<div class="bookButton">
+    <button mat-raised-button color="primary">Proceed</button>
+</div>

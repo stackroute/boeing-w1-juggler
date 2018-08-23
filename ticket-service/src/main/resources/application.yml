@@ -18,10 +18,10 @@
 #    stream:
 #      kafka:
 #        binder:
-#          brokers: localhost:9092
+#          brokers: 172.23.238.198:9092
 #      bindings:
 #        updated-movie-event-in:
-#          destination: UpdatedMovieEvent
+#          destination: UpdatedShowEvent
 #          contentType: application/json         
 #        movie-event-in:
 #          destination: MovieEvent

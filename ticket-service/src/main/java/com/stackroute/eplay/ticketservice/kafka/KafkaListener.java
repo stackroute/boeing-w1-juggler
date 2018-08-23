@@ -23,21 +23,32 @@ import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
 import com.stackroute.eplay.ticketservice.streams.ShowStreams;
 import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
+import com.stackroute.eplay.ticketservice.streams.UpdateMovieEventStreams;
 
-@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class})
+
+@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class, UpdateMovieEventStreams.class})
+
 public class KafkaListener {
 	
 	MovieEventService movieEventService;
 	MovieService movieService;
 	TicketedEventService ticketedEventService;
+	UpdateMovieEventStreams updateMovieEventStreams;
 
 	@Autowired
-	KafkaListener(MovieEventService movieEventService,MovieService movieService, TicketedEventService ticketedEventService){
+	KafkaListener(MovieEventService movieEventService,MovieService movieService, TicketedEventService ticketedEventService,UpdateMovieEventStreams updateMovieEventStreams){
 		this.movieEventService=movieEventService;
 		this.movieService=movieService;
 		this.ticketedEventService= ticketedEventService;
+		this.updateMovieEventStreams=updateMovieEventStreams;
 	}
-
+	@StreamListener(UpdateMovieEventStreams.INPUT)
+	public void movieShowPost(@Payload Show show){
+		System.out.println(show.toString());
+		movieEventService.updateMovieEvent(show);
+	
+	}
+	
 	@StreamListener(MovieEventStreams.INPUT)
 	public void movieEventPost(@Payload MovieEvent event) {
 		try {

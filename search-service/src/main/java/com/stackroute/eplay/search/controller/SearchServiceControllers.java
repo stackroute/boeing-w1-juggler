@@ -2,8 +2,6 @@ package com.stackroute.eplay.search.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.search.domain.Movie;
 import com.stackroute.eplay.search.domain.Query;
+import com.stackroute.eplay.search.domain.TicketedEvent;
 import com.stackroute.eplay.search.services.SearchServiceImpl;
 
 @CrossOrigin("*")
@@ -33,13 +32,26 @@ public class SearchServiceControllers {
 		this.searchService = searchService;
 	}
 
+	// get movies by city name
+	@GetMapping("/city/{city}/movies")
+	public ResponseEntity<?> getMoviesBycity(@PathVariable String city) {
+		try {
+			logger.info("Getting movies in " + city);
+			// session.setAttribute("selectedCity", city);
+			return new ResponseEntity<Iterable<Movie>>(searchService.getMoviesByCity(city), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Could not fetch movies in " + city);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+		}
+
+	}
+
 	// get events by city name
-	@GetMapping("/city/{city}")
+	@GetMapping("/city/{city}/events")
 	public ResponseEntity<?> getEventsBycity(@PathVariable String city) {
 		try {
 			logger.info("Getting events in " + city);
-			//session.setAttribute("selectedCity", city);
-			return new ResponseEntity<Iterable<Movie>>(searchService.getEventsByCity(city), HttpStatus.OK);
+			return new ResponseEntity<Iterable<TicketedEvent>>(searchService.getEventsByCity(city), HttpStatus.OK);
 		} catch (Exception e) {
 			logger.error("Could not fetch events in " + city);
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
@@ -72,6 +84,18 @@ public class SearchServiceControllers {
 		}
 	}
 
+	// get events by name
+	@GetMapping("/events/{name}")
+	public ResponseEntity<?> getEventByName(@PathVariable String name) {
+		try {
+			logger.info("Getting events by name " + name);
+			return new ResponseEntity<Iterable<TicketedEvent>>(searchService.getEventsByName(name), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Could not fetch events by name " + name);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+		}
+	}
+
 	// get auto-complete suggestions by search string
 	@GetMapping("/suggestion/{searchstr}")
 	public ResponseEntity<?> autocompleteSuggestions(@PathVariable("searchstr") String searchstr) {
@@ -84,14 +108,16 @@ public class SearchServiceControllers {
 		}
 	}
 
-	/*// get movie by id
-	@GetMapping("/movie/{id}")
-	public ResponseEntity<?> getMovieById(@PathVariable int id, HttpSession session) {
-		System.out.println("Id "+id);
-		String city = (String) session.getAttribute("selectedCity");
-		System.out.println("---------------------------------"+ city);
-		System.out.println(session.getAttribute("selectedCity")+"---------------------------------");
-		return new ResponseEntity<Movie>(searchService.getMoviesByIdAndCity(city, id), HttpStatus.OK);
-	}*/
+	// get movie by movie id and city name
+	@GetMapping("/movie/{id}/city/{city}")
+	public ResponseEntity<?> getMovieById(@PathVariable int id, @PathVariable String city) {
+		try {
+			logger.info("Getting movie by movie id " + id + " and city name " + city);
+			return new ResponseEntity<Movie>(searchService.getMoviesByIdAndCity(city, id), HttpStatus.OK);
+		} catch (Exception e) {
+			logger.error("Could not fetch movie by movie id" + id + " and city name " + city);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
+		}
+	}
 
 }

@@ -22,17 +22,21 @@ import com.stackroute.eplay.showscheduler.stream.ShowSchedulerStream;
  */
 
 @Service
+@SuppressWarnings("unchecked")
 public class ShowJob implements Job {
 
-//	public static ShowSchedulerStream showSchedulerStream;
-//
-//	@Autowired
-//	public ShowJob(ShowSchedulerStream showSchedulerStream) {
-//		ShowJob.showSchedulerStream = showSchedulerStream;
-//	}
+	static MessageChannel messageChannel;
+	static ShowSchedulerStream showSchedulerStream;
 
 	public ShowJob() {
 
+	}
+
+	@Autowired
+	public ShowJob(ShowSchedulerStream showSchedulerStream) {
+		if (ShowJob.showSchedulerStream == null) {
+			ShowJob.showSchedulerStream = showSchedulerStream;
+		}
 	}
 
 	@Override
@@ -48,10 +52,10 @@ public class ShowJob implements Job {
 			 */
 
 			schedulerContext = context.getScheduler().getContext();
+
 			HashMap<Integer, Show> showMap = (HashMap<Integer, Show>) schedulerContext.get("show");
 
 			String[] trigger = context.getTrigger().toString().split(":");
-
 			int beginIndex = trigger[0].indexOf("trigger") + 7;
 			int endIndex = trigger[0].length() - 1;
 			int index = Integer.parseInt(trigger[0].substring(beginIndex, endIndex));
@@ -62,10 +66,9 @@ public class ShowJob implements Job {
 			show.setStatus(false);
 			System.out.println("After: " + show.isStatus());
 
-			// MessageChannel messageChannel = showSchedulerStream.outboundShowScheduler();
-			// messageChannel.send(MessageBuilder.withPayload(show)
-			// .setHeader(MessageHeaders.CONTENT_TYPE,
-			// MimeTypeUtils.APPLICATION_JSON).build());
+			messageChannel = showSchedulerStream.outboundShowScheduler();
+			messageChannel.send(MessageBuilder.withPayload(show)
+					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
 
 		} catch (SchedulerException e) {
 			e.printStackTrace();

@@ -8,11 +8,15 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { RsvpEventComponent } from "./rsvp-event/rsvp-event.component";
 import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { UserLoginComponent } from "./user-login/user-login.component"
+import { AuthGuard } from "./guards/auth.guard"
 import { TheatreComponent } from "./theatre/theatre.component";
 import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
 import { MovieInfoComponent } from "./movie-info/movie-info.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
+import {TheatreLayoutComponent} from "./theatre-layout/theatre-layout.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -35,8 +39,12 @@ const routes: Routes = [
     component: RegistrationFormComponent
   },
   {
+    path: "userLogin",
+    component: UserLoginComponent
+  },
+  {
     path: "createEvent",
-    component: EventTypeComponent
+    component: EventTypeComponent, canActivate:[AuthGuard]
   },
   {
     path: "createRSVPEvent",
@@ -63,9 +71,12 @@ const routes: Routes = [
     component: TheatreComponent
   },
   {
-
     path:'rsvpEvent/:id',
     component:RsvpEventpageComponent
+  },
+  {
+    path:"theatreLayout",
+    component:TheatreLayoutComponent
   }
 ];
 
@@ -82,5 +93,7 @@ export const routingComponents = [
   RsvpEventComponent,
   SearchResultsComponent,
   TheatreComponent,
-  UserProfileComponent
+  UserProfileComponent,
+  UserLoginComponent,
+  TheatreComponent
 ];

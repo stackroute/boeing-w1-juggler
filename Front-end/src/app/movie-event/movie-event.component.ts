@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MovieEvent } from "../movie-event";
 import { MovieEventService } from "../movie-event.service";
+import { SearchDataService } from "../search-data.service";
+import { Movie } from "../models/movie";
 @Component({
   selector: "app-movie-event",
   templateUrl: "./movie-event.component.html",
@@ -10,8 +12,24 @@ import { MovieEventService } from "../movie-event.service";
 export class MovieEventComponent implements OnInit {
   movieEventModel = new MovieEvent();
   movieEventControl = new FormControl();
-  constructor(private movieEventService :MovieEventService) {}
+  movies:Movie[];
+
+  movieId; // ID corresponding to selected movie Name from Dropdown
+ 
+  constructor(private movieEventService :MovieEventService,private _searchDataService:SearchDataService) {}
+  
+  ngOnInit() {
+    this._searchDataService.getAllMovies().subscribe(data => this.movies = data);
+    console.log("my movies",this.movies);
+  }
+
+  findId(n){
+    console.log(n.id);
+  this.movieEventModel.movieId=n.id;
+  this.movieEventModel.city='delhi';
+  }
   onSubmit() {
+    console.log(this.movieEventModel);
     this.movieEventService
       .saveMovieEvent(this.movieEventModel)
       .subscribe(res => console.log("Saved Movie Event"));
@@ -44,10 +62,6 @@ export class MovieEventComponent implements OnInit {
       ]
     }
   ];
-
-  
-
-  ngOnInit() {}
 }
 
 export interface Theatre {

@@ -8,12 +8,14 @@ import org.springframework.messaging.handler.annotation.Payload;
 import com.stackroute.eplay.search.domain.Movie;
 import com.stackroute.eplay.search.domain.MovieEvent;
 import com.stackroute.eplay.search.domain.Theatre;
+import com.stackroute.eplay.search.domain.TicketedEvent;
 import com.stackroute.eplay.search.services.SearchService;
 import com.stackroute.eplay.search.streams.MovieEventStream;
 import com.stackroute.eplay.search.streams.MovieStream;
 import com.stackroute.eplay.search.streams.TheatreStream;
+import com.stackroute.eplay.search.streams.TicketedEventStream;
 
-@EnableBinding({ MovieEventStream.class, MovieStream.class, TheatreStream.class })
+@EnableBinding({ MovieEventStream.class, MovieStream.class, TheatreStream.class , TicketedEventStream.class})
 public class KafkaListener {
 
 	private SearchService searchService;
@@ -34,10 +36,8 @@ public class KafkaListener {
 		int movieId = movieEvent.getMovieId();
 		Movie movie = searchService.getMovieById(movieId);
 		Theatre theatre = searchService.getTheatreById(movieEvent.getTheatreId());
-		System.out.println("============================="+movieEvent.getShows());
 		theatre.setShows(movieEvent.getShows());
-		System.out.println("Movie "+movie);
-		System.out.println("Theatre "+theatre);
+
 		searchService.updateCityMovies(city, movie, theatre);
 	}
 
@@ -53,5 +53,12 @@ public class KafkaListener {
 	public void theatrePost(@Payload Theatre theatre) {
 		searchService.saveTheatre(theatre);
 
+	}
+
+
+	//Listener for ticketed event stream
+	@StreamListener(TicketedEventStream.INPUT)
+	public void ticketedEventPost(@Payload TicketedEvent ticketedEvent) {
+		searchService.saveTicketedEvent(ticketedEvent);
 	}
 }

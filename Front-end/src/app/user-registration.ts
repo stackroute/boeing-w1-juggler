@@ -1,5 +1,5 @@
 export class UserRegistration {
-  userName: string;
+  username: string;
   password: string;
   fullName: String;
   contactNo: String;

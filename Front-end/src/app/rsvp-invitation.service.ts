@@ -13,6 +13,8 @@ export class RsvpInvitationService {
   private _url1: string="http://172.23.238.218:8097/api/v1/invitations";
   private _url2: string="http://172.23.238.218:8097/api/v1/invitation";
 
+  private _url5: string = "http://172.23.238.218:8097/api/v1/invitation/";
+
   constructor(private http:HttpClient) { }
 
   saveRsvpInvitation(rsvpInvitation:RsvpInvitation)
@@ -28,6 +30,10 @@ export class RsvpInvitationService {
   deleteRsvpInvitations(invitationId)
   {
     return this.http.delete(this._url2+invitationId);
+  }
+  getInvitaionByInviteeEmail(inviteeEmail):Observable<RsvpInvitation>
+  {
+    return this.http.get<RsvpInvitation>(this._url5+inviteeEmail);
   }
 
   
