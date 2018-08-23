@@ -10,21 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.ticketengine.domain.Show;
-import com.stackroute.eplay.ticketengine.repository.ShowRepository;
+import com.stackroute.eplay.ticketengine.repository.ShowRepositoryImpl;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("api/v1")
+//@RequestMapping("api/v1")
 public class TicketEngineController {
 	
-	private ShowRepository showRepository;
+	private ShowRepositoryImpl showRepository;
 	
 	@Autowired
-	TicketEngineController(ShowRepository showRepository){
+	TicketEngineController(ShowRepositoryImpl showRepository){
 		this.showRepository = showRepository;
 	}
 	
@@ -39,11 +38,11 @@ public class TicketEngineController {
 		return new ResponseEntity<Show>(showRepository.find(id), HttpStatus.OK);
 	}
 	
-	@MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Show show(Show showDetail) throws Exception {
+	@MessageMapping("/send/message")
+    @SendTo("/chat")
+    public String show(String msg) throws Exception {
 		// return new Show("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-		return showDetail;
+		return msg;
     }
 
 }
