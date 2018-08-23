@@ -12,7 +12,7 @@ import { TheatreComponent } from "./theatre/theatre.component";
 import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
 import { MovieInfoComponent } from "./movie-info/movie-info.component";
-
+import { UserProfileComponent } from "./user-profile/user-profile.component";
 const routes: Routes = [
   {
     path: "",
@@ -30,10 +30,10 @@ const routes: Routes = [
     path :"search",
     component :SearchResultsComponent
   },
-  {
-    path: "userRegistration",
-    component: RegistrationFormComponent
-  },
+  // {
+  //   path: "userRegistration",
+  //   component: RegistrationFormComponent
+  // },
   {
     path: "createEvent",
     component: EventTypeComponent
@@ -81,5 +81,6 @@ export const routingComponents = [
   MovieEventComponent,
   RsvpEventComponent,
   SearchResultsComponent,
-  TheatreComponent
+  TheatreComponent,
+  UserProfileComponent
 ];

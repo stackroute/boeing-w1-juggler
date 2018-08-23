@@ -31,7 +31,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie-theatre-list.component';
-
+import { SideNavComponent } from './side-nav/side-nav.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,8 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     MovieInfoComponent,
     MovieTheatreListComponent,
     TheatreComponent,
+    SideNavComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,8 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCheckboxModule
   ],
   providers: [MatNativeDateModule],
   bootstrap: [AppComponent]

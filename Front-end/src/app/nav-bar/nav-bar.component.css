@@ -14,3 +14,48 @@
     width: 90%;
   }
    */
+
+/* .navbarSection {
+  margin: auto;
+} */
+
+.flex-container {
+  background-color: #050644;
+  color: #f3f3ef;
+  /* background-color:#5f4c4c; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  /* height: 75px; */
+}
+
+.column {
+  flex: 30%;
+  max-width: 30%;
+  margin: 25px;
+  /* margin-top: 20px; */
+}
+.image{
+  background-image: url("eplayLogo.jpeg");
+
+}
+
+/* .example-button{
+  margin-top: -2px;
+} */
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media (max-width: 800px) {
+  .column {
+    flex: 40%;
+    max-width: 40%;
+  }
+}
+
+@media (max-width: 600px) {
+  .column {
+    flex: 40%;
+    max-width: 40%;
+  }
+}
+
