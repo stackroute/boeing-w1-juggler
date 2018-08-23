@@ -55,6 +55,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 	public void saveMovieEvent(MovieEvent movieEvent) throws MovieEventAlreadyExistException, ParseException {
 		Iterable<MovieEvent> movies = getAllMovieEvent();
 		Iterator<MovieEvent> iterator = movies.iterator();
+	//	movieEvent.setMovieEventId(nextSequenceService.getNextSequence("counter"));
 		Movie movie =movieRepository.findById(movieEvent.getMovieId()).get();
 		List<Show> shows=new ArrayList<Show>();
 		LocalDate releaseDate=movie.getReleaseDate();

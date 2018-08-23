@@ -10,6 +10,8 @@ export class TheatreComponent implements OnInit {
   theatreModel = new Theatre();
   constructor(private theatreService :TheatreService) { }
   onSubmit() {
+   
+    this.theatreModel.userName= localStorage.getItem('currentUser');
     this.theatreService
       .saveTheatre(this.theatreModel)
       .subscribe(res => console.log("Saved theatre"));

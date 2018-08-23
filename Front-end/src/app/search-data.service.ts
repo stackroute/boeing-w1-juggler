@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import{Router} from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { Movie } from './movie';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Movie } from "./models/movie";
 
 @Injectable({
  providedIn: 'root'
@@ -29,12 +29,14 @@ export class SearchDataService {
  getMyMovies(city) {
    return this.http.get('http://172.23.238.198:8092/search-service/api/v1/city/'+city+'/movies')
  }
+
+ getAllMovies(): Observable<Movie[]>{
+  return this.http.get<Movie[]>('http://172.23.238.198:8090/ticket-service/api/v1/getAllMovie')
+ }
  getMyEvents(city) {
   return this.http.get('http://172.23.238.198:8092/search-service/api/v1/city/'+city+'/events')
 }
- getAllMovies() {
-  return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movies')
-}
+
  getSearchedEvents(name) {
    console.log(name);
   return this.http.get('http://172.23.238.198:8092/search-service/api/v1/events/'+name)

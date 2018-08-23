@@ -2,11 +2,17 @@
 <button type="submit" class="example-button" name="button" class="btn btn-success" style="margin-top: 20px;margin-left:  1150px" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
 <div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Enter Movie Name" [(ngModel)]="movieEventModel.userName">
+    <!-- <input matInput placeholder="Enter Movie Name" [(ngModel)]="movieEventModel.userName"> -->
+    <mat-select placeholder="Select Movie" [formControl]="movieEventControl" >
+        <mat-option *ngFor="let movie of movies" [value]="movie.name" (click)="findId(movie)" >   
+          {{movie.name}}   
+        </mat-option>
+    </mat-select>
   </mat-form-field>
+
   <br>
   <mat-form-field>
-    <mat-select placeholder="Select Theater " [formControl]="movieEventControl" [(ngModel)]="movieEventModel.theatreName">
+    <mat-select placeholder="Select Theater " [formControl]="movieEventControl" [(ngModel)]="movieEventModel.theatreName" >
       <mat-option>-- None --</mat-option>
       <mat-optgroup *ngFor="let group of theatreGroups" [label]="group.name" [disabled]="group.disabled">
         <mat-option *ngFor="let theatre of group.theatre" [value]="theatre.value">
@@ -17,11 +23,11 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.weeks">
+    <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.week">
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.timings">
+    <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.showTimes">
   </mat-form-field>
   <br>
   <!-- <mat-form-field>
