@@ -30,10 +30,10 @@ const routes: Routes = [
     path :"search",
     component :SearchResultsComponent
   },
-  // {
-  //   path: "userRegistration",
-  //   component: RegistrationFormComponent
-  // },
+  {
+    path: "userRegistration",
+    component: RegistrationFormComponent
+  },
   {
     path: "createEvent",
     component: EventTypeComponent

@@ -10,6 +10,7 @@ import { Router } from "@angular/router";
 export class HomePageComponent implements OnInit {
  event$: any;
  message:string;
+ rec$:any;
  constructor(
    private data: SearchDataService,
    private router: Router,
@@ -17,6 +18,7 @@ export class HomePageComponent implements OnInit {
  ngOnInit() {
    this.data.currentMessage.subscribe(message => this.message = message)
    this.fetchEvents();
+   this.rec$=JSON.parse(localStorage.getItem('rec'));
  }
  fetchEvents(){
    console.log("Hi fetchMovies is called ", this.message);

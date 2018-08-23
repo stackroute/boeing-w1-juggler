@@ -14,15 +14,19 @@ export class LandingPageComponent implements OnInit {
  ngOnInit() {
  }
  onclick1(){console.log("Location : Delhi");
- this.data.changeMessage("delhi");
+ localStorage.setItem('city',"Patna");
+ this.data.changeMessage("Patna");
 }
 onclick2(){console.log("Location : Mumbai");
+localStorage.setItem('city',"Patna");
 this.data.changeMessage("mumbai");
 }
 onclick3(){console.log("Location : Bangalore");
+localStorage.setItem('city',"Patna");
 this.data.changeMessage("banglore");
 }
 onclick4(){console.log("Location : Hyderabad");
+localStorage.setItem('city',"Hyderabad");
 this.data.changeMessage("hyderabad");
 }
 

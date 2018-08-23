@@ -34,6 +34,8 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
 import { SideNavComponent } from './side-nav/side-nav.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import {MultipleCheckboxesModule} from 'multiple-checkboxes';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +74,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatNativeDateModule,
     ReactiveFormsModule,
     FlexLayoutModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MultipleCheckboxesModule
   ],
   providers: [MatNativeDateModule],
   bootstrap: [AppComponent]

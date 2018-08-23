@@ -1,7 +1,7 @@
-<!-- <div class="container navbarSection"> -->
+<div class="app-side-nav navbarSection">
 <div class="flex-container">
   <mat-card-actions>
-    <div class="column">
+    <div class="column image" style="margin-left: -90px">
       <app-side-nav></app-side-nav>
     </div>
   </mat-card-actions>
@@ -28,6 +28,12 @@
 
   <mat-card-actions>
     <div class="column">
+        <!-- <form class="navbar-form pull-left">
+						<input type="text" class="form-control" placeholder="Enter destination or hotel.." id="searchInput">
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</form> -->
       <button mat-raised-button matTooltip="Click to search Movies" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
         class="example-button" (click)="onSearch()" routerLink="/search" mat-raised-button>Search for latest Movies</button>
     </div>
@@ -47,7 +53,7 @@
       </div>
   </mat-card-actions>
 </div>
-<!-- </div> -->
+</div>
 <!-- <app-side-nav></app-side-nav> -->
 <!-- <div class="container navbarSection"> -->
 <!-- <div class="flex-container">
