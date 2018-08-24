@@ -25,22 +25,24 @@ export class TheatreLayoutComponent implements OnInit {
     this.totalRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     this.totalCol = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   }
-  //Note:In js the outer loop runs first then the inner loop runs completely so it goes o.l. then i.l. i.l .i.l .i.l. i.l etc and repeat
+
+  // to create seating layout
   createseating() {
     for (var i = 0; i < 10; i++) {
       for (var j = 0; j < 10; j++) {
         let seatingStyle = "<div class='seat available'></div>";
         this.seatingValue.push(seatingStyle);
-        if (j == 5) {
-          // only for understanding
-          //console.log("hi");
-          seatingStyle = "<div class='clearfix'></div>";
-          this.seatingValue.push(seatingStyle);
-          //console.log(seatingStyle);
-        }
+        // if (j == 5) {
+        //   // only for understanding
+        //   //console.log("hi");
+        //   seatingStyle = "<div class='clearfix'></div>";
+        //   this.seatingValue.push(seatingStyle);
+        //   //console.log(seatingStyle);
+        // }
       }
     }
 
+    //Hovering and Clicking effects on seats
     $(function() {
       $(".seat").on("click", function() {
         if ($(this).hasClass("selected")) {
@@ -60,11 +62,14 @@ export class TheatreLayoutComponent implements OnInit {
       });
     });
   }
+
+  //  For adding a seat Id in an Array on every click
   onclick(x,y){
     (this.id).push((x*10)+y);
     console.log(this.id);
   }
 
+  // To make an array of filtered seats which are to be sent to booking API
   bookticket(){
     let map = new Map<String, number>(); 
     for(var i=0;i<(this.id).length;i++)
