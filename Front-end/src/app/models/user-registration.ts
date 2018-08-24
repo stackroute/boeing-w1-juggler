@@ -1,3 +1,4 @@
+import {Theatre} from "../theatre";
 export class UserRegistration {
   userName: string;
   password: string;
@@ -6,7 +7,7 @@ export class UserRegistration {
   email: String;
   gender: string;
   city: string;
-  theatres:string;
+  theatres:Array<Theatre>;
   rsvpEvents:string;
   movieEvent:string;
   ticketedEvent:string;
