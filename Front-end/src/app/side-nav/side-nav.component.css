@@ -80,7 +80,7 @@ body {
   /* background-color: #008b8b;
     color: #f3f3ef; */
   /* background-color:#5f4c4c; */
-  color: #313837;
+  color: #26ccb3;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
@@ -89,7 +89,7 @@ body {
 }
 
 app-multiple-checkboxes {
-  background-color: rgb(57, 77, 77) important!;
+  background-color: rgb(217, 248, 248) important!;
 }
 
 

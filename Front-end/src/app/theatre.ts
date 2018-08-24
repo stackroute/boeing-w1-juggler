@@ -1,3 +1,4 @@
+
 import {Show} from "./Show";
 
 export class Theatre {
@@ -7,6 +8,7 @@ export class Theatre {
   shows:Array<Show>;
   capacity : number;
   userName: String;
+  city: String;
   arenaFile: String;
 }
   

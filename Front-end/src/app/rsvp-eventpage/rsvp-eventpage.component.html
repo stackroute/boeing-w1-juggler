@@ -1,54 +1,60 @@
 <div class="image">
 <div class="example-container">
-<h2>
-  Event name:{{rsvpModel.name}}
-</h2>
+    <mat-card [style.backgroundColor]="'#A5D8DD'">
 <h3>
-     Location in city {{rsvpModel.location}} {{rsvpModel.city}}
-   </h3>
-<h3>
-       Start Date:{{rsvpModel.startDate}} at start time {{rsvpModel.startTime}}
+  Event: {{rsvpModel.name}}
 </h3>
-<h3>
-        End Date:{{rsvpModel.endDate}} at end time {{rsvpModel.endTime}}
-</h3>
-<h3>
-      Description:{{rsvpModel.description}}
-</h3>
-<h3>
-    Performers:{{rsvpModel.performers}}
-</h3>
-<h3>
-   Notes:{{rsvpModel.notes}}
- </h3>
- <h3>
-   Event Status:{{rsvpModel.isCompleted}}
- </h3>
+<h4>
+     Location: {{rsvpModel.location}}  
+   </h4>
+
+   <h4>
+   City: {{rsvpModel.city}}
+  </h4>
+<h4>
+       Start Date: {{rsvpModel.startDate}} at start time {{rsvpModel.startTime}}
+</h4>
+<h4>
+        End Date: {{rsvpModel.endDate}} at end time {{rsvpModel.endTime}}
+</h4>
+<h4>
+      Description: {{rsvpModel.description}}
+</h4>
+<h4>
+    Performers: {{rsvpModel.performers}}
+</h4>
+<h4>
+   Notes: {{rsvpModel.notes}}
+ </h4>
+
+ <br>
 
  <mat-form-field>
     <textarea matInput placeholder="Your name" [(ngModel)]="rsvpInvitationModel.inviteeName" ngModel #inviteeName="ngModel"
       required pattern="[a-zA-Z][a-zA-Z]+"></textarea>
   </mat-form-field>
-
+<br>
   <mat-form-field>
     <textarea matInput placeholder=" Email id" [(ngModel)]="rsvpInvitationModel.inviteeEmail" ngModel #inviteeEmail="ngModel"
       required pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></textarea>
   </mat-form-field>
  
-  <h3>
+  <h4>
       Are you attending?
       
-  </h3>
+  </h4>
 
   <!-- <input type="radio" value="male" name="gender" ngModel> Male
   <input type="radio" value="female" name="gender" ngModel> Female -->
 
   <mat-radio-group>
-      <mat-radio-button value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am attending</mat-radio-button>
+      <mat-radio-button value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status" (click)="changeStatus(true)"  ngModel #status="ngModel">I am attending</mat-radio-button>
       <br>
       <mat-radio-button value=false name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am not attending</mat-radio-button>
-
+<br>
+<br>
     </mat-radio-group>  
     <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">submit </button>
+ </mat-card>
   </div>
 </div>
