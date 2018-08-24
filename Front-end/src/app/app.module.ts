@@ -37,6 +37,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MultipleCheckboxesModule} from 'multiple-checkboxes';
 // import { ArenaLayoutSocketComponent } from './arena-layout-socket/arena-layout-socket.component';
 import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.component';
+import { SocketConnectionComponent } from './socket-connection/socket-connection.component'
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.componen
     UserProfileComponent,
     // ArenaLayoutSocketComponent,
     TheatreLayoutComponent,
+    SocketConnectionComponent,
   ],
   imports: [
     BrowserModule,

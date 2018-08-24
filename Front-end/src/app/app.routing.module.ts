@@ -16,6 +16,7 @@ import { SearchResultsComponent } from "./search-results/search-results.componen
 import { MovieInfoComponent } from "./movie-info/movie-info.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import {TheatreLayoutComponent} from "./theatre-layout/theatre-layout.component";
+import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
 
 const routes: Routes = [
   {
@@ -77,6 +78,10 @@ const routes: Routes = [
   {
     path:"theatreLayout",
     component:TheatreLayoutComponent
+  },
+  {
+    path: "socketConnection",
+    component: SocketConnectionComponent
   }
 ];
 
