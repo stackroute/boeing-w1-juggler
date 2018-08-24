@@ -25,7 +25,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": ["../Front-end-git/node_modules/jquery/dist/jquery.js"]
+            "scripts": ["../Front-end/node_modules/jquery/dist/jquery.js"]
           },
           "configurations": {
             "production": {
