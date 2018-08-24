@@ -1,31 +1,110 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>
-      <mat-card-actions>
-        <button mat-raised-button matTooltip="Recommended Events" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
-          class="example-button" mat-raised-button routerLink="/home" color="primary" style="margin-left: 8px;margin-top: 4px">E-Play home</button>
-      </mat-card-actions>
-    </span>
-    <span>
-      <mat-card-actions>
-        <button mat-raised-button matTooltip="Recommended Events" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
-          class="example-button" mat-raised-button routerLink="/changeCity" color="primary" style="margin-left: 38px;margin-top: 4px">Change City</button>
-      </mat-card-actions>
-    </span>
-    <span class="example-spacer" style="margin-left: 300px">
-      <mat-form-field>
-        <input mat-raised-button matTooltip="Enter the name of the movie you want to search.." matTooltipClass="example-tooltip-red"
-          aria-label="Button that shows a red tooltip" class="example-button" matInput value="Search ImDB..." [(ngModel)]="omdbSearchTitle">
-        <button mat-raised-button matTooltip="Click to search Movies" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
-          class="example-button" (click)="onSearch()" routerLink="/search"  mat-raised-button style="margin-left: 10px">Search for latest Movies</button>
-      </mat-form-field>
+<div class="app-side-nav navbarSection">
+<div class="flex-container">
+  <mat-card-actions>
+    <div class="column image" style="margin-left: -90px">
+      <app-side-nav></app-side-nav>
+    </div>
+  </mat-card-actions>
+  <mat-card-actions>
+    <div class="column">
+      <button mat-raised-button matTooltip="Home" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+        class="example-button" routerLink="/home">E-PLAY</button>
+    </div>
+  </mat-card-actions>
+
+  <mat-card-actions>
+    <div class="column">
+      <button mat-raised-button matTooltip="Click to choose another city" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+        class="example-button" mat-raised-button routerLink="/changeCity">Change City</button>
+    </div>
+  </mat-card-actions>
+
+  <mat-card-actions>
+    <div class="column">
+      <input mat-raised-button matTooltip="Enter the name of the movie you want to search.." matTooltipClass="example-tooltip-red"
+        aria-label="Button that shows a red tooltip" class="example-button" matInput value="Search ImDB..." [(ngModel)]="omdbSearchTitle">
+    </div>
+  </mat-card-actions>
+
+  <mat-card-actions>
+    <div class="column">
+        <!-- <form class="navbar-form pull-left">
+						<input type="text" class="form-control" placeholder="Enter destination or hotel.." id="searchInput">
+						<button type="submit" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</form> -->
+      <button mat-raised-button matTooltip="Click to search Movies" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+        class="example-button" (click)="onSearch()" routerLink="/search" mat-raised-button>Search for latest Movies</button>
+    </div>
+  </mat-card-actions>
+
+  <mat-card-actions>
+    <div class="column">
       <button mat-raised-button matTooltip="Click to create an Event" routerLink="/createEvent" routerLinkActive="active" matTooltipClass="example-tooltip-red"
-        aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 300px;color:black">Create Event</button>
+        aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button>Create Event</button>
+    </div>
+  </mat-card-actions>
+  <!-- <a href="#myModal" data-toggle="modal" >Personal Info</a> -->
+  <mat-card-actions>
+    <div class="column">
+      <!-- <a href="#myModal" data-toggle="modal" class="dropdown-item">Personal Info</a> -->
+      <!-- <aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 300px;color:black">Create Event</a> -->
       <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" *ngIf="!authenticationService.loggedIn()" style="margin-left: 10px">Login/SignUp</button>
       <button mat-raised-button matTooltip="Click to quickly Logout" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()" style="margin-left: 10px">Logout</button>
-    </span>
+    
+      <!-- <button mat-raised-button matTooltip="Click to quickly Signup" class="example-button" routerLink="/userRegistration" routerLinkActive="active">SignUp</button> --><!--Manu Tyagi-->
+      </div>
+  </mat-card-actions>
+</div>
+</div>
+<!-- <app-side-nav></app-side-nav> -->
+<!-- <div class="container navbarSection"> -->
+<!-- <div class="flex-container">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <div class="column">
+          <span>
+            <mat-card-actions>
+              <button mat-raised-button matTooltip="Recommended Events" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                class="example-button" mat-raised-button routerLink="/home" color="primary" style="margin-left:25px;margin-top: 4px">E-Play home</button>
+            </mat-card-actions>
+          </span>
+        </div>
+
+        <div class="column">
+          <span>
+            <mat-card-actions>
+              <button mat-raised-button matTooltip="Recommended Events" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                class="example-button" mat-raised-button routerLink="/changeCity" color="primary" style="margin-left: 50px;margin-top: 4px">Change City</button>
+            </mat-card-actions>
+          </span>
+        </div>
+
+        <div class="column">
+          <span class="example-spacer" style="margin-left: 300px">
+            <mat-form-field>
+              <input mat-raised-button matTooltip="Enter the name of the movie you want to search.." matTooltipClass="example-tooltip-red"
+                aria-label="Button that shows a red tooltip" class="example-button" matInput value="Search ImDB..." [(ngModel)]="omdbSearchTitle">
+              <button mat-raised-button matTooltip="Click to search Movies" matTooltipClass="example-tooltip-red" aria-label="Button that shows a red tooltip"
+                class="example-button" (click)="onSearch()" routerLink="/search" mat-raised-button style="margin-left: 10px">Search for latest Movies</button>
+            </mat-form-field>
+            <button mat-raised-button matTooltip="Click to create an Event" routerLink="/createEvent" routerLinkActive="active" matTooltipClass="example-tooltip-red"
+              aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 250px;color:black">Create Event</button>
+            <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" style="margin-left: 30px">SignUp</button>
+          </span>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div> -->
+<!-- </div> -->
+        
+      <!-- </span>
   </mat-toolbar-row>
-</mat-toolbar>
+</mat-toolbar> -->
+
+
+
 <!-- <mat-toolbar-row>
     <mat-tab-group>
       <mat-tab label="All" isActive="true"></mat-tab>

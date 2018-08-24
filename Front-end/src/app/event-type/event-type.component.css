@@ -19,3 +19,15 @@
 .search-form {
   width: 90%;
 }
+
+
+.flex-container {
+  /* background-color: #008b8b;
+  color: #f3f3ef; */
+  /* background-color:#5f4c4c; */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  /* height: 75px; */
+}

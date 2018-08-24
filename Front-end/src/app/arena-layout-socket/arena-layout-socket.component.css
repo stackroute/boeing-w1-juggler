@@ -31,7 +31,6 @@
   }
   .send{
     float: right;
-    background: url("../assets/images/send.png");
     background-size: contain;
     background-repeat: no-repeat;
     height: 30px;

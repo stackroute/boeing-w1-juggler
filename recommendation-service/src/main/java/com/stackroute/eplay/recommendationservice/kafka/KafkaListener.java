@@ -53,11 +53,12 @@ public class KafkaListener {
 		int id = movieKafka.getId();
 		String name = movieKafka.getName();
 		String language = movieKafka.getLanguage();
+		String poster = movieKafka.getPoster();
 		int ratings = movieKafka.getRating();
 		String g = movieKafka.getGenre();
 		LocalDate releaseDate = movieKafka.getReleaseDate();
 		Genre genre = new Genre(g);
-		Movie movie = new Movie(id,name,language,ratings,genre,releaseDate);
+		Movie movie = new Movie(id,name,language,poster,ratings,genre,releaseDate);
 		movieService.saveMovie(movie);
 	}
 	

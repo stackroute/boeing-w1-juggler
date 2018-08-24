@@ -2,6 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MovieEvent } from "../movie-event";
 import { MovieEventService } from "../movie-event.service";
+import { SearchDataService } from "../search-data.service";
+import { Movie } from "../models/movie";
+import { UserRegistration } from "../models/user-registration";
 @Component({
   selector: "app-movie-event",
   templateUrl: "./movie-event.component.html",
@@ -10,46 +13,47 @@ import { MovieEventService } from "../movie-event.service";
 export class MovieEventComponent implements OnInit {
   movieEventModel = new MovieEvent();
   movieEventControl = new FormControl();
-  constructor(private movieEventService :MovieEventService) {}
+  movies:Movie[];
+  user;
+  theatres: Theatre[];
+  movieId; // ID corresponding to selected movie Name from Dropdown
+ 
+  constructor(private movieEventService :MovieEventService,private _searchDataService:SearchDataService) {}
+  
+  ngOnInit() {
+    this._searchDataService.getAllMovies().subscribe(data => 
+      {
+        this.movies=data
+        console.log("mymovies",this.movies);
+      });
+    console.log(localStorage.getItem('currentUser'));
+    this._searchDataService.getUserByUserName(localStorage.getItem('currentUser')).subscribe(data => 
+      {
+        this.user=data;
+        console.log(data);
+        console.log(this.user);
+        this.theatres=this.user.theatres;
+      });
+  }
+
+  findMovieId(movie){
+    console.log(movie.id);
+  this.movieEventModel.movieId=movie.id;
+
+  }
+  findTheatreId(theatre){
+    console.log(theatre.theatreId);
+    this.movieEventModel.theatreId=theatre.theatreId;
+  }
   onSubmit() {
+    this.movieEventModel.city=localStorage.getItem('city');
+    console.log(this.movieEventModel);
     this.movieEventService
       .saveMovieEvent(this.movieEventModel)
       .subscribe(res => console.log("Saved Movie Event"));
   }
 
-  theatreGroups: TheatreGroup[] = [
-    {
-      name: "PVR",
-      theatre: [
-        { value: "PVR INOX", viewValue: "PVR Kormangla" },
-        { value: "PVR GOLDCLASS", viewValue: "PVR Orion Mall" },
-        { value: "PVR FAMILY", viewValue: "PVR Arena Mall" }
-      ]
-    },
-    {
-      name: "Imax",
-      theatre: [
-        { value: "Imax Gold", viewValue: "Imax Mantri Mall" },
-        { value: "Imax Silver", viewValue: "Imax Forum" },
-        { value: "Imax Platinum", viewValue: "Imax Phoenix marketcity" }
-      ]
-    },
-    {
-      name: "Wave",
-      // disabled: true,
-      theatre: [
-        { value: "Wave red", viewValue: "Wave red" },
-        { value: "Wave Gold", viewValue: "Wave Gold" },
-        { value: "Wave Balcony", viewValue: "Wave Balcony" }
-      ]
-    }
-  ];
-
-  
-
-  ngOnInit() {}
 }
-
 export interface Theatre {
   value: string;
   viewValue: string;

@@ -1,0 +1,54 @@
+<!-- Invisible checkbox -->
+<input type='checkbox' id='toggle'>
+<!-- Menu -->
+<aside class='leftbar'>
+  <label for='toggle' class='exit'>X</label>
+  <h2 class="example-h2">Filters</h2>
+  <div class="flex-container">
+    <!-- <section class="example-section"> -->
+    <app-multiple-checkboxes (updatedListWithFulldata)="selectedPreferenceList($event)" [masterList]="genresList" [DisplayField]="'moviegenre'"
+      [title]="'Select movie'" [height]="150"></app-multiple-checkboxes>
+
+    <!-- <mat-checkbox class="example-margin" (change)="onChange('Thriller')">
+        Thriller
+      </mat-checkbox>
+    </section>
+    <section class="example-section">
+      <mat-checkbox class="example-margin" (change)="onChange('Comedy')">
+        Comedy
+      </mat-checkbox>
+    </section>
+    <section class="example-section" (change)="onChange('Drama')">
+      <mat-checkbox class="example-margin">
+        Drama
+      </mat-checkbox>
+    </section>
+    <section class="example-section" (change)="onChange('Romance')">
+      <mat-checkbox class="example-margin">
+        Romance
+      </mat-checkbox>
+    </section>
+    <section class="example-section" (change)="onChange('Sports')">
+      <mat-checkbox class="example-margin">
+        Sports
+      </mat-checkbox>
+    </section>
+    <section class="example-section" (change)="onChange('Horror')">
+      <mat-checkbox class="example-margin">
+        Horror
+      </mat-checkbox> -->
+    <!-- </section> -->
+  </div>
+</aside>
+<!-- Content -->
+<div class='content'>
+  <button mat-icon-button matTooltip="Click for filters" matTooltipClass="example-tooltip-red">
+    <label for='toggle' class='button'></label>
+    <mat-icon>find_in_page</mat-icon>
+  </button>
+</div>
+
+
+
+<!-- <app-multiple-checkboxes (updatedList)="selectedPreferenceList($event)" [height]="150" [masterList]="preferences" [title]="'Select Genre'"
+  [DisplayField]="'name'"></app-multiple-checkboxes> -->
