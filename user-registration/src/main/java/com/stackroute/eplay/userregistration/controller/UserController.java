@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.userregistration.domain.Registration;
+import com.stackroute.eplay.userregistration.domain.Theatre;
 import com.stackroute.eplay.userregistration.exception.EmailAlreadyExistsException;
 import com.stackroute.eplay.userregistration.exception.UserNameAlreadyExistsException;
 import com.stackroute.eplay.userregistration.service.RegisterUser;
@@ -86,4 +87,10 @@ public class UserController {
 //            return new ResponseEntity<String>("User Not Found", HttpStatus.UNAUTHORIZED);
 //        }
     }
+	@PostMapping("/registerTheatre")
+	public ResponseEntity<?> saveTheatre(@RequestBody Theatre theatre) {
+		registerUser.saveTheatre(theatre);
+		// kafkaTemplate.send(TOPIC , registrant);
+		return new ResponseEntity<Registration>(HttpStatus.CREATED);
+	}
 }

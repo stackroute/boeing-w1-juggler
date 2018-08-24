@@ -16,7 +16,7 @@ export class RsvpEventpageComponent implements OnInit {
 
 
   rsvpInvitationModel= new RsvpInvitation();
-  rsvpModel=new RsvpCreate();
+  rsvpModel:any;
   
 
   constructor(
@@ -30,7 +30,7 @@ export class RsvpEventpageComponent implements OnInit {
   
   ngOnInit() {
     console.log(this.rsvpModel);
-   this.rsvpCreateService.getRsvpEventById(78).subscribe(p=>{
+   this.rsvpCreateService.getRsvpEventById(8).subscribe(p=>{
      this.rsvpModel=p;
    });
    console.log(this.rsvpModel);
@@ -38,7 +38,7 @@ export class RsvpEventpageComponent implements OnInit {
 
   onSubmit(){console.log("to change status");
   console.log(this.rsvpInvitationModel);
-   this.rsvpCreateService.updateRsvp(this.rsvpInvitationModel,78).subscribe(res=>{console.log('saved')
+   this.rsvpCreateService.updateRsvp(this.rsvpInvitationModel, 8).subscribe(res=>{console.log('saved')
   });
   
   }

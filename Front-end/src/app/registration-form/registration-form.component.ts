@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserRegistration } from "../user-registration";
+import { UserRegistration } from "../models/user-registration";
 import { RegistrationService } from "../registration.service";
 import {MatSnackBar} from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';

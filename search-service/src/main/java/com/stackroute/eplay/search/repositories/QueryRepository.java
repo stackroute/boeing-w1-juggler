@@ -10,8 +10,3 @@ import com.stackroute.eplay.search.domain.Query;
 public interface QueryRepository extends MongoRepository<Query, Integer> {
 
 }
-//public interface MovieRepository extends CrudRepository<Movie, Integer>{
-//	
-//	@Query("FROM Movie m where m.title = :title")
-//	public Optional<Movie> getMovieByTitle(@Param("title") String title);	
-//}
