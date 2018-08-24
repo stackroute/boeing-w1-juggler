@@ -9,10 +9,10 @@ import { Movie } from "./models/movie";
 })
 
 export class SearchDataService {
-
+ 
+  currentUser;
   url= "http://172.23.238.198:8092/user-registration/api/v1/user/";
  // url= "http://172.23.238.213:8091/api/v1/user/";
-  currentUser=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
   
  private messageSource = new BehaviorSubject('default message');
  currentMessage = this.messageSource.asObservable();
@@ -36,6 +36,8 @@ export class SearchDataService {
 }
 
 getUserByUserName(name){
+  this.currentUser=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+
   console.log(name)
   console.log(this.currentUser);
   return this.http.get(this.url+this.currentUser);
