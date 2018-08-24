@@ -8,13 +8,12 @@ import { Observable } from "rxjs";
 })
 export class EmailService {
 
-  private _url: string = "http://172.23.238.218:9000/api/v1/email/sendEmail";
+   url= "http://172.23.238.188:9000/api/v1/email/sendEmail";
 
-  
- // inputEmailsDetails:InputEmailsDetails;
+   // inputEmailsDetails:InputEmailsDetails;
   constructor(private http: HttpClient) {}
-  sendInvitations(inputEmailsDetails:InputEmailsDetails):Observable<string>
+    sendInvitations(inputEmailsDetails:InputEmailsDetails):Observable<string>
   {
-    return this.http.post<string>(this._url,inputEmailsDetails);
+    return this.http.post<string>(this.url,inputEmailsDetails);
   }
 }
