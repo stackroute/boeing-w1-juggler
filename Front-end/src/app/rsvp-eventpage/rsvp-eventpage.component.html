@@ -26,9 +26,7 @@
 <h4>
    Notes: {{rsvpModel.notes}}
  </h4>
- <h4>
-   Event Status: {{rsvpModel.isCompleted}}
- </h4>
+
  <br>
 
  <mat-form-field>
@@ -53,7 +51,7 @@
       <mat-radio-button value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am attending</mat-radio-button>
       <br>
       <mat-radio-button value=false name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am not attending</mat-radio-button>
-
+<br>
     </mat-radio-group>  
     <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">submit </button>
  </mat-card>

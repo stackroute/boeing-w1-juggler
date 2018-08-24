@@ -47,7 +47,7 @@ export class RsvpInvitationComponent implements OnInit {
      .subscribe(res => {
        console.log("saved");
      });
-   //location.reload();
+   location.reload();
  }
  onSubmit1() {
    //this.id=this.rsvpModel.id;
@@ -61,13 +61,20 @@ export class RsvpInvitationComponent implements OnInit {
      "You are invited to: " + this.rsvpModel.name;
    this.inputEmailsDetails.body ="click here to view Invitation http://172.23.238.218:4200/rsvpEvent/8";
 
-   this.inputEmailsDetails.emailBcc.push(
-     this.rsvpModel.rsvpInvitation[0].inviteeEmail
-   );
 
-   this.inputEmailsDetails.emailBcc.push(
-     this.rsvpModel.rsvpInvitation[1].inviteeEmail
-   );
+   for (var i=0;i<(this.rsvpModel.rsvpInvitation).length;i++)
+     {
+       this.inputEmailsDetails.emailBcc.push(
+         this.rsvpModel.rsvpInvitation[i].inviteeEmail
+       );
+     }
+  //  this.inputEmailsDetails.emailBcc.push(
+  //    this.rsvpModel.rsvpInvitation[0].inviteeEmail
+  //  );
+
+  //  this.inputEmailsDetails.emailBcc.push(
+  //    this.rsvpModel.rsvpInvitation[1].inviteeEmail
+  //  );
    this.callTest();
  }
 
