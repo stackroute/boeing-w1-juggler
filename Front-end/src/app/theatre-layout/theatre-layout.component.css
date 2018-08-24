@@ -18,11 +18,22 @@
     border-radius: 4px;
 }
 
+.seat1 {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    float: left;   
+    border-radius: 4px;
+}
 .clearfix { clear: both;}
 .available {
     background-color: lightgray;
 }
 
+.passage{
+    pointer-events: none;
+    background-color:beige;
+}
 .hovering{
 	background-color: grey;
 }
