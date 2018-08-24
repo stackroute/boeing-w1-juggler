@@ -49,7 +49,7 @@
   <mat-card-actions>
     <div class="column">
       <!-- <a href="#myModal" data-toggle="modal" class="dropdown-item">Personal Info</a> -->
-      <aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 300px;color:black">Create Event</button>
+      <!-- <aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 300px;color:black">Create Event</a> -->
       <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" *ngIf="!authenticationService.loggedIn()" style="margin-left: 10px">Login/SignUp</button>
       <button mat-raised-button matTooltip="Click to quickly Logout" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()" style="margin-left: 10px">Logout</button>
     
