@@ -38,11 +38,16 @@ export class RsvpEventpageComponent implements OnInit {
 
   onSubmit(){console.log("to change status");
   console.log(this.rsvpInvitationModel);
+  this.rsvpInvitationModel.status=true;
    this.rsvpCreateService.updateRsvp(this.rsvpInvitationModel, 8).subscribe(res=>{console.log('saved')
   });
   
   }
   
+
+  changeStatus(status){this.rsvpInvitationModel.status=status;
+
+  }
  // this.rsvpModel=this.rsvpCreateService.getRsvpEventById(id);
 
 //  getRsvpEventById(id:number){
