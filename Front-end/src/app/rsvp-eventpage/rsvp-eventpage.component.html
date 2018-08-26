@@ -46,15 +46,16 @@
 
   <!-- <input type="radio" value="male" name="gender" ngModel> Male
   <input type="radio" value="female" name="gender" ngModel> Female -->
-
-  <mat-radio-group>
-      <mat-radio-button value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status" (click)="changeStatus(true)"  ngModel #status="ngModel">I am attending</mat-radio-button>
-      <br>
-      <mat-radio-button value=false name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am not attending</mat-radio-button>
+  <div class="container">
+  <form action="">
+      <input type="radio" id="t-option" name="selector" value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status" (click)="changeStatus(true)"  ngModel #status="ngModel">I am attending
+           <br>
+      <input type="radio"  id="t-option" name="selector"value=false name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am not attending
 <br>
 <br>
-    </mat-radio-group>  
-    <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">submit </button>
+    </form> 
+    </div>
+    <button type="submit"  name="button" class="btn btn-success button" (click)="onSubmit()">submit </button>
  </mat-card>
   </div>
 </div>
