@@ -90,5 +90,6 @@
 		<module>rsvp-service</module>
 		<module>user-registration</module>
 		<module>show-scheduler</module>
+		<module>recommendation-service</module>
 	</modules>
 </project>

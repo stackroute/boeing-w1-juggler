@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { UserRegistration } from "./user-registration";
+import { UserRegistration } from "./models/user-registration";
 @Injectable({
   providedIn: "root"
 })
 export class RegistrationService {
   // private _url: string = "http://localhost:8080/api/v1/getAllMovies";
-  private _url1: string = "http://localhost:8092/api/v1/register";
+ private _url1: string = "http://13.232.40.6:8092/user-registration/api/v1/register";
+ //private _url1: string = "http://localhost:8091/api/v1/register";
   // private omdbUrl: string = "http://www.omdbapi.com/?s=";
   // private apiKey: string = "&apikey=6db283eb";
   // private _url2: string = "http://localhost:8080/api/v1/deleteMovie/";

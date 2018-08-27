@@ -13,7 +13,7 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Enter City">
+    <input matInput placeholder="Enter City" [(ngModel)]="theatreModel.city">
   </mat-form-field>
   <br>
   <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">Create Theatre</button>

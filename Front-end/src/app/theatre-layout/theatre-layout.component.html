@@ -3,15 +3,17 @@
   <h2>Theatre Layout</h2>
 </div>
 <hr>
-<!--  <button id="btnSeating" >Fill Seating</button>
-  <div id="messagePanel" class="messagePanel" ng-bind="seatingValue">
-  {{seatingValue}}
-</div> -->
 <div class="ArenaLayout">
   <div class="rows" *ngFor= "let row of totalRow">
-    <div class="columns" *ngFor= "let col of totalCol"> 
-      <div id= {{row}}{{col}} class="seat available">
-      </div> 
+    <div class="columns" *ngFor= "let col of totalCol">
+      <div *ngIf="col!=2 && col!=7 && row!=6; else Passage"> 
+        <div id = {{row}}{{col}} class="seat available" (click)="onclick(row,col)">
+            {{row}}{{col}}
+        </div>
+      </div>
+      <ng-template #Passage>
+        <div class=" seat1 passage"></div>
+      </ng-template> 
     </div>
   </div>
 </div>
@@ -19,5 +21,5 @@
     Screen this way
 </div>
 <div class="bookButton">
-    <button mat-raised-button color="primary">Proceed</button>
+    <button mat-raised-button color="primary" (click)="bookticket()">Proceed</button>
 </div>

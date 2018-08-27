@@ -11,7 +11,9 @@ export class TheatreComponent implements OnInit {
   constructor(private theatreService :TheatreService) { }
   onSubmit() {
    
-    this.theatreModel.userName= localStorage.getItem('currentUser');
+    this.theatreModel.userName= localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+    console.log(this.theatreModel.userName);
+    console.log(this.theatreModel);
     this.theatreService
       .saveTheatre(this.theatreModel)
       .subscribe(res => console.log("Saved theatre"));
