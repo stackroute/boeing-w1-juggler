@@ -34,7 +34,6 @@ import { MovieTheatreListComponent } from "./movie-info/movie-theatre-list/movie
 import { SideNavComponent } from "./side-nav/side-nav.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
-// import { ArenaLayoutSocketComponent } from './arena-layout-socket/arena-layout-socket.component';
 import { SocketConnectionComponent } from './socket-connection/socket-connection.component'
 import { TheatreLayoutComponent } from "./theatre-layout/theatre-layout.component";
 import { MultipleCheckboxesModule } from "multiple-checkboxes";
@@ -62,7 +61,6 @@ import { MultipleCheckboxesModule } from "multiple-checkboxes";
     TheatreComponent,
     SideNavComponent,
     UserProfileComponent,
-    // ArenaLayoutSocketComponent,
     TheatreLayoutComponent,
     SocketConnectionComponent,
   ],
