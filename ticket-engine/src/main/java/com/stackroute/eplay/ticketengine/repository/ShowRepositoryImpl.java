@@ -14,7 +14,7 @@ import com.stackroute.eplay.ticketengine.domain.Show;
 @Repository
 public class ShowRepositoryImpl implements ShowRepository {
 
-	private static final String KEY = "Show";
+	private static final String KEY = "Show3";
 
 	private RedisTemplate<String, Object> redisTemplate;
 	private HashOperations<String, Long, Show> hashOperations;
