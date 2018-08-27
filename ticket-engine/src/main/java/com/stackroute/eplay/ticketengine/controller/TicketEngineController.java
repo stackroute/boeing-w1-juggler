@@ -47,9 +47,10 @@ public class TicketEngineController {
 	
 	@MessageMapping("/send/message")
     @SendTo("/chat")
-    public String show(String msg) throws Exception {
+    public Show show(Show show) throws Exception {
+		System.out.println(show);
 		// return new Show("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-		return msg;
+		return show;
     }
 
 }
