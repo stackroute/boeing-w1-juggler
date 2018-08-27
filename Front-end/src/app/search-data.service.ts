@@ -11,7 +11,7 @@ import { Movie } from "./models/movie";
 export class SearchDataService {
  
   currentUser;
-  url= "http://172.23.238.198:8092/user-registration/api/v1/user/";
+  url= "http://13.232.40.6:8092/user-registration/api/v1/user/";
  // url= "http://172.23.238.213:8091/api/v1/user/";
   
  private messageSource = new BehaviorSubject('default message');
@@ -32,7 +32,7 @@ export class SearchDataService {
  constructor(private http: HttpClient, private router: Router) { }
 
  getAllMovies(): Observable<Movie[]>{
-  return this.http.get<Movie[]>('http://172.23.238.198:8092/ticket-service/api/v1/getAllMovie')
+  return this.http.get<Movie[]>('http://13.232.40.6:8092/ticket-service/ticket-service/api/v1/getAllMovie')
 }
 
 getUserByUserName(name){
@@ -46,24 +46,24 @@ getUserByUserName(name){
 
 
 getMyMovies(city) {
-  return this.http.get('http://172.23.238.198:8092/search-service/api/v1/city/'+city+'/movies')
+  return this.http.get('http://13.232.40.6:8092/search-service/api/v1/city/'+city+'/movies')
 }
 getMyEvents(city) {
- return this.http.get('http://172.23.238.198:8092/search-service/api/v1/city/'+city+'/events')
+ return this.http.get('http://13.232.40.6:8092/search-service/api/v1/city/'+city+'/events')
 }
 
 getSearchedEvents(name) {
   console.log(name);
- return this.http.get('http://172.23.238.198:8092/search-service/api/v1/events/'+name)
+ return this.http.get('http://13.232.40.6:8092/search-service/api/v1/events/'+name)
 }
 getSearchedMovies(name) {
  console.log(name);
-return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movies/'+name)
+return this.http.get('http://13.232.40.6:8092/search-service/api/v1/movies/'+name)
 }
 
 getMovieByCitynId(movieId) {
  let city=localStorage.getItem('city');
-  return this.http.get('http://172.23.238.198:8092/search-service/api/v1/movie/'+movieId+'/city/'+city)
+  return this.http.get('http://13.232.40.6:8092/search-service/api/v1/movie/'+movieId+'/city/'+city)
  }
 
 }

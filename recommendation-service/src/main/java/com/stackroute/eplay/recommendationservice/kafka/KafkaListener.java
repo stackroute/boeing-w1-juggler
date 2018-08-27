@@ -96,12 +96,12 @@ public class KafkaListener {
 		City city = new City(userKafka.getCity());
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();
-		if(userKafka.getMovieId()!=null) {
-		for(int id:userKafka.getMovieId()) {
+		if(userKafka.getBookedMovieId()!=null) {
+		for(int id:userKafka.getBookedMovieId()) {
 			movies.add(movieService.findById(id));
 		}}
-		if(userKafka.getTicketedEventId()!=null) {
-		for(int id:userKafka.getTicketedEventId()) {
+		if(userKafka.getBookeedTicketedEventId()!=null) {
+		for(int id:userKafka.getBookeedTicketedEventId()) {
 			events.add(ticketedEventService.findById(id));
 		}
 	}

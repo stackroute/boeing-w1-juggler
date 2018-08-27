@@ -1,34 +1,40 @@
 <app-nav-bar></app-nav-bar>
-<button type="submit" class="example-button" name="button" class="btn btn-success" style="margin-top: 20px;margin-left:  1150px" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
-<div class="example-container">
-  <mat-form-field>
-    <mat-select placeholder="Select Movie" [formControl]="movieEventControl" >
-        <mat-option *ngFor="let movie of movies" [value]="movie.name" (click)="findMovieId(movie)" >   
-          {{movie.name}}   
-        </mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="jumbotron">
+  <div class="medium-list">
+    <div class="list-viewer-wrapper">
+      <div class="list-header-title">Movie Event</div>
+      <div class="form-container">
+        <mat-form-field>
+          <mat-select placeholder="Select Movie" [formControl]="movieEventControl">
+            <mat-option *ngFor="let movie of movies" [value]="movie.name" (click)="findMovieId(movie)">
+              {{movie.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-  <br>
-  <mat-form-field>
-    <mat-select placeholder="Select Theater " [formControl]="movieEventControl"  >
-      <mat-option *ngFor="let theatre of theatres" [value]="theatre.theatreName" (click)="findTheatreId(theatre)" >   
-        {{theatre.theatreName}}   
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.week">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.showTimes">
-  </mat-form-field>
-  <br>
+        <br>
+        <mat-form-field>
+          <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
+            <mat-option *ngFor="let theatre of theatres" [value]="theatre.theatreName" (click)="findTheatreId(theatre)">
+              {{theatre.theatreName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.week">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.showTimes">
+        </mat-form-field>
+        <br>
 
-  <br>
-  <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">Create Movie Event</button>
-
+        <br>
+        <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">Create Movie Event</button>
+        <br>
+        <button type="submit" class="example-button" name="button" class="btn btn-success" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
+      </div>
+    </div>
+  </div>
 </div>
-
