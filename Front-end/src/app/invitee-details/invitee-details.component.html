@@ -8,21 +8,21 @@ table, th, td {
 }
 
 table {
-    width: 100%;
+    align-self: auto;
+    width: 80%;
+    background-color:gainsboro;
 }
 
 th {
     height: 50px;
 }
 
-.w3-container{
-    background-color:grey;
-}
+
     
     </style>
-<table class="w3-table w3-bordered" >
+<table align="center" class="w3-table w3-bordered" >
   <thead>
-    <tr>
+    <tr align="center">
        <th>S. No</th> 
       <th> Invitee name</th>
       <th>Invitee Email</th>
@@ -32,8 +32,8 @@ th {
   </thead>
   <tbody>
       
-        <tr *ngFor="let name of rsvpModel.rsvpInvitation">
-           <td>{{i}}</td> 
+        <tr align="center" *ngFor="let name of rsvpModel.rsvpInvitation">
+           <td class="counterCell"></td> 
           <td> {{name.inviteeName}} </td>
           <td> {{name.inviteeEmail}} </td>
           <td> {{name.status}}</td>
@@ -42,11 +42,12 @@ th {
   </tbody>
 </table>
 </div>
-
+<div class="InvitationButton">
 <br>
-<h2>Click here to view Invitation page</h2>
+<h4>Click here to view Invitation page</h4>
 <button type="submit" class="example-button" name="button" class="btn btn-success" class="button" (click)="onSubmit1()" >My RSVP Invitation </button>  
 <br>
 <br>
-<h2>Click here add more invitee</h2>
+<h4>Click here add more invitee</h4>
 <button type="submit" class="example-button" name="button" class="btn btn-success" class="button" (click)="onSubmit2()" routerLink="/rsvpInvitation">Add more invitees </button>  
+</div>
