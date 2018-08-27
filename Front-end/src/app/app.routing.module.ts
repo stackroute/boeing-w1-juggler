@@ -17,6 +17,7 @@ import { MovieInfoComponent } from "./movie-info/movie-info.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import {TheatreLayoutComponent} from "./theatre-layout/theatre-layout.component";
 import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
+import { InviteeDetailsComponent } from "./invitee-details/invitee-details.component";
 
 const routes: Routes = [
   {
@@ -82,6 +83,10 @@ const routes: Routes = [
   {
     path: "socketConnection",
     component: SocketConnectionComponent
+  },
+  {
+    path:"InviteeDetails",
+    component:InviteeDetailsComponent
   }
 ];
 

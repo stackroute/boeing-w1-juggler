@@ -16,7 +16,7 @@ export class RsvpInvitationComponent implements OnInit {
  inputEmailsDetails = new InputEmailsDetails();
  public rsvpModel: any;
  message: string;
- id = 8;
+ id = 3;
  id1: string;
  idd = this.id.toString();
  // backgroundImg;
@@ -33,7 +33,7 @@ export class RsvpInvitationComponent implements OnInit {
    console.log("this.rsvpModel");
    this.inputEmailsDetails.emailBcc = [];
    //  console.log(this.rsvpModel);
-   this.rsvpCreateService.getRsvpEventById(8).subscribe(rsvpCreateService => {
+   this.rsvpCreateService.getRsvpEventById(3).subscribe(rsvpCreateService => {
      this.rsvpModel = rsvpCreateService;
      console.log(this.rsvpModel);
    });
@@ -43,7 +43,7 @@ export class RsvpInvitationComponent implements OnInit {
    console.log("vishal ppu");
    console.log(this.rsvpInvitationModel);
    this.rsvpCreateService
-     .updateRsvp(this.rsvpInvitationModel, 8)
+     .updateRsvp(this.rsvpInvitationModel, 3)
      .subscribe(res => {
        console.log("saved");
      });
@@ -52,14 +52,15 @@ export class RsvpInvitationComponent implements OnInit {
  onSubmit1() {
    //this.id=this.rsvpModel.id;
    console.log("vishal ppuuu");
-   this.router.navigate(["/rsvpEvent/" + this.id]);
+  // this.router.navigate(["/rsvpEvent/" + this.id]);
+  this.router.navigate(["InviteeDetails"]);
  }
 
  onSubmit2() {
    this.inputEmailsDetails.emailAddress = "aerospacevishal@gmail.com";
    this.inputEmailsDetails.subject =
      "You are invited to: " + this.rsvpModel.name;
-   this.inputEmailsDetails.body ="click here to view Invitation http://172.23.238.218:4200/rsvpEvent/8";
+   this.inputEmailsDetails.body ="click here to view Invitation http://172.23.238.188:4200/rsvpEvent/3";
 
 
    for (var i=0;i<(this.rsvpModel.rsvpInvitation).length;i++)
@@ -68,6 +69,8 @@ export class RsvpInvitationComponent implements OnInit {
          this.rsvpModel.rsvpInvitation[i].inviteeEmail
        );
      }
+     console.log("bhai kha ahi",this.inputEmailsDetails);
+     
   //  this.inputEmailsDetails.emailBcc.push(
   //    this.rsvpModel.rsvpInvitation[0].inviteeEmail
   //  );

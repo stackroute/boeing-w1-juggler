@@ -1,0 +1,49 @@
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+    align-self: center;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    height: 50px;
+}
+
+.w3-container{
+    background-color: brown;
+}
+
+.example-container {
+    
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    margin-left: 435px;
+    
+   }
+   
+   .example-container > * {
+    width: 50%;
+
+   }
+   
+   .example-button {
+    margin-left: 20px;
+   }
+
+   .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
