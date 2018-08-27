@@ -56,7 +56,6 @@ public class ShowJob implements Job {
 			HashMap<Integer, Show> showMap = (HashMap<Integer, Show>) schedulerContext.get("show");
 
 			String[] trigger = context.getTrigger().toString().split(":");
-
 			int beginIndex = trigger[0].indexOf("trigger") + 7;
 			int endIndex = trigger[0].length() - 1;
 			int index = Integer.parseInt(trigger[0].substring(beginIndex, endIndex));

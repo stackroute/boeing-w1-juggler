@@ -5,8 +5,8 @@ body {
     flex-grow: 1;
 }
  .medium-list {
-    margin: auto;
-    width: 600px;
+    margin-top: 95px;
+    /* width: 600px; */
     padding: 10px;
   }
      
@@ -32,13 +32,11 @@ body {
     margin-top: 10px !important; 
   }
 
-
-  
-  .photo {
-    object-fit: contain;
+  .jumbotron{
+    margin: auto;
+    max-width: 80%;
   }
-  
-  .card {
-    width: 20rem;
-    margin: 0 auto;
+
+  .list-viewer-wrapper{
+    border: outset
   }

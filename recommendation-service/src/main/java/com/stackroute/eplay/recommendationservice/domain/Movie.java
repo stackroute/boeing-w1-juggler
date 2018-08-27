@@ -16,6 +16,8 @@ public class Movie {
 	private int id;
 	private String name;
 	private String language;
+	private String poster;
+	
 	private int rating;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate releaseDate;
@@ -33,10 +35,11 @@ public class Movie {
 	public Movie() {
 		
 	}
-	public Movie(int id, String name, String language, int rating, Genre genre, LocalDate releaseDate) {
+	public Movie(int id, String name, String language, String poster,int rating, Genre genre, LocalDate releaseDate) {
 		this.id = id;
 		this.name = name;
 		this.language = language;
+		this.poster = poster;
 		this.rating = rating;
 		this.genre = genre;
 		this.releaseDate = releaseDate;
@@ -100,4 +103,11 @@ public class Movie {
 	public void setUser(List<User> user) {
 		this.user = user;
 	}
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+	
 }

@@ -14,7 +14,10 @@ import { TheatreComponent } from "./theatre/theatre.component";
 import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
 import { MovieInfoComponent } from "./movie-info/movie-info.component";
-import { UserProfileComponent } from "./user-profile/user-profile.component"
+import { UserProfileComponent } from "./user-profile/user-profile.component";
+import {TheatreLayoutComponent} from "./theatre-layout/theatre-layout.component";
+import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -30,7 +33,7 @@ const routes: Routes = [
   },
   {
     path :"search",
-    component :SearchResultsComponent
+    component :HomePageComponent
   },
   {
     path: "userRegistration",
@@ -42,7 +45,8 @@ const routes: Routes = [
   },
   {
     path: "createEvent",
-    component: EventTypeComponent, canActivate:[AuthGuard]
+    component: EventTypeComponent
+    // component: EventTypeComponent, canActivate:[AuthGuard]
   },
   {
     path: "createRSVPEvent",
@@ -73,9 +77,16 @@ const routes: Routes = [
     component: TheatreComponent
   },
   {
-
     path:'rsvpEvent/:id',
     component:RsvpEventpageComponent
+  },
+  {
+    path:"theatreLayout",
+    component:TheatreLayoutComponent
+  },
+  {
+    path: "socketConnection",
+    component: SocketConnectionComponent
   }
 ];
 
@@ -91,6 +102,8 @@ export const routingComponents = [
   MovieEventComponent,
   RsvpEventComponent,
   SearchResultsComponent,
+  TheatreComponent,
+  UserProfileComponent,
   UserLoginComponent,
   TheatreComponent,
   UserProfileComponent

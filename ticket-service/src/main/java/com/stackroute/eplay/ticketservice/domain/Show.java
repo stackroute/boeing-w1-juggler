@@ -1,5 +1,6 @@
 package com.stackroute.eplay.ticketservice.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class Show {
     @Id
     private int showId;
     private int seatRemaining;
-    private int price;
+    private BigDecimal price;
     private LocalTime startTime;
     private LocalDate date;
     private int movieEventId;

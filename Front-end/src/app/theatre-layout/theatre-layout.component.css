@@ -1,0 +1,65 @@
+.ArenaLayout { 
+    border: solid 0.5px lightgoldenrodyellow ;
+    width: 306px;
+    height: 306px; 
+    margin-left: 38%; 
+    background-color: beige;
+}
+
+.seatLayout button{
+    margin-left: 43%;
+    margin-top: 2%;
+}
+.seat {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    float: left;   
+    border-radius: 4px;
+}
+
+.seat1 {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    float: left;   
+    border-radius: 4px;
+}
+.clearfix { clear: both;}
+.available {
+    background-color: lightgray;
+}
+
+.passage{
+    pointer-events: none;
+    background-color:beige;
+}
+.hovering{
+	background-color: grey;
+}
+.selected{
+    background-color:rgb(183, 255, 183) ;
+}
+.name h2{
+    text-align: center;
+    display: block;
+    font-family: cursive;
+}
+
+.screen{
+    display: block;
+    text-align: center;
+    font-family: cursive;
+    margin-top:20px;
+}
+
+.bookButton{
+    display: block;
+    margin-top: 40px;
+}
+
+.bookButton button{
+    margin: 0 auto;
+    display: block;
+    width: 40px;
+}

@@ -53,11 +53,12 @@ public class KafkaListener {
 		int id = movieKafka.getId();
 		String name = movieKafka.getName();
 		String language = movieKafka.getLanguage();
+		String poster = movieKafka.getPoster();
 		int ratings = movieKafka.getRating();
 		String g = movieKafka.getGenre();
 		LocalDate releaseDate = movieKafka.getReleaseDate();
 		Genre genre = new Genre(g);
-		Movie movie = new Movie(id,name,language,ratings,genre,releaseDate);
+		Movie movie = new Movie(id,name,language,poster,ratings,genre,releaseDate);
 		movieService.saveMovie(movie);
 	}
 	
@@ -95,12 +96,12 @@ public class KafkaListener {
 		City city = new City(userKafka.getCity());
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();
-		if(userKafka.getMovieId()!=null) {
-		for(int id:userKafka.getMovieId()) {
+		if(userKafka.getBookedMovieId()!=null) {
+		for(int id:userKafka.getBookedMovieId()) {
 			movies.add(movieService.findById(id));
 		}}
-		if(userKafka.getTicketedEventId()!=null) {
-		for(int id:userKafka.getTicketedEventId()) {
+		if(userKafka.getBookeedTicketedEventId()!=null) {
+		for(int id:userKafka.getBookeedTicketedEventId()) {
 			events.add(ticketedEventService.findById(id));
 		}
 	}

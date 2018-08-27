@@ -5,9 +5,36 @@
       <mat-card class="example-card">
         <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
         <mat-card-actions>
-            <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">go</button>
+            <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">Book</button>
           </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
   </div>
+  recommended
+  <div *ngFor="let movie of rec$">
+      <mat-grid-tile colspan="4" rowspan="6">
+        <mat-card class="example-card">
+          <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
+          <mat-card-actions>
+              <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">Book</button>
+            </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </div>
+</mat-grid-list>
+
+<!-- </mat-grid-list> -->
+
+  
+<mat-grid-list cols="12" rowHeight="100px">
+<div *ngFor="let movie of movie$">
+  <mat-grid-tile colspan="4" rowspan="6">
+    <mat-card class="example-card">
+      <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
+      <mat-card-actions>
+          <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">Book</button>
+        </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</div>
 </mat-grid-list>

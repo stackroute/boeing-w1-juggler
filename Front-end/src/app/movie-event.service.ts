@@ -6,10 +6,12 @@ import { Observable } from "rxjs";
   providedIn: 'root'
 })
 export class MovieEventService {
-  private _url: string = "http://172.23.238.220:8094/api/v1/";
+ // private _url: string = "http://172.23.238.213:8090/";
+ private _url: string = "http://13.232.40.6:8092/upstream";
   constructor(private http: HttpClient) {}
 
   saveMovieEvent(movieEvent: MovieEvent): Observable<MovieEvent> {
-    return this.http.post<MovieEvent>(this._url+"upstream/movieEvent", movieEvent);
+ //   return this.http.post<MovieEvent>(this._url+"ticket-service/api/v1/saveMovieEvent", movieEvent);
+ return this.http.post<MovieEvent>(this._url+"/api/v1/upstream/movieEvent", movieEvent);
   }
 }

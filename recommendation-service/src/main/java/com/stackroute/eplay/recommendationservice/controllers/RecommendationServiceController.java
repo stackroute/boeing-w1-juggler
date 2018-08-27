@@ -59,11 +59,12 @@ public class RecommendationServiceController {
 		int id = movieKafka.getId();
 		String name = movieKafka.getName();
 		String language = movieKafka.getLanguage();
+		String poster = movieKafka.getPoster();
 		int ratings = movieKafka.getRating();
 		String g = movieKafka.getGenre();
 		LocalDate releaseDate = movieKafka.getReleaseDate();
 		Genre genre = new Genre(g);
-		Movie movie = new Movie(id,name,language,ratings,genre,releaseDate);
+		Movie movie = new Movie(id,name,language,poster,ratings,genre,releaseDate);
 		return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);		
 	}
 	
@@ -97,10 +98,10 @@ public class RecommendationServiceController {
 		City city = new City(userKafka.getCity());
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();
-		for(int id:userKafka.getMovieId()) {
+		for(int id:userKafka.getBookedMovieId()) {
 			movies.add(movieservice.findById(id));
 		}
-		for(int id:userKafka.getTicketedEventId()) {
+		for(int id:userKafka.getBookeedTicketedEventId()) {
 			events.add(ticketedEventService.findById(id));
 		}
 		User user = new User(userName,fullName,city,movies,events);
@@ -215,6 +216,16 @@ public class RecommendationServiceController {
 		return new ResponseEntity<List<Movie>> (movieservice.getMovieByCityGenre(name,genreName),HttpStatus.OK);
 	}
 	
+	@GetMapping("/getMoviesByCityAndGenres")
+	public ResponseEntity<?> getMoviesByCityAndGenres(@RequestParam String name,@RequestParam List<String> genreNames){
+		List<Movie> movies = new ArrayList<>();
+		if(genreNames!=null) {
+			for(String genreName:genreNames) {
+			movies.addAll(movieservice.getMovieByCityGenre(name,genreName));
+			}
+		}
+		return new ResponseEntity<List<Movie>>(movies,HttpStatus.OK);
+	}
 	/*
 	 * getTicketedEventByCityType() method is used for getting Ticketed Events by Category(type) in a 
 	 * particular city ,from neo4j database.Rest end point for this method will be 
@@ -264,4 +275,6 @@ public class RecommendationServiceController {
 	public ResponseEntity<?> getCityByName(@RequestParam String name){
 		return new ResponseEntity<City> (cityservice.findBycityName(name),HttpStatus.OK);
 	}
+	
+	
 }

@@ -1,43 +1,74 @@
 <app-nav-bar></app-nav-bar>
-<div class="medium-list">
-  <div class="list-viewer-wrapper">
-    <div class="list-header-title">Register</div>
+<!-- <div class="example-container">
 
-    <form [formGroup]="registerForm" >
-      <div class="form-container">
-        <mat-form-field>
-          <input id="userName"
-                 matInput
-                 formControlName="userName"
-                 [(ngModel)]="user.userName"
-                 placeholder="Enter your userName" />
-        </mat-form-field>
 
-        <mat-form-field>
-            <input id="email"
-                   matInput
-                   formControlName="email"
-                   [(ngModel)]="user.email"
-                   placeholder="Enter your email" />
+ <mat-form-field>
+   <input matInput placeholder="Username" [(ngModel)]="userModel.userName">
+ </mat-form-field>
+
+ <mat-form-field>
+   <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="userModel.password">
+   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+ </mat-form-field>
+
+ <mat-form-field>
+   <textarea matInput placeholder="FullName" [(ngModel)]="userModel.fullName"></textarea>
+   
+ </mat-form-field>
+ 
+
+
+ <mat-form-field>
+   <textarea matInput placeholder="Contact Number" [(ngModel)]="userModel.contactNo"></textarea>
+ </mat-form-field>
+ 
+
+ <mat-form-field>
+   <textarea matInput placeholder="Email id" [(ngModel)]="userModel.email"></textarea>
+  
+ </mat-form-field>
+ 
+ <mat-form-field>
+   <textarea matInput placeholder="City" [(ngModel)]="userModel.city"></textarea>
+   
+ </mat-form-field>
+
+ <mat-form-field>
+   <textarea matInput placeholder="Gender" [(ngModel)]="userModel.gender"></textarea>
+   
+ </mat-form-field>
+  <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">Submit</button> -->
+
+
+
+<!--Rahul-->
+<div class="jumbotron">
+  <div class="medium-list">
+    <div class="list-viewer-wrapper">
+      <div class="list-header-title">Register</div>
+
+      <form [formGroup]="registerForm">
+        <div class="form-container">
+          <mat-form-field>
+            <input id="userName" matInput formControlName="userName" [(ngModel)]="user.userName" placeholder="Enter your userName" />
           </mat-form-field>
 
-        <mat-form-field>
-            <input id="password"
-                   matInput
-                   formControlName="password"
-                   [(ngModel)]="user.password"
-                   placeholder="Enter your password"
-                   [type]="hide ? 'password':'text'" />
-              <mat-icon matSuffix (click)="hide = !hide">
-                {{hide ? 'visibility' : 'visibility_off'}}
-              </mat-icon>
+          <mat-form-field>
+            <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Enter your email" />
           </mat-form-field>
 
-          <button mat-button type="onSubmit" 
-                  class="mat-raised-button mat-primary" 
-                  [disabled]="!registerForm.valid" (click)="onSubmit()">Register</button>
+          <mat-form-field>
+            <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Enter your password" [type]="hide ? 'password':'text'"
+            />
+            <mat-icon matSuffix (click)="hide = !hide">
+              {{hide ? 'visibility' : 'visibility_off'}}
+            </mat-icon>
+          </mat-form-field>
+
+          <button mat-button type="onSubmit" class="mat-raised-button mat-primary" [disabled]="!registerForm.valid" (click)="onSubmit()">Register</button>
           <button mat-button routerLink="/userLogin" routerLinkActive="active" class="divider">Login</button>
-      </div>
-    </form>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
