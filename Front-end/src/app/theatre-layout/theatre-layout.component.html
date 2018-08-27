@@ -4,11 +4,15 @@
 </div>
 <hr>
 <div class="ArenaLayout">
-  <div class="rows" *ngFor= "let row of totalRow">
-    <div class="columns" *ngFor= "let col of totalCol">
-      <div *ngIf="col!=2 && col!=7 && row!=6; else Passage"> 
+  <div class="rows" *ngFor= "let row of totalRow.values">
+    <div class="columns" *ngFor= "let col of totalCol.values">
+      <div *ngIf="col!=passage[row-1] && col!=passage[row] && col!=passage[row+1]
+       && col!=passage[row+2] && col!=passage[row-2] && col!=passage[row-3]
+       && col!=passage[row-4] && col!=passage[row-7] && col!=passage[row-8] 
+       && col!=passage[row-6] && col!=passage[row-5] && col!=passage[row-9] 
+       && row!=rowPassage; else Passage"> 
         <div id = {{row}}{{col}} class="seat available" (click)="onclick(row,col)">
-            {{row}}{{col}}
+            <!-- {{row}}{{col}} -->
         </div>
       </div>
       <ng-template #Passage>

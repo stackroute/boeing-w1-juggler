@@ -21,7 +21,7 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/chat', function (greeting) {
-            showGreeting(JSON.parse(greeting.body).name);
+            showGreeting(greeting.body);
         });
     });
 }
