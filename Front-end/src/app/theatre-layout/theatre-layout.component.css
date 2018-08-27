@@ -63,3 +63,8 @@
     display: block;
     width: 40px;
 }
+
+.blocked{
+    background-color: lightcoral;
+    pointer-events: none;
+}
