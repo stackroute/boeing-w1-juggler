@@ -91,5 +91,6 @@
 		<module>user-registration</module>
 		<module>show-scheduler</module>
 		<module>recommendation-service</module>
+		<module>email-service</module>
 	</modules>
 </project>

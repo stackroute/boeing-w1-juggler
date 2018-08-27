@@ -16,7 +16,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserKafka {
-	
+
 	@Id
 	private String userName;
 	private String password;
@@ -25,6 +25,6 @@ public class UserKafka {
 	private String email;
 	private String gender;
 	private String city;
-	List<Integer> movieId;
-	List<Integer> ticketedEventId;
+	List<Integer> bookedMovieId;
+	List<Integer> bookeedTicketedEventId;
 }

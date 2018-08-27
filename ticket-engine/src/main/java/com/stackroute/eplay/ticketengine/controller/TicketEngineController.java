@@ -8,6 +8,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import com.stackroute.eplay.ticketengine.repository.ShowRepositoryImpl;
 
 @RestController
 @CrossOrigin("*")
-//@RequestMapping("api/v1")
+//RequestMapping("api/v1")
 public class TicketEngineController {
 	
 	private ShowRepositoryImpl showRepository;
@@ -26,6 +27,12 @@ public class TicketEngineController {
 	TicketEngineController(ShowRepositoryImpl showRepository){
 		this.showRepository = showRepository;
 	}
+	@PostMapping("/save/show")
+	public ResponseEntity<?> saveShow(@RequestBody Show show) {
+		showRepository.save(show);
+		return new ResponseEntity<Show>(show,  HttpStatus.OK);
+	}
+	
 	
 	@PutMapping("/show")
 	public ResponseEntity<?> updateShow(@RequestBody Show show) {
@@ -40,9 +47,10 @@ public class TicketEngineController {
 	
 	@MessageMapping("/send/message")
     @SendTo("/chat")
-    public String show(String msg) throws Exception {
+    public Show show(Show show) throws Exception {
+		System.out.println(show);
 		// return new Show("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-		return msg;
+		return show;
     }
 
 }

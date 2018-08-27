@@ -12,6 +12,7 @@ export class TheatreService {
   constructor(private http: HttpClient) {}
 
   saveTheatre(theatre: Theatre): Observable<Theatre> {
+    console.log(theatre);
   //  return this.http.post<Theatre>(this._url+"registerTheatre", theatre);
    return this.http.post<Theatre>(this._url+"/api/v1/upstream/theatre", theatre);
   }
