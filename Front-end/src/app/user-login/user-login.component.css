@@ -5,8 +5,8 @@ body {
     flex-grow: 1;
 }
  .medium-list {
-    margin: auto;
-    width: 600px;
+    margin-top: 95px;
+    /* width: 600px; */
     padding: 10px;
   }
      
@@ -30,4 +30,13 @@ body {
  
   .divider {
     margin-top: 10px !important; 
+  }
+
+  .jumbotron{
+    margin: auto;
+    max-width: 80%;
+  }
+
+  .list-viewer-wrapper{
+    border: outset
   }

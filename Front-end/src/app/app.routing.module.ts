@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path :"search",
-    component :SearchResultsComponent
+    component :HomePageComponent
   },
   {
     path: "userRegistration",
@@ -45,6 +45,7 @@ const routes: Routes = [
   },
   {
     path: "createEvent",
+    // component: EventTypeComponent
     component: EventTypeComponent, canActivate:[AuthGuard]
   },
   {

@@ -1,0 +1,19 @@
+ /* img{
+      max-width: 300px;
+      max-height: 200px;
+  } */
+
+/* .image{
+    background-color: rgb(109, 93, 93)
+} */
+
+#features {
+    text-align: center;
+ }
+ 
+ #features img {
+    margin :0 0 20px;
+    height: 150px;
+    width: 300px;
+ }
+ 
