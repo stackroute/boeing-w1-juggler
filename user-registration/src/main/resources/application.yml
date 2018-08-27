@@ -8,8 +8,7 @@
 #        user-registration-out:
 #          destination: User
 #          contentType: application/json
-#        theatre-in:
-#          destination: Theatre
+#        theatre-in:#          destination: Theatre
 #          contentType: application/json
 #        rsvp-event-in:
 #          destination: RSVPEvent

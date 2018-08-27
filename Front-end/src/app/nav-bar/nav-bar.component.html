@@ -22,7 +22,23 @@
       <button mat-raised-button matTooltip="Click to create an Event" routerLink="/createEvent" routerLinkActive="active" matTooltipClass="example-tooltip-red"
         aria-label="Button that shows a red tooltip" class="example-button" mat-raised-button style="margin-left: 300px;color:black">Create Event</button>
       <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" *ngIf="!authenticationService.loggedIn()" style="margin-left: 10px">Login/SignUp</button>
-      <button mat-raised-button matTooltip="Click to quickly Logout" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()" style="margin-left: 10px">Logout</button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <div (click)="onClick()">
+            <button mat-menu-item routerLink="/userProfile" routerLinkActive="active">Event History</button>
+            <button mat-menu-item routerLink="/userProfile" routerLinkActive="active">Booking History</button>
+          </div>
+
+          <button mat-menu-item  (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()">Sign Out </button>
+        </mat-menu>
+          <!-- <button mat-menu-item  (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()">Sign Out </button> -->
+          
+      
+        <!-- <button mat-menu-item  (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()">Sign Out </button> -->
+    
+      <!-- <button mat-raised-button matTooltip="Click to quickly Logout" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()" style="margin-left: 10px">Logout</button> -->
     </span>
   </mat-toolbar-row>
 </mat-toolbar>

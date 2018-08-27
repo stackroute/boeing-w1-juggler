@@ -31,6 +31,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MovieInfoComponent } from './movie-info/movie-info.component';
 import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie-theatre-list.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -53,8 +55,10 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     MovieTheatreListComponent,
     UserLoginComponent,
     TheatreComponent,
+    UserProfileComponent,
   ],
   imports: [
+  
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -70,7 +74,8 @@ import { MovieTheatreListComponent } from './movie-info/movie-theatre-list/movie
     ReactiveFormsModule,
     FlexLayoutModule
   ],
-  providers: [MatNativeDateModule],
+  providers: [ MatNativeDateModule ],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -31,3 +31,14 @@ body {
   .divider {
     margin-top: 10px !important; 
   }
+
+
+  
+  .photo {
+    object-fit: contain;
+  }
+  
+  .card {
+    width: 20rem;
+    margin: 0 auto;
+  }

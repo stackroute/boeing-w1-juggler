@@ -14,7 +14,7 @@ import { TheatreComponent } from "./theatre/theatre.component";
 import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
 import { MovieInfoComponent } from "./movie-info/movie-info.component";
-
+import { UserProfileComponent } from "./user-profile/user-profile.component"
 const routes: Routes = [
   {
     path: "",
@@ -53,6 +53,10 @@ const routes: Routes = [
     component: RsvpInvitationComponent
   },
   {
+    path: "userProfile",
+    component: UserProfileComponent
+  },
+  {
     path: "movieinfo",
     component: MovieInfoComponent
   },
@@ -88,5 +92,6 @@ export const routingComponents = [
   RsvpEventComponent,
   SearchResultsComponent,
   UserLoginComponent,
-  TheatreComponent
+  TheatreComponent,
+  UserProfileComponent
 ];
