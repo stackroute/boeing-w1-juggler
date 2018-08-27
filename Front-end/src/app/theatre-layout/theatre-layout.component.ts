@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http"; // to access the get method for accessing the file data
+import { HttpErrorResponse } from "@angular/common/http"; // for printing error message
 import * as $ from "jquery";
 var jquery: any;
 
@@ -9,21 +11,41 @@ var jquery: any;
 })
 export class TheatreLayoutComponent implements OnInit {
   seatingValue = [];
-  totalRow: any[];
-  totalCol: any[];
-  public id: any[] ;
-  public Id : any[];   // Final array to be sent to booking api
-  arr = [];
-  constructor() {}
+  totalRow = [];
+  totalCol = [];
+  jsonRow: any[];
+  passage = [];
+  rowPassage=[];
+  public id: any[];
+  public Id: any[]; // Final array to be sent to booking api
+
+  constructor(private httpService : HttpClient) {}
   ngOnInit() {
-    //  $(function() {
-    //   $("#btnSeating").on("click", createseating);
-    //  });
+    
     this.id=[];
     this.Id=[];
-    this.createseating();
-    this.totalRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    this.totalCol = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    
+    this.httpService.get("./assets/layout.json").subscribe(
+      data => {
+        this.jsonRow = data as string[]; // FILL THE ARRAY WITH DATA.
+        // console.log("jsonRow[0].value :", this.jsonRow[0].totalRow);
+        // console.log("jsonRow[1].value :", this.jsonRow[1].totalCol);
+        this.totalRow.length = this.jsonRow[0].totalRow; 
+        this.totalCol.length = this.jsonRow[1].totalCol;
+        this.totalRow.values= this.jsonRow[0].Values;
+        this.totalCol.values=this.jsonRow[1].Values;
+        
+        // to get the passage columns
+        this.passage= this.jsonRow[2].passageCol;
+        this.rowPassage= this.jsonRow[3].passageRow;
+        console.log(this.passage);
+        
+        this.createseating();
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.message);
+      }
+    );
   }
 
   // to create seating layout
@@ -32,13 +54,6 @@ export class TheatreLayoutComponent implements OnInit {
       for (var j = 0; j < 10; j++) {
         let seatingStyle = "<div class='seat available'></div>";
         this.seatingValue.push(seatingStyle);
-        // if (j == 5) {
-        //   // only for understanding
-        //   //console.log("hi");
-        //   seatingStyle = "<div class='clearfix'></div>";
-        //   this.seatingValue.push(seatingStyle);
-        //   //console.log(seatingStyle);
-        // }
       }
     }
 
