@@ -58,6 +58,10 @@ const routes: Routes = [
     component: RsvpInvitationComponent
   },
   {
+    path: "userProfile",
+    component: UserProfileComponent
+  },
+  {
     path: "movieinfo",
     component: MovieInfoComponent
   },
@@ -106,5 +110,6 @@ export const routingComponents = [
   TheatreComponent,
   UserProfileComponent,
   UserLoginComponent,
-  TheatreComponent
+  TheatreComponent,
+  UserProfileComponent
 ];

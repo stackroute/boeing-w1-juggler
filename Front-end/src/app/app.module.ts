@@ -62,6 +62,7 @@ import { InviteeDetailsComponent } from './invitee-details/invitee-details.compo
     MovieTheatreListComponent,
     UserLoginComponent,
     TheatreComponent,
+    UserProfileComponent,
     SideNavComponent,
     UserProfileComponent,
     // ArenaLayoutSocketComponent    
@@ -70,6 +71,7 @@ import { InviteeDetailsComponent } from './invitee-details/invitee-details.compo
     InviteeDetailsComponent,
   ],
   imports: [
+  
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -88,7 +90,8 @@ import { InviteeDetailsComponent } from './invitee-details/invitee-details.compo
     MultipleCheckboxesModule,
     Ng2CarouselamosModule
   ],
-  providers: [MatNativeDateModule],
+  providers: [ MatNativeDateModule ],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule {}
