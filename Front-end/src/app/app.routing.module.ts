@@ -45,8 +45,8 @@ const routes: Routes = [
   },
   {
     path: "createEvent",
-    // component: EventTypeComponent
-    component: EventTypeComponent, canActivate:[AuthGuard]
+    component: EventTypeComponent
+    // component: EventTypeComponent, canActivate:[AuthGuard]
   },
   {
     path: "createRSVPEvent",
