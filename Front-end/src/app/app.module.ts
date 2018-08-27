@@ -39,6 +39,7 @@ import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.componen
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { SocketConnectionComponent } from './socket-connection/socket-connection.component'
 import { MultipleCheckboxesModule } from "multiple-checkboxes";
+import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
 
 @NgModule({
   declarations: [
@@ -61,13 +62,16 @@ import { MultipleCheckboxesModule } from "multiple-checkboxes";
     MovieTheatreListComponent,
     UserLoginComponent,
     TheatreComponent,
+    UserProfileComponent,
     SideNavComponent,
     UserProfileComponent,
     // ArenaLayoutSocketComponent    
     TheatreLayoutComponent,
     SocketConnectionComponent,
+    InviteeDetailsComponent,
   ],
   imports: [
+  
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -86,7 +90,8 @@ import { MultipleCheckboxesModule } from "multiple-checkboxes";
     MultipleCheckboxesModule,
     Ng2CarouselamosModule
   ],
-  providers: [MatNativeDateModule],
+  providers: [ MatNativeDateModule ],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule {}
