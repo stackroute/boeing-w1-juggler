@@ -98,10 +98,10 @@ public class RecommendationServiceController {
 		City city = new City(userKafka.getCity());
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();
-		for(int id:userKafka.getMovieId()) {
+		for(int id:userKafka.getBookedMovieId()) {
 			movies.add(movieservice.findById(id));
 		}
-		for(int id:userKafka.getTicketedEventId()) {
+		for(int id:userKafka.getBookeedTicketedEventId()) {
 			events.add(ticketedEventService.findById(id));
 		}
 		User user = new User(userName,fullName,city,movies,events);
