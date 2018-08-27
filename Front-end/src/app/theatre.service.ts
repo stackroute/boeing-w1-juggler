@@ -8,7 +8,7 @@ import { Theatre } from "./theatre";
 })
 export class TheatreService {
  // private _url: string = "http://172.23.238.222:8094/api/v1/";
-  private _url: string = "http://172.23.238.198:8092/upstream"
+  private _url: string = "http://13.232.40.6:8092/upstream"
   constructor(private http: HttpClient) {}
 
   saveTheatre(theatre: Theatre): Observable<Theatre> {

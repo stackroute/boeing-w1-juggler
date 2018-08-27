@@ -7,7 +7,7 @@ import { Movie } from "./movie";
   providedIn: 'root'
 })
 export class RecommendationService {
-  private url :string ="http://172.23.238.175:8098/api/v1";
+  private url :string ="http://13.232.40.6:8098/api/v1";
   private urlCityGenre; 
   genreNames;
   
