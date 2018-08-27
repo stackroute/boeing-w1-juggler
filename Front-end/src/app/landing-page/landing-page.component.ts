@@ -15,25 +15,25 @@ export class LandingPageComponent implements OnInit {
  onclick1(){console.log("Location : Delhi");
  localStorage.setItem('city',"Patna");
  this.data.changeMessage("Patna");
- this.data.changeMessage("delhi");
- localStorage.setItem('city', 'delhi');
+ this.data.changeMessage("Delhi");
+ localStorage.setItem('city', 'Delhi');
 }
 onclick2(){console.log("Location : Mumbai");
 localStorage.setItem('city',"Patna");
-this.data.changeMessage("mumbai");
-localStorage.setItem('city', 'mumbai');
+this.data.changeMessage("Mumbai");
+localStorage.setItem('city', 'Mumbai');
 
 }
 onclick3(){console.log("Location : Bangalore");
 localStorage.setItem('city',"Patna");
-this.data.changeMessage("banglore");
-localStorage.setItem('city', 'banglore');
+this.data.changeMessage("Bangalore");
+localStorage.setItem('city', 'Bangalore');
 
 }
 onclick4(){console.log("Location : Hyderabad");
 localStorage.setItem('city',"Hyderabad");
-this.data.changeMessage("hyderabad");
-localStorage.setItem('city', 'hyderabad');
+this.data.changeMessage("Hyderabad");
+localStorage.setItem('city', 'Hyderabad');
 
 }
 
