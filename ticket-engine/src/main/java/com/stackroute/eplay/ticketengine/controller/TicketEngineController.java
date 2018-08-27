@@ -49,6 +49,7 @@ public class TicketEngineController {
     @SendTo("/chat")
     public Show show(Show show) throws Exception {
 		System.out.println(show);
+		showRepository.save(show);
 		// return new Show("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
 		return show;
     }
