@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.stackroute.eplay.userregistration.domain.Registration;
 import com.stackroute.eplay.userregistration.domain.Theatre;
 import com.stackroute.eplay.userregistration.exception.EmailAlreadyExistsException;
+import com.stackroute.eplay.userregistration.exception.UserAlreadyExistsException;
 import com.stackroute.eplay.userregistration.exception.UserNameAlreadyExistsException;
 import com.stackroute.eplay.userregistration.service.RegisterUser;
 import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
@@ -49,15 +50,22 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<?> addUser(@RequestBody Registration registrant) {
-		registerUser.addUser(registrant);
-		// kafkaTemplate.send(TOPIC , registrant);
-		 MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
-	     messageChannel.send(MessageBuilder
-	                .withPayload(registrant)
-	                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-	                .build());
-		return new ResponseEntity<String>("New User Added", HttpStatus.CREATED);
+	public ResponseEntity<?> addUser(@RequestBody Registration registrant) throws UserAlreadyExistsException {
+		try {
+			registerUser.addUser(registrant);
+		
+			// kafkaTemplate.send(TOPIC , registrant);
+			 MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
+		     messageChannel.send(MessageBuilder
+		                .withPayload(registrant)
+		                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+		                .build());
+			return new ResponseEntity<String>("New User Added", HttpStatus.CREATED);
+		}
+		 catch(UserAlreadyExistsException e){
+    		// logger.error("This is an MovieAlreadyExistsException error");
+             return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+         }
 	}
 
 	@GetMapping("/register/check/userName/{userName}")
