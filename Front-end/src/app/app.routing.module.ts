@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path :"search",
-    component :SearchResultsComponent
+    component :HomePageComponent
   },
   {
     path: "userRegistration",
@@ -44,7 +44,8 @@ const routes: Routes = [
   },
   {
     path: "createEvent",
-    component: EventTypeComponent, canActivate:[AuthGuard]
+    // component: EventTypeComponent
+    component: EventTypeComponent,canActivate:[AuthGuard]
   },
   {
     path: "createRSVPEvent",

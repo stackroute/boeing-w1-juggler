@@ -4,7 +4,7 @@ body {
 }
 
 #toggle {
-  float: left;
+  /* float: left; */
   display: none;
 }
 
@@ -16,20 +16,20 @@ body {
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
   left: -32%;
   /* for sidebar to stay on top */
-  z-index: 2;
+  z-index: 1;
   transition: left 0.5s ease-in-out;
 }
 
 .exit {
   cursor: pointer;
   font-weight: 800;
-  color: white;
+  color: rgb(163, 140, 140);
   float: right;
   padding: 1.1rem;
 }
 
 .content {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   transition: background-color 0.5s ease-in-out;
@@ -77,8 +77,8 @@ body {
 }
 
 .flex-container {
-  /* background-color: #008b8b;
-    color: #f3f3ef; */
+   /* background-color: #008b8b;  */
+    /* color: #414135;  */
   /* background-color:#5f4c4c; */
   color: #313837;
   display: flex;
@@ -88,8 +88,8 @@ body {
   /* height: 75px; */
 }
 
-app-multiple-checkboxes {
+/* app-multiple-checkboxes {
   background-color: rgb(57, 77, 77) important!;
-}
+} */
 
 

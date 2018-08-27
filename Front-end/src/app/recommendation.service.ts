@@ -14,13 +14,15 @@ export class RecommendationService {
   constructor(private http: HttpClient) { }
 
   getMoviesByGenre(name:string, genreNames):Observable<Movie[]>{
+    
     console.log("inside getmovies by genre");
+    console.log(genreNames);
    
     this.urlCityGenre=this.url+"/getMoviesByCityAndGenres?name="+localStorage.getItem('city'); 
 
     for(let genreName in genreNames){
-      console.log(genreNames[genreName].moviegenre);
-      this.urlCityGenre = this.urlCityGenre+"&genreNames="+genreNames[genreName].moviegenre;
+      console.log(genreNames[genreName]);
+      this.urlCityGenre = this.urlCityGenre+"&genreNames="+genreNames[genreName];
     }
 
     console.log(this.urlCityGenre);

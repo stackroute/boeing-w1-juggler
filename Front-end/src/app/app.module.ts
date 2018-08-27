@@ -37,6 +37,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import {MultipleCheckboxesModule} from 'multiple-checkboxes';
 // import { ArenaLayoutSocketComponent } from './arena-layout-socket/arena-layout-socket.component';
 import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.component';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.componen
     SideNavComponent,
     UserProfileComponent,
     // ArenaLayoutSocketComponent,
-    TheatreLayoutComponent,
+    TheatreLayoutComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.componen
     ReactiveFormsModule,
     FlexLayoutModule,
     MatCheckboxModule,
-    MultipleCheckboxesModule
+    MultipleCheckboxesModule,
+    Ng2CarouselamosModule
   ],
   providers: [MatNativeDateModule],
   bootstrap: [AppComponent]
