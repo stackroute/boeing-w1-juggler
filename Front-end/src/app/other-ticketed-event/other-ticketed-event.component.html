@@ -18,20 +18,10 @@
           <input matInput placeholder="Time" [(ngModel)]="ticketedEvent.time">
         </mat-form-field>
         
-        <!-- <mat-form-field>
-    <input mdc-datetime-picker="" date="false" time="true" type="text" id="time" short-time="true" placeholder="Time" min-date="minDate"
-      format="hh:mm a" ng-model="time" class=" md-input" readonly="readonly">
-  </mat-form-field> -->
+     
 
         <mat-form-field>
-          <mat-select placeholder="Select City " [formControl]="otherTicketedEventControl" [(ngModel)]="ticketedEvent.city">
-            <mat-option>-- None --</mat-option>
-            <mat-optgroup *ngFor="let group of cityGroup" [label]="group.name" [disabled]="group.disabled">
-              <mat-option *ngFor="let city of group.city" [value]="city.value">
-                {{city.viewValue}}
-              </mat-option>
-            </mat-optgroup>
-          </mat-select>
+          <input matInput placeholder="City" [(ngModel)]="ticketedEvent.city">
         </mat-form-field>
         
         <mat-form-field>
@@ -77,9 +67,7 @@
           <textarea matInput placeholder="Terms and Conditions" [(ngModel)]="ticketedEvent.termsAndConditions"></textarea>
         </mat-form-field>
         
-        <mat-form-field>
-          <textarea matInput placeholder="Notes" [(ngModel)]="ticketedEvent.notes"></textarea>
-        </mat-form-field>
+     
         
         <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="submitTicketedEvent()">Submit</button>
         

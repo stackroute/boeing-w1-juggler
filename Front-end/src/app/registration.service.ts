@@ -48,5 +48,10 @@ export class RegistrationService {
       `http://13.232.40.6:8092/user-registration/api/v1/register/check/email/${email}`
     );
   }
+  getUser(userName: String): Observable<any> {
+    return this.http.get(
+      `http://13.232.40.6:8092/user-registration/api/v1/user/${userName}`
+    );
+  }
 
 }
