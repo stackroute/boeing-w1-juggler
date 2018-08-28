@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.ticketengine.domain.BlockedSeats;
@@ -23,7 +23,7 @@ import com.stackroute.eplay.ticketengine.service.BlockedSeatsService;
 
 @RestController
 @CrossOrigin("*")
-//RequestMapping("api/v1")
+@RequestMapping("api/v1")
 public class TicketEngineController {
 	
 	private ShowRepository showRepository;
@@ -46,6 +46,9 @@ public class TicketEngineController {
 	
 	@PostMapping("/show")
 	public ResponseEntity<?> saveShow(@RequestBody Show show) {
+		for(int i=0; i<100; i++) {
+			show.getSeats().put(i, "open");
+		}
 		showRepository.save(show);
 		return new ResponseEntity<Show>(show,  HttpStatus.OK);
 	}
