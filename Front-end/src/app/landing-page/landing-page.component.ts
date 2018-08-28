@@ -11,27 +11,32 @@ export class LandingPageComponent implements OnInit {
   constructor(private data: SearchDataService) {}
   ngOnInit() {}
   onclick1() {
+    console.log("Location : Delhi");
+    localStorage.setItem("city", "Patna");
+    this.data.changeMessage("Patna");
+    this.data.changeMessage("delhi");
     localStorage.setItem("city", "Delhi");
+    localStorage.removeItem("rec");
   }
   onclick2() {
+    console.log("Location : Mumbai");
+    localStorage.setItem("city", "Patna");
+    this.data.changeMessage("mumbai");
     localStorage.setItem("city", "Mumbai");
+    localStorage.removeItem("rec");
   }
   onclick3() {
+    console.log("Location : Bangalore");
+    localStorage.setItem("city", "Patna");
+    this.data.changeMessage("banglore");
     localStorage.setItem("city", "Bangalore");
+    localStorage.removeItem("rec");
   }
   onclick4() {
+    console.log("Location : Hyderabad");
     localStorage.setItem("city", "Hyderabad");
-  }
-  onclick5() {
-    localStorage.setItem("city", "Kolkata");
-  }
-  onclick6() {
-    localStorage.setItem("city", "Chennai");
-  }
-  onclick7() {
-    localStorage.setItem("city", "Pune");
-  }
-  onclick8() {
-    localStorage.setItem("city", "Ahmedabad");
+    this.data.changeMessage("hyderabad");
+    localStorage.setItem("city", "Hyderabad");
+    localStorage.removeItem("rec");
   }
 }

@@ -40,12 +40,20 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { SocketConnectionComponent } from './socket-connection/socket-connection.component'
 import { MultipleCheckboxesModule } from "multiple-checkboxes";
 <<<<<<< HEAD
+=======
+import {MatExpansionModule} from '@angular/material/expansion';
+import { FooterComponent } from './footer/footer.component';
+
+
+>>>>>>> a886a9142252d98249c755906cb97ba0265ba049
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-=======
 import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
 import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName'
->>>>>>> d68626c4cb9dfa86e8b841ccc232680a00609262
+<<<<<<< HEAD
+=======
+
+>>>>>>> a886a9142252d98249c755906cb97ba0265ba049
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +81,7 @@ import { ExistingUsernameValidatorDirective } from './registration-form/customVa
     // ArenaLayoutSocketComponent    
     TheatreLayoutComponent,
     SocketConnectionComponent,
+    FooterComponent,
     InviteeDetailsComponent,
     ExistingUsernameValidatorDirective
   ],
@@ -95,6 +104,7 @@ import { ExistingUsernameValidatorDirective } from './registration-form/customVa
     MatCheckboxModule,
     MultipleCheckboxesModule,
     Ng2CarouselamosModule,
+    MatExpansionModule,
     MatSnackBarModule
   ],
   providers: [ MatNativeDateModule ],

@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import { SearchDataService } from "../search-data.service";
 import { Router } from "@angular/router";
-import { Movie } from "../movie";
-import { AuthenticationService } from '../authentication.service';
 import { RecommendationService } from "../recommendation.service";
-
+import { Movie } from "../movie";
+import { AuthenticationService } from "../authentication.service";
 import {
   FormBuilder,
   FormGroup,
@@ -14,32 +13,34 @@ import {
 } from "@angular/forms";
 
 @Component({
-  selector: 'app-search-results',
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.css']
+  selector: "app-search-results",
+  templateUrl: "./search-results.component.html",
+  styleUrls: ["./search-results.component.css"]
 })
 export class SearchResultsComponent implements OnInit {
   event$: any;
   movie$: any;
-  message:string;
-  omdbSearchTitle:string
-  constructor( private recommendationservice: RecommendationService,
-    private formBuilder: FormBuilder,   private data: SearchDataService,
-    private router: Router,    private authenticationService:AuthenticationService
-
+  message: string;
+  omdbSearchTitle: string;
+  constructor(
+    private data: SearchDataService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService,
+    private recommendationservice: RecommendationService
   ) {
-    // Create a new array with a form control for each order
-    const controls = this.genresList.map(c => new FormControl(false));
-    // controls[0].setValue(true); // Set the first checkbox to true (checked)
-    this.form = this.formBuilder.group({
-      genresList: new FormArray(controls)
-    });
+     // Create a new array with a form control for each order
+     const controls = this.genresList.map(c => new FormControl(false));
+     // controls[0].setValue(true); // Set the first checkbox to true (checked)
+     this.form = this.formBuilder.group({
+       genresList: new FormArray(controls)
+     });
   }
 
-  ngOnInit() {this.data.currentMessage.subscribe(message => this.message = message)
-    console.log("in search result compoment",this.message);
+  ngOnInit() {
+    this.data.currentMessage.subscribe(message => (this.message = message));
+    console.log("in search result compoment", this.message);
     this.fetchEvents();
-    
   }
   form: FormGroup;
   movies: Movie[];
@@ -52,9 +53,12 @@ export class SearchResultsComponent implements OnInit {
     { id: 3, moviegenre: "Drama" },
     { id: 4, moviegenre: "Romance" },
     { id: 5, moviegenre: "Sports" },
-    { id: 6, moviegenre: "Horror" }
+    { id: 6, moviegenre: "Horror" },
+    { id: 7, moviegenre: "War" },
+    { id: 8, moviegenre: "Action" }
   ];
-  onSearch(){
+
+  onSearch() {
     console.log("Hi on searchevents for search is called ", this.message);
     this.data.getSearchedMovies(this.omdbSearchTitle).subscribe(data => {
       this.movie$ = data;
@@ -64,29 +68,29 @@ export class SearchResultsComponent implements OnInit {
       this.event$ = data;
       console.log(data);
     });
-    
   }
-  fetchEvents(){
-
+  fetchEvents() {
     console.log("Hi fetchevents for search is called ", this.message);
     this.data.getSearchedEvents(this.message).subscribe(data => {
       this.event$ = data;
-      console.log(data);
+      console.log("event$", data);
+    });
+    this.data.getSearchedMovies(this.message).subscribe(data => {
+      this.movie$ = data;
+      console.log("movie$", data);
     });
     this.data.getSearchedMovies(this.message).subscribe(data => {
       this.movie$ = data;
       console.log(data);
     });
   }
-  goMoviePage(movie){
+  goMoviePage(movie) {
     this.data.changeMovieMessage(movie);
     console.log(movie);
-    this.router.navigate(['/movieinfo']);
-
+    this.router.navigate(["/movieinfo"]);
   }
-  gocheck(){
+  gocheck() {
     console.log("something just like this");
-
   }
   submit() {
     console.log("inside submit")
@@ -103,4 +107,5 @@ export class SearchResultsComponent implements OnInit {
         window.location.reload();
       });
   }
+  
 }
