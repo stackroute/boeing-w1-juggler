@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { UserRegistration } from "./models/user-registration";
+
 @Injectable({
   providedIn: "root"
 })
@@ -35,4 +36,17 @@ export class RegistrationService {
   // defaultLoad() {
   //   return this.http.get(this._url3);
   // }
+
+  checkUserName(userName: String): Observable<any> {
+    return this.http.get(
+      `http://13.232.40.6:8092/user-registration/api/v1/register/check/userName/${userName}`
+    );
+  }
+
+  checkEmail(email: String): Observable<any> {
+    return this.http.get(
+      `http://13.232.40.6:8092/user-registration/api/v1/register/check/email/${email}`
+    );
+  }
+
 }
