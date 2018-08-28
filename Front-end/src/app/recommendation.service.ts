@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Movie } from "./movie";
+import { TicketedEvent } from './ticketedEvent';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecommendationService {
-  private url :string ="http://13.232.40.6:8098/api/v1";
+  private url :string ="http://13.232.40.6:8092/recommendation-service/api/v1";
   private urlCityGenre; 
+  private urlCityType;
   genreNames;
+  typeNames;
   
   constructor(private http: HttpClient) { }
 
@@ -28,5 +31,22 @@ export class RecommendationService {
     console.log(this.urlCityGenre);
      localStorage.removeItem('rec');
     return this.http.get<Movie[]>(this.urlCityGenre);
+  }
+
+  getTicketedEventByType(name:string, typeNames):Observable<TicketedEvent[]>{
+    
+    console.log("inside getTicketedEvent by type");
+    console.log(typeNames);
+   
+    this.urlCityType=this.url+"/getTicketedEventByType?name="+localStorage.getItem('city'); 
+
+    for(let typeName in typeNames){
+      console.log(typeNames[typeName]);
+      this.urlCityType = this.urlCityType+"&typeNames="+typeNames[typeName];
+    }
+
+    console.log(this.urlCityType);
+     localStorage.removeItem('rec');
+    return this.http.get<TicketedEvent[]>(this.urlCityType);
   }
 }

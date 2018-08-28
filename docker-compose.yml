@@ -132,7 +132,11 @@ services:
   upstream-service:
     build: upstream-service/
     image: upstream-service
+<<<<<<< HEAD
     mem_limit: 2g 
+=======
+    mem_limit: '1000m'
+>>>>>>> 1d53b47fcbc01d9ec7614ae1d97c9ebe947fd770
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -153,7 +157,11 @@ services:
   rsvp:
     build: rsvp-service/
     image: rsvp-service
+<<<<<<< HEAD
     mem_limit: 2g
+=======
+    mem_limit: 800m
+>>>>>>> 1d53b47fcbc01d9ec7614ae1d97c9ebe947fd770
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -283,7 +291,11 @@ services:
   email:
     build: email-service/
     image: email-service
+<<<<<<< HEAD
     mem_limit: 2g
+=======
+    mem_limit: 1020000
+>>>>>>> 1d53b47fcbc01d9ec7614ae1d97c9ebe947fd770
     restart: always
     network_mode: "host"
     hostname: localhost

@@ -1,6 +1,7 @@
 package com.stackroute.eplay.ticketengine.repository;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
@@ -14,7 +15,7 @@ import com.stackroute.eplay.ticketengine.domain.Show;
 @Repository
 public class ShowRepositoryImpl implements ShowRepository {
 
-	private static final String KEY = "Show3";
+	private static final String KEY = "Show";
 
 	private RedisTemplate<String, Object> redisTemplate;
 	private HashOperations<String, Long, Show> hashOperations;

@@ -46,10 +46,11 @@ getUserByUserName(name){
 
 
 getMyMovies(city) {
-  return this.http.get('http://13.232.40.6:8092/search-service/api/v1/city/'+city+'/movies')
+  console.log("in getMyMovies",localStorage.getItem('city'));
+  return this.http.get('http://13.232.40.6:8092/search-service/api/v1/city/'+localStorage.getItem('city')+'/movies')
 }
 getMyEvents(city) {
- return this.http.get('http://13.232.40.6:8092/search-service/api/v1/city/'+city+'/events')
+ return this.http.get('http://13.232.40.6:8092/search-service/api/v1/city/'+localStorage.getItem('city')+'/events')
 }
 
 getSearchedEvents(name) {
@@ -63,7 +64,7 @@ return this.http.get('http://13.232.40.6:8092/search-service/api/v1/movies/'+nam
 
 getMovieByCitynId(movieId) {
  let city=localStorage.getItem('city');
-  return this.http.get('http://13.232.40.6:8092/search-service/api/v1/movie/'+movieId+'/city/'+city)
+  return this.http.get('http://13.232.40.6:8092/search-service/api/v1/movie/'+movieId+'/city/'+localStorage.getItem('city'))
  }
 
 }

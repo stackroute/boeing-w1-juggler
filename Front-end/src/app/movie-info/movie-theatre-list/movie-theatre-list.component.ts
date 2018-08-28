@@ -21,4 +21,8 @@ export class MovieTheatreListComponent implements OnInit {
     this.theatreList=this.theatreList[0];
     this._searchDataService.getMovieByCitynId(this.movie.id).subscribe(movieRecommend => this.movieRecommend = movieRecommend)
   }
+
+  sendShowId(id){
+    localStorage.setItem('showId',id);
+  }
 }
