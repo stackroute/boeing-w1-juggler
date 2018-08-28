@@ -34,6 +34,16 @@ public class TicketEngineController {
 		this.showRepository = showRepository;
 		this.blockedSeatsService = blockedSeatsService;
 	}
+	
+	@MessageMapping("/send/message")
+    //@SendTo("/chat")
+    public BlockedSeats seats(BlockedSeats seats) throws Exception {
+		System.out.println(seats);
+		
+		// return new Show("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+		return blockedSeatsService.save(seats);
+    }
+	
 	@PostMapping("/show")
 	public ResponseEntity<?> saveShow(@RequestBody Show show) {
 		showRepository.save(show);
@@ -56,21 +66,11 @@ public class TicketEngineController {
 	public ResponseEntity<?> getAllShows() {
 		return new ResponseEntity<Map<Long, Show>>(showRepository.findAll(), HttpStatus.OK);
 	}
-	
-	@MessageMapping("/send/message")
-    @SendTo("/chat")
-    public Show show(Show show) throws Exception {
-		System.out.println(show);
-		showRepository.save(show);
-		// return new Show("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-		return show;
-    }
 
 	@PostMapping("/blockedSeats")
 	public ResponseEntity<?> saveBlockedSeats(@RequestBody BlockedSeats blockedSeats) {
 		try {
-			blockedSeatsService.save(blockedSeats);
-			return new ResponseEntity<BlockedSeats>(blockedSeats,  HttpStatus.OK);
+			return new ResponseEntity<BlockedSeats>(blockedSeatsService.save(blockedSeats),  HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(),  HttpStatus.CONFLICT);
 		}

@@ -22,4 +22,5 @@ public class BlockedSeats{
 	private String id;
 	private Long showId;
 	private List<Integer> seats;
+	private String status;
 }
