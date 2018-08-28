@@ -51,10 +51,29 @@
         <div class="form-container">
           <mat-form-field>
             <input id="userName" matInput formControlName="userName" [(ngModel)]="user.userName" placeholder="Enter your userName" />
+            <div *ngIf="userName.dirty && userName.errors" class="error">
+              <div *ngIf="userName.errors.required" class="validation_message">
+                Username required.
+              </div>
+              <div *ngIf="userName.errors.usernameExists" class="validation_message">
+                Username already exists.
+              </div>
+            </div>
           </mat-form-field>
 
           <mat-form-field>
             <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Enter your email" />
+            <div *ngIf="email.dirty && email.errors" class="error">
+              <div *ngIf="email.errors.required" class="validation_message"> 
+                Email required.
+              </div>
+              <div *ngIf="email.errors.email" class="validation_message">
+                Email not valid.
+              </div>
+              <div *ngIf="email.errors.emailExists" class="validation_message">
+                Email already exists.
+              </div>
+            </div>
           </mat-form-field>
 
           <mat-form-field>

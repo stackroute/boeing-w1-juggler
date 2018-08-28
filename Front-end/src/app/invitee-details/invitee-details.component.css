@@ -4,20 +4,19 @@ table {
 
 table, th, td {
     border: 1px solid black;
-    align-self: center;
+    
 }
 
 table {
     width: 100%;
+    
 }
 
 th {
     height: 50px;
 }
 
-.w3-container{
-    background-color: brown;
-}
+
 
 .example-container {
     
@@ -46,4 +45,16 @@ th {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+.InvitationButton{
+    width: 50%;
+
+}
+
+table {
+    counter-reset: tableCount;     
+}
+.counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
 }
