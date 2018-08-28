@@ -148,7 +148,7 @@ public class KafkaListener {
 			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
 			List<MovieEvent> movieEvents;
-			if (user.getTicketedEvent() == null)
+			if (user.getMovieEvent() == null)
 				movieEvents = new ArrayList<>();
 			else
 				movieEvents = user.getMovieEvent();

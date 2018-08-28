@@ -49,11 +49,13 @@ public class KafkaListener {
 		Show show = showRepository.find(seats.getShowId());
 		for(int i:seats.getSeats()) {
 			if(show.getSeats().get(i).equals("blocked")) {
-				show.getSeats().put(i, "booked");
+				if(seats.getStatus()=="booked")
+					show.getSeats().put(i, "booked");
+				else
+					show.getSeats().put(i, "open");
 			}
 		}
-		blockedSeatsService.delete(seats);
+		blockedSeatsService.delete(seats.getId());
 		showRepository.save(show);
 	}
-}
-*/
+}*/
