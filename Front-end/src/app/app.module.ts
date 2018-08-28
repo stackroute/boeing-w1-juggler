@@ -39,7 +39,8 @@ import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.componen
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { SocketConnectionComponent } from './socket-connection/socket-connection.component'
 import { MultipleCheckboxesModule } from "multiple-checkboxes";
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +70,7 @@ import { MultipleCheckboxesModule } from "multiple-checkboxes";
     SocketConnectionComponent,
   ],
   imports: [
-  
+    MatMenuModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -86,7 +87,8 @@ import { MultipleCheckboxesModule } from "multiple-checkboxes";
     FlexLayoutModule,
     MatCheckboxModule,
     MultipleCheckboxesModule,
-    Ng2CarouselamosModule
+    Ng2CarouselamosModule,
+    MatSnackBarModule
   ],
   providers: [ MatNativeDateModule ],
  

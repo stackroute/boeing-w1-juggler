@@ -13,8 +13,8 @@
         <li class="nav-item">
           <!-- <app-side-nav></app-side-nav> -->
           <button mat-raised-button [matMenuTriggerFor]="menu" color="primary">Filters</button>
-          
-          <mat-menu #menu="matMenu" >
+
+          <mat-menu #menu="matMenu">
             <form [formGroup]="form" (ngSubmit)="submit()" class="menuToggle">
               <label formArrayName="genresList">
                 <div *ngFor="let genres of form.controls.genresList.controls; let i = index">
@@ -71,7 +71,12 @@
         </li>
         <li class="nav-item">
           <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" *ngIf="!authenticationService.loggedIn()">Login/SignUp</button>
-          <button mat-raised-button matTooltip="Click to quickly Logout" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()">Logout</button>
+          
+              <button mat-raised-button (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()">Logout</button>
+          
+
+
+
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link"></a>
@@ -100,4 +105,3 @@
     <!-- navbar -->
   </div>
 </header>
-
