@@ -9,10 +9,12 @@ import { TicketedEventService } from "../ticketed-event.service";
 })
 export class OtherTicketedEventComponent implements OnInit {
   otherTicketedEventControl = new FormControl();
-  otherTicketedEventControl1 = new FormControl();
+
   ticketedEvent = new TicketedEvent();
   constructor(private ticketedEventService: TicketedEventService) {}
   submitTicketedEvent() {
+    this.ticketedEvent.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+    console.log(this.ticketedEvent);
     this.ticketedEventService
       .saveTicketedEvent(this.ticketedEvent)
       .subscribe(res => console.log("Saved"));
@@ -36,10 +38,6 @@ export class OtherTicketedEventComponent implements OnInit {
   ngOnInit() {}
 }
 
-export interface City {
-  value: string;
-  viewValue: string;
-}
 
 
 

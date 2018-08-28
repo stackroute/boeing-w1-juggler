@@ -1,7 +1,7 @@
 export class TicketedEvent {
     name:string;
     date:Date;
-    time:Date;
+    time:String;
     city:string;
     location:string;
     poster:string;
