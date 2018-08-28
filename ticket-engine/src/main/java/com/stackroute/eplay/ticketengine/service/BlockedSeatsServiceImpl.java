@@ -1,10 +1,25 @@
 package com.stackroute.eplay.ticketengine.service;
 
+import static org.quartz.DateBuilder.futureDate;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.JobKey;
+import org.quartz.Scheduler;
+import org.quartz.SimpleTrigger;
+import org.quartz.TriggerBuilder;
+import org.quartz.TriggerKey;
+import org.quartz.DateBuilder.IntervalUnit;
+import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+
 
 import com.stackroute.eplay.ticketengine.domain.BlockedSeats;
 import com.stackroute.eplay.ticketengine.repository.BlockedSeatsRepository;
@@ -16,6 +31,7 @@ public class BlockedSeatsServiceImpl implements BlockedSeatsService{
 	private BlockedSeatsRepository blockedSeatsRepository;
 	private RedisTemplate<String, Object> redisTemplate;
 	private ShowRepository showRepository;
+
 	
 	@Autowired
 	public BlockedSeatsServiceImpl(BlockedSeatsRepository blockedSeatsRepository, RedisTemplate<String, Object> redisTemplate, ShowRepository showRepository) {
@@ -28,7 +44,17 @@ public class BlockedSeatsServiceImpl implements BlockedSeatsService{
 	public BlockedSeats save(BlockedSeats blockedSeats) throws Exception{
 		blockedSeats = blockedSeatsRepository.save(blockedSeats);
 		System.out.println("BlockedSeats:"+blockedSeats.getId());
-		redisTemplate.expire( "BlockedSeats:"+blockedSeats.getId(), 10, TimeUnit.SECONDS );
+		JobKey jobKey = JobKey.jobKey("job" + blockedSeats.getId());
+		JobDetail job = JobBuilder.newJob(SeatsJob.class).withIdentity(jobKey).build();
+		TriggerKey triggerKey = TriggerKey.triggerKey("trigger" + blockedSeats.getId());
+		SimpleTrigger trigger = TriggerBuilder.newTrigger().withIdentity(triggerKey)
+				.startAt(futureDate(30, IntervalUnit.SECOND)).forJob(job)
+				.withSchedule(simpleSchedule()).build();
+		Scheduler sc = StdSchedulerFactory.getDefaultScheduler();
+		sc.getContext().put("seat", blockedSeats.getId());
+		sc.scheduleJob(job, trigger);
+//		redisTemplate.expire( "BlockedSeats:"+blockedSeats.getId(), 10, TimeUnit.SECONDS );
+		
 		/*System.out.println("--------1--------");
 		JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
 		System.out.println("--------2--------");
