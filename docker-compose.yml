@@ -271,7 +271,7 @@ services:
   email:
     build: email-service/
     image: email-service
-    mem_limit: 1020MB
+    mem_limit: 1020000
     restart: always
     network_mode: "host"
     hostname: localhost
