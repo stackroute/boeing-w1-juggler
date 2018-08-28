@@ -15,10 +15,10 @@ export class RsvpInvitationComponent implements OnInit {
  rsvpInvitationModel = new RsvpInvitation();
  inputEmailsDetails = new InputEmailsDetails();
  public rsvpModel: any;
+ 
  message: string;
- id = 3;
- id1: string;
- idd = this.id.toString();
+ id : any;
+ 
  // backgroundImg;
  constructor(
    private emailService: EmailService,
@@ -30,20 +30,24 @@ export class RsvpInvitationComponent implements OnInit {
    // this.backgroundImg rsvpCreateService= sanitizer.bypassSecurityTrustStyle('url(http://www.freephotos.se/images/photos_medium/white-flower-4.jpg)');
  }
  ngOnInit() {
+  this.id=this.rsvpCreateService.getRsvpEventId();
+  console.log("bhaiiii",this.id);
+  
    console.log("this.rsvpModel");
    this.inputEmailsDetails.emailBcc = [];
    //  console.log(this.rsvpModel);
-   this.rsvpCreateService.getRsvpEventById(3).subscribe(rsvpCreateService => {
+   this.rsvpCreateService.getRsvpEventById(this.id).subscribe(rsvpCreateService => {
      this.rsvpModel = rsvpCreateService;
      console.log(this.rsvpModel);
    });
    console.log("something", this.rsvpModel);
  }
  onSubmit() {
+  this.id=this.rsvpCreateService.getRsvpEventId();
    console.log("vishal ppu");
    console.log(this.rsvpInvitationModel);
    this.rsvpCreateService
-     .updateRsvp(this.rsvpInvitationModel, 3)
+     .updateRsvp(this.rsvpInvitationModel, this.id)
      .subscribe(res => {
        console.log("saved");
      });
@@ -57,10 +61,11 @@ export class RsvpInvitationComponent implements OnInit {
  }
 
  onSubmit2() {
+  this.id=this.rsvpCreateService.getRsvpEventId;
    this.inputEmailsDetails.emailAddress = "aerospacevishal@gmail.com";
    this.inputEmailsDetails.subject =
      "You are invited to: " + this.rsvpModel.name;
-   this.inputEmailsDetails.body ="click here to view Invitation http://172.23.238.188:4200/rsvpEvent/3";
+   this.inputEmailsDetails.body ="click here to view Invitation http://172.23.238.188:4200/rsvpEvent/"+this.id;
 
 
    for (var i=0;i<(this.rsvpModel.rsvpInvitation).length;i++)

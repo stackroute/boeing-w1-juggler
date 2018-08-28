@@ -5,23 +5,22 @@
       <div class="list-header-title">Ticketed Event</div>
       <div class="form-container">
         <mat-form-field>
-          <input matInput placeholder="Event Name" [(ngModel)]="ticketedEvent.name">
+          <input matInput placeholder="Event Name" [(ngModel)]="ticketedEvent.name" required>
         </mat-form-field>
         
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a starting date" [(ngModel)]="ticketedEvent.date">
+          <input matInput [matDatepicker]="picker" placeholder="Choose a starting date" [(ngModel)]="ticketedEvent.date" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         
         <mat-form-field>
           <input matInput placeholder="Time" [(ngModel)]="ticketedEvent.time">
-        </mat-form-field>
-        
+        </mat-form-field>     
      
 
         <mat-form-field>
-          <input matInput placeholder="City" [(ngModel)]="ticketedEvent.city">
+          <input matInput placeholder="City" [(ngModel)]="ticketedEvent.city" required>
         </mat-form-field>
         
         <mat-form-field>
@@ -33,6 +32,7 @@
         </mat-form-field>
         
         <mat-form-field>
+<<<<<<< HEAD
           <mat-select placeholder="Select event Type " [formControl]="otherTicketedEventControl">
   
             <mat-optgroup *ngFor="let group of typegroup" [label]="group.name" [disabled]="group.disabled">
@@ -41,6 +41,9 @@
               </mat-option>
             </mat-optgroup>
           </mat-select>
+=======
+          <input matInput placeholder="Event Type" [(ngModel)]="ticketedEvent.type" required>
+>>>>>>> dea87f2fa586b92ab155978fba9f707f17517f3c
         </mat-form-field>
         <mat-form-field>
           <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
@@ -53,11 +56,7 @@
         <mat-form-field>
           <input matInput placeholder="Capacity" [(ngModel)]="ticketedEvent.capacity">
         </mat-form-field>
-        
-        <mat-form-field>
-          <input matInput placeholder="Remaining Seats" [(ngModel)]="ticketedEvent.remainingSeats">
-        </mat-form-field>
-        
+      
         <mat-form-field>
           <textarea matInput placeholder="Description" [(ngModel)]="ticketedEvent.description"></textarea>
         </mat-form-field>
@@ -68,15 +67,9 @@
         
         <mat-form-field>
           <input matInput placeholder="Performers" [(ngModel)]="ticketedEvent.performers">
-        </mat-form-field>
-        
-        <mat-form-field>
-          <textarea matInput placeholder="Terms and Conditions" [(ngModel)]="ticketedEvent.termsAndConditions"></textarea>
-        </mat-form-field>
-        
-     
-        
-        <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="submitTicketedEvent()">Submit</button>
+        </mat-form-field>   
+             
+      <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="submitTicketedEvent()">Submit</button>
         
         
       </div>
