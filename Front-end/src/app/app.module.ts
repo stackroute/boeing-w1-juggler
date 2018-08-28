@@ -47,6 +47,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
 import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName'
+
 @NgModule({
   declarations: [
     AppComponent,

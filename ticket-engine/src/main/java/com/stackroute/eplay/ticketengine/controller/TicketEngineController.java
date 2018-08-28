@@ -3,9 +3,14 @@ package com.stackroute.eplay.ticketengine.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,19 +25,23 @@ import com.stackroute.eplay.ticketengine.domain.BlockedSeats;
 import com.stackroute.eplay.ticketengine.domain.Show;
 import com.stackroute.eplay.ticketengine.repository.ShowRepository;
 import com.stackroute.eplay.ticketengine.service.BlockedSeatsService;
+import com.stackroute.eplay.ticketengine.streams.BookedSeatsStream;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/v1")
+@EnableBinding(BookedSeatsStream.class)
 public class TicketEngineController {
 	
 	private ShowRepository showRepository;
 	private BlockedSeatsService blockedSeatsService;
+	private BookedSeatsStream bookedSeatsStream;
 	
 	@Autowired
-	TicketEngineController(ShowRepository showRepository, BlockedSeatsService blockedSeatsService){
+	TicketEngineController(ShowRepository showRepository, BlockedSeatsService blockedSeatsService, BookedSeatsStream bookedSeatsStream){
 		this.showRepository = showRepository;
 		this.blockedSeatsService = blockedSeatsService;
+		this.bookedSeatsStream = bookedSeatsStream;
 	}
 	
 	@MessageMapping("/send/message")
@@ -46,9 +55,6 @@ public class TicketEngineController {
 	
 	@PostMapping("/show")
 	public ResponseEntity<?> saveShow(@RequestBody Show show) {
-		for(int i=0; i<100; i++) {
-			show.getSeats().put(i, "open");
-		}
 		showRepository.save(show);
 		return new ResponseEntity<Show>(show,  HttpStatus.OK);
 	}
@@ -100,5 +106,24 @@ public class TicketEngineController {
 	public ResponseEntity<?> delAllblockedSeats() {
 		blockedSeatsService.deleteAll();
 		return new ResponseEntity<String>("Deleted", HttpStatus.OK);
+	}
+	
+	@PostMapping("/blockedSeatsStatus")
+	public void seatStatus(@RequestBody BlockedSeats seats) {
+		Show show = showRepository.find(seats.getShowId());
+		for(int i:seats.getSeats()) {
+			if(show.getSeats().get(i).equals("blocked")) {
+				if(seats.getStatus()=="booked")
+					show.getSeats().put(i, "booked");
+				else
+					show.getSeats().put(i, "open");
+			}
+		}
+		blockedSeatsService.delete(seats.getId());
+		showRepository.save(show);
+		seats.setMovieEventId(show.getMovieEventId());
+		MessageChannel messageChannel = bookedSeatsStream.outboundBookedSeats();
+		messageChannel.send(MessageBuilder.withPayload(seats)
+				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
 	}
 }
