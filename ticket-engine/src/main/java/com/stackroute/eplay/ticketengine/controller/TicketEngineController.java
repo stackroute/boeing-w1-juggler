@@ -55,9 +55,6 @@ public class TicketEngineController {
 	
 	@PostMapping("/show")
 	public ResponseEntity<?> saveShow(@RequestBody Show show) {
-		for(int i=0; i<100; i++) {
-			show.getSeats().put(i, "open");
-		}
 		showRepository.save(show);
 		return new ResponseEntity<Show>(show,  HttpStatus.OK);
 	}

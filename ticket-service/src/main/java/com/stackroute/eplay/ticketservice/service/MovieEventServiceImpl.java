@@ -4,19 +4,16 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
@@ -62,9 +59,14 @@ public class MovieEventServiceImpl implements MovieEventService{
 	    DateFormat sdf=new SimpleDateFormat("hh:mm");
 		String[] showTimes=movieEvent.getShowTimes().split(",");
 		int week=movieEvent.getWeek();
+		Map<Integer, String> seats = new HashMap<>();
+		for(int i=0;i<100;i++) {
+			seats.put(i, "open");
+		}
 		for(int i=0;i<week*2;i++) {
 			for(int j=0;j<showTimes.length;j++) {
 				Show show=new Show();
+				show.setSeats(seats);
 				show.setShowId(nextSequenceService.getNextSequence("counter"));
 				LocalTime showTime=sdf.parse(showTimes[j].trim()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
 				show.setStartTime(showTime);
