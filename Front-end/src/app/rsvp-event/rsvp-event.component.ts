@@ -18,6 +18,10 @@ export class RsvpEventComponent implements OnInit {
 private route:ActivatedRoute) { }
 
   onSubmit(){
+    
+
+     this.rsvpModel.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+     console.log(this.rsvpModel);
     this.rsvpCreateService.saveRsvpEvent(this.rsvpModel).subscribe(res=>{console.log('saved')
     
   })
