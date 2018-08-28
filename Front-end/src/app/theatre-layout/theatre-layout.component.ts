@@ -10,6 +10,8 @@ var jquery: any;
   styleUrls: ["./theatre-layout.component.css"]
 })
 export class TheatreLayoutComponent implements OnInit {
+  
+  showId
   seatingValue = [];
   totalRow = [];
   totalCol = [];
@@ -17,13 +19,16 @@ export class TheatreLayoutComponent implements OnInit {
   passage = [];
   rowPassage=[];
   public id: any[];
-  public Id: any[]; // Final array to be sent to booking api
+  public seatNum: any[]; // Final array to be sent to booking api
 
   constructor(private httpService : HttpClient) {}
   ngOnInit() {
     
     this.id=[];
-    this.Id=[];
+    this.seatNum=[];
+
+    this.showId = localStorage.getItem('showId');
+    console.log("Show Id from movie-info " + this.showId);
     
     this.httpService.get("./assets/layout.json").subscribe(
       data => {
@@ -99,9 +104,9 @@ export class TheatreLayoutComponent implements OnInit {
     console.log(map);
     map.forEach((value:number, key:String)=>{
       if(value%2!=0){
-        this.Id.push(key);
+        this.seatNum.push(key);
       }
     });
-    console.log(this.Id);
+    console.log(this.seatNum);
   }
 }
