@@ -34,23 +34,8 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendName() {
-    console.log($("#name").val());
-    stompClient.send("/app/send/message", {}, $("#name").val());
+function sendBlockedSeats(blockedSeat) {
+    console.log("Blocked Seats: " +  JSON.stringify(blockedSeat));
+    stompClient.send("/app/send/message", {}, JSON.stringify(blockedSeat));
 }
 
-function showGreeting(message) {
-    console.log("heere " + message)
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
-}
-// $(document).ready(function () {
-$(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-    });
-    $( "#connect" ).click(function() { connect(); });
-    $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
-
-});
-// });

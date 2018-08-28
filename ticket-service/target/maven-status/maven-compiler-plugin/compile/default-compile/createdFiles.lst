@@ -1,7 +1,7 @@
 com/stackroute/eplay/ticketservice/service/TicketedEventService.class
 com/stackroute/eplay/ticketservice/repositories/TicketedEventRepository.class
-com/stackroute/eplay/ticketservice/service/NextSequenceService.class
 com/stackroute/eplay/ticketservice/service/MovieEventServiceImpl.class
+com/stackroute/eplay/ticketservice/service/NextSequenceService.class
 com/stackroute/eplay/ticketservice/service/TicketedEventServiceImpl.class
 com/stackroute/eplay/ticketservice/config/SwaggerConfig.class
 com/stackroute/eplay/ticketservice/domain/TicketedEvent.class
@@ -12,6 +12,7 @@ com/stackroute/eplay/ticketservice/service/MovieService.class
 com/stackroute/eplay/ticketservice/exception/TicketedEventAlreadyExistException.class
 com/stackroute/eplay/ticketservice/repositories/MovieRepository.class
 com/stackroute/eplay/ticketservice/kafka/KafkaListener.class
+com/stackroute/eplay/ticketservice/streams/UpdateMovieEventStreams.class
 com/stackroute/eplay/ticketservice/exception/MovieEventAlreadyExistException.class
 com/stackroute/eplay/ticketservice/domain/Show.class
 com/stackroute/eplay/ticketservice/exception/MovieAlreadyExistException.class
