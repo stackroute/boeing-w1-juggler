@@ -16,7 +16,7 @@ export class RegistrationFormComponent implements OnInit {
   hide = true;
   ;
 
-  constructor(private formBuilder: FormBuilder,private registrationService: RegistrationService) { }
+  constructor(public snackBar: MatSnackBar,private formBuilder: FormBuilder,private registrationService: RegistrationService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -35,6 +35,12 @@ export class RegistrationFormComponent implements OnInit {
         Validators.minLength(6),
         Validators.maxLength(30)
       ]]
+    });
+    
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open("Thanks for registration " + message, action, {
+      duration: 2000,
     });
   }
   // onRegisterSubmit() {

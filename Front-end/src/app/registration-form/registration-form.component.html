@@ -84,7 +84,7 @@
             </mat-icon>
           </mat-form-field>
 
-          <button mat-button type="onSubmit" class="mat-raised-button mat-primary" [disabled]="!registerForm.valid" (click)="onSubmit()">Register</button>
+          <button mat-button type="onSubmit"  (click)="openSnackBar(message.value, action.value)" class="mat-raised-button mat-primary" routerLink="/userLogin" routerLinkActive="active" [disabled]="!registerForm.valid" (click)="onSubmit()">Register</button>
           <button mat-button routerLink="/userLogin" routerLinkActive="active" class="divider">Login</button>
         </div>
       </form>
