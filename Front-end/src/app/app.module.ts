@@ -42,6 +42,12 @@ import { MultipleCheckboxesModule } from "multiple-checkboxes";
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './footer/footer.component';
 
+
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
+import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,14 +69,18 @@ import { FooterComponent } from './footer/footer.component';
     MovieTheatreListComponent,
     UserLoginComponent,
     TheatreComponent,
+    UserProfileComponent,
     SideNavComponent,
     UserProfileComponent,
     // ArenaLayoutSocketComponent    
     TheatreLayoutComponent,
     SocketConnectionComponent,
     FooterComponent,
+    InviteeDetailsComponent,
+    ExistingUsernameValidatorDirective
   ],
   imports: [
+    MatMenuModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -88,9 +98,11 @@ import { FooterComponent } from './footer/footer.component';
     MatCheckboxModule,
     MultipleCheckboxesModule,
     Ng2CarouselamosModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSnackBarModule
   ],
-  providers: [MatNativeDateModule],
+  providers: [ MatNativeDateModule ],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule {}

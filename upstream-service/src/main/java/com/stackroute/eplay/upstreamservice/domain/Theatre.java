@@ -26,4 +26,5 @@ public class Theatre {
     private int capacity;
     private File arenaFile;
     private String userName;
+    private String city;
 }

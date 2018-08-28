@@ -79,6 +79,10 @@ export class SearchResultsComponent implements OnInit {
       this.movie$ = data;
       console.log("movie$", data);
     });
+    this.data.getSearchedMovies(this.message).subscribe(data => {
+      this.movie$ = data;
+      console.log(data);
+    });
   }
   goMoviePage(movie) {
     this.data.changeMovieMessage(movie);
@@ -103,4 +107,5 @@ export class SearchResultsComponent implements OnInit {
         window.location.reload();
       });
   }
+  
 }

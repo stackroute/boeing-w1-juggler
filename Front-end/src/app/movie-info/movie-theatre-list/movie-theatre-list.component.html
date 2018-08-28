@@ -1,5 +1,5 @@
 <div *ngIf="theatreList; else elseBlock">
-        <p>if Block</p>
+       
 
     <div class="theatre-container" *ngFor="let theatre of movie.theatres">
         <div class="theatre-name">
@@ -7,7 +7,8 @@
         </div>
         <div class="show-time">
            <ng-container *ngFor="let show of theatre.shows">   
-                <button *ngIf="show.status; else disableButton" routerLink="/theatreLayout" mat-stroked-button color="primary">
+                <button *ngIf="show.status; else disableButton" routerLink="/theatreLayout"
+                 mat-stroked-button color="primary" (click)="sendShowId(show.showId)">
                         {{show.date}} || {{show.startTime}}
                 </button>
                 <ng-template #disableButton>

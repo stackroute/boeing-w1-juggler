@@ -6,6 +6,8 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../authentication.service';
 
+
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -21,10 +23,13 @@ export class UserLoginComponent implements OnInit {
   returnUrl: string;
   error = '';
 
-  constructor(private formBuilder: FormBuilder , private route: ActivatedRoute,
-    private router: Router,
-    private authenticationService: AuthenticationService) { }
 
+
+
+
+  constructor(private formBuilder: FormBuilder , private route: ActivatedRoute,
+    private router: Router, private authenticationService: AuthenticationService){}
+  
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       'username': [this.user.username, [
@@ -37,16 +42,8 @@ export class UserLoginComponent implements OnInit {
       ]]
       
     });
-    this.authenticationService.logout();
-
-      // get return url from route parameters or default to '/'
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  //  onLoginSubmit() {
-  //   alert(this.user.email + ' ' + this.user.password);
-  // }
- 
   onSubmit() {
 
     // stop here if form is invalid

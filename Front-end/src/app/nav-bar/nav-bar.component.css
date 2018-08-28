@@ -22,6 +22,10 @@
   background-color :#d2e6e9;
   /* width: 150px;   */
 }
+.menuT{
+  margin-top: 100px;
+  background-color :#941374;
+}
 .flex-container {
   background-color: #050644;
   color: #f3f3ef;
@@ -64,9 +68,15 @@
   }
 }
 
+.mat{
+  margin-top: 75px;
+}
+
 /* carousel */
 
-
+mat-menu{
+  margin-top: 45px important!;
+}
 
 .seminor-login-modal-body .close{
   position: relative;

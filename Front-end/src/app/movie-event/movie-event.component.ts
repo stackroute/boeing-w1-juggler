@@ -42,11 +42,14 @@ export class MovieEventComponent implements OnInit {
 
   }
   findTheatreId(theatre){
-    console.log(theatre.theatreId);
+    this.movieEventModel.city=theatre.city;
+    console.log(theatre);
     this.movieEventModel.theatreId=theatre.theatreId;
+    this.movieEventModel.city=theatre.city;
   }
   onSubmit() {
-    this.movieEventModel.city=localStorage.getItem('city');
+    // this.movieEventModel.city=localStorage.getItem('city');
+    this.movieEventModel.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
     console.log(this.movieEventModel);
     this.movieEventService
       .saveMovieEvent(this.movieEventModel)

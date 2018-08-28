@@ -67,6 +67,13 @@ public class UserController {
              return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
          }
 	}
+	
+	@GetMapping("/login/getAllDetais/{userName}")
+	public ResponseEntity<?> getAllDetailsByUsername(@PathVariable String username){
+		return  new ResponseEntity<Registration>(registerUser.findByUsername(username), HttpStatus.OK);
+
+	}
+	
 
 	@GetMapping("/register/check/userName/{userName}")
 	public boolean checkUserName(@PathVariable("userName") String userName) {
