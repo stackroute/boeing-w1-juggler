@@ -64,18 +64,21 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public City saveTicketedEvent(TicketedEvent ticketedEvent) {
 		City city;
-
+		List<TicketedEvent> ticketedEventsList;
 		if (!cityRepository.existsById(ticketedEvent.getCity())) {
-			List<TicketedEvent> ticketedEventsList = new ArrayList<TicketedEvent>();
+			 ticketedEventsList = new ArrayList<TicketedEvent>();
 			ticketedEventsList.add(ticketedEvent);
 
 			city = new City(ticketedEvent.getCity(), null, ticketedEventsList);
 			return cityRepository.save(city);
 		}
-
+        
 		city = cityRepository.findById(ticketedEvent.getCity()).get();
-		List<TicketedEvent> ticketedEventsList = city.getTicketedEventsList();
+		ticketedEventsList = city.getTicketedEventsList();
+        if(ticketedEventsList==null) {
+			ticketedEventsList = new ArrayList<TicketedEvent>();
 
+        }
 		ticketedEventsList.add(ticketedEvent);
 
 		city.setTicketedEventsList(ticketedEventsList);
