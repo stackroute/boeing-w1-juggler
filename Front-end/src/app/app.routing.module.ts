@@ -33,6 +33,10 @@ const routes: Routes = [
     component :HomePageComponent
   },
   {
+    path :"profile",
+    component :UserProfileComponent
+  },
+  {
     path :"search",
     component :SearchResultsComponent
   },
