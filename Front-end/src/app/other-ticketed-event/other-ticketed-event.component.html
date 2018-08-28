@@ -11,24 +11,17 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Time" [(ngModel)]="ticketedEvent.time">
+    <input matInput placeholder="Event Time" [(ngModel)]="ticketedEvent.time">
   </mat-form-field>
   <br>
   <!-- <mat-form-field>
     <input mdc-datetime-picker="" date="false" time="true" type="text" id="time" short-time="true" placeholder="Time" min-date="minDate"
       format="hh:mm a" ng-model="time" class=" md-input" readonly="readonly">
   </mat-form-field> -->
-
   <mat-form-field>
-    <mat-select placeholder="Select City " [formControl]="otherTicketedEventControl" [(ngModel)]="ticketedEvent.city">
-      <mat-option>-- None --</mat-option>
-      <mat-optgroup *ngFor="let group of cityGroup" [label]="group.name" [disabled]="group.disabled">
-        <mat-option *ngFor="let city of group.city" [value]="city.value">
-          {{city.viewValue}}
-        </mat-option>
-      </mat-optgroup>
-    </mat-select>
+    <input matInput placeholder="City" [(ngModel)]="ticketedEvent.city">
   </mat-form-field>
+
   <br>
   <mat-form-field>
     <input matInput placeholder="Location" [(ngModel)]="ticketedEvent.location">
@@ -54,23 +47,11 @@
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Remaining Seats" [(ngModel)]="ticketedEvent.remainingSeats">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
     <textarea matInput placeholder="Description" [(ngModel)]="ticketedEvent.description"></textarea>
   </mat-form-field>
   <br>
   <mat-form-field>
-    <input matInput placeholder="Price" [(ngModel)]="ticketedEvent.price">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <input matInput placeholder="Performers" [(ngModel)]="ticketedEvent.performers">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <textarea matInput placeholder="Terms and Conditions" [(ngModel)]="ticketedEvent.termsAndConditions"></textarea>
+    <input matInput placeholder="Ticket Price" [(ngModel)]="ticketedEvent.price">
   </mat-form-field>
   <br>
   <mat-form-field>

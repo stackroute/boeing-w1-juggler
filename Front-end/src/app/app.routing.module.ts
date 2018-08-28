@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path :"search",
-    component :HomePageComponent
+    component :SearchResultsComponent
   },
   {
     path: "userRegistration",
