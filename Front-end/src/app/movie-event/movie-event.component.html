@@ -16,7 +16,7 @@
         <mat-form-field>
           <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
             <mat-option *ngFor="let theatre of theatres" [value]="theatre.theatreName" (click)="findTheatreId(theatre)">
-              {{theatre.theatreName}}
+              {{theatre.theatreName}}  |   {{   theatre.city}}
             </mat-option>
           </mat-select>
         </mat-form-field>
