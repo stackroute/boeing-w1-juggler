@@ -42,6 +42,7 @@ export class MovieEventComponent implements OnInit {
 
   }
   findTheatreId(theatre){
+    this.movieEventModel.city=theatre.city;
     console.log(theatre);
     this.movieEventModel.theatreId=theatre.theatreId;
     this.movieEventModel.city=theatre.city;

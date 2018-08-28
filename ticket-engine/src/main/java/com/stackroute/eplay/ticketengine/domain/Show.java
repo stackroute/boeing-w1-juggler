@@ -3,9 +3,9 @@ package com.stackroute.eplay.ticketengine.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Map;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,5 +28,5 @@ public class Show  implements Serializable{
 	private LocalDate date;
 	private int movieEventId;
 	private Boolean status;
-	private ArenaLayout layout;
+	private Map<Integer, String> seats;
 }
