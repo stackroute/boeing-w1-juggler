@@ -14,7 +14,7 @@ function setConnected(connected) {
 
 function connect() {
     console.log("inside connect")
-    var socket = new SockJS("http://172.23.238.222:9001/socket");
+    var socket = new SockJS("http://localhost:9001/socket");
     console.log("after connect")
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {

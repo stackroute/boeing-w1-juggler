@@ -40,7 +40,7 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { SocketConnectionComponent } from './socket-connection/socket-connection.component'
 import { MultipleCheckboxesModule } from "multiple-checkboxes";
 import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
-
+import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName'
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +69,7 @@ import { InviteeDetailsComponent } from './invitee-details/invitee-details.compo
     TheatreLayoutComponent,
     SocketConnectionComponent,
     InviteeDetailsComponent,
+    ExistingUsernameValidatorDirective
   ],
   imports: [
   
