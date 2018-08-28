@@ -42,7 +42,9 @@ export class NavBarComponent implements OnInit {
     { id: 3, moviegenre: "Drama" },
     { id: 4, moviegenre: "Romance" },
     { id: 5, moviegenre: "Sports" },
-    { id: 6, moviegenre: "Horror" }
+    { id: 6, moviegenre: "Horror" },
+    { id: 7, moviegenre: "War"},
+    { id: 8, moviegenre: "Action"}
   ];
 
   constructor(

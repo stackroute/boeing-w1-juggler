@@ -1,2 +1,21 @@
 <app-nav-bar></app-nav-bar>
-<p>Hhhhhhhhhhhhhh</p>
+<h4 style="margin-top: 100px">your previous movies are</h4>
+<mat-grid-list cols="12" rowHeight="100px">
+    <div *ngFor="let movie of movieList">
+        <mat-grid-tile colspan="4" rowspan="6">
+            <mat-card class="example-card">
+                <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="yourData.movieEvent[0].city"></app-event-card>
+                <br> {{movie.releaseDate}}
+            </mat-card>
+        </mat-grid-tile>
+    </div>
+</mat-grid-list>
+<mat-grid-list cols="12" rowHeight="100px">
+    <div *ngFor="let ticketedEvent of yourData.ticketedEvent;">
+        <mat-grid-tile colspan="4" rowspan="6">
+            <mat-card class="example-card">
+                <app-event-card [name]="ticketedEvent.name" [poster]="ticketedEvent.poster" [city]="ticketedEvent.city"></app-event-card>
+            </mat-card>
+        </mat-grid-tile>
+    </div>
+</mat-grid-list>

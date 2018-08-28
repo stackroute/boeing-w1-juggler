@@ -14,7 +14,7 @@ function setConnected(connected) {
 
 function connect() {
     console.log("inside connect")
-    var socket = new SockJS("http://172.23.238.222:9001/socket");
+    var socket = new SockJS("http://localhost:9001/socket");
     console.log("after connect")
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
@@ -34,23 +34,8 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendName() {
-    console.log($("#name").val());
-    stompClient.send("/app/send/message", {}, $("#name").val());
+function sendBlockedSeats(blockedSeat) {
+    console.log("Blocked Seats: " +  JSON.stringify(blockedSeat));
+    stompClient.send("/app/send/message", {}, JSON.stringify(blockedSeat));
 }
 
-function showGreeting(message) {
-    console.log("heere " + message)
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
-}
-// $(document).ready(function () {
-$(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-    });
-    $( "#connect" ).click(function() { connect(); });
-    $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
-
-});
-// });

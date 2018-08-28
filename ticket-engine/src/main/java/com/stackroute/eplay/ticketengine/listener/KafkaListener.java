@@ -1,4 +1,4 @@
-/*package com.stackroute.eplay.ticketengine.kafkaListener;
+/*package com.stackroute.eplay.ticketengine.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,10 +7,13 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 
+import com.stackroute.eplay.ticketengine.domain.BlockedSeats;
 import com.stackroute.eplay.ticketengine.domain.MovieEvent;
 import com.stackroute.eplay.ticketengine.domain.Show;
 import com.stackroute.eplay.ticketengine.repository.ShowRepository;
+import com.stackroute.eplay.ticketengine.service.BlockedSeatsService;
 import com.stackroute.eplay.ticketengine.streams.MovieEventStream;
+import com.stackroute.eplay.ticketengine.streams.PaymentStatusStream;
 
 import lombok.NoArgsConstructor;
 
@@ -20,10 +23,12 @@ public class KafkaListener {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private ShowRepository showRepository;
+	private BlockedSeatsService blockedSeatsService;
 	
 	@Autowired
-	KafkaListener(ShowRepository showRepository){
+	KafkaListener(ShowRepository showRepository, BlockedSeatsService blockedSeatsService){
 		this.showRepository = showRepository;
+		this.blockedSeatsService = blockedSeatsService;
 	}
 	
 	@StreamListener(MovieEventStream.INPUT)
@@ -38,5 +43,4 @@ public class KafkaListener {
 		}
 		logger.info(event.toString() + " movie");
 	}
-}
-*/
+}*/

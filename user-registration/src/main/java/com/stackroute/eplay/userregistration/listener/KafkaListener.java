@@ -12,29 +12,33 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.MimeTypeUtils;
 
+import com.stackroute.eplay.userregistration.domain.BookedMovieTickets;
 import com.stackroute.eplay.userregistration.domain.MovieEvent;
 import com.stackroute.eplay.userregistration.domain.RSVPEvent;
 import com.stackroute.eplay.userregistration.domain.Registration;
 import com.stackroute.eplay.userregistration.domain.Theatre;
 import com.stackroute.eplay.userregistration.domain.TicketedEvent;
-import com.stackroute.eplay.userregistration.exception.UserNotFoundException;
+import com.stackroute.eplay.userregistration.repository.MovieEventRepository;
 import com.stackroute.eplay.userregistration.service.RegisterUser;
+import com.stackroute.eplay.userregistration.stream.MovieBookedSeatsStream;
 import com.stackroute.eplay.userregistration.stream.MovieEventStream;
 import com.stackroute.eplay.userregistration.stream.RSVPEventStream;
 import com.stackroute.eplay.userregistration.stream.TheatreStream;
 import com.stackroute.eplay.userregistration.stream.TicketedEventStream;
 import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
 
-@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class })
+@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class, MovieBookedSeatsStream.class })
 public class KafkaListener {
 
 	private RegisterUser registerUser;
 	private UserRegistrationStream userRegistrationStream;
-
+	private MovieEventRepository movieEventRepository;
+	
 	@Autowired
-	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream) {
+	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream, MovieEventRepository movieEventRepository) {
 		this.registerUser = registerUser;
 		this.userRegistrationStream = userRegistrationStream;
+		this.movieEventRepository = movieEventRepository;
 	}
 
 	@StreamListener(TheatreStream.INPUT)
@@ -148,12 +152,47 @@ public class KafkaListener {
 			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
 			List<MovieEvent> movieEvents;
-			if (user.getTicketedEvent() == null)
+			if (user.getMovieEvent() == null)
 				movieEvents = new ArrayList<>();
 			else
 				movieEvents = user.getMovieEvent();
 			movieEvents.add(movieEvent);
 			user.setMovieEvent(movieEvents);
+
+			/*
+			 * updating the content in database
+			 */
+
+			registerUser.updateUser(user, userName);
+			movieEventRepository.save(movieEvent);
+			/*
+			 * putting content in the message bus
+			 */
+
+			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
+			messageChannel.send(MessageBuilder.withPayload(user)
+					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	@StreamListener(MovieBookedSeatsStream.INPUT)
+	public void bookedMovieEventPost(@Payload BookedMovieTickets bookedMovieTickets) {
+		System.out.println(bookedMovieTickets.toString() + " booked seats");
+
+		String userName = bookedMovieTickets.getUserName();
+		try {
+			Registration user = registerUser.findByUsername(userName);
+			System.out.println(user.getUserName() + " " + user.getFullName());
+			List<Integer> bookedMovieId;
+			if (user.getBookedMovieId() == null)
+				bookedMovieId = new ArrayList<>();
+			else
+				bookedMovieId = user.getBookedMovieId();
+			bookedMovieId.add(movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId());
+			user.setBookedMovieId(bookedMovieId);
 
 			/*
 			 * updating the content in database

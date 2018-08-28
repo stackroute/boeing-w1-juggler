@@ -3,7 +3,7 @@ package com.stackroute.eplay.ticketservice.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+import java.util.Map;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -30,6 +30,6 @@ public class Show {
     private LocalDate date;
     private int movieEventId;
     private boolean status;
-    private ArenaLayout layout;
+    private Map<Integer, String> seats;
     
 }

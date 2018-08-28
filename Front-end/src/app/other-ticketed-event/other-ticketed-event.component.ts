@@ -9,28 +9,18 @@ import { TicketedEventService } from "../ticketed-event.service";
 })
 export class OtherTicketedEventComponent implements OnInit {
   otherTicketedEventControl = new FormControl();
-  otherTicketedEventControl1 = new FormControl();
+
   ticketedEvent = new TicketedEvent();
   constructor(private ticketedEventService: TicketedEventService) {}
   submitTicketedEvent() {
+    this.ticketedEvent.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+    console.log(this.ticketedEvent);
     this.ticketedEventService
       .saveTicketedEvent(this.ticketedEvent)
       .subscribe(res => console.log("Saved"));
   }
 
-  cityGroup: CityGroup[] = [
-    {
-      name: "Cities",
-      city: [
-        { value: "Bangalore", viewValue: "Bangalore" },
-        { value: "New Delhi", viewValue: "New Delhi" },
-        { value: "Mumbai", viewValue: "Mumbai" },
-        { value: "Kolkata", viewValue: "Kolkata" },
-        { value: "Chennai", viewValue: "Chennai" },
-        { value: "Hyderabad", viewValue: "Hyderabad" }
-      ]
-    }
-  ];
+
   typegroup: TypeGroup[] = [
     {
       name: "Event Types",
@@ -48,16 +38,8 @@ export class OtherTicketedEventComponent implements OnInit {
   ngOnInit() {}
 }
 
-export interface City {
-  value: string;
-  viewValue: string;
-}
 
-export interface CityGroup {
-  disabled?: boolean;
-  name: string;
-  city: City[];
-}
+
 
 export interface Type {
   value: string;

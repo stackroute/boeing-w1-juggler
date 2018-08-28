@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http"; // to access the get method for accessing the file data
 import { HttpErrorResponse } from "@angular/common/http"; // for printing error message
 import * as $ from "jquery";
+import * as socket from '../../assets/socket.js' ;
+import { BlockSeat } from '../models/SeatBlock';
 var jquery: any;
 
 @Component({
@@ -10,6 +12,9 @@ var jquery: any;
   styleUrls: ["./theatre-layout.component.css"]
 })
 export class TheatreLayoutComponent implements OnInit {
+  
+  showId
+  blockedSeat = new BlockSeat();
   seatingValue = [];
   totalRow = [];
   totalCol = [];
@@ -17,13 +22,20 @@ export class TheatreLayoutComponent implements OnInit {
   passage = [];
   rowPassage=[];
   public id: any[];
-  public Id: any[]; // Final array to be sent to booking api
+  public seatNum: any[]; // Final array to be sent to booking api
 
   constructor(private httpService : HttpClient) {}
   ngOnInit() {
+
+    (window as any).connect();
     
     this.id=[];
-    this.Id=[];
+    this.seatNum=[];
+
+    this.showId = localStorage.getItem('showId');
+    console.log("Show Id from movie-info " + this.showId);
+
+    
     
     this.httpService.get("./assets/layout.json").subscribe(
       data => {
@@ -99,9 +111,13 @@ export class TheatreLayoutComponent implements OnInit {
     console.log(map);
     map.forEach((value:number, key:String)=>{
       if(value%2!=0){
-        this.Id.push(key);
+        this.seatNum.push(key);
       }
     });
-    console.log(this.Id);
+    this.blockedSeat.showId = this.showId;
+    this.blockedSeat.seats = this.seatNum;
+    (window as any).sendBlockedSeats(this.blockedSeat);
+    console.log(this.seatNum);
+    (window as any).disconnect();
   }
 }
