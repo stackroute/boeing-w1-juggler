@@ -18,7 +18,7 @@ import com.stackroute.eplay.ticketengine.streams.PaymentStatusStream;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@EnableBinding({ MovieEventStream.class, PaymentStatusStream.class })
+@EnableBinding({ MovieEventStream.class })
 public class KafkaListener {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -42,20 +42,5 @@ public class KafkaListener {
 			}
 		}
 		logger.info(event.toString() + " movie");
-	}
-	
-	@StreamListener(PaymentStatusStream.INPUT)
-	public void paymentStatus(@Payload BlockedSeats seats) {
-		Show show = showRepository.find(seats.getShowId());
-		for(int i:seats.getSeats()) {
-			if(show.getSeats().get(i).equals("blocked")) {
-				if(seats.getStatus()=="booked")
-					show.getSeats().put(i, "booked");
-				else
-					show.getSeats().put(i, "open");
-			}
-		}
-		blockedSeatsService.delete(seats.getId());
-		showRepository.save(show);
 	}
 }*/

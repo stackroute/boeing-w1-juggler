@@ -1,9 +1,6 @@
-package com.stackroute.eplay.ticketengine.domain;
+package com.stackroute.eplay.userregistration.domain;
 
 import java.util.List;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,9 +13,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@RedisHash("BlockedSeats")
-public class BlockedSeats{
-	@Id
+public class BookedMovieTickets{
 	private String id;
 	private Long showId;
 	private List<Integer> seats;

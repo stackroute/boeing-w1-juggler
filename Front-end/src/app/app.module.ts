@@ -35,9 +35,9 @@ import { SideNavComponent } from "./side-nav/side-nav.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 // import { ArenaLayoutSocketComponent } from './arena-layout-socket/arena-layout-socket.component';
-import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.component';
-import { Ng2CarouselamosModule } from 'ng2-carouselamos';
-import { SocketConnectionComponent } from './socket-connection/socket-connection.component'
+import { TheatreLayoutComponent } from "./theatre-layout/theatre-layout.component";
+import { Ng2CarouselamosModule } from "ng2-carouselamos";
+import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
 import { MultipleCheckboxesModule } from "multiple-checkboxes";
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './footer/footer.component';
@@ -73,7 +73,7 @@ import { PaymentPageComponent } from './payment-page/payment-page.component'
     UserProfileComponent,
     SideNavComponent,
     UserProfileComponent,
-    // ArenaLayoutSocketComponent    
+    // ArenaLayoutSocketComponent
     TheatreLayoutComponent,
     SocketConnectionComponent,
     FooterComponent,
@@ -103,8 +103,8 @@ import { PaymentPageComponent } from './payment-page/payment-page.component'
     MatExpansionModule,
     MatSnackBarModule
   ],
-  providers: [ MatNativeDateModule ],
- 
+  providers: [MatNativeDateModule],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}

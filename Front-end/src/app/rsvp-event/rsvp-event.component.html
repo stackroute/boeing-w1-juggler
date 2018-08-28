@@ -1,18 +1,23 @@
 <app-nav-bar></app-nav-bar>
-<div class="example-container">
+<div class="jumbotron">
+  <div class="medium-list">
+    <div class="list-viewer-wrapper">
+      <div class="list-header-title">RSVP Event</div>
+      <div class="form-container">
+
   <mat-form-field>
     <textarea matInput placeholder="name" [(ngModel)]="rsvpModel.name" ngModel #nameUser="ngModel" required pattern="[a-zA-Z][a-zA-Z]+"></textarea>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a starting date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a starting date" >
+    <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput [matDatepicker]="picker1" placeholder="Choose an ending date">
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
     <mat-datepicker #picker1></mat-datepicker>
   </mat-form-field>
   <mat-form-field>
@@ -46,5 +51,8 @@
   <br>
   <br>
 
-  {{rsvpModel.id}}
+ </div>
+ </div>
+
+</div>
 </div>
