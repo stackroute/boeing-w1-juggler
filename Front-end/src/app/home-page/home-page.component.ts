@@ -37,6 +37,7 @@ export class HomePageComponent implements OnInit {
     });
   }
   goMoviePage(movie) {
+    console.log("inside goMoviePage");
     this.data.changeMovieMessage(movie);
     console.log(movie);
   }
