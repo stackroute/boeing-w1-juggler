@@ -16,6 +16,7 @@ export class MovieTheatreListComponent implements OnInit {
   }
   ngOnInit() {
     this._searchDataService.movieMessage.subscribe(movie => this.movie = movie)
+    this.movie=JSON.parse(localStorage.getItem('movieInfo'));
     console.log("print in child" , this.movie);
     this.theatreList= this.movie.theatres;
     this.theatreList=this.theatreList[0];

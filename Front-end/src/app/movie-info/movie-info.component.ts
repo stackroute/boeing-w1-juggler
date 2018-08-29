@@ -7,10 +7,16 @@ import { SearchDataService } from '../search-data.service';
 })
 export class MovieInfoComponent implements OnInit {
    movie;
-  constructor(private _searchDataService:SearchDataService) {}
+   movies: any;
+  constructor(private _searchDataService:SearchDataService) {
+    this.movies=JSON.parse(localStorage.getItem('movieInfo'));
+    console.log(this.movies);
+
+  }
 
   ngOnInit() {
-    this._searchDataService.movieMessage.subscribe(movie => this.movie = movie);
+    this.movies=JSON.parse(localStorage.getItem('movieInfo'));
+    this._searchDataService.movieMessage.subscribe(movies => this.movie = movies);
     console.log("my theatre",this.movie);
   }
 }

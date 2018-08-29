@@ -92,7 +92,7 @@ services:
     command: redis-server --appendonly yes
     mem_limit: 2g
     volumes:
-      - ./redis/db:/redis/db
+      - ./data:/data
     ports:
       - 6379:6379
     restart: always

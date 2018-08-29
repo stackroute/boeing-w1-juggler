@@ -13,7 +13,6 @@ import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import com.stackroute.eplay.ticketengine.domain.BlockedSeats;
@@ -22,12 +21,11 @@ import com.stackroute.eplay.ticketengine.repository.BlockedSeatsRepository;
 import com.stackroute.eplay.ticketengine.repository.ShowRepository;
 
 @Service
-public class BlockedSeatsServiceImpl implements BlockedSeatsService{
+public class BlockedSeatsServiceImpl implements BlockedSeatsService {
 
 	private BlockedSeatsRepository blockedSeatsRepository;
 	private ShowRepository showRepository;
 
-	
 	@Autowired
 	public BlockedSeatsServiceImpl(BlockedSeatsRepository blockedSeatsRepository, ShowRepository showRepository) {
 		this.blockedSeatsRepository = blockedSeatsRepository;
@@ -35,29 +33,30 @@ public class BlockedSeatsServiceImpl implements BlockedSeatsService{
 	}
 
 	@Override
-	public BlockedSeats save(BlockedSeats blockedSeats) throws Exception{
+	public BlockedSeats save(BlockedSeats blockedSeats) throws Exception {
 		blockedSeats = blockedSeatsRepository.save(blockedSeats);
 		Show show = showRepository.find(blockedSeats.getShowId());
-		for(int i:blockedSeats.getSeats()) {
-			if(show.getSeats().get(i).equals("blocked")) {
-				throw new Exception("Seat No: "+i+" is already blocked");
-			}else if(show.getSeats().get(i).equals("booked")) {
-				throw new Exception("Seat No: "+i+" is already booked");
+		for (int i : blockedSeats.getSeats()) {
+			if (show.getSeats().get(i).equals("blocked")) {
+				throw new Exception("Seat No: " + i + " is already blocked");
+			} else if (show.getSeats().get(i).equals("booked")) {
+				throw new Exception("Seat No: " + i + " is already booked");
 			} else {
 				show.getSeats().put(i, "blocked");
 			}
 		}
 		showRepository.save(show);
-		
-		JobDetail job = JobBuilder.newJob(SeatsJob.class).build();
-		SimpleTrigger trigger = TriggerBuilder.newTrigger().withIdentity("Trigger")
-				.startAt(futureDate(30, IntervalUnit.SECOND)).forJob(job)
-				.withSchedule(simpleSchedule()).build();
+
+		JobKey jobKey = JobKey.jobKey(blockedSeats.getId());
+		JobDetail job = JobBuilder.newJob(SeatsJob.class).withIdentity(jobKey).build();
+		TriggerKey triggerKey = TriggerKey.triggerKey(blockedSeats.getId());
+		SimpleTrigger trigger = TriggerBuilder.newTrigger().withIdentity(triggerKey)
+				.startAt(futureDate(10, IntervalUnit.SECOND)).forJob(job).withSchedule(simpleSchedule()).build();
 		Scheduler sc = StdSchedulerFactory.getDefaultScheduler();
 		sc.getContext().put("seat", blockedSeats.getId());
 		sc.scheduleJob(job, trigger);
 		sc.start();
-		
+
 		return blockedSeats;
 	}
 
@@ -74,7 +73,7 @@ public class BlockedSeatsServiceImpl implements BlockedSeatsService{
 	@Override
 	public void delete(String id) {
 		blockedSeatsRepository.deleteById(id);
-		
+
 	}
 
 	@Override
@@ -86,6 +85,5 @@ public class BlockedSeatsServiceImpl implements BlockedSeatsService{
 	public void deleteAll() {
 		blockedSeatsRepository.deleteAll();
 	}
-	
-	
+
 }

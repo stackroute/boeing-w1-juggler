@@ -1,24 +1,15 @@
 <app-nav-bar></app-nav-bar>
 <div class="poster-container">
     <!--"https://picsum.photos/1300/300?image=992"-->
-    <img src={{movie.poster}} alt="Sorry movie not available"/>
-    <h2>{{movie.name}}</h2>
+    <img src={{movies.poster}} alt="Sorry movie not available"/>
+    <h2>{{movies.name}}</h2>
 </div>
-<div class="menu">
-<mat-form-field>
-    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
-<mat-form-field class="filter-price">
-        <mat-select placeholder="Filter Price Range">
-          <mat-option><mat-checkbox>100-200</mat-checkbox></mat-option>
-          <mat-option><mat-checkbox>201-300</mat-checkbox></mat-option>
-          <mat-option><mat-checkbox>301-400</mat-checkbox></mat-option>
-        </mat-select>
-        <mat-hint align="end">Check the lowest prices</mat-hint>
-</mat-form-field>
-</div>
+    <div class="description">
+        <h4>Synopsis</h4>
+        <div class="menu">
+            {{movies.description}}
+        </div>
+    </div>
 <div> <!-- display the list -->
     <app-movie-theatre-list></app-movie-theatre-list> 
 </div>
