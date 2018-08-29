@@ -35,7 +35,7 @@ footer {
     width:100%;
     margin:5em auto;
     padding :0;
-    background: white;
+    background: rgb(112, 130, 133);
 }
 .items{
     max-width: 300px;
