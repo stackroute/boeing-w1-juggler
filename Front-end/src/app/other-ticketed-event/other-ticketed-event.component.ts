@@ -10,11 +10,13 @@ import { TicketedEventService } from "../ticketed-event.service";
 export class OtherTicketedEventComponent implements OnInit {
   otherTicketedEventControl = new FormControl();
   otherTicketedEventControl1 = new FormControl();
-  ticketedEvent = new TicketedEvent();
+  ticketedEventModel = new TicketedEvent();
   constructor(private ticketedEventService: TicketedEventService) {}
   submitTicketedEvent() {
+    this.ticketedEventModel.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+    console.log(this.ticketedEventModel);
     this.ticketedEventService
-      .saveTicketedEvent(this.ticketedEvent)
+      .saveTicketedEvent(this.ticketedEventModel)
       .subscribe(res => console.log("Saved"));
   }
 

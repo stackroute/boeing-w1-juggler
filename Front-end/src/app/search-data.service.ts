@@ -50,6 +50,7 @@ getMyMovies(city) {
   return this.http.get('http://13.232.40.6:8092/search-service/api/v1/city/'+localStorage.getItem('city')+'/movies')
 }
 getMyEvents(city) {
+  console.log("in getMyEvents",localStorage.getItem('city'));
  return this.http.get('http://13.232.40.6:8092/search-service/api/v1/city/'+localStorage.getItem('city')+'/events')
 }
 

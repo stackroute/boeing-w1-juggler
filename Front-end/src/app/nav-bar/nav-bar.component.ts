@@ -75,4 +75,8 @@ export class NavBarComponent implements OnInit {
         window.location.reload();
       });
   }
+  reset(){
+    localStorage.removeItem('rec');
+    window.location.reload();
+  }
 }

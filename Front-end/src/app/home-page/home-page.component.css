@@ -1,6 +1,13 @@
 mat-grid-list{
-    margin-top: 75px;
+    margin-top: 58px;
 }
+
+
+  
+  /* .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  } */
 
 footer {
     /* position: fixed; */
@@ -23,3 +30,78 @@ footer {
   mat-grid-list{
       margin-bottom:15%;
   }
+
+  #container{
+    width:100%;
+    margin:5em auto;
+    padding :0;
+    background: white;
+}
+.items{
+    max-width: 300px;
+    max-height:300px; 
+    background: rgb(24, 23, 23);
+}
+img{
+    /* min-height: auto;
+    max-height: auto; */
+    height: 300px; /* Your height here */
+  width: 345px;
+  overflow: hidden;
+}
+
+#left ,#right{
+    margin:30px;
+    height: 30px;
+    width: 30px;
+
+}
+
+/* img{
+    max-width: auto;
+    max-height: auto;
+} */
+
+mat-card{
+    border :1px solid #999; 
+    /* border : 12px dashed #1b1a19; */
+    /* border : 3px dashed #ccc; */
+    /* background: #5bc0de */
+    background: #33b5e5;
+}
+
+h3{
+    text-align: left;
+    text-shadow: 2px 2px;
+    padding-bottom: 0;
+}
+h2{
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}
+
+h5{
+    text-align: center;
+    /* text-shadow: 2px 2px; */
+    text-shadow:2px 8px 6px rgba(0,0,0,0.2),
+                 0px -5px 35px rgba(255,255,255,0.3);
+}
+/* .example-card {
+    max-width: 400px;
+  } */
+  
+  .example-header-image {
+      /* align-content: flex-start; */
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+ 
+  mat-grid-tile{
+      margin-top: 0
+  }
+
+  mat-grid-list{
+    grid-gap: 5px;
+  }
+
+  
