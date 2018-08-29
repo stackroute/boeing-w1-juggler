@@ -18,7 +18,7 @@ import { UserProfileComponent } from "./user-profile/user-profile.component";
 import {TheatreLayoutComponent} from "./theatre-layout/theatre-layout.component";
 import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
 import { InviteeDetailsComponent } from "./invitee-details/invitee-details.component";
-
+import {PaymentPageComponent} from "./payment-page/payment-page.component"
 const routes: Routes = [
   {
     path: "",
@@ -31,6 +31,14 @@ const routes: Routes = [
   {
     path :"home",
     component :HomePageComponent
+  },
+  {
+    path :"payment",
+    component :PaymentPageComponent
+  },
+  {
+    path :"profile",
+    component :UserProfileComponent
   },
   {
     path :"search",

@@ -8,44 +8,42 @@ import { InputEmailsDetails } from "../InputEmailsDetails";
 import { EmailService } from "../email.service";
 
 @Component({
-  selector: 'app-invitee-details',
-  templateUrl: './invitee-details.component.html',
-  styleUrls: ['./invitee-details.component.css']
+  selector: "app-invitee-details",
+  templateUrl: "./invitee-details.component.html",
+  styleUrls: ["./invitee-details.component.css"]
 })
 export class InviteeDetailsComponent implements OnInit {
-
-
   rsvpInvitationModel = new RsvpInvitation();
- inputEmailsDetails = new InputEmailsDetails();
- public rsvpModel: any;
- message: string;
- id = 3;
-i=1;
- id1: string;
- idd = this.id.toString();
+  inputEmailsDetails = new InputEmailsDetails();
+  public rsvpModel: any;
+  message: string;
 
- constructor(
-   private emailService: EmailService,
-   private rsvpCreateService: RsvpCreateService,
-   private rsvpInvitationService: RsvpInvitationService,
-   private activatedRoute: ActivatedRoute,
-   private router: Router
- ) { }
+  id: any;
+  constructor(
+    private emailService: EmailService,
+    private rsvpCreateService: RsvpCreateService,
+    private rsvpInvitationService: RsvpInvitationService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     console.log("this.rsvpModel");
+    this.id=localStorage.getItem("eventId");
     this.inputEmailsDetails.emailBcc = [];
     //  console.log(this.rsvpModel);
-    this.rsvpCreateService.getRsvpEventById(3).subscribe(rsvpCreateService => {
-      this.rsvpModel = rsvpCreateService;
-      console.log(this.rsvpModel);
-    });
+    this.rsvpCreateService
+      .getRsvpEventById(this.id)
+      .subscribe(rsvpCreateService => {
+        this.rsvpModel = rsvpCreateService;
+        console.log(this.rsvpModel);
+      });
     console.log("something", this.rsvpModel);
   }
   onSubmit1() {
-    //this.id=this.rsvpModel.id;
+    this.id=localStorage.getItem("eventId");
     console.log("vishal ppuuu");
-   this.router.navigate(["/rsvpEvent/" + this.id]);
-  // this.router.navigate(["InviteeDetails"]);
+    this.router.navigate(["/rsvpEvent/" + this.id]);
+    // this.router.navigate(["InviteeDetails"]);
   }
 }

@@ -1,4 +1,8 @@
 export class BlockSeat{
+    id: String;
     showId: number;
-    seatNum: number[];
+    seats: number[];
+    status: String;
+    userName: String;
+    guestUserEmailId: String;
 }

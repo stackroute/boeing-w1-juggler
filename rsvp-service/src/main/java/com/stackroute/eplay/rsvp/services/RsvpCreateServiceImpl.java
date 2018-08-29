@@ -28,7 +28,7 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	
 	public RSVPEvent saveRsvpCreate(RSVPEvent rsvpCreate) {
 		// TODO Auto-generated method stub
-		rsvpCreate.setId(nextSequenceService.getNextSequence("counter"));
+	//	rsvpCreate.setId(nextSequenceService.getNextSequence("counter"));
 		return rsvpCreateRepository.save(rsvpCreate);
 	}
 
