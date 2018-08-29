@@ -8,7 +8,7 @@ export class TheatreLayoutService {
   
   constructor(private http:HttpClient) { }
 
-  private _url: string="http://172.23.238.170:8092/ticket-service/api/v1/show/";
+  private _url: string="http://13.232.40.6:8092/ticket-engine/api/v1/show/";
   // hit api to get layout data corresponding to a showId and return it to
   // theatre-layout component
 
