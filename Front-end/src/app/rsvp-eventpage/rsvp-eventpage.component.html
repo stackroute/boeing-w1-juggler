@@ -1,5 +1,9 @@
-<div class="image">
-<div class="example-container">
+
+    <!-- <img  mat-card-image src="{{rsvpModel.poster}}" alt="rsvp poster"> -->
+<mat-grid-list cols="100">
+    <mat-grid-tile colspan="1" >  </mat-grid-tile>
+    
+    <mat-grid-tile colspan="98" >
     <mat-card [style.backgroundColor]="'#A5D8DD'">
 <h3>
   Event: {{rsvpModel.name}}
@@ -17,6 +21,8 @@
 <h4>
         End Date: {{rsvpModel.endDate|date}} at end time {{rsvpModel.endTime}}
 </h4>
+
+
 <h4>
       Description: {{rsvpModel.description}}
 </h4>
@@ -57,5 +63,5 @@
     </div>
     <button type="submit"  name="button" class="btn btn-success button" (click)="onSubmit()">submit </button>
  </mat-card>
-  </div>
-</div>
+ </mat-grid-tile>
+  </mat-grid-list>
