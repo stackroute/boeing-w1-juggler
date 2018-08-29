@@ -3,13 +3,7 @@ import { SearchDataService } from "../search-data.service";
 import { RecommendationService } from "../recommendation.service";
 import { Movie } from "../movie";
 import { AuthenticationService } from '../authentication.service';
-import {
-  FormBuilder,
-  FormGroup,
-  FormArray,
-  FormControl,
-  ValidatorFn
-} from "@angular/forms";
+import { FormBuilder,FormGroup,FormArray,FormControl,ValidatorFn} from "@angular/forms";
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
