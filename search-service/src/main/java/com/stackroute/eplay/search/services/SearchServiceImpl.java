@@ -106,6 +106,17 @@ public class SearchServiceImpl implements SearchService {
 		city = cityRepository.findById(cityName).get();
 
 		Movie currMovie = null;
+		
+		if(city.getMovieList() == null) {
+			List<Movie> movieList = new ArrayList<Movie>();
+			List<Theatre> theatres = new ArrayList<Theatre>();
+			theatres.add(theatre);
+			movie.setTheatres(theatres);
+			movieList.add(movie);
+			
+			return cityRepository.save(city);
+		}
+		
 		for (Movie tempMovie : city.getMovieList()) {
 			if (tempMovie.getId() == movie.getId()) {
 				currMovie = tempMovie;
