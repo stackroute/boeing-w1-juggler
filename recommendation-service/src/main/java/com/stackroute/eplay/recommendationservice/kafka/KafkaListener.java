@@ -92,7 +92,10 @@ public class KafkaListener {
 	@StreamListener(UserStreams.INPUT)
 	public void userPost(@Payload UserKafka userKafka) {
 		String userName = userKafka.getUserName();
-		String fullName = userKafka.getFullName();
+		String fullName = null;
+		if(userKafka.getFullName()!=null){
+		fullName = userKafka.getFullName();
+		}		
 		City city = new City(userKafka.getCity());
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();

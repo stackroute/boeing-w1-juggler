@@ -9,35 +9,42 @@
   </head>
 
   <body>
-
-<app-nav-bar></app-nav-bar>     
-<div class="name">
-  <h2>Theatre Layout</h2>
-</div>
-<hr>
-<div class="ArenaLayout">
-  <div class="rows" *ngFor= "let row of totalRow.values">
-    <div class="columns" *ngFor= "let col of totalCol.values">
-      <div *ngIf="col!=passage[row-1] && col!=passage[row] && col!=passage[row+1]
-       && col!=passage[row+2] && col!=passage[row-2] && col!=passage[row-3]
-       && col!=passage[row-4] && col!=passage[row-7] && col!=passage[row-8] 
-       && col!=passage[row-6] && col!=passage[row-5] && col!=passage[row-9] 
-       && row!=rowPassage; else Passage"> 
-        <div id = {{row}}{{col}} class="seat available" (click)="onclick(row,col)">
-            <!-- {{row}}{{col}} -->
+    <app-nav-bar></app-nav-bar>     
+    <div class="name">
+      <h2>Theatre Layout</h2>
+    </div>
+    <hr>
+    <div class="ArenaLayout">
+      <div class="rows" *ngFor= "let row of totalRow">
+        <div class="columns" *ngFor= "let col of totalCol">
+           <div *ngIf="col!=passage[0] && col!=passage[1] && row!=rowPassage; else Passage">
+           <div  *ngIf="seatStatus(row,col); else SeatAvailable">
+             <div id = {{row}}{{col}} *ngIf="seatBook(row,col); else SeatBlocked" class="seat booked">
+                <!-- {{row}}{{col}} -->
+             </div>
+              <ng-template #SeatBlocked>
+                <div id = {{row}}{{col}} class="seat blocked">
+                  <!-- {{row}}{{col}} -->
+                </div>
+              </ng-template>
+           </div>
+           <ng-template #SeatAvailable>
+             <div id={{row}}{{col}} class="seat available" (click)="onclick(row,col)">
+               <!-- {{row}}{{col}} -->
+             </div>
+           </ng-template>
+          </div>
+          <ng-template #Passage>
+            <div class=" seatPassage passage"></div>
+          </ng-template>
         </div>
       </div>
-      <ng-template #Passage>
-        <div class=" seat1 passage"></div>
-      </ng-template> 
     </div>
-  </div>
-</div>
-<div class="screen">
-    Screen this way
-</div>
-<div class="bookButton">
-    <button mat-raised-button color="primary" (click)="bookticket()">Proceed</button>
-</div>
+    <div class="screen">
+        Screen this way
+    </div>
+    <div class="bookButton">
+        <button mat-raised-button color="primary" (click)="bookticket()">Proceed</button>
+    </div>
   </body>
 </html>

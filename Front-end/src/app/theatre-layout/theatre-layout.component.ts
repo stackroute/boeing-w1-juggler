@@ -4,6 +4,8 @@ import { HttpErrorResponse } from "@angular/common/http"; // for printing error 
 import * as $ from "jquery";
 import * as socket from '../../assets/socket.js' ;
 import { BlockSeat } from '../models/SeatBlock';
+import {PaymentService} from '../payment.service'
+import {TheatreLayoutService} from '../theatre-layout.service';
 var jquery: any;
 
 @Component({
@@ -24,33 +26,52 @@ export class TheatreLayoutComponent implements OnInit {
   public id: any[];
   public seatNum: any[]; // Final array to be sent to booking api
 
-  constructor(private httpService : HttpClient) {}
+  // variable for retrieveing the map data from redis
+  mapKey = [];
+  mapKeyValue = [];
+  x;
+  showLayout:any;
+
+  constructor(private httpService : HttpClient,private data :PaymentService , private theatrelayout : TheatreLayoutService) {}
   ngOnInit() {
 
     (window as any).connect();
     
-    this.id=[];
-    this.seatNum=[];
+    this.id = [];
+    this.seatNum = [];
+    this.mapKey=[];
+    this.mapKeyValue=[];
+    this.x = 0;
 
     this.showId = localStorage.getItem('showId');
     console.log("Show Id from movie-info " + this.showId);
 
+    // function in service to get Show object
+    this.theatrelayout.getShowlayout(this.showId).subscribe(data => {
+      this.showLayout = data;
+      // console.log("This is show Layout",this.showLayout);
+      
+      console.log(Object.keys(this.showLayout.seats).length);
+      for(var i=0;i<Object.keys(this.showLayout.seats).length;i++){
+        this.mapKey[i]=i;
+        this.mapKeyValue[i]=this.showLayout.seats[i];
+        //console.log("Key"+ this.mapKey[i] + " Value " + this.mapKeyValue[i]);
+      }
+    });
     
     
     this.httpService.get("./assets/layout.json").subscribe(
       data => {
         this.jsonRow = data as string[]; // FILL THE ARRAY WITH DATA.
-        // console.log("jsonRow[0].value :", this.jsonRow[0].totalRow);
-        // console.log("jsonRow[1].value :", this.jsonRow[1].totalCol);
         this.totalRow.length = this.jsonRow[0].totalRow; 
         this.totalCol.length = this.jsonRow[1].totalCol;
-        this.totalRow.values= this.jsonRow[0].Values;
-        this.totalCol.values=this.jsonRow[1].Values;
+        this.totalRow = this.jsonRow[0].Values;
+        this.totalCol = this.jsonRow[1].Values;
         
         // to get the passage columns
-        this.passage= this.jsonRow[2].passageCol;
-        this.rowPassage= this.jsonRow[3].passageRow;
-        console.log(this.passage);
+        this.passage = this.jsonRow[2].passageCol;
+        this.rowPassage = this.jsonRow[3].passageRow;
+        //console.log(this.rowPassage);
         
         this.createseating();
       },
@@ -109,15 +130,55 @@ export class TheatreLayoutComponent implements OnInit {
         }
     }
     console.log(map);
-    map.forEach((value:number, key:String)=>{
-      if(value%2!=0){
+    map.forEach((value: number, key: String)=>{
+      if(value%2 != 0){
         this.seatNum.push(key);
       }
     });
-    this.blockedSeat.showId = this.showId;
+    this.blockedSeat.showId = 2;
     this.blockedSeat.seats = this.seatNum;
+    this.data.changePayMessage(this.blockedSeat);
     (window as any).sendBlockedSeats(this.blockedSeat);
     console.log(this.seatNum);
     (window as any).disconnect();
+    this.data.payMessage.subscribe(data=>{this.blockedSeat=data
+    console.log("working sockets and all",data)});
   }
+
+
+  // seatStatus()
+  seatStatus(r, c) {
+    var seatId = r * 10 + c;
+    //console.log("Seat ID : " + seatId); 
+    for (let i = 0; i < this.mapKey.length; i++) {
+     // console.log(this.mapKey[i]);
+      if (this.mapKey[i] == seatId) {
+      //  console.log((this.mapKeyValue[i]);
+        if (this.mapKeyValue[i] == "open") {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    }
+  }
+
+  // seatBook()
+  seatBook(r,c) {
+    var seatId = r * 10 + c;
+    for (let i = 0; i < this.mapKey.length; i++) {
+      //console.log(this.mapKey[i]);
+      if (this.mapKey[i] == seatId) {
+        //console.log(this.mapKeyValue[i]);
+        if (this.mapKeyValue[i] == "booked") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  }
+
+
+
 }
