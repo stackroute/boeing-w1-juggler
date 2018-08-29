@@ -35,9 +35,9 @@ import { SideNavComponent } from "./side-nav/side-nav.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 // import { ArenaLayoutSocketComponent } from './arena-layout-socket/arena-layout-socket.component';
-import { TheatreLayoutComponent } from './theatre-layout/theatre-layout.component';
-import { Ng2CarouselamosModule } from 'ng2-carouselamos';
-import { SocketConnectionComponent } from './socket-connection/socket-connection.component'
+import { TheatreLayoutComponent } from "./theatre-layout/theatre-layout.component";
+import { Ng2CarouselamosModule } from "ng2-carouselamos";
+import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
 import { MultipleCheckboxesModule } from "multiple-checkboxes";
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './footer/footer.component';
@@ -46,7 +46,8 @@ import { FooterComponent } from './footer/footer.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
-import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName'
+import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName';
+import { PaymentPageComponent } from './payment-page/payment-page.component'
 
 @NgModule({
   declarations: [
@@ -72,12 +73,13 @@ import { ExistingUsernameValidatorDirective } from './registration-form/customVa
     UserProfileComponent,
     SideNavComponent,
     UserProfileComponent,
-    // ArenaLayoutSocketComponent    
+    // ArenaLayoutSocketComponent
     TheatreLayoutComponent,
     SocketConnectionComponent,
     FooterComponent,
     InviteeDetailsComponent,
-    ExistingUsernameValidatorDirective
+    ExistingUsernameValidatorDirective,
+    PaymentPageComponent
   ],
   imports: [
     MatMenuModule,
@@ -101,8 +103,8 @@ import { ExistingUsernameValidatorDirective } from './registration-form/customVa
     MatExpansionModule,
     MatSnackBarModule
   ],
-  providers: [ MatNativeDateModule ],
- 
+  providers: [MatNativeDateModule],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}
