@@ -12,17 +12,20 @@ import { FormBuilder,FormGroup,FormArray,FormControl,ValidatorFn} from "@angular
 export class NavBarComponent implements OnInit {
   
   omdbSearchTitle: string;
+  User: string;
 
   // constructor(
   //   private data: SearchDataService,
   //   private authenticationService:AuthenticationService
   // ) { }
 
-  ngOnInit() {
+  ngOnInit() {this.User=localStorage.getItem('currentUser');
+  console.log("user name",this.User);
   }
   onSearch(){
     console.log(this.omdbSearchTitle);
     this.data.changeMessage(this.omdbSearchTitle);
+    
 
   }
   form: FormGroup;

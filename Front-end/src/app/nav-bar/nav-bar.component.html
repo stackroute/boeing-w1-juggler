@@ -93,10 +93,10 @@
                 <div class="dropdown-menu">
                   <a class="dropdown-item"  href="profile">Event History</a>
                   <a class="dropdown-item" href="profile">Booking History</a>
-                  <a class="dropdown-item" href="#"> Accout/ Settings</a>
+                  <a class="dropdown-item" href="#"> Accout & Settings</a>
                   <a class="dropdown-item" href="#"> Help</a>
                   <!-- <div class="dropdown-divider"></div> -->
-                  <a class="dropdown-item" href="home" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()" >Logout</a>
+                  <a class="dropdown-item" href="home" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()" >Not {{User}}? Logout</a>
                 </div>
               <!-- </li> -->
               </li>
