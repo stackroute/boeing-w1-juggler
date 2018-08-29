@@ -3,13 +3,7 @@ import { SearchDataService } from "../search-data.service";
 import { RecommendationService } from "../recommendation.service";
 import { Movie } from "../movie";
 import { AuthenticationService } from '../authentication.service';
-import {
-  FormBuilder,
-  FormGroup,
-  FormArray,
-  FormControl,
-  ValidatorFn
-} from "@angular/forms";
+import { FormBuilder,FormGroup,FormArray,FormControl,ValidatorFn} from "@angular/forms";
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -18,17 +12,20 @@ import {
 export class NavBarComponent implements OnInit {
   
   omdbSearchTitle: string;
+  User: string;
 
   // constructor(
   //   private data: SearchDataService,
   //   private authenticationService:AuthenticationService
   // ) { }
 
-  ngOnInit() {
+  ngOnInit() {this.User=localStorage.getItem('currentUser');
+  console.log("user name",this.User);
   }
   onSearch(){
     console.log(this.omdbSearchTitle);
     this.data.changeMessage(this.omdbSearchTitle);
+    
 
   }
   form: FormGroup;
@@ -74,5 +71,9 @@ export class NavBarComponent implements OnInit {
         localStorage.setItem("rec", JSON.stringify(this.movies));
         window.location.reload();
       });
+  }
+  reset(){
+    localStorage.removeItem('rec');
+    window.location.reload();
   }
 }

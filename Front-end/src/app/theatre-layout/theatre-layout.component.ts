@@ -14,15 +14,15 @@ var jquery: any;
   styleUrls: ["./theatre-layout.component.css"]
 })
 export class TheatreLayoutComponent implements OnInit {
-  
-  showId
+  recievedBlockedSeats;
+  showId;
   blockedSeat = new BlockSeat();
   seatingValue = [];
   totalRow = [];
   totalCol = [];
   jsonRow: any[];
   passage = [];
-  rowPassage=[];
+  rowPassage = [];
   public id: any[];
   public seatNum: any[]; // Final array to be sent to booking api
 
@@ -34,7 +34,6 @@ export class TheatreLayoutComponent implements OnInit {
 
   constructor(private httpService : HttpClient,private data :PaymentService , private theatrelayout : TheatreLayoutService) {}
   ngOnInit() {
-
     (window as any).connect();
     
     this.id = [];
@@ -43,7 +42,10 @@ export class TheatreLayoutComponent implements OnInit {
     this.mapKeyValue=[];
     this.x = 0;
 
-    this.showId = localStorage.getItem('showId');
+    this.id = [];
+    this.seatNum = [];
+
+    this.showId = localStorage.getItem("showId");
     console.log("Show Id from movie-info " + this.showId);
 
     // function in service to get Show object
@@ -112,22 +114,21 @@ export class TheatreLayoutComponent implements OnInit {
   }
 
   //  For adding a seat Id in an Array on every click
-  onclick(x,y){
-    (this.id).push((x*10)+y);
+  onclick(x, y) {
+    this.id.push(x * 10 + y);
     console.log(this.id);
   }
 
   // To make an array of filtered seats which are to be sent to booking API
-  bookticket(){
-    let map = new Map<String, number>(); 
-    for(var i=0;i<(this.id).length;i++)
-    { 
-        if(map.get(this.id[i]))
-        {map.set(this.id[i],map.get(this.id[i])+1);}
-        else
-        {
-          map.set(this.id[i],1);
-        }
+  bookticket() {
+    console.log("inside booked ticket");
+    let map = new Map<String, number>();
+    for (var i = 0; i < this.id.length; i++) {
+      if (map.get(this.id[i])) {
+        map.set(this.id[i], map.get(this.id[i]) + 1);
+      } else {
+        map.set(this.id[i], 1);
+      }
     }
     console.log(map);
     map.forEach((value: number, key: String)=>{
@@ -135,15 +136,26 @@ export class TheatreLayoutComponent implements OnInit {
         this.seatNum.push(key);
       }
     });
-    this.blockedSeat.showId = 2;
+    this.blockedSeat.showId = this.showId;
     this.blockedSeat.seats = this.seatNum;
     this.data.changePayMessage(this.blockedSeat);
     (window as any).sendBlockedSeats(this.blockedSeat);
     console.log(this.seatNum);
-    (window as any).disconnect();
-    this.data.payMessage.subscribe(data=>{this.blockedSeat=data
-    console.log("working sockets and all",data)});
+    
+    //console.log("aaaaaaaa" + this.recievedBlockedSeats);
+
+    this.data.payMessage.subscribe(data => {
+      this.blockedSeat = data;
+      console.log("working sockets and all", data);
+    });
+
+    // this.recievedBlockedSeats = (window as any).receiveBlockedSeats();
+   
   }
+
+  // updatestatus() {
+  //   console.log("inside update status");
+  // }
 
 
   // seatStatus()

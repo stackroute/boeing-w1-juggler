@@ -47,6 +47,8 @@ export class RegistrationFormComponent implements OnInit {
   //   alert(this.user.userName + ' ' + this.user.email + ' ' + this.user.password);
   //  }
   onSubmit() {
+     this.user.city=localStorage.getItem('city');
+   console.log(this.user);
     this.registrationService
       .addUser(this.user)
       .subscribe(res => console.log("Saved"));

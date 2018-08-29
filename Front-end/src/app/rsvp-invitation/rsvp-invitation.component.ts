@@ -61,7 +61,7 @@ export class RsvpInvitationComponent implements OnInit {
       });
       console.log("bhaaaaaai",this.id);
       
-    // location.reload();
+       location.reload();
   }
   onSubmit1() {
     //this.id=this.rsvpModel.id;

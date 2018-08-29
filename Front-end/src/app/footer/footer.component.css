@@ -1,5 +1,5 @@
 footer {
-    position: fixed;
+    position: relative sticky;
     right: 0;
     bottom: 0;
     left: 0;

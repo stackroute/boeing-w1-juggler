@@ -1,6 +1,4 @@
 <div *ngIf="theatreList; else elseBlock">
-       
-
     <div class="theatre-container" *ngFor="let theatre of movie.theatres">
         <div class="theatre-name">
             <a mat-button routerLink=".">{{theatre.theatreName}}</a>

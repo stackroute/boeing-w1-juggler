@@ -1,5 +1,6 @@
 package com.stackroute.eplay.ticketservice.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -22,8 +23,8 @@ public class TicketedEvent {
     @Id
     private int id;
     private String name;
-    private Date date;
-    private Date time;
+    private LocalDate date;
+    private String time;
     private String city;
     private String location;
     private String poster;

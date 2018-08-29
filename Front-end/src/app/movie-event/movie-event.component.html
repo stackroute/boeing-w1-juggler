@@ -1,5 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <div class="jumbotron">
+  <p>
+    <button type="submit" class="example-button" name="button" class="btn btn-secondary" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
+  </p>
   <div class="medium-list">
     <div class="list-viewer-wrapper">
       <div class="list-header-title">Movie Event</div>
@@ -16,7 +19,7 @@
         <mat-form-field>
           <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
             <mat-option *ngFor="let theatre of theatres" [value]="theatre.theatreName" (click)="findTheatreId(theatre)">
-              {{theatre.theatreName}}  |   {{   theatre.city}}
+              {{theatre.theatreName}} | {{ theatre.city}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -28,12 +31,15 @@
         <mat-form-field>
           <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.showTimes">
         </mat-form-field>
-        
+
         <br>
-        <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()">Create Movie Event</button>
-        <br>
-        <button type="submit" class="example-button" name="button" class="btn btn-success" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
       </div>
+    </div>
+    <div>
+      <p align="center">
+        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()" routerLink="/home">Create Movie Event</button>
+      </p>
+
     </div>
   </div>
 </div>
