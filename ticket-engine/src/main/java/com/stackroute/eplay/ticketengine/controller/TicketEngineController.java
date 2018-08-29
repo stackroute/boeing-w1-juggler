@@ -134,7 +134,7 @@ public class TicketEngineController {
 					show.getSeats().put(i, "open");
 			}
 		}
-		blockedSeatsService.delete(seats.getId());
+		//blockedSeatsService.delete(seats.getId());
 		showRepository.save(show);
 		seats.setMovieEventId(show.getMovieEventId());
 		MessageChannel messageChannel = bookedSeatsStream.outboundBookedSeats();
