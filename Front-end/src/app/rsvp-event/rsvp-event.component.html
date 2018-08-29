@@ -13,10 +13,6 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-
-
-
-
         <mat-form-field>
           <input matInput placeholder="startTime" [(ngModel)]="rsvpModel.startTime">
         </mat-form-field>
@@ -57,12 +53,17 @@
         <mat-form-field>
           <input matInput placeholder="notes" [(ngModel)]="rsvpModel.notes">
         </mat-form-field>
-        <button type="submit" class="example-button" name="button" class="btn btn-success" class="button" 
-          (click)="onSubmit()">Create RSVP Event</button>
+        <!-- <button type="submit" class="example-button" name="button" class="btn btn-success" class="button" 
+          (click)="onSubmit()">Create RSVP Event</button> -->
 
-        <br>
-        <br> 
+
       </div>
+    </div>
+    <div>
+      <p align="center">
+        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()">Create RSVP Event</button>
+      </p>
+
     </div>
   </div>
 </div>

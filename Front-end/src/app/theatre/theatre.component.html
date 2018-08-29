@@ -20,8 +20,16 @@
           <input matInput placeholder="Enter City" [(ngModel)]="theatreModel.city">
         </mat-form-field>
         <br>
-        <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()" routerLink="/createMovieEvent" routerLinkActive="active">Create Theatre</button>
+        <!-- <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="onSubmit()" routerLink="/createMovieEvent"
+          routerLinkActive="active">Create Theatre</button> -->
       </div>
+      
     </div>
+    <div>
+        <p align="center">
+          <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()" routerLink="/createMovieEvent">Create Theatre</button>
+        </p>
+
+      </div>
   </div>
 </div>

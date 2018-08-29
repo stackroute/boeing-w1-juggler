@@ -15,7 +15,7 @@ function setConnected(connected) {
 
 function connect() {
     console.log("inside connect")
-    var socket = new SockJS("http://172.23.238.170:9001/socket");
+    var socket = new SockJS("http://13.232.40.6:9001/socket");
     console.log("after connect")
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
@@ -26,8 +26,8 @@ function connect() {
             block = blockedSeats.body;
 
             console.log("block: "+block);
-            var obj = new TheatreLayoutComponent();
-            obj.updatestatus();
+            // var obj = new TheatreLayoutComponent();
+            // obj.updatestatus();
           //  return blockedSeats.body;
         });
     });
@@ -36,24 +36,24 @@ function connect() {
   //  console.log(receiveBlockedSeats(stompClient));
 }
 
-function getSeats() {
-    console.log(block);
-    return block;
-}
+// function getSeats() {
+//     console.log(block);
+//     return block;
+// }
 
-function receiveBlockedSeats( stomps) {
-   // stompClient = Stomp.over(socket);
-   stomps.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + frame);
-        stomps.subscribe('/chat', function (blockedSeats) {
-            console.log("Response: "+blockedSeats.body);
-            return blockedSeats.body;
-        });
-    });
+// function receiveBlockedSeats( stomps) {
+//    // stompClient = Stomp.over(socket);
+//    stomps.connect({}, function (frame) {
+//         setConnected(true);
+//         console.log('Connected: ' + frame);
+//         stomps.subscribe('/chat', function (blockedSeats) {
+//             console.log("Response: "+blockedSeats.body);
+//             return blockedSeats.body;
+//         });
+//     });
 
     
- }
+ //}
 
 
 
