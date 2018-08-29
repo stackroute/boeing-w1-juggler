@@ -29,6 +29,7 @@ export class UserProfileComponent implements OnInit {
              this.movieList.push(this.movie);
             }
            )
+           
       }
       console.log("movie List",this.movieList);}
     );

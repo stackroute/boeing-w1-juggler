@@ -41,7 +41,7 @@ import { SocketConnectionComponent } from "./socket-connection/socket-connection
 import { MultipleCheckboxesModule } from "multiple-checkboxes";
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './footer/footer.component';
-
+import {MatIconModule} from '@angular/material/icon';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -101,7 +101,8 @@ import { PaymentPageComponent } from './payment-page/payment-page.component'
     MultipleCheckboxesModule,
     Ng2CarouselamosModule,
     MatExpansionModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
   ],
   providers: [MatNativeDateModule],
 
