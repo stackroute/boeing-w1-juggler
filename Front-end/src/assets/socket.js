@@ -1,4 +1,5 @@
 var stompClient = null;
+var block = null;
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -20,11 +21,41 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/chat', function (greeting) {
-            showGreeting(greeting.body);
+        stompClient.subscribe('/chat', function (blockedSeats) {
+            console.log("Response: "+blockedSeats.body);
+            block = blockedSeats.body;
+
+            console.log("block: "+block);
+            var obj = new TheatreLayoutComponent();
+            obj.updatestatus();
+          //  return blockedSeats.body;
         });
     });
+    
+   // receiveBlockedSeats(stompClient);
+  //  console.log(receiveBlockedSeats(stompClient));
 }
+
+function getSeats() {
+    console.log(block);
+    return block;
+}
+
+function receiveBlockedSeats( stomps) {
+   // stompClient = Stomp.over(socket);
+   stomps.connect({}, function (frame) {
+        setConnected(true);
+        console.log('Connected: ' + frame);
+        stomps.subscribe('/chat', function (blockedSeats) {
+            console.log("Response: "+blockedSeats.body);
+            return blockedSeats.body;
+        });
+    });
+
+    
+ }
+
+
 
 function disconnect() {
     if (stompClient !== null) {
