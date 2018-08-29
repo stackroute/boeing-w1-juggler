@@ -113,7 +113,7 @@ public class SearchServiceImpl implements SearchService {
 			theatres.add(theatre);
 			movie.setTheatres(theatres);
 			movieList.add(movie);
-			
+			city.setMovieList(movieList);
 			return cityRepository.save(city);
 		}
 		
