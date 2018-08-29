@@ -10,6 +10,6 @@ export class TicketedEventService {
   private _url: string = "http://13.232.40.6:8092/upstream/api/v1/upstream";
   constructor(private http: HttpClient) { }
   saveTicketedEvent(ticketedEvent : TicketedEvent):Observable<TicketedEvent>{
-    return this.http.post<TicketedEvent>(this._url+"/api/v1/upstream/ticketedEvent", ticketedEvent);
+    return this.http.post<TicketedEvent>(this._url+"/ticketedEvent", ticketedEvent);
   }
 }

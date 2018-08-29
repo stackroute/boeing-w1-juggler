@@ -9,7 +9,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a starting date" [(ngModel)]="rsvpModel.startDate">
+          <input matInput [matDatepicker]="picker" placeholder="Choose start date" [(ngModel)]="rsvpModel.startDate">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
@@ -22,7 +22,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput [matDatepicker]="picker2" placeholder="Choose a ending date" [(ngModel)]="rsvpModel.endDate">
+          <input matInput [matDatepicker]="picker2" placeholder="Choose end date" [(ngModel)]="rsvpModel.endDate">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>

@@ -7,7 +7,6 @@ export class TicketedEvent {
     poster:string;
     type:string;
     capacity:number;
-    remainingSeats:number;
     description:string;
     price:string;
     performers:string;
