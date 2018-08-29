@@ -25,21 +25,18 @@ import com.stackroute.eplay.ticketengine.repository.ShowRepository;
 public class BlockedSeatsServiceImpl implements BlockedSeatsService{
 
 	private BlockedSeatsRepository blockedSeatsRepository;
-	private RedisTemplate<String, Object> redisTemplate;
 	private ShowRepository showRepository;
 
 	
 	@Autowired
-	public BlockedSeatsServiceImpl(BlockedSeatsRepository blockedSeatsRepository, RedisTemplate<String, Object> redisTemplate, ShowRepository showRepository) {
+	public BlockedSeatsServiceImpl(BlockedSeatsRepository blockedSeatsRepository, ShowRepository showRepository) {
 		this.blockedSeatsRepository = blockedSeatsRepository;
-		this.redisTemplate = redisTemplate;
 		this.showRepository = showRepository;
 	}
 
 	@Override
 	public BlockedSeats save(BlockedSeats blockedSeats) throws Exception{
 		blockedSeats = blockedSeatsRepository.save(blockedSeats);
-		
 		Show show = showRepository.find(blockedSeats.getShowId());
 		for(int i:blockedSeats.getSeats()) {
 			if(show.getSeats().get(i).equals("blocked")) {
@@ -54,7 +51,7 @@ public class BlockedSeatsServiceImpl implements BlockedSeatsService{
 		
 		JobDetail job = JobBuilder.newJob(SeatsJob.class).build();
 		SimpleTrigger trigger = TriggerBuilder.newTrigger().withIdentity("Trigger")
-				.startAt(futureDate(10, IntervalUnit.SECOND)).forJob(job)
+				.startAt(futureDate(30, IntervalUnit.SECOND)).forJob(job)
 				.withSchedule(simpleSchedule()).build();
 		Scheduler sc = StdSchedulerFactory.getDefaultScheduler();
 		sc.getContext().put("seat", blockedSeats.getId());

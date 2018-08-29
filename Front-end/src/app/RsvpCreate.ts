@@ -4,9 +4,9 @@ export class RsvpCreate{
     name:string;
     userName:string;
     startDate:Date;
-    startTime:Date;
+    startTime:String;
     endDate:Date;
-    endTime:Date;
+    endTime:String;
     city:string;
     location:string;
     poster:string;
