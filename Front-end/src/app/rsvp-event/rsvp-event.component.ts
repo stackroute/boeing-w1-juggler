@@ -17,6 +17,7 @@ export class RsvpEventComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
+<<<<<<< HEAD
   onSubmit() {
     this.rsvpCreateService.saveRsvpEvent(this.rsvpModel).subscribe(res => {
       console.log("saved");
@@ -30,6 +31,16 @@ export class RsvpEventComponent implements OnInit {
       this.router.navigate(["/rsvpInvitation"]);
       
     });
+=======
+  onSubmit(){
+    
+
+     this.rsvpModel.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+     console.log(this.rsvpModel);
+    this.rsvpCreateService.saveRsvpEvent(this.rsvpModel).subscribe(res=>{console.log('saved')
+    
+  })
+>>>>>>> ef317f69783d672c5e739f5d8b6217837d86dc0e
   }
 
   ngOnInit() {}

@@ -46,7 +46,8 @@ import { FooterComponent } from './footer/footer.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
-import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName'
+import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName';
+import { PaymentPageComponent } from './payment-page/payment-page.component'
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ExistingUsernameValidatorDirective } from './registration-form/customVa
     SocketConnectionComponent,
     FooterComponent,
     InviteeDetailsComponent,
-    ExistingUsernameValidatorDirective
+    ExistingUsernameValidatorDirective,
+    PaymentPageComponent
   ],
   imports: [
     MatMenuModule,

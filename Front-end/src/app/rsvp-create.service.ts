@@ -27,10 +27,8 @@ export class RsvpCreateService {
   }
 
   saveRsvpEvent(rsvpCreate: RsvpCreate): Observable<RsvpCreate> {
-    return this.http.post<RsvpCreate>(
-      "http://13.232.40.6:8092/upstream/api/v1/upstream/rsvpEvent",
-      rsvpCreate
-    );
+    
+    return this.http.post<RsvpCreate>("http://13.232.40.6:8092/upstream/api/v1/upstream/rsvpEvent", rsvpCreate);
     // return this.http.post<RsvpCreate>("http://172.23.238.218:8097/api/v1/event/rsvpEvent", rsvpCreate);
   }
 

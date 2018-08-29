@@ -4,6 +4,70 @@
     <div class="list-viewer-wrapper">
       <div class="list-header-title">RSVP Event</div>
       <div class="form-container">
+<<<<<<< HEAD
+        <mat-form-field>
+          <input matInput placeholder="Event Name" [(ngModel)]="rsvpModel.name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a starting date" [(ngModel)]="rsvpModel.startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+
+
+        <mat-form-field>
+          <input matInput placeholder="startTime" [(ngModel)]="rsvpModel.startTime">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="Choose a ending date" [(ngModel)]="rsvpModel.endDate">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="endTime" [(ngModel)]="rsvpModel.endTime">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="city" [(ngModel)]="rsvpModel.city" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="location" [(ngModel)]="rsvpModel.location" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="poster" [(ngModel)]="rsvpModel.poster">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="description" [(ngModel)]="rsvpModel.description">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="performers" [(ngModel)]="rsvpModel.performers">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="terms and Conditions" [(ngModel)]="rsvpModel.termsAndConditions">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="notes" [(ngModel)]="rsvpModel.notes">
+        </mat-form-field>
+        <button type="submit" class="example-button" name="button" class="btn btn-success" class="button" 
+          (click)="onSubmit()">Create RSVP Event</button>
+
+        <br>
+        <br> 
+      </div>
+    </div>
+  </div>
+</div>
+=======
 
   <mat-form-field>
     <textarea matInput placeholder="name" [(ngModel)]="rsvpModel.name" ngModel #nameUser="ngModel" required pattern="[a-zA-Z][a-zA-Z]+"></textarea>
@@ -56,3 +120,4 @@
 
 </div>
 </div>
+>>>>>>> dea87f2fa586b92ab155978fba9f707f17517f3c

@@ -4,6 +4,7 @@ import { HttpErrorResponse } from "@angular/common/http"; // for printing error 
 import * as $ from "jquery";
 import * as socket from '../../assets/socket.js' ;
 import { BlockSeat } from '../models/SeatBlock';
+import {PaymentService} from '../payment.service'
 var jquery: any;
 
 @Component({
@@ -24,7 +25,7 @@ export class TheatreLayoutComponent implements OnInit {
   public id: any[];
   public seatNum: any[]; // Final array to be sent to booking api
 
-  constructor(private httpService : HttpClient) {}
+  constructor(private httpService : HttpClient,private data :PaymentService ) {}
   ngOnInit() {
 
     (window as any).connect();
@@ -114,10 +115,13 @@ export class TheatreLayoutComponent implements OnInit {
         this.seatNum.push(key);
       }
     });
-    this.blockedSeat.showId = this.showId;
+    this.blockedSeat.showId = 2;
     this.blockedSeat.seats = this.seatNum;
+    this.data.changePayMessage(this.blockedSeat);
     (window as any).sendBlockedSeats(this.blockedSeat);
     console.log(this.seatNum);
     (window as any).disconnect();
+    this.data.payMessage.subscribe(data=>{this.blockedSeat=data
+    console.log("working sockets and all",data)});
   }
 }

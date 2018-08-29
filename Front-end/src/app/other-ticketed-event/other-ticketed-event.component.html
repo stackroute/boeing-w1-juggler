@@ -32,7 +32,25 @@
         </mat-form-field>
         
         <mat-form-field>
+<<<<<<< HEAD
+          <mat-select placeholder="Select event Type " [formControl]="otherTicketedEventControl">
+  
+            <mat-optgroup *ngFor="let group of typegroup" [label]="group.name" [disabled]="group.disabled">
+              <mat-option *ngFor="let type of group.type" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+=======
           <input matInput placeholder="Event Type" [(ngModel)]="ticketedEvent.type" required>
+>>>>>>> dea87f2fa586b92ab155978fba9f707f17517f3c
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
+            <mat-option *ngFor="let theatre of theatres" [value]="theatre.theatreName" (click)="findTheatreId(theatre)">
+              {{theatre.theatreName}}  |   {{   theatre.city}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
        
         <mat-form-field>
