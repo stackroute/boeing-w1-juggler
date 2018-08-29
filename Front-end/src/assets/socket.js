@@ -15,7 +15,7 @@ function setConnected(connected) {
 
 function connect() {
     console.log("inside connect")
-    var socket = new SockJS("http://172.23.238.170:9001/socket");
+    var socket = new SockJS("http://13.232.40.6:8092/ticket-engine/socket");
     console.log("after connect")
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
