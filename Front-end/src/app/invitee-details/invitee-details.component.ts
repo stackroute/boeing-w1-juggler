@@ -29,7 +29,7 @@ export class InviteeDetailsComponent implements OnInit {
 
   ngOnInit() {
     console.log("this.rsvpModel");
-    this.id = this.rsvpCreateService.getRsvpEventId;
+    this.id=localStorage.getItem("eventId");
     this.inputEmailsDetails.emailBcc = [];
     //  console.log(this.rsvpModel);
     this.rsvpCreateService
@@ -41,7 +41,7 @@ export class InviteeDetailsComponent implements OnInit {
     console.log("something", this.rsvpModel);
   }
   onSubmit1() {
-    this.id = this.rsvpCreateService.getRsvpEventId;
+    this.id=localStorage.getItem("eventId");
     console.log("vishal ppuuu");
     this.router.navigate(["/rsvpEvent/" + this.id]);
     // this.router.navigate(["InviteeDetails"]);
