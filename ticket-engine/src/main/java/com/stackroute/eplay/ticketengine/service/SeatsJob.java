@@ -7,6 +7,8 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.SchedulerContext;
 import org.quartz.SchedulerException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class SeatsJob implements Job {
 	
 	private static BlockedSeatsService blockedSeatsService;
 	private static ShowRepository showRepository;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	public SeatsJob(){}
 	@Autowired
@@ -31,11 +34,9 @@ public class SeatsJob implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		SchedulerContext schedulerContext;
-		try {
-			schedulerContext = context.getScheduler().getContext();
-			String id=schedulerContext.getString("seat");
-			if(blockedSeatsService.findById(id)!=null) {
+			String id=context.getTrigger().getJobKey().toString().replace("DEFAULT.", "");
+			logger.info("id: "+id);
+			if(blockedSeatsService!=null||blockedSeatsService.findById(id)!=null) {
 				BlockedSeats seats = blockedSeatsService.findById(id);
 				blockedSeatsService.delete(id);
 				Show show = showRepository.find(seats.getShowId());
@@ -47,11 +48,7 @@ public class SeatsJob implements Job {
 				}
 				show.setSeats(showSeats);
 				showRepository.update(show);
-			}
-		} catch (SchedulerException e) {
-			e.printStackTrace();
-		}
-		
+		} 
 		
 	}
 
