@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SearchDataService } from "../search-data.service";
 import { RegistrationService } from "../registration.service";
 import { Router } from "@angular/router";
-import { UserHistory } from "../models/UserHistory";
+
 import { Theatre } from "../movie-event/movie-event.component";
 @Component({
   selector: "app-user-profile",
