@@ -25,10 +25,11 @@ export class PaymentPageComponent implements OnInit {
     console.log("earlier payMessage",this.paymentStatus);
     this.paymentStatus.userName=localStorage.getItem('currentUser');
     this.paymentStatus.guestUserEmailId=this.emailId;
-    this.paymentStatus.showId=2;
+    //this.paymentStatus.showId=2;
     this.paymentStatus.status="open";
     console.log("payment staus",this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus).subscribe(res=>{console.log('staus posted') })
+    this.data.sendStatus(this.paymentStatus).subscribe(res=>{console.log('staus posted') });
+    (window as any).disconnect();
   }
 
   onClickSuccess(){
@@ -36,10 +37,11 @@ export class PaymentPageComponent implements OnInit {
     console.log("earlier payMessage",this.paymentStatus);
     this.paymentStatus.userName=localStorage.getItem('currentUser');
     this.paymentStatus.guestUserEmailId=this.emailId;
-    this.paymentStatus.showId=2;
+   // this.paymentStatus.showId=2;
     this.paymentStatus.status="booked";
     console.log("payment staus",this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus).subscribe(res=>{console.log('staus posted') })
+    this.data.sendStatus(this.paymentStatus).subscribe(res=>{console.log('staus posted') });
+    (window as any).disconnect();
   }
 
 }
