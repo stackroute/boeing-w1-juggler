@@ -1,8 +1,14 @@
 <app-nav-bar></app-nav-bar>
-<mat-grid-list cols="12" rowHeight="100px">
-  recommended
-  <div *ngIf="rec$; else elseBlock">
+
+<mat-grid-list cols="12">
+
+  <!-- <div *ngIf="rec$; else elseBlock">
+    Recommendations for you..!
+    <div>
+        <button type="reset" mat-raised-button color="secondary" (click)="reset()">Reset</button>
+      </div>
     <div *ngFor="let movie of rec$">
+
       <mat-grid-tile colspan="4" rowspan="6">
         <mat-card class="example-card">
           <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
@@ -13,34 +19,130 @@
       </mat-grid-tile>
     </div>
   </div>
-</mat-grid-list>
+  
+</mat-grid-list> -->
 
-<!-- </mat-grid-list> -->
+  <!-- <mat-grid-list cols="12"> -->
 
-<ng-template #elseBlock>
-  <mat-grid-list cols="12" rowHeight="100px">
-    movies
+  <div *ngIf="rec$; else elseBlock">
+    <h2>Recommendations for you..!</h2>
+    <div id="container">
+      <div ng2-carouselamos class="slide-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next" [$item]="item">
+      </div>
+
+      <ng-template #prev>
+        <img src="/assets/images/if_icon-ios7-arrow-back_211686.png" id="left">
+      </ng-template>
+
+      <ng-template #next>
+        <img src="/assets/images/if_icon-ios7-arrow-forward_211688.png" id="right">
+      </ng-template>
+
+      <ng-template #item let-item let i="index">
+        <div *ngFor="let movie of rec$" class="items">
+          <img src="{{ movie.poster }}">
+        </div>
+      </ng-template>
+    </div>
+    <div>
+      <button type="reset" mat-raised-button class="btn btn-secondary" (click)="reset()">Go back to homepage</button>
+    </div>
+    <!-- <div *ngFor="let movie of rec$">
+  
+        <mat-grid-tile colspan="4" rowspan="6">
+          <mat-card class="example-card">
+            <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
+            <mat-card-actions>
+              <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">Book</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-grid-tile>
+      </div> -->
+  </div>
+
+  <!-- </mat-grid-list> -->
+  <!-- <hr> -->
+  <!-- </mat-grid-list> -->
+  <!-- <mat-grid-list cols="12">
+    <h1>Events</h1>
     <div *ngFor="let movie of event$">
       <mat-grid-tile colspan="4" rowspan="6">
         <mat-card class="example-card">
-          <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
+          <app-event-card [name]="movie.name" [poster]="movie.poster"></app-event-card>
           <mat-card-actions>
-            <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">Book</button>
+            <button mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
           </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
     </div>
-    events
-    <div *ngFor="let movie of movie$">
-      <mat-grid-tile colspan="4" rowspan="6">
-        <mat-card class="example-card">
-          <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
-          <mat-card-actions>
-            <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">Book</button>
-          </mat-card-actions>
-        </mat-card>
+  </mat-grid-list> -->
+
+  <mat-grid-list cols="12">
+    <h3>Events</h3>
+    <div *ngFor="let movie of event$">
+      <mat-grid-tile colspan="4" rowspan="5">
+        <a href="/movieinfo">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <!-- <div mat-card-avatar class="example-header-image"></div> -->
+              <mat-card-title>
+                <h5>{{movie.name}}</h5>
+              </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="{{movie.poster}}" alt="movie poster">
+            <mat-card-actions>
+              <button mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
+            </mat-card-actions>
+          </mat-card>
+        </a>
       </mat-grid-tile>
     </div>
   </mat-grid-list>
-</ng-template>
 
+
+  <ng-template #elseBlock>
+    <mat-grid-list cols="12">
+      <h3>Movies</h3>
+      <div *ngFor="let movie of movie$">
+        <mat-grid-tile colspan="4" rowspan="5">
+          <a href="/movieinfo">
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>
+                  <h5>{{movie.name}}</h5>
+                </mat-card-title>
+              </mat-card-header>
+              <img mat-card-image src="{{movie.poster}}" alt="movie poster">
+              <mat-card-actions>
+                <button mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
+              </mat-card-actions>
+            </mat-card>
+          </a>
+        </mat-grid-tile>
+      </div>
+    </mat-grid-list>
+  </ng-template>
+  <!-- <ng-template #elseBlock>
+    <mat-grid-list cols="12">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>
+            <h1>{{movie.name}}</h1>
+          </mat-card-title>
+
+        </mat-card-header>
+        <img mat-card-image src="movie.poster" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+            very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-list>
+  </ng-template> -->
