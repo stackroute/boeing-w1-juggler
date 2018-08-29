@@ -18,6 +18,7 @@
 /* .navbarSection {
   margin: auto;
 } */
+
 .menuToggle{
   background-color :#d2e6e9;
   /* width: 150px;   */
@@ -26,6 +27,9 @@
   margin-top: 100px;
   background-color :#941374;
 }
+/* .dropdown-item{
+  color: #f3f3ef;
+} */
 .flex-container {
   background-color: #050644;
   color: #f3f3ef;
@@ -37,6 +41,10 @@
   /* height: 75px; */
   /* z-index: -1000; */
 }
+/* .dropdown-menu{
+  background-color: #45454e;
+  color: #000000;
+} */
 
 
 .column {
