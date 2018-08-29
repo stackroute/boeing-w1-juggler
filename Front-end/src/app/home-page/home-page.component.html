@@ -81,7 +81,7 @@
     <h3>Events</h3>
     <div *ngFor="let movie of event$">
       <mat-grid-tile colspan="4" rowspan="5">
-        <!-- <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)"> -->
+        <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
           <mat-card class="example-card">
             <mat-card-header>
               <!-- <div mat-card-avatar class="example-header-image"></div> -->
@@ -94,7 +94,7 @@
               <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
             </mat-card-actions>
           </mat-card>
-        <!-- </a> -->
+        </a>
       </mat-grid-tile>
     </div>
   </mat-grid-list>
@@ -105,7 +105,7 @@
       <h3>Movies</h3>
       <div *ngFor="let movie of movie$">
         <mat-grid-tile colspan="4" rowspan="5">
-          <!-- <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)"> -->
+          <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
             <mat-card class="example-card">
               <mat-card-header>
                 <!-- <div mat-card-avatar class="example-header-image"></div> -->
@@ -118,7 +118,7 @@
                 <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
               </mat-card-actions>
             </mat-card>
-          <!-- </a> -->
+          </a>
         </mat-grid-tile>
       </div>
     </mat-grid-list>
