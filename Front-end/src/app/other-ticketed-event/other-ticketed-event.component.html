@@ -32,7 +32,6 @@
         </mat-form-field>
         
         <mat-form-field>
-<<<<<<< HEAD
           <mat-select placeholder="Select event Type " [formControl]="otherTicketedEventControl">
   
             <mat-optgroup *ngFor="let group of typegroup" [label]="group.name" [disabled]="group.disabled">
@@ -41,9 +40,6 @@
               </mat-option>
             </mat-optgroup>
           </mat-select>
-=======
-          <input matInput placeholder="Event Type" [(ngModel)]="ticketedEvent.type" required>
->>>>>>> dea87f2fa586b92ab155978fba9f707f17517f3c
         </mat-form-field>
         <mat-form-field>
           <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
