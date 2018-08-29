@@ -62,3 +62,11 @@
   .medium-list{
     margin-bottom: 15%;
   }
+
+
+  .example-button{
+    /* margin-left: 100px
+     */
+     position: absolute;
+    top: 50%;
+  }
