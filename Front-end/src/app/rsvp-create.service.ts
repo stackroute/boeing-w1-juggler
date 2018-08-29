@@ -9,24 +9,29 @@ import { Observable } from "rxjs";
 })
 export class RsvpCreateService {
   private _url: string = "http://13.232.40.6:8092/rsvp/api/v1/event/rsvpEvent";
-  private _url1: string = "http://13.232.40.6:8092/rsvp/api/v1/event/rsvpEvents";
-  private _url2: string = "http://13.232.40.6:8092/rsvp/api/v1/event/rsvpEvent/";
-  private _url4: string = "http://13.232.40.6:8092/rsvp/api/v1/event/invitation";
-  private _url3: string = "http://13.232.40.6:8092/rsvp/upstream/api/v1/upstream/rsvpEvent";
+  private _url1: string =
+    "http://13.232.40.6:8092/rsvp/api/v1/event/rsvpEvents";
+  private _url2: string =
+    "http://13.232.40.6:8092/rsvp/api/v1/event/rsvpEvent/";
+  private _url4: string =
+    "http://13.232.40.6:8092/rsvp/api/v1/event/invitation";
+  private _url3: string =
+    "http://13.232.40.6:8092/rsvp/upstream/api/v1/upstream/rsvpEvent";
+  
 
-   
-  id:number;
+  id;
   rsvpCreate: RsvpCreate;
   // rsvpInvitationModel: RsvpInvitation;
   constructor(private http: HttpClient) {
     //this.id=id;
-    
   }
 
   saveRsvpEvent(rsvpCreate: RsvpCreate): Observable<RsvpCreate> {
-    return this.http.post<RsvpCreate>("http://13.232.40.6:8092/upstream/api/v1/upstream/rsvpEvent", rsvpCreate);
+    return this.http.post<RsvpCreate>(
+      "http://13.232.40.6:8092/upstream/api/v1/upstream/rsvpEvent",
+      rsvpCreate
+    );
     // return this.http.post<RsvpCreate>("http://172.23.238.218:8097/api/v1/event/rsvpEvent", rsvpCreate);
-
   }
 
   getAllRsvpEvents(): Observable<RsvpCreate[]> {
@@ -34,7 +39,7 @@ export class RsvpCreateService {
   }
 
   getRsvpEventById(id): Observable<RsvpCreate> {
-    return this.http.get<RsvpCreate>(this._url2+id);
+    return this.http.get<RsvpCreate>(this._url2 + id);
   }
 
   deleteRsvp(id) {
@@ -49,19 +54,14 @@ export class RsvpCreateService {
       rsvpInvitationModel
     );
   }
-  setRsvpEventId(id)
-  {
-    this.id=id;
-    console.log("ye hai set id",this.id,"coming id",id);
-    
+  setRsvpEventId(id) {
+    this.id = id;
+    console.log("ye hai set id", this.id, "coming id", id);
   }
 
-  getRsvpEventId():number
-  {
-    
-    console.log("ye hai get id",this.id);
+  getRsvpEventId(): number {
+    console.log("ye hai get id", this.id);
     return this.id;
-  //  console.log("ye hai get id",this.id);
+    //  console.log("ye hai get id",this.id);
   }
-  
 }

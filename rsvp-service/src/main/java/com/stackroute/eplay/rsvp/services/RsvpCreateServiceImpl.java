@@ -16,8 +16,8 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	
 	
 	private RsvpCreateRepository rsvpCreateRepository;
-	@Autowired
-	NextSequenceService nextSequenceService;
+//	@Autowired
+//	NextSequenceService nextSequenceService;
 
 	@Autowired
 	public RsvpCreateServiceImpl(RsvpCreateRepository rsvpCreateRepository) {
@@ -28,7 +28,7 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	
 	public RSVPEvent saveRsvpCreate(RSVPEvent rsvpCreate) {
 		// TODO Auto-generated method stub
-		rsvpCreate.setId(nextSequenceService.getNextSequence("counter"));
+		//rsvpCreate.setId(nextSequenceService.getNextSequence("counter"));
 		return rsvpCreateRepository.save(rsvpCreate);
 	}
 
@@ -64,7 +64,7 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	public RSVPEvent updateRSVPEvent(Invitation invitation, int id) {
 		// TODO Auto-generated method stub
 		RSVPEvent rsvpEvent=getRsvpCreateById(id).get();
-		invitation.setInvitationId(nextSequenceService.getNextSequence("counter"));
+		//invitation.setInvitationId(nextSequenceService.getNextSequence("counter"));
 		List<Invitation> invitiesList=rsvpEvent.getRsvpInvitation();
 		if(invitiesList==null) {
 			invitiesList=new ArrayList<Invitation>();
