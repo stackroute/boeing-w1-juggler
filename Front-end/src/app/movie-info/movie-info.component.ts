@@ -6,7 +6,7 @@ import { SearchDataService } from '../search-data.service';
   styleUrls: ['./movie-info.component.css']
 })
 export class MovieInfoComponent implements OnInit {
-  public movie;
+   movie;
   constructor(private _searchDataService:SearchDataService) {}
 
   ngOnInit() {
