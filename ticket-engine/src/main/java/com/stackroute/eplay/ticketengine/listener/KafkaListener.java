@@ -10,7 +10,6 @@ import org.springframework.messaging.handler.annotation.Payload;
 import com.stackroute.eplay.ticketengine.domain.MovieEvent;
 import com.stackroute.eplay.ticketengine.domain.Show;
 import com.stackroute.eplay.ticketengine.repository.ShowRepository;
-import com.stackroute.eplay.ticketengine.service.BlockedSeatsService;
 import com.stackroute.eplay.ticketengine.streams.MovieEventStream;
 
 import lombok.NoArgsConstructor;

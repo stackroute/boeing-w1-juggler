@@ -2,8 +2,6 @@ package com.stackroute.eplay.ticketengine.repository;
 
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
-
 import com.stackroute.eplay.ticketengine.domain.Show;
 
 public interface ShowRepository {
