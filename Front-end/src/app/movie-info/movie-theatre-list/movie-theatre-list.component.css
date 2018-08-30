@@ -15,7 +15,7 @@
 .theatre-container{
     width: 80%;
     margin-left: 10%;
-    height: 100px;
+    height: auto;
     margin-top:5px;
 }
 .show-time{
