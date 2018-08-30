@@ -28,6 +28,7 @@ import com.stackroute.eplay.ticketservice.exception.TicketedEventAlreadyExistExc
 import com.stackroute.eplay.ticketservice.service.MovieEventService;
 import com.stackroute.eplay.ticketservice.service.MovieService;
 import com.stackroute.eplay.ticketservice.service.TicketedEventService;
+import com.stackroute.eplay.ticketservice.streams.FinalMovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
 import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
@@ -38,7 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("ticket-service/api/v1")
-@EnableBinding({ MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class })
+@EnableBinding({ MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class,FinalMovieEventStreams.class })
 public class TicketEventController {
 	@Autowired
 	Environment env;
