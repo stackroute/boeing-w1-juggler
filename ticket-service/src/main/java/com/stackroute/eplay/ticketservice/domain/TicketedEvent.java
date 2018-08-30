@@ -23,7 +23,7 @@ public class TicketedEvent {
     @Id
     private int id;
     private String name;
-    private LocalDate date;
+    private Date date;
     private String time;
     private String city;
     private String location;
