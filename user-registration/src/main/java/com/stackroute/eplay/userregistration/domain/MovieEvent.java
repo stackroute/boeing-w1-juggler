@@ -28,6 +28,7 @@ public class MovieEvent {
 	private List<Show> shows;
 	private String city;
 	private int week;
+	private String showTimes;
 
 }
 

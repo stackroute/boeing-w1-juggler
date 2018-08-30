@@ -1,8 +1,8 @@
 <app-nav-bar></app-nav-bar>
 <div class="jumbotron">
-  <p>
-    <button type="submit" class="example-button" name="button" class="btn btn-secondary" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
-  </p>
+  <!-- <div class="btn-group">
+    <button type="submit" name="button" class="btn button2" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
+  </div> -->
   <div class="medium-list">
     <div class="list-viewer-wrapper">
       <div class="list-header-title">Movie Event</div>
@@ -14,7 +14,6 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-
         <br>
         <mat-form-field>
           <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
@@ -40,7 +39,21 @@
       <p align="center">
         <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()" routerLink="/home">Create Movie Event</button>
       </p>
+      <div>
 
+
+      </div>
+      <p align="center">
+          <button type="submit" class="example-button" name="button" class="btn btn-secondary" routerLink="/home" (click)="onSubmit()">Create Movie</button>
+        </p>
+        <p align="center">
+            <button type="submit" class="example-button" name="button" class="btn btn-secondary" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
+          </p>
     </div>
+    
+    <!-- <div class="btn-group">
+      <button type="submit" name="button" class="btn button1" (click)="onSubmit()" routerLink="/home">Create Movie</button>
+    </div> -->
   </div>
+
 </div>

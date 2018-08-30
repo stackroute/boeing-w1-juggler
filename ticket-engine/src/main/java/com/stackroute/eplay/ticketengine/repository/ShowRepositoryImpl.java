@@ -1,7 +1,6 @@
 package com.stackroute.eplay.ticketengine.repository;
 
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
