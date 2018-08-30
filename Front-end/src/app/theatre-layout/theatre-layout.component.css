@@ -2,8 +2,10 @@
     border: solid 0.5px lightgoldenrodyellow ;
     width: 306px;
     height: 306px; 
-    margin-left: 38%; 
+    margin: auto; 
     background-color: beige;
+    border-radius: 4px;
+    margin-top: 3%;
 }
 
 .seatLayout button{
@@ -50,12 +52,16 @@
     display: block;
     text-align: center;
     font-family: cursive;
-    margin-top:20px;
+    margin-top:2%;
+    color: white;
+    font-weight: bold;
+    font-size: 200%;
 }
 
 .bookButton{
     display: block;
-    margin-top: 40px;
+    margin-top: 1%;
+    margin-bottom: .5%;
 }
 
 .bookButton button{
@@ -72,4 +78,10 @@
 .blocked{
     background-color: rgb(139, 137, 137);
     /* pointer-events: none; */
+}
+
+.name h2{
+    text-align: center;
+    color: antiquewhite;
+    margin-top: 70px;
 }
