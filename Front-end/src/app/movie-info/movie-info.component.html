@@ -4,12 +4,15 @@
     <img src={{movies.poster}} alt="Sorry movie not available"/>
     <h2>{{movies.name}}</h2>
 </div>
-    <div class="description">
-        <h4>Synopsis</h4>
-        <div class="menu">
-            {{movies.description}}
-        </div>
+<div *ngIf="movieDescription(); else filler" class="description">
+    <h4>Synopsis</h4>
+    <div class="menu">
+        {{movies.description}}
     </div>
+</div>
+<ng-template #filler>
+    <h4>What's in a description...we want it a surprise for YOU!</h4>
+</ng-template>
 <div> <!-- display the list -->
     <app-movie-theatre-list></app-movie-theatre-list> 
 </div>

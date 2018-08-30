@@ -19,4 +19,13 @@ export class MovieInfoComponent implements OnInit {
     this._searchDataService.movieMessage.subscribe(movies => this.movie = movies);
     console.log("my theatre",this.movie);
   }
+
+  movieDescription(){
+    console.log("inside movie description");
+    console.log(this.movies.description);
+    if(this.movies.description!=null)
+    return true;
+    else
+    return false;
+  }
 }

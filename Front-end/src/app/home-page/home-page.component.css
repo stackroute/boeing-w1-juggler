@@ -82,7 +82,7 @@ h2{
 h5{
     text-align: center;
     /* text-shadow: 2px 2px; */
-    text-shadow:2px 8px 6px rgba(0,0,0,0.2),
+    text-shadow:2px 8px 6px rgba(243, 238, 238, 0.952),
                  0px -5px 35px rgba(255,255,255,0.3);
 }
 /* .example-card {
