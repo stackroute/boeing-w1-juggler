@@ -33,25 +33,27 @@ import com.stackroute.eplay.ticketengine.domain.Show;
 import com.stackroute.eplay.ticketengine.repository.ShowRepository;
 import com.stackroute.eplay.ticketengine.service.BlockedSeatsService;
 import com.stackroute.eplay.ticketengine.streams.BookedSeatsStream;
+import com.stackroute.eplay.ticketengine.streams.EmailStream;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("api/v1")
-@EnableBinding(BookedSeatsStream.class)
+@EnableBinding({BookedSeatsStream.class, EmailStream.class})
 public class TicketEngineController {
 	
 	private ShowRepository showRepository;
 	private BlockedSeatsService blockedSeatsService;
 	private BookedSeatsStream bookedSeatsStream;
+	private EmailStream emailStream;
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private RestTemplate restTemplate;
 	
 	@Autowired
-	TicketEngineController(ShowRepository showRepository, BlockedSeatsService blockedSeatsService, BookedSeatsStream bookedSeatsStream){
+	TicketEngineController(ShowRepository showRepository, BlockedSeatsService blockedSeatsService, BookedSeatsStream bookedSeatsStream, EmailStream emailStream){
 		this.showRepository = showRepository;
 		this.blockedSeatsService = blockedSeatsService;
 		this.bookedSeatsStream = bookedSeatsStream;
+		this.emailStream = emailStream;
 	}
 	
 	@MessageMapping("/send/message")
@@ -155,13 +157,14 @@ public class TicketEngineController {
 		} else {
 			message+="Your payment is failed for booking seats in movieEventId: "+show.getMovieEventId() + ". Please try again.";
 		}
-		if(!seats.getGuestUserEmailId().isEmpty()) {
+		if(seats.getGuestUserEmailId()!=null||!seats.getGuestUserEmailId().isEmpty()) {
 			InputEmailDetails email= new InputEmailDetails();
 			email.setEmailAddress(seats.getGuestUserEmailId());
 			email.setSubject("Movie Seats Booking");
 			email.setBody(message);
-			restTemplate = new RestTemplate();
-			restTemplate.exchange("http://13.232.40.6:8092/email-service/api/v1/email/sendEmail", HttpMethod.POST, new HttpEntity<InputEmailDetails>(email), String.class);
+			MessageChannel messageChannelEmail = emailStream.outboundEmail();
+			messageChannelEmail.send(MessageBuilder.withPayload(email)
+					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
 		}
 		return message;
 		

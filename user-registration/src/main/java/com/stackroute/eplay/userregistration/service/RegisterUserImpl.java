@@ -5,9 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.client.RestTemplate;
 
 import com.stackroute.eplay.userregistration.domain.InputEmailDetails;
@@ -17,18 +20,20 @@ import com.stackroute.eplay.userregistration.exception.EmailAlreadyExistsExcepti
 import com.stackroute.eplay.userregistration.exception.UserAlreadyExistsException;
 import com.stackroute.eplay.userregistration.exception.UserNameAlreadyExistsException;
 import com.stackroute.eplay.userregistration.repository.RegistrationRepo;
+import com.stackroute.eplay.userregistration.stream.EmailStream;
 
 
 @Service
+@EnableBinding(EmailStream.class)
 public class RegisterUserImpl implements RegisterUser {
 
-	private RegistrationRepo registrationRepo;
+	private RegistrationRepo registrationRepo; 
+	private EmailStream emailStream;
 	
-	private RestTemplate restTemplate;
-
 	@Autowired
-	public RegisterUserImpl(RegistrationRepo registrationRepo) {
+	public RegisterUserImpl(RegistrationRepo registrationRepo, EmailStream emailStream) {
 		this.registrationRepo = registrationRepo;
+		this.emailStream = emailStream;
 	}
 
 	@Autowired
@@ -50,9 +55,9 @@ public class RegisterUserImpl implements RegisterUser {
 		email.setEmailAddress(registrant.getEmail());
 		email.setSubject("Registration Confirmation");
 		email.setBody("Thanks for registering.\nNow you can create events and see recommendations based on ur previous booking.");
-		restTemplate = new RestTemplate();
-		restTemplate.exchange("http://13.232.40.6:8092/email-service/api/v1/email/sendEmail", HttpMethod.POST, new HttpEntity<InputEmailDetails>(email), String.class);
-	
+		MessageChannel messageChannelEmail = emailStream.outboundEmail();
+		messageChannelEmail.send(MessageBuilder.withPayload(email)
+				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
 		return registrationRepo.save(registrant);
 	}
 	public Iterable<Registration> getAllRegisterUser() {
