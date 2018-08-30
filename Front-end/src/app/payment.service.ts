@@ -15,9 +15,9 @@ export class PaymentService {
   this.pay.next(message)
 }
   constructor(private http:HttpClient) { }
-  sendStatus(status: BlockSeat){
-    console.log("final pay staus",status);
-    return this.http.post('http://13.232.40.6:8092/ticket-engine/api/v1/blockedSeatsStatus',status);
+  sendStatus(status: BlockSeat): Observable<string>{
+    console.log("final pay status",status);
+    return this.http.post<string>('http://13.232.40.6:8092/ticket-engine/api/v1/blockedSeatsStatus',status);
 
   }
 }
