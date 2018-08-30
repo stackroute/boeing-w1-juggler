@@ -25,7 +25,7 @@ public class Show {
     @Id
     private int showId;
     private int seatRemaining;
-    private BigDecimal price;
+    private int price;
     private LocalTime startTime;
     private LocalDate date;
     private int movieEventId;

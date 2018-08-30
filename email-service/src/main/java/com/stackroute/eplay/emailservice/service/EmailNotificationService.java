@@ -1,17 +1,7 @@
 package com.stackroute.eplay.emailservice.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import javax.mail.Address;
-import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
