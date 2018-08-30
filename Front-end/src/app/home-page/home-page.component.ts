@@ -1,19 +1,23 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchDataService } from "../search-data.service";
 import { Router } from "@angular/router";
+import {  RecommendationService } from "../recommendation.service";
+import { AuthenticationService } from "../authentication.service";
 
 @Component({
   selector: "app-home-page",
   templateUrl: "./home-page.component.html",
   styleUrls: ["./home-page.component.css"]
 })
+
 export class HomePageComponent implements OnInit {
   items: Array<any>=[];
   event$: any;
   movie$: any;
   message: string;
   rec$: any;
-  constructor(private data: SearchDataService, private router: Router) {
+  recommendedMovie:any;
+  constructor(private data: SearchDataService, private router: Router, private recommendationService: RecommendationService, private authenticationService:AuthenticationService) {
     this.items=[
       { name :"{{movie.poster}}"}
       // { name :'assets/images/thumb2.jpg'}
@@ -35,6 +39,7 @@ export class HomePageComponent implements OnInit {
       this.movie$ = data;
       console.log(data);
     });
+    this.getGenreBasedMoviesForUser();
   }
   goMoviePage(movie) {
     console.log("inside goMoviePage");
@@ -47,5 +52,15 @@ export class HomePageComponent implements OnInit {
     localStorage.removeItem("rec");
     window.location.reload();
   }
-  
+
+  getGenreBasedMoviesForUser(){
+   this.recommendationService.getGenreBasedMoviesForUser(localStorage.getItem('currentUser'))
+   .subscribe(res=>{
+     this.recommendedMovie=res;
+   });
+  }
+
+  loggedIn(){
+   return this.authenticationService.loggedIn();
+  }
 }

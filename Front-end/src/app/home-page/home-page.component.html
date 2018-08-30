@@ -1,6 +1,16 @@
 <app-nav-bar></app-nav-bar>
 
 <mat-grid-list cols="12">
+<!-- 
+  <div *ngIf=(loggedIn() && recommendedMovie!=null)>
+    aaaaaaaaaaaaa
+  </div> -->
+
+  <div *ngIf="loggedIn() && recommendedMovie!=null">
+      <div *ngFor="let movie of recommendedMovie">
+        {{movie.name}}
+      </div>
+  </div>
 
   <!-- <div *ngIf="rec$; else elseBlock">
     Recommendations for you..!
