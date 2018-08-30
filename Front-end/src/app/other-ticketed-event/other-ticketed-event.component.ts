@@ -19,7 +19,7 @@ export class OtherTicketedEventComponent implements OnInit {
     submitTicketedEvent() {
     
       this.ticketedEvent.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
-    
+      console.log(this.ticketedEvent.date);
       console.log(this.ticketedEvent);
     
       this.ticketedEventService
