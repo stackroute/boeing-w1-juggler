@@ -2,7 +2,10 @@
   height: 400px;
   width: 350px;
 } */
-
+.row{
+  margin-bottom: 5%;
+  width: 100%
+}
 
 .img {
   width: 100%;
@@ -11,7 +14,11 @@
 .card-picture {
   width: 23%;
   margin-bottom: 2%;
+  
 
+}
+.example-card{
+  background: url("/assets/images/background3.jpg") no-repeat center center; 
 }
 .panel{
   /* border: 6px dashed #1b1a19;  */
