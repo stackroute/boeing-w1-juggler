@@ -29,9 +29,9 @@ public class RSVPEvent {
 	private String id;
 	private String userName;
 	private String name;
-	private LocalDate startDate;
+	private Date startDate;
 	private String startTime;
-	private LocalDate endDate;
+	private Date endDate;
 	private String endTime;
 	private String city;
 	private String location;
