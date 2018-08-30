@@ -11,6 +11,9 @@
 <mat-grid-list cols="5" rowHeight="100px">
   <mat-grid-tile *ngFor="let tile of tiles"[colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">     
     <div *ngIf="tile.cols==2; else elseBlock">
+      {{paymentStatus.seats}}
+      {{noSeats}}
+      {{price}}
     <button mat-raised-button style="margin-top: 100px" (click)="onClickSuccess()">Payment done</button>
     <button mat-raised-button style="margin-top: 100px" (click)="onClickFail()">Failed</button>
     <div *ngIf="!user">

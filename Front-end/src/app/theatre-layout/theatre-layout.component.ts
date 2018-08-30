@@ -182,6 +182,14 @@ export class TheatreLayoutComponent implements OnInit {
     }
   }
 
-
+  seatSelected()
+  {
+    console.log("Inside Seat Selected");
+    console.log(this.id);
+    if(this.id.length != 0)
+    return true;
+    else
+    return false;
+  }
 
 }
