@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.MessageChannel;
@@ -23,8 +25,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.stackroute.eplay.ticketengine.domain.BlockedSeats;
+import com.stackroute.eplay.ticketengine.domain.InputEmailDetails;
 import com.stackroute.eplay.ticketengine.domain.Show;
 import com.stackroute.eplay.ticketengine.repository.ShowRepository;
 import com.stackroute.eplay.ticketengine.service.BlockedSeatsService;
@@ -41,6 +45,7 @@ public class TicketEngineController {
 	private BookedSeatsStream bookedSeatsStream;
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private RestTemplate restTemplate;
 	
 	@Autowired
 	TicketEngineController(ShowRepository showRepository, BlockedSeatsService blockedSeatsService, BookedSeatsStream bookedSeatsStream){
@@ -123,7 +128,7 @@ public class TicketEngineController {
 	}
 	
 	@PostMapping("/blockedSeatsStatus")
-	public void seatStatus(@RequestBody BlockedSeats seats) {
+	public String seatStatus(@RequestBody BlockedSeats seats) {
 		Show show = showRepository.find(seats.getShowId());
 		logger.info(seats.toString());
 		for(int i:seats.getSeats()) {
@@ -140,5 +145,25 @@ public class TicketEngineController {
 		MessageChannel messageChannel = bookedSeatsStream.outboundBookedSeats();
 		messageChannel.send(MessageBuilder.withPayload(seats)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+		String message = "";
+		if(seats.getStatus().equals("booked")) {
+			message = "Congrats, You have booked Seat No: ";
+			for(int i:seats.getSeats()) {
+				message+=i+", ";
+			}
+			message+="for movieEventId: "+show.getMovieEventId();
+		} else {
+			message+="Your payment is failed for booking seats in movieEventId: "+show.getMovieEventId() + ". Please try again.";
+		}
+		if(!seats.getGuestUserEmailId().isEmpty()) {
+			InputEmailDetails email= new InputEmailDetails();
+			email.setEmailAddress(seats.getGuestUserEmailId());
+			email.setSubject("Movie Seats Booking");
+			email.setBody(message);
+			restTemplate = new RestTemplate();
+			restTemplate.exchange("http://13.232.40.6:8092/email-service/api/v1/email/sendEmail", HttpMethod.POST, new HttpEntity<InputEmailDetails>(email), String.class);
+		}
+		return message;
+		
 	}
 }
