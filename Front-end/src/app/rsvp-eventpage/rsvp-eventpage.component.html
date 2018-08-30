@@ -1,67 +1,87 @@
+<!-- <img  mat-card-image src="{{rsvpModel.poster}}" alt="rsvp poster"> -->
+<!-- <div class="container" > -->
+<!-- <div class="container" layout-fill layout="column" layout-align="center none">
+  
+      <div layout="row" layout-align="center none"> -->
 
-    <!-- <img  mat-card-image src="{{rsvpModel.poster}}" alt="rsvp poster"> -->
-<mat-grid-list cols="100">
-    <mat-grid-tile colspan="1" >  </mat-grid-tile>
-    
-    <mat-grid-tile colspan="98" >
-    <mat-card [style.backgroundColor]="'#A5D8DD'">
-<h3>
-  Event: {{rsvpModel.name}}
-</h3>
-<h4>
-     Location: {{rsvpModel.location}}  
-   </h4>
-
-   <h4>
-   City: {{rsvpModel.city}}
-  </h4>
-<h4>
-       Start Date: {{rsvpModel.startDate|date}} at start time {{rsvpModel.startTime}}
-</h4>
-<h4>
-        End Date: {{rsvpModel.endDate|date}} at end time {{rsvpModel.endTime}}
-</h4>
-
-
-<h4>
-      Description: {{rsvpModel.description}}
-</h4>
-<h4>
-    Performers: {{rsvpModel.performers}}
-</h4>
-<h4>
-   Notes: {{rsvpModel.notes}}
- </h4>
-
- <br>
-
- <mat-form-field>
-    <textarea matInput placeholder="Your name" [(ngModel)]="rsvpInvitationModel.inviteeName" ngModel #inviteeName="ngModel"
-      required pattern="[a-zA-Z][a-zA-Z]+"></textarea>
-  </mat-form-field>
-<br>
-  <mat-form-field>
-    <textarea matInput placeholder=" Email id" [(ngModel)]="rsvpInvitationModel.inviteeEmail" ngModel #inviteeEmail="ngModel"
-      required pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></textarea>
-  </mat-form-field>
- 
-  <h4>
-      Are you attending?
+  <div class="poster">
+    <img src="{{rsvpModel.poster}}">
+  </div>
+  
+  <div class="imageClass">
+  <br>
+  <mat-card>
       
-  </h4>
+      <br>
+      <br>
 
-  <!-- <input type="radio" value="male" name="gender" ngModel> Male
+    <h3>
+      {{rsvpModel.name}}
+    </h3>
+    <h4>
+        {{rsvpModel.description}}
+      </h4>
+    <h4>
+       {{rsvpModel.location}}
+    </h4>
+
+    <h4>
+       {{rsvpModel.city}}
+    </h4>
+    <h4>
+      Start Date: {{rsvpModel.startDate|date}} at start time {{rsvpModel.startTime}}
+    </h4>
+    <h4>
+      End Date: {{rsvpModel.endDate|date}} at end time {{rsvpModel.endTime}}
+    </h4>
+
+
+  
+    <h4>
+      Performers: {{rsvpModel.performers}}
+    </h4>
+    <h4>
+      Notes: {{rsvpModel.notes}}
+    </h4>
+
+    <br>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Your name" [(ngModel)]="rsvpInvitationModel.inviteeName" ngModel #inviteeName="ngModel" required
+        pattern="[a-zA-Z][a-zA-Z]+"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea matInput placeholder=" Email id" [(ngModel)]="rsvpInvitationModel.inviteeEmail" ngModel #inviteeEmail="ngModel"
+        required pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></textarea>
+    </mat-form-field>
+
+    <h4>
+      Are you attending?
+
+    </h4>
+
+    <!-- <input type="radio" value="male" name="gender" ngModel> Male
   <input type="radio" value="female" name="gender" ngModel> Female -->
-  <div class="container">
-  <form action="">
-      <input type="radio" id="t-option" name="selector" value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status" (click)="changeStatus(true)"  ngModel #status="ngModel">I am attending
-           <br>
-      <input type="radio"  id="t-option" name="selector"value=false name="Status" [(ngModel)]="rsvpInvitationModel.Status"  ngModel #status="ngModel">I am not attending
-<br>
-<br>
-    </form> 
-    </div>
-    <button type="submit"  name="button" class="btn btn-success button" (click)="onSubmit()">submit </button>
- </mat-card>
- </mat-grid-tile>
-  </mat-grid-list>
+
+    <form action="">
+      <input type="radio" id="t-option" name="selector" value=true name="Status" [(ngModel)]="rsvpInvitationModel.Status" (click)="changeStatus(true)"
+        ngModel #status="ngModel">I am attending
+      <br>
+      <input type="radio" id="t-option" name="selector" value=false name="Status" [(ngModel)]="rsvpInvitationModel.Status" ngModel
+        #status="ngModel">I am not attending
+      <br>
+      <br>
+    </form>
+
+    <button type="submit" name="button" class="btn btn-success button" (click)="onSubmit()">submit </button>
+
+    <!-- </div> -->
+  </mat-card>
+  <br>
+  <br>
+</div>
+
+
+<!-- </div>
+</div> -->

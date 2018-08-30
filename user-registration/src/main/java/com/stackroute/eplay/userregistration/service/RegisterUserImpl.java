@@ -5,8 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.stackroute.eplay.userregistration.domain.InputEmailDetails;
 import com.stackroute.eplay.userregistration.domain.Registration;
 import com.stackroute.eplay.userregistration.domain.Theatre;
 import com.stackroute.eplay.userregistration.exception.EmailAlreadyExistsException;
@@ -19,6 +23,8 @@ import com.stackroute.eplay.userregistration.repository.RegistrationRepo;
 public class RegisterUserImpl implements RegisterUser {
 
 	private RegistrationRepo registrationRepo;
+	
+	private RestTemplate restTemplate;
 
 	@Autowired
 	public RegisterUserImpl(RegistrationRepo registrationRepo) {
@@ -39,6 +45,13 @@ public class RegisterUserImpl implements RegisterUser {
 				throw new UserAlreadyExistsException("User already exists");
 			}
 		}
+		
+		InputEmailDetails email= new InputEmailDetails();
+		email.setEmailAddress(registrant.getEmail());
+		email.setSubject("Registration Confirmation");
+		email.setBody("Thanks for registering.\nNow you can create events and see recommendations based on ur previous booking.");
+		restTemplate = new RestTemplate();
+		restTemplate.exchange("http://13.232.40.6:8092/email-service/api/v1/email/sendEmail", HttpMethod.POST, new HttpEntity<InputEmailDetails>(email), String.class);
 	
 		return registrationRepo.save(registrant);
 	}

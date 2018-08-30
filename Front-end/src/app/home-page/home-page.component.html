@@ -35,7 +35,7 @@
   <!-- <mat-grid-list cols="12"> -->
 
   <div *ngIf="rec$; else elseBlock">
-    <h2>Recommendations for you..!</h2>
+    <h2>Your filtered results..</h2>
     <div id="container">
       <div ng2-carouselamos class="slide-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next" [$item]="item">
       </div>
@@ -50,7 +50,7 @@
 
       <ng-template #item let-item let i="index">
         <div *ngFor="let movie of rec$" class="items">
-          <img src="{{ movie.poster }}">
+          <img class="movieposter" src="{{ movie.poster }}">
         </div>
       </ng-template>
     </div>
@@ -99,7 +99,7 @@
                 <h5>{{movie.name}}</h5>
               </mat-card-title>
             </mat-card-header>
-            <img mat-card-image src="{{movie.poster}}" alt="movie poster">
+            <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
             <mat-card-actions>
               <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
             </mat-card-actions>
@@ -123,7 +123,7 @@
                   <h5>{{movie.name}}</h5>
                 </mat-card-title>
               </mat-card-header>
-              <img mat-card-image src="{{movie.poster}}" alt="movie poster">
+              <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
               <mat-card-actions>
                 <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
               </mat-card-actions>

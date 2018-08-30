@@ -76,3 +76,45 @@ body {
   display: inline-block;
   font-size: 16px;
 } */
+
+
+
+
+mat-card{
+ 
+  border :3px solid #999; 
+  margin :auto;
+  /* border : 12px dashed #1b1a19; */
+  /* border : 3px dashed #ccc; */
+  /* background: #5bc0de */
+  /* background: #33b5e5; */
+  
+  max-width:50%;
+}
+img{
+
+  background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 400px;
+}
+
+
+
+.imageClass{
+
+  background-image:url('4.jpg');
+  
+  
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
