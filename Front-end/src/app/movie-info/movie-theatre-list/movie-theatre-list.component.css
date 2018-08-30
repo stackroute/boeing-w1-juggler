@@ -1,19 +1,22 @@
 .theatre-name{
     width: 30%;
     position: relative;
-    height: 100%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
     font-size: 20px;
-    background-color: rgb(201, 198, 198);
+    /* background-color: rgb(201, 198, 198); */
+    background: transparent;
     float: left;
     margin-top: 1px;
+    color: white;
+    font-size: 20%;
 }
 
 .theatre-container{
     width: 80%;
     margin-left: 10%;
-    height: 100px;
+    height: auto;
     margin-top:5px;
+    display: table;
 }
 .show-time{
     width: 70%;
@@ -25,6 +28,7 @@
     padding-top: 7px;
     padding-left: 7px;
     padding-bottom: 7px;
+    border-radius: 10px;
 }
 
 .mat-raised-button{
@@ -42,6 +46,5 @@
 .show-time button {
     margin-right: 30px;
     margin-left: 10px;
-    display: inline;
     margin-top:3px; 
 }

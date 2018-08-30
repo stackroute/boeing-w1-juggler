@@ -1,3 +1,18 @@
-.form-inline{
-    margin-bottom: 27%;
+.mat-grid-list{
+    margin-top: 10%;
+    margin-bottom: 5%;
 }
+.mat-card{
+ width: 200px;
+ height: 200px;
+}
+
+.render{
+    width: 200px;
+    height: 140px;;
+    overflow: hidden;
+}
+
+.add-button {
+    margin-left: 100px;
+} 

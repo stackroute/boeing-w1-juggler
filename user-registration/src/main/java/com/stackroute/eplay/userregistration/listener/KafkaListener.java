@@ -1,19 +1,17 @@
 package com.stackroute.eplay.userregistration.listener;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.MimeTypeUtils;
-import org.springframework.web.client.RestTemplate;
 
 import com.stackroute.eplay.userregistration.domain.BookedMovieTickets;
 import com.stackroute.eplay.userregistration.domain.InputEmailDetails;
@@ -24,6 +22,7 @@ import com.stackroute.eplay.userregistration.domain.Theatre;
 import com.stackroute.eplay.userregistration.domain.TicketedEvent;
 import com.stackroute.eplay.userregistration.repository.MovieEventRepository;
 import com.stackroute.eplay.userregistration.service.RegisterUser;
+import com.stackroute.eplay.userregistration.stream.EmailStream;
 import com.stackroute.eplay.userregistration.stream.MovieBookedSeatsStream;
 import com.stackroute.eplay.userregistration.stream.MovieEventStream;
 import com.stackroute.eplay.userregistration.stream.RSVPEventStream;
@@ -31,20 +30,20 @@ import com.stackroute.eplay.userregistration.stream.TheatreStream;
 import com.stackroute.eplay.userregistration.stream.TicketedEventStream;
 import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
 
-@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class, MovieBookedSeatsStream.class })
+@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class, MovieBookedSeatsStream.class, EmailStream.class })
 public class KafkaListener {
 
 	private RegisterUser registerUser;
 	private UserRegistrationStream userRegistrationStream;
 	private MovieEventRepository movieEventRepository;
-	
-	private RestTemplate restTemplate;
+	private EmailStream emailStream;
 	
 	@Autowired
-	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream, MovieEventRepository movieEventRepository) {
+	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream, MovieEventRepository movieEventRepository, EmailStream emailStream) {
 		this.registerUser = registerUser;
 		this.userRegistrationStream = userRegistrationStream;
 		this.movieEventRepository = movieEventRepository;
+		this.emailStream = emailStream;
 	}
 
 	@StreamListener(TheatreStream.INPUT)
@@ -91,6 +90,9 @@ public class KafkaListener {
 			if (user.getRsvpEvents() == null)
 				rsvpEvents = new ArrayList<>();
 			else
+				rsvpEvent.setLocalStartDate(rsvpEvent.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+			    rsvpEvent.setLocalEndDate(rsvpEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				rsvpEvents = user.getRsvpEvents();
 			rsvpEvents.add(rsvpEvent);
 			user.setRsvpEvents(rsvpEvents);
@@ -126,6 +128,7 @@ public class KafkaListener {
 			if (user.getTicketedEvent() == null)
 				ticketedEvents = new ArrayList<>();
 			else
+				ticketedEvent.setLocalDate(ticketedEvent.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				ticketedEvents = user.getTicketedEvent();
 			ticketedEvents.add(ticketedEvent);
 			user.setTicketedEvent(ticketedEvents);
@@ -229,9 +232,9 @@ public class KafkaListener {
 			email.setEmailAddress(user.getEmail());
 			email.setSubject("Movie Seats Booking");
 			email.setBody(message);
-			restTemplate = new RestTemplate();
-			restTemplate.exchange("http://13.232.40.6:8092/email-service/api/v1/email/sendEmail", HttpMethod.POST, new HttpEntity<InputEmailDetails>(email), String.class);
-			
+			MessageChannel messageChannelEmail = emailStream.outboundEmail();
+			messageChannelEmail.send(MessageBuilder.withPayload(email)
+					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
