@@ -72,5 +72,10 @@ export class UserProfileComponent implements OnInit {
     
   }
 
+  onClick(id){
+    console.log("in the on click");
+    localStorage.setItem('RSVPId',id);
+
+  }
   
 }
