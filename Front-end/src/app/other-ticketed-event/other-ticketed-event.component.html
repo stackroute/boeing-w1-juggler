@@ -32,20 +32,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="Select event Type " [formControl]="otherTicketedEventControl">
-            <mat-optgroup *ngFor="let group of typegroup" [label]="group.name" [disabled]="group.disabled">
-              <mat-option *ngFor="let type of group.type" [value]="type.value">
-                {{type.viewValue}}
-              </mat-option>
-            </mat-optgroup>
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
-            <mat-option *ngFor="let theatre of theatres" [value]="theatre.theatreName" (click)="findTheatreId(theatre)">
-              {{theatre.theatreName}} | {{ theatre.city}}
-            </mat-option>
-          </mat-select>
+          <input matInput placeholder="Type" [(ngModel)]="ticketedEvent.type">
         </mat-form-field>
 
         <mat-form-field>
@@ -66,15 +53,10 @@
 
         <!-- <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="submitTicketedEvent()">Submit</button> -->
 
-
       </div>
       <p align="center">
-          <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="submitTicketedEvent()">Create Event</button>
-        </p>
+        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="submitTicketedEvent()">Create Event</button>
+      </p>
     </div>
     <div>
-      
-
     </div>
-  </div>
-</div>
