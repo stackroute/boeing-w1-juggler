@@ -44,7 +44,9 @@ export class HomePageComponent implements OnInit {
   goMoviePage(movie) {
     console.log("inside goMoviePage");
     localStorage.setItem("movieInfo",JSON.stringify(movie));
-    console.log(localStorage.getItem("movieInfo"));
+    console.log("Recommended movies",localStorage.getItem('recommended'));
+    console.log("Movie info",localStorage.getItem("movieInfo"));
+    localStorage.setItem('clickedRecommended',movie.id);
     this.data.changeMovieMessage(movie);
     console.log(movie);
   }
@@ -57,6 +59,8 @@ export class HomePageComponent implements OnInit {
    this.recommendationService.getGenreBasedMoviesForUser(localStorage.getItem('currentUser'))
    .subscribe(res=>{
      this.recommendedMovie=res;
+     localStorage.setItem('recommended',JSON.stringify(this.recommendedMovie));
+     console.log("stronig recommendedin local",localStorage.getItem('recommended'));
    });
   }
 
