@@ -6,13 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.MimeTypeUtils;
+import org.springframework.web.client.RestTemplate;
 
 import com.stackroute.eplay.userregistration.domain.BookedMovieTickets;
+import com.stackroute.eplay.userregistration.domain.InputEmailDetails;
 import com.stackroute.eplay.userregistration.domain.MovieEvent;
 import com.stackroute.eplay.userregistration.domain.RSVPEvent;
 import com.stackroute.eplay.userregistration.domain.Registration;
@@ -33,6 +37,8 @@ public class KafkaListener {
 	private RegisterUser registerUser;
 	private UserRegistrationStream userRegistrationStream;
 	private MovieEventRepository movieEventRepository;
+	
+	private RestTemplate restTemplate;
 	
 	@Autowired
 	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream, MovieEventRepository movieEventRepository) {
@@ -207,6 +213,24 @@ public class KafkaListener {
 			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
 			messageChannel.send(MessageBuilder.withPayload(user)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+			
+			String message = "";
+			if(bookedMovieTickets.getStatus().equals("booked")) {
+				message = "Congrats, You have booked Seat No: ";
+				for(int i:bookedMovieTickets.getSeats()) {
+					message+=i+", ";
+				}
+				message+="for movieEventId: "+bookedMovieTickets.getMovieEventId();
+			} else {
+				message+="Your payment is failed for booking seats in movieEventId: "+bookedMovieTickets.getMovieEventId() + ". Please try again.";
+			}
+			InputEmailDetails email= new InputEmailDetails();
+			email.setEmailAddress(user.getEmail());
+			email.setSubject("Movie Seats Booking");
+			email.setBody(message);
+			restTemplate = new RestTemplate();
+			restTemplate.exchange("http://13.232.40.6:8092/email-service/api/v1/email/sendEmail", HttpMethod.POST, new HttpEntity<InputEmailDetails>(email), String.class);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
