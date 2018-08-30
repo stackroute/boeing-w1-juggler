@@ -2,12 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import {BlockSeat} from "../models/SeatBlock";
 import {PaymentService} from '../payment.service'
 
+export interface Tile {
+  poster: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
 @Component({
   selector: 'app-payment-page',
   templateUrl: './payment-page.component.html',
   styleUrls: ['./payment-page.component.css']
 })
+
 export class PaymentPageComponent implements OnInit {
+
+  tiles: Tile[] = [
+    {text: 'Large Salted Popcorn', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020001_13082018125322.jpg'},
+    {text: 'Couple Combo', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020005_17082018144820.jpg'},
+    {text: 'Regular Combo', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020007_16082018153109.jpg'},
+    {text: 'Two', cols: 2, rows: 4, poster: 'lightgreen'},
+    {text: 'Nachos with Salsa', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020006_06082018135441.jpg'},
+    {text: 'Veg Burger', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020016_17082018120212.jpg'},
+    {text: 'Sandwich', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020446_20082018182121.jpg'},
+   // {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  ];
 
   user:any;
   emailId:any;

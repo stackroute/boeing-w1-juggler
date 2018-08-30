@@ -141,22 +141,13 @@ export class TheatreLayoutComponent implements OnInit {
     this.data.changePayMessage(this.blockedSeat);
     (window as any).sendBlockedSeats(this.blockedSeat);
     console.log(this.seatNum);
-    
-    //console.log("aaaaaaaa" + this.recievedBlockedSeats);
 
     this.data.payMessage.subscribe(data => {
       this.blockedSeat = data;
       console.log("working sockets and all", data);
     });
-
-    // this.recievedBlockedSeats = (window as any).receiveBlockedSeats();
    
   }
-
-  // updatestatus() {
-  //   console.log("inside update status");
-  // }
-
 
   // seatStatus()
   seatStatus(r, c) {
