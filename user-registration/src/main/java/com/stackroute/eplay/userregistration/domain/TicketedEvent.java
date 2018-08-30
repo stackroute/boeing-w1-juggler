@@ -1,5 +1,6 @@
 package com.stackroute.eplay.userregistration.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -24,7 +25,7 @@ public class TicketedEvent {
 	public String name;
 	public String userName;
 	public Date date;
-	public Date time;
+	public String time;
 	public String city;
 	public String location;
 	public String poster;

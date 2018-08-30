@@ -19,7 +19,6 @@ export class RsvpCreate{
     isCompleted:boolean;
     rsvpInvitationList: RsvpInvitation[];
     
-
     
 
 

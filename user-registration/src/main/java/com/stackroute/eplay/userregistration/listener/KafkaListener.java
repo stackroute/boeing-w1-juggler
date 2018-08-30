@@ -191,13 +191,14 @@ public class KafkaListener {
 		String userName = bookedMovieTickets.getUserName();
 		try {
 			Registration user = registerUser.findByUsername(userName);
-			System.out.println(user.getUserName() + " " + user.getFullName());
 			List<Integer> bookedMovieId;
+			int movieId = movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId();
 			if (user.getBookedMovieId() == null)
 				bookedMovieId = new ArrayList<>();
 			else
 				bookedMovieId = user.getBookedMovieId();
-			bookedMovieId.add(movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId());
+			if(!bookedMovieId.contains(movieId))
+				bookedMovieId.add(movieId);
 			user.setBookedMovieId(bookedMovieId);
 
 			/*
