@@ -70,6 +70,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 				show.setShowId(nextSequenceService.getNextSequence("counter"));
 				LocalTime showTime=sdf.parse(showTimes[j].trim()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
 				show.setStartTime(showTime);
+				show.setPrice(200);
 				show.setDate(releaseDate.plusDays(i));
 				show.setStatus(true);
 				show.setMovieEventId(movieEvent.getMovieEventId());
