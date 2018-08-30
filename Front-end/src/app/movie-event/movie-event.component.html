@@ -24,15 +24,21 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.week">
+          <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.week" required>
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.showTimes">
+          <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.showTimes" required>
         </mat-form-field>
 
         <br>
       </div>
+      
+    </div>
+    <div>
+      <p align="center">
+        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()" routerLink="/home">Create Movie Event</button>
+      </p>
       <div>
 
 

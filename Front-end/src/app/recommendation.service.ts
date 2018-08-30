@@ -49,4 +49,9 @@ export class RecommendationService {
      localStorage.removeItem('rec');
     return this.http.get<TicketedEvent[]>(this.urlCityType);
   }
+
+  getGenreBasedMoviesForUser(userName:String):Observable<Movie[]>{
+    console.log("inside getGenreBasedMoviesForUser");
+    return this.http.get<Movie[]>(this.url+"/getGenreBasedMoviesForUser?userName="+userName);
+  }
 }
