@@ -19,6 +19,7 @@ import {TheatreLayoutComponent} from "./theatre-layout/theatre-layout.component"
 import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
 import { InviteeDetailsComponent } from "./invitee-details/invitee-details.component";
 import {PaymentPageComponent} from "./payment-page/payment-page.component"
+import{OrganiserRsvpViewComponent} from "./organiser-rsvp-view/organiser-rsvp-view.component";
 const routes: Routes = [
   {
     path: "",
@@ -100,6 +101,10 @@ const routes: Routes = [
   {
     path:"InviteeDetails",
     component:InviteeDetailsComponent
+  },
+  {
+    path:"organiserRsvpView",
+    component:OrganiserRsvpViewComponent
   }
 ];
 

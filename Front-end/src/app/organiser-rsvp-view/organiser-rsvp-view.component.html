@@ -1,0 +1,67 @@
+<!-- <img  mat-card-image src="{{rsvpModel.poster}}" alt="rsvp poster"> -->
+<!-- <div class="container" > -->
+<!-- <div class="container" layout-fill layout="column" layout-align="center none">
+  
+      <div layout="row" layout-align="center none"> -->
+
+          <div class="poster">
+              <img src="{{rsvpModel.poster}}">
+            </div>
+            
+            <div class="imageClass">
+            <br>
+            <mat-card>
+                
+               
+          
+              <h3>
+                {{rsvpModel.name}}
+              </h3>
+              <h4>
+                {{rsvpModel.description}}
+                </h4>
+                <br>
+              <h4>
+                 {{rsvpModel.location}}
+              </h4>
+          
+              <h4>
+                 {{rsvpModel.city}}
+              </h4>
+              <h4>
+                Start Date: {{rsvpModel.startDate|date}} at start time {{rsvpModel.startTime}}
+              </h4>
+              <h4>
+                End Date: {{rsvpModel.endDate|date}} at end time {{rsvpModel.endTime}}
+              </h4>
+          
+          
+            
+              <h4>
+                Performers: {{rsvpModel.performers}}
+              </h4>
+              <h4>
+                Notes: {{rsvpModel.notes}}
+              </h4>
+          
+              <br>
+          
+              
+          
+             
+
+          
+          <button type="submit" class="button" name="button" class="btn btn-success"  (click)="onSubmit1()" >My Invitees Status </button>
+
+              <!-- </div> -->
+              <br>
+              <br>
+              <button type="submit" class="button" name="button" class="btn btn-success"  (click)="onSubmit2()" >Add More Invitees </button>
+            </mat-card>
+            <br>
+            <br>
+          </div>
+          
+          
+          <!-- </div>
+          </div> -->
