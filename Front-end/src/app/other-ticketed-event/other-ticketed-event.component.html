@@ -24,16 +24,15 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Location" [(ngModel)]="ticketedEventModel.location">
+          <input matInput placeholder="Location" [(ngModel)]="ticketedEvent.location">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Poster" [(ngModel)]="ticketedEventModel.poster">
+          <input matInput placeholder="Poster" [(ngModel)]="ticketedEvent.poster">
         </mat-form-field>
 
         <mat-form-field>
           <mat-select placeholder="Select event Type " [formControl]="otherTicketedEventControl">
-
             <mat-optgroup *ngFor="let group of typegroup" [label]="group.name" [disabled]="group.disabled">
               <mat-option *ngFor="let type of group.type" [value]="type.value">
                 {{type.viewValue}}
@@ -54,11 +53,11 @@
         </mat-form-field>
 
         <mat-form-field>
-          <textarea matInput placeholder="Description" [(ngModel)]="ticketedEventModel.description"></textarea>
+          <textarea matInput placeholder="Description" [(ngModel)]="ticketedEvent.description"></textarea>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Price" [(ngModel)]="ticketedEventModel.price">
+          <input matInput placeholder="Price" [(ngModel)]="ticketedEvent.price">
         </mat-form-field>
 
         <mat-form-field>
@@ -69,11 +68,12 @@
 
 
       </div>
+      <p align="center">
+          <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="submitTicketedEvent()">Create Event</button>
+        </p>
     </div>
     <div>
-      <p align="center">
-        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="submitTicketedEvent()">Submit</button>
-      </p>
+      
 
     </div>
   </div>

@@ -31,6 +31,7 @@
   }
      
   .list-viewer-wrapper {
+    background: url("/assets/images/background3.jpg") no-repeat center center; 
     border: 1px solid rgba(0, 0, 0, .03);
     box-shadow: 0 2px 2px rgba(0, 0, 0, .24), 0 0 2px rgba(0, 0, 0, .12);
     margin: 4px;
@@ -46,6 +47,9 @@
   .jumbotron{
     margin: auto;
     max-width: 70%;
+    max-height: 20%;
+    margin-bottom: 0%;
+    background: transparent;
   }
 
   .list-viewer-wrapper{
