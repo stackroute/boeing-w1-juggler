@@ -35,20 +35,29 @@ footer {
     width:100%;
     margin:5em auto;
     padding :0;
-    background: rgb(112, 130, 133);
+    background: transparent
 }
 .items{
-    max-width: 300px;
-    max-height:300px; 
-    background: rgb(24, 23, 23);
+    max-width: 900px;
+    /* max-height:300px; 
+    background: rgb(24, 23, 23); */
 }
-img{
+.movieposter{
+    /* min-height: auto;
+     max-height: auto; */
+     height: 350px; /* Your height here */
+   width: 900px;
+   margin: auto
+   /* overflow: hidden; */
+ }
+.render{
     /* min-height: auto;
     max-height: auto; */
     height: 300px; /* Your height here */
   width: 345px;
   overflow: hidden;
 }
+
 
 #left ,#right{
     margin:30px;
@@ -74,15 +83,20 @@ h3{
     text-align: left;
     text-shadow: 2px 2px;
     padding-bottom: 0;
+    color: aliceblue
 }
 h2{
-    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+    text-align: left;
+    text-shadow: 2px 2px;
+    padding-bottom: 0;
+    color: aliceblue
+    /* text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF; */
 }
 
 h5{
     text-align: center;
     /* text-shadow: 2px 2px; */
-    text-shadow:2px 8px 6px rgba(243, 238, 238, 0.952),
+    text-shadow:2px 8px 6px rgba(245, 216, 216, 0.2),
                  0px -5px 35px rgba(255,255,255,0.3);
 }
 /* .example-card {
@@ -105,3 +119,6 @@ h5{
   }
 
   
+  div ng2-carouselamos {
+    background: transparent
+  }  
