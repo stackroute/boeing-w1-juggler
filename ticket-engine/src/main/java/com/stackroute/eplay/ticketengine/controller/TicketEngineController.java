@@ -144,9 +144,11 @@ public class TicketEngineController {
 		//blockedSeatsService.delete(seats.getId());
 		showRepository.save(show);
 		seats.setMovieEventId(show.getMovieEventId());
-		MessageChannel messageChannel = bookedSeatsStream.outboundBookedSeats();
-		messageChannel.send(MessageBuilder.withPayload(seats)
-				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+		if(seats.getUserName()!=null) {
+			MessageChannel messageChannel = bookedSeatsStream.outboundBookedSeats();
+			messageChannel.send(MessageBuilder.withPayload(seats)
+					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+		}
 		String message = "";
 		if(seats.getStatus().equals("booked")) {
 			message = "Congrats, You have booked Seat No: ";
@@ -157,7 +159,7 @@ public class TicketEngineController {
 		} else {
 			message+="Your payment is failed for booking seats in movieEventId: "+show.getMovieEventId() + ". Please try again.";
 		}
-		if(seats.getGuestUserEmailId()!=null||!seats.getGuestUserEmailId().isEmpty()) {
+		if(seats.getGuestUserEmailId()!=null&&!seats.getGuestUserEmailId().isEmpty()) {
 			InputEmailDetails email= new InputEmailDetails();
 			email.setEmailAddress(seats.getGuestUserEmailId());
 			email.setSubject("Movie Seats Booking");
