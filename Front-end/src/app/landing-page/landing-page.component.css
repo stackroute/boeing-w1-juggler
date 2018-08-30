@@ -414,3 +414,7 @@
   container-fluid{
     background: url("/assets/images/background3.jpg") no-repeat center center;
   } */
+
+  .row{
+      width: 100%
+  }
