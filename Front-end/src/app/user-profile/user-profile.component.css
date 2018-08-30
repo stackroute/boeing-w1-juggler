@@ -5,3 +5,10 @@ mat-card{
     /* background: #5bc0de */
     background: #33b5e5;
 }
+
+h4, h2{
+    text-align: left;
+    text-shadow: 1px 1px;
+    padding-bottom: 0;
+    color: aliceblue
+}
