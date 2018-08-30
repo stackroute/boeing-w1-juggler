@@ -26,6 +26,7 @@ import com.stackroute.eplay.ticketservice.domain.Show;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
 import com.stackroute.eplay.ticketservice.repositories.MovieEventRepository;
 import com.stackroute.eplay.ticketservice.repositories.MovieRepository;
+import com.stackroute.eplay.ticketservice.streams.FinalMovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.UpdateMovieEventStreams;
 
@@ -37,11 +38,12 @@ public class MovieEventServiceImpl implements MovieEventService{
 	MovieRepository movieRepository;
 	MovieEventStreams movieEventStreams;
 	UpdateMovieEventStreams updateMovieEventStreams;
+	FinalMovieEventStreams finalMovieEventStreams;
 	
 	@Autowired
 	NextSequenceService nextSequenceService;
 	@Autowired
-	public MovieEventServiceImpl(MovieEventRepository movieEventRepository,MovieEventStreams movieEventStreams,MovieRepository movieRepository,UpdateMovieEventStreams updateMovieEventStreams) {
+	public MovieEventServiceImpl(MovieEventRepository movieEventRepository,MovieEventStreams movieEventStreams,MovieRepository movieRepository,UpdateMovieEventStreams updateMovieEventStreams,FinalMovieEventStreams finalMovieEventStreams) {
 		this.movieRepository=movieRepository;
 		this.movieEventRepository = movieEventRepository;
 		this.movieEventStreams= movieEventStreams;
@@ -126,7 +128,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 		
 		movieEventRepository.save(movieEvent);
 		   movieEventRepository.save(movieEvent);
-			MessageChannel messageChannel = updateMovieEventStreams.outboundUpdateMovieEvent();
+			MessageChannel messageChannel = finalMovieEventStreams.outboundfinalMovieEvent();
 	        messageChannel.send(MessageBuilder.withPayload(movieEvent)
 	                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 	                .build());
