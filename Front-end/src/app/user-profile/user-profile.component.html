@@ -1,53 +1,61 @@
 <app-nav-bar></app-nav-bar>
 <h2 style="margin-top: 100px">MOVIES</h2>
 <mat-grid-list cols="12" rowHeight="100px">
-    <div *ngFor="let movie of movieList;let i=index">
-        <mat-grid-tile colspan="4" rowspan="6">
-            <mat-card class="example-card">
-                <app-event-card [name]="movie.name" [poster]="movie.poster" ></app-event-card>
-                <br> {{movie.releaseDate}} 
-                <br>{{yourData.movieEvent[i].city}} |
-                 {{theatreList[i].theatreName}} |
-                 {{theatreList[i].theatreLocation}}  
-                 <br>Duration: {{yourData.movieEvent[i].week}} week
-            </mat-card>
-        </mat-grid-tile>
-    </div>
-    <!-- this is the change
-    <div *ngFor="let history of userHistories">
+    <div *ngIf=" movieList[0]; else elseBlock">
+        <div *ngFor="let movie of movieList;let i=index">
             <mat-grid-tile colspan="4" rowspan="6">
                 <mat-card class="example-card">
-                    <app-event-card [name]="history.movie.name" [poster]="history.movie.poster" [city]="history.city"></app-event-card>
-                    <br> {{history.movie.releaseDate}} 
-                    <br>{{history.city}}
+                    <app-event-card [name]="movie.name" [poster]="movie.poster"></app-event-card>
+                    <br> {{movie.releaseDate}}
+                    <br>{{yourData.movieEvent[i].city}} | {{theatreList[i].theatreName}} | {{theatreList[i].theatreLocation}}
+                    <br>Duration: {{yourData.movieEvent[i].week}} week
                 </mat-card>
             </mat-grid-tile>
-        </div> -->
+        </div>
+    </div>
+    <ng-template #elseBlock>
+        <h4 style="margin-top: 75px">No result found!!</h4>
+    </ng-template>
 </mat-grid-list>
+
+
 <h2 style="margin-top: 100px">EVENTS</h2>
 <mat-grid-list cols="12" rowHeight="100px">
-    <div *ngFor="let ticketedEvent of yourData.ticketedEvent;let i=index">
-        <mat-grid-tile colspan="4" rowspan="6">
-            <mat-card class="example-card">
-                <app-event-card [name]="ticketedEvent.name" [poster]="ticketedEvent.poster" [city]="ticketedEvent.city"></app-event-card>
-                <br> {{ticketedEvent.date}}
-            </mat-card>
-        </mat-grid-tile>
+    <div *ngIf="yourData.ticketedEvent; else elseBlock">
+        <div *ngFor="let ticketedEvent of yourData.ticketedEvent;let i=index">
+            <mat-grid-tile colspan="4" rowspan="6">
+                <mat-card class="example-card">
+                    <app-event-card [name]="ticketedEvent.name" [poster]="ticketedEvent.poster" [city]="ticketedEvent.city"></app-event-card>
+                    <br> {{ticketedEvent.date}}
+                </mat-card>
+            </mat-grid-tile>
+        </div>
     </div>
+    <ng-template #elseBlock>
+        <h4 style="margin-top: 75px">No result found!!</h4>
+    </ng-template>
 </mat-grid-list>
+
+
 
 
 <h2 style="margin-top: 100px">RSVP EVENTS</h2>
 <mat-grid-list cols="12" rowHeight="100px">
+        <div *ngIf="yourData.rsvpEvents; else elseBlock">
+
     <div *ngFor="let RSVPEvent of yourData.rsvpEvents;let i=index">
         <mat-grid-tile colspan="4" rowspan="6">
             <mat-card class="example-card">
                 <app-event-card [name]="RSVPEvent.name" [poster]="RSVPEvent.poster" [city]="RSVPEvent.city"></app-event-card>
                 <br> {{RSVPEvent.startDate}}
                 <mat-card-actions>
-                        <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
-                      </mat-card-actions>
+                    <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
+                </mat-card-actions>
             </mat-card>
         </mat-grid-tile>
     </div>
+</div>
+<ng-template #elseBlock>
+    <h4 style="margin-top: 75px">No result found!!</h4>
+</ng-template>
 </mat-grid-list>
