@@ -11,16 +11,21 @@ export class MovieTheatreListComponent implements OnInit {
   public movie;
   public theatreList;
   public movieRecommend;
-
+  public recommendedMovies;
   constructor(private _searchDataService:SearchDataService){
   }
   ngOnInit() {
     this._searchDataService.movieMessage.subscribe(movie => this.movie = movie)
+    
+    this.recommendedMovies=JSON.parse(localStorage.getItem('recommended'));
     this.movie=JSON.parse(localStorage.getItem('movieInfo'));
-    console.log("print in child" , this.movie);
+    
+    console.log("print in child" , this.recommendedMovies);
+    
+    this._searchDataService.getMovieByCitynId(localStorage.getItem('clickedRecommended')).subscribe(movieRecommend => {this.movieRecommend = movieRecommend
+    console.log("recsn a ll",this.movieRecommend)})
     this.theatreList= this.movie.theatres;
     this.theatreList=this.theatreList[0];
-    this._searchDataService.getMovieByCitynId(this.movie.id).subscribe(movieRecommend => this.movieRecommend = movieRecommend)
   }
 
   sendShowId(id){
