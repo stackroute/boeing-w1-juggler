@@ -1,5 +1,6 @@
 package com.stackroute.eplay.userregistration.listener;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +92,9 @@ public class KafkaListener {
 			if (user.getRsvpEvents() == null)
 				rsvpEvents = new ArrayList<>();
 			else
+				rsvpEvent.setLocalStartDate(rsvpEvent.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+
+			    rsvpEvent.setLocalEndDate(rsvpEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				rsvpEvents = user.getRsvpEvents();
 			rsvpEvents.add(rsvpEvent);
 			user.setRsvpEvents(rsvpEvents);
@@ -126,6 +130,7 @@ public class KafkaListener {
 			if (user.getTicketedEvent() == null)
 				ticketedEvents = new ArrayList<>();
 			else
+				ticketedEvent.setLocalDate(ticketedEvent.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 				ticketedEvents = user.getTicketedEvent();
 			ticketedEvents.add(ticketedEvent);
 			user.setTicketedEvent(ticketedEvents);
