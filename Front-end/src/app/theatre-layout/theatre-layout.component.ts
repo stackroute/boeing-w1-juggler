@@ -85,10 +85,15 @@ export class TheatreLayoutComponent implements OnInit {
 
   // to create seating layout
   createseating() {
-    for (var i = 0; i < 10; i++) {
-      for (var j = 0; j < 10; j++) {
+    for (var i = 0; i < this.totalRow.length; i++) {
+      for (var j = 0; j < this.totalCol.length; j++) {
         let seatingStyle = "<div class='seat available'></div>";
         this.seatingValue.push(seatingStyle);
+
+        if(j== this.totalCol.length-1){
+         console.log("Inside the break line loop");
+          '<br/>';
+        }
       }
     }
 

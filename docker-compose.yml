@@ -11,13 +11,12 @@ services:
         condition: service_healthy
       grafana:
         condition: service_healthy
-	
     restart: always
     network_mode: "host"
     image: eureka-service
     hostname: localhost
     ports:
-      - 9090:9090
+      - 9089:9089
     healthcheck:
       test: "exit 0"
 
@@ -129,7 +128,7 @@ services:
 
   prometheus:
     ports:
-      - 9089:9098
+      - 9090:9090
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:

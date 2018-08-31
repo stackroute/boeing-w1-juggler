@@ -10,6 +10,8 @@ import { TicketedEventService } from "../ticketed-event.service";
 })
 
 export class OtherTicketedEventComponent implements OnInit {
+
+  public dateTime: Date;
   
   otherTicketedEventControl = new FormControl();
   ticketedEvent = new TicketedEvent();

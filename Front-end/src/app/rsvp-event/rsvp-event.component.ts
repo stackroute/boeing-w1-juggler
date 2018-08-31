@@ -24,11 +24,9 @@ export class RsvpEventComponent implements OnInit {
 
     // console.log("id of the saved rsvpEvent is ", res.id-118);
       // this.rsvpCreateService.id = res.id;
-    //  console.log("id of the saved rsvpEvent is ", res.id);
-
-       localStorage.setItem("eventId", JSON.stringify(res.id));
+      
       // // console.log(localStorage.getItem("eventId"));
-      localStorage.setItem("RSVPId","-1");
+      
         this.router.navigate(["/"+res.id+"/rsvpInvitation"]);
       
     });

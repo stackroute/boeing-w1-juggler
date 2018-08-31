@@ -50,7 +50,7 @@
                 <app-event-card [name]="RSVPEvent.name" [poster]="RSVPEvent.poster" [city]="RSVPEvent.city"></app-event-card>
                 <br> {{RSVPEvent.startDate}}
                 <mat-card-actions>
-                    <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/organiserRsvpView"  routerLinkActive="active" (click)="onClick(RSVPEvent.id)">View and Book</button>
+                    <button class="btn btn-secondary" mat-button mat-raised-button  routerLinkActive="active" (click)="onClick(RSVPEvent.id)">View and Book</button>
                 </mat-card-actions>
             </mat-card>
         </mat-grid-tile>
