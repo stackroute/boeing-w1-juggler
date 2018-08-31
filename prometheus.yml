@@ -22,7 +22,7 @@
   - job_name: 'config-service'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8891']
+     - targets: ['13.232.40.6:8092/config-service']
 
   - job_name: 'api-gateway'
     metrics_path: '/actuator/prometheus'
@@ -32,50 +32,50 @@
   - job_name: 'downstream-service'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8095']
+     - targets: ['13.232.40.6:8092/downstream']
 
   - job_name: 'upstream-service'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8094']
+     - targets: ['13.232.40.6:8092/upstream']
 
   - job_name: 'rsvp'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8097']
+     - targets: ['13.232.40.6:8092/rsvp']
 
   - job_name: 'ticket'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8091']
+     - targets: ['13.232.40.6:8092/ticket-service']
 
   - job_name: 'search'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8093']
+     - targets: ['13.232.40.6:8092/search-service']
 
   - job_name: 'user-registration'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8090']
+     - targets: ['13.232.40.6:8092/user-registration']
 
   - job_name: 'show-scheduler'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8099']
+     - targets: ['13.232.40.6:8092/show-scheduler']
 
   - job_name: 'recommendation'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:8098']
+     - targets: ['13.232.40.6:8092/recommendation-service']
 
   - job_name: 'email'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:9000']
+     - targets: ['13.232.40.6:8092/email-service']
 
   - job_name: 'ticket-engine'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:9001']
+     - targets: ['13.232.40.6:8092/ticket-engine']
 
