@@ -74,6 +74,7 @@ public class ShowTrigger {
 
 			LocalTime showTime = show.getStartTime();
 			LocalDate showDate = show.getDate();
+			showTime.minusMinutes(330);
 			LocalDateTime showDateTime = LocalDateTime.of(showDate, showTime);
 			long showTimeInMilliSeconds = Timestamp.valueOf(showDateTime).getTime();
 
