@@ -42,7 +42,7 @@ import { MultipleCheckboxesModule } from "multiple-checkboxes";
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
-
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
@@ -86,6 +86,9 @@ import { BookingHistoryComponent } from './booking-history/booking-history.compo
     BookingHistoryComponent
   ],
   imports: [
+   
+    OwlNativeDateTimeModule,
+    OwlDateTimeModule,
     MatMenuModule,
     BrowserModule,
     FormsModule,
