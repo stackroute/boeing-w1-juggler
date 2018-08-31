@@ -129,12 +129,13 @@ services:
 
   prometheus:
     ports:
-      - 9089:9090
+      - 9089:9098
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     image: prom/prometheus
+    restart: always
     healthcheck:
       test: "exit 0"
 
@@ -143,7 +144,7 @@ services:
     container_name: grafana
     volumes:
       - /var/lib/grafana
-    restart: unless-stopped
+    restart: always
     ports:
       - 3000:3000
     healthcheck:
