@@ -48,7 +48,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
 import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
-import { OrganiserRsvpViewComponent } from './organiser-rsvp-view/organiser-rsvp-view.component'
+import { OrganiserRsvpViewComponent } from './organiser-rsvp-view/organiser-rsvp-view.component';
+import { BookingHistoryComponent } from './booking-history/booking-history.component'
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { OrganiserRsvpViewComponent } from './organiser-rsvp-view/organiser-rsvp
     InviteeDetailsComponent,
     ExistingUsernameValidatorDirective,
     PaymentPageComponent,
-    OrganiserRsvpViewComponent
+    OrganiserRsvpViewComponent,
+    BookingHistoryComponent
   ],
   imports: [
     MatMenuModule,

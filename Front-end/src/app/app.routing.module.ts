@@ -20,6 +20,7 @@ import { SocketConnectionComponent } from "./socket-connection/socket-connection
 import { InviteeDetailsComponent } from "./invitee-details/invitee-details.component";
 import {PaymentPageComponent} from "./payment-page/payment-page.component"
 import{OrganiserRsvpViewComponent} from "./organiser-rsvp-view/organiser-rsvp-view.component";
+import { BookingHistoryComponent } from "./booking-history/booking-history.component"
 const routes: Routes = [
   {
     path: "",
@@ -67,8 +68,8 @@ const routes: Routes = [
     component: RsvpInvitationComponent
   },
   {
-    path: "userProfile",
-    component: UserProfileComponent
+    path: "bookingHistory",
+    component: BookingHistoryComponent
   },
   {
     path: "movieinfo",

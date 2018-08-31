@@ -5,6 +5,7 @@ import { MovieEventService } from "../movie-event.service";
 import { SearchDataService } from "../search-data.service";
 import { Movie } from "../models/movie";
 import { UserRegistration } from "../models/user-registration";
+
 @Component({
   selector: "app-movie-event",
   templateUrl: "./movie-event.component.html",
@@ -36,6 +37,8 @@ export class MovieEventComponent implements OnInit {
       });
   }
 
+  
+
   findMovieId(movie){
     console.log(movie.id);
   this.movieEventModel.movieId=movie.id;
@@ -53,10 +56,11 @@ export class MovieEventComponent implements OnInit {
     console.log(this.movieEventModel);
     this.movieEventService
       .saveMovieEvent(this.movieEventModel)
-      .subscribe(res => console.log("Saved Movie Event"));
+      .subscribe(res => console.log("Saved Movie Event"))
+     
   }
-
 }
+
 export interface Theatre {
   value: string;
   viewValue: string;
