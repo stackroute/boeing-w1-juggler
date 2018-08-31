@@ -6,7 +6,7 @@
             <mat-grid-tile colspan="4" rowspan="6">
                 <mat-card class="example-card">
                     <app-event-card [name]="movie.name" [poster]="movie.poster"></app-event-card>
-                    <br> {{movie.releaseDate}}
+                    <br>Release Date: {{movie.releaseDate}}
                     <br>{{yourData.movieEvent[i].city}} | {{theatreList[i].theatreName}} | {{theatreList[i].theatreLocation}}
                     <br>Duration: {{yourData.movieEvent[i].week}} week
                     <br>Shows: {{yourData.movieEvent[i].showTimes}}
@@ -27,7 +27,7 @@
             <mat-grid-tile colspan="4" rowspan="6">
                 <mat-card class="example-card">
                     <app-event-card [name]="ticketedEvent.name" [poster]="ticketedEvent.poster" [city]="ticketedEvent.city"></app-event-card>
-                    <br> {{ticketedEvent.date}}
+                    <br> {{ticketedEvent.localDate}}
                 </mat-card>
             </mat-grid-tile>
         </div>
@@ -50,7 +50,7 @@
                 <app-event-card [name]="RSVPEvent.name" [poster]="RSVPEvent.poster" [city]="RSVPEvent.city"></app-event-card>
                 <br> {{RSVPEvent.startDate}}
                 <mat-card-actions>
-                    <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/organiserRsvpView"  routerLinkActive="active" (click)="onClick(RSVPEvent.id)">View and Book</button>
+                    <button class="btn btn-secondary" mat-button mat-raised-button  routerLinkActive="active" (click)="onClick(RSVPEvent.id)">View and Book</button>
                 </mat-card-actions>
             </mat-card>
         </mat-grid-tile>

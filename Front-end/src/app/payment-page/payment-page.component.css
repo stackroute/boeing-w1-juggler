@@ -16,3 +16,18 @@
 .add-button {
     margin-left: 100px;
 } 
+
+.summary {
+    font-size: 20px;
+    margin-bottom: 30%;
+}
+
+.details-display {
+    margin-right: 100px;
+    margin-bottom: 40%;
+    color: black;
+}
+
+.booking-button {
+    margin-bottom: 60%;
+}

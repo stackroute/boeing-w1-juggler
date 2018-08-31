@@ -42,7 +42,7 @@ const routes: Routes = [
   },
   {
     path :"profile",
-    component :UserProfileComponent
+    component :UserProfileComponent, canActivate:[AuthGuard]
   },
   {
     path :"search",
@@ -58,20 +58,20 @@ const routes: Routes = [
   },
   {
     path: "createEvent",
-    component: EventTypeComponent
+    component: EventTypeComponent, canActivate:[AuthGuard]
     // component: EventTypeComponent, canActivate:[AuthGuard]
   },
   {
     path: "createRSVPEvent",
-    component: RsvpEventComponent
+    component: RsvpEventComponent, canActivate:[AuthGuard]
   },
   {
-    path: "rsvpInvitation",
-    component: RsvpInvitationComponent
+    path: ":id/rsvpInvitation",
+    component: RsvpInvitationComponent ,canActivate:[AuthGuard]
   },
   {
     path: "bookingHistory",
-    component: BookingHistoryComponent
+    component: BookingHistoryComponent, canActivate:[AuthGuard]
   },
   {
     path: "movieinfo",
@@ -83,19 +83,19 @@ const routes: Routes = [
   },
   {
     path: "createOtherTicketedEvent",
-    component: OtherTicketedEventComponent
+    component: OtherTicketedEventComponent, canActivate:[AuthGuard]
   },
   {
     path: "createMovieEvent",
-    component: MovieEventComponent
+    component: MovieEventComponent, canActivate:[AuthGuard]
   },
   {
     path: "theatre",
-    component: TheatreComponent
+    component: TheatreComponent, canActivate:[AuthGuard]
   },
   {
     path:'rsvpEvent/:id',
-    component:RsvpEventpageComponent
+    component:RsvpEventpageComponent, canActivate:[AuthGuard]
   },
   {
     path:"theatreLayout",
@@ -106,12 +106,12 @@ const routes: Routes = [
     component: SocketConnectionComponent
   },
   {
-    path:"InviteeDetails",
-    component:InviteeDetailsComponent
+    path:":id/InviteeDetails",
+    component:InviteeDetailsComponent, canActivate:[AuthGuard]
   },
   {
-    path:"organiserRsvpView",
-    component:OrganiserRsvpViewComponent
+    path:":id/organiserRsvpView",
+    component:OrganiserRsvpViewComponent, canActivate:[AuthGuard]
   }
 ];
 

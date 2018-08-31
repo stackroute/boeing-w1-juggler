@@ -30,10 +30,10 @@ public class RSVPEvent {
 	private String userName;
 	private String name;
 	private Date startDate;
-	private LocalDate localStartDate;
+	private String localStartDate;
 	private String startTime;
 	private Date endDate;
-	private LocalDate localEndDate;
+	private String localEndDate;
 	private String endTime;
 	private String city;
 	private String location;

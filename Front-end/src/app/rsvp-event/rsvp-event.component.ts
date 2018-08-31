@@ -18,17 +18,16 @@ export class RsvpEventComponent implements OnInit {
   ) {}
 
   onSubmit() {
-    this.rsvpModel.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+   // this.rsvpModel.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
     this.rsvpCreateService.saveRsvpEvent(this.rsvpModel).subscribe(res => {
       console.log("saved");
 
     // console.log("id of the saved rsvpEvent is ", res.id-118);
       // this.rsvpCreateService.id = res.id;
-    //  console.log("id of the saved rsvpEvent is ", res.id);
-
-       localStorage.setItem("eventId", JSON.stringify(res.id));
+      
       // // console.log(localStorage.getItem("eventId"));
-        this.router.navigate(["/rsvpInvitation"]);
+      
+        this.router.navigate(["/"+res.id+"/rsvpInvitation"]);
       
     });
   }
