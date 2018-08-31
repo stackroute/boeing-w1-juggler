@@ -16,13 +16,18 @@
 
         <mat-form-field>
             <input matInput placeholder="Choose a starting date"
-            [(ngModel)]="rsvpModel.date"
+            [(ngModel)]="rsvpModel.startDate"
                    [owlDateTimeTrigger]="picker" [owlDateTime]="picker">
             <owl-date-time #picker></owl-date-time>
           </mat-form-field>
-        <!-- <mat-form-field>
-          <input matInput placeholder="startTime" [(ngModel)]="rsvpModel.startTime">
-        </mat-form-field> -->
+       
+       
+      <!-- <mat-form-field>
+          <input matInput =placeholder="startTime" [(ngModel)]="rsvpModel.startTime">
+      </mat-form-field> -->
+      
+     
+    
 
         <!-- <mat-form-field>
           <input matInput [matDatepicker]="picker2" placeholder="Choose end date" [(ngModel)]="rsvpModel.endDate">
@@ -63,13 +68,16 @@
         <!-- <button type="submit" class="example-button" name="button" class="btn btn-success" class="button" 
           (click)="onSubmit()">Create RSVP Event</button> -->
 
-
+          
+          <p align="center">
+              <button  type="submit" class="button" name="button" class="btn btn-secondary" (click)="onSubmit()">Create RSVP Event</button>
+            </p>
       </div>
-      <p align="center">
-        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()">Create RSVP Event</button>
-      </p>
+     
     </div>
     <div>
+
+
     </div>
   </div>
 </div>
