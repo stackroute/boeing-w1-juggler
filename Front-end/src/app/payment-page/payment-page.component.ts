@@ -8,6 +8,7 @@ export interface Tile {
   cols: number;
   rows: number;
   text: string;
+  color:string;
 }
 
 @Component({
@@ -19,13 +20,14 @@ export interface Tile {
 export class PaymentPageComponent implements OnInit {
 
   tiles: Tile[] = [
-    {text: 'Large Salted Popcorn', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020001_13082018125322.jpg'},
-    {text: 'Couple Combo', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020005_17082018144820.jpg'},
-    {text: 'Regular Combo', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020007_16082018153109.jpg'},
-    {text: 'Two', cols: 2, rows: 4, poster: 'lightgreen'},
-    {text: 'Nachos with Salsa', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020006_06082018135441.jpg'},
-    {text: 'Veg Burger', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020016_17082018120212.jpg'},
-    {text: 'Sandwich', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020446_20082018182121.jpg'},
+    {text: 'Large Salted Popcorn', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020001_13082018125322.jpg', color: ''},
+    {text: 'Couple Combo', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020005_17082018144820.jpg', color: ''},
+    {text: 'Regular Combo', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020007_16082018153109.jpg', color: ''},
+    {text: 'two', cols: 1.8, rows: 7,poster:'', color: 'white'},
+    //{text: '', cols: 1, rows: 7,poster:'', color: ''},
+    {text: 'Nachos with Salsa', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020006_06082018135441.jpg', color: ''},
+    {text: 'Veg Burger', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020016_17082018120212.jpg', color: ''},
+    {text: 'Sandwich', cols: 1, rows: 3, poster: 'https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020446_20082018182121.jpg', color: ''},
    // {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
  noSeats: any;
