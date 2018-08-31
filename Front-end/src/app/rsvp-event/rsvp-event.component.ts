@@ -18,7 +18,7 @@ export class RsvpEventComponent implements OnInit {
   ) {}
 
   onSubmit() {
-   // this.rsvpModel.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+    this.rsvpModel.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
     this.rsvpCreateService.saveRsvpEvent(this.rsvpModel).subscribe(res => {
       console.log("saved");
 
