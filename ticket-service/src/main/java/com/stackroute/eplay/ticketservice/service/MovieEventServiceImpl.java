@@ -47,6 +47,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 		this.movieRepository=movieRepository;
 		this.movieEventRepository = movieEventRepository;
 		this.movieEventStreams= movieEventStreams;
+		this.finalMovieEventStreams=finalMovieEventStreams;
 		this.updateMovieEventStreams=updateMovieEventStreams;
 	}
 	public MovieEventServiceImpl() {}
