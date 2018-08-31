@@ -43,8 +43,11 @@
     <div class="screen">
         Screen this way
     </div>
-    <div class="bookButton">
+    <div *ngIf="seatSelected(); else disableButton" class="bookButton">
         <button mat-raised-button color="primary" routerLink="/payment" routerLinkActive="active" (click)="bookticket()">Proceed</button>
     </div>
+    <ng-template #disableButton>
+        <button mat-raised-button disabled color="primary">Proceed</button>
+    </ng-template>
   </body>
 </html>

@@ -1,9 +1,51 @@
 <app-nav-bar></app-nav-bar>
-
+<!-- 
 <button mat-raised-button style="margin-top: 100px" (click)="onClickSuccess()" >Payment done</button>
 <button mat-raised-button style="margin-top: 100px" (click)="onClickFail()" >Failed</button>
 <div *ngIf="!user">
   <form class="form-inline">
     <input type="text" class="form-control" id="searchbar" [(ngModel)]="emailId" [ngModelOptions]="{standalone: true}">
   </form>
-</div>
+</div> -->
+
+<mat-grid-list cols="5" rowHeight="100px">
+  <mat-grid-tile *ngFor="let tile of tiles"[colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">     
+    <div *ngIf="tile.cols==2; else elseBlock">
+      {{paymentStatus.seats}}
+      {{noSeats}}
+      {{price}}
+    <button mat-raised-button style="margin-top: 100px" (click)="onClickSuccess()">Payment done</button>
+    <button mat-raised-button style="margin-top: 100px" (click)="onClickFail()">Failed</button>
+    <div *ngIf="!user">
+      <form class="form-inline">
+        <input type="text" class="form-control" id="searchbar" [(ngModel)]="emailId" [ngModelOptions]="{standalone: true}">
+      </form>
+    </div>
+    </div>
+    <ng-template #elseBlock>
+        <!-- <mat-card class="example-card">
+            <app-event-card [name]="tile.text" [poster]="tile.poster"></app-event-card>
+            <mat-card-actions>
+              <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)" >go</button>
+            </mat-card-actions>
+          </mat-card> -->
+          <div class="offers-card">
+          <mat-card class="example-card">
+              <!-- <mat-card-header>
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <!-- <mat-card-title>
+                  <h5>{{name}}</h5>
+                </mat-card-title>
+              </mat-card-header>  -->
+              <img class="render" mat-card-image src="{{tile.poster}}" alt="poster">
+              <mat-card-actions>
+                
+                  <p>{{tile.text}}</p> 
+              
+                <button class="add-button" mat-button mat-raised-button>ADD</button>
+              </mat-card-actions>
+            </mat-card>
+            </div>
+    </ng-template>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -18,7 +18,7 @@ import com.stackroute.eplay.ticketservice.domain.TicketedEvent;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
 import com.stackroute.eplay.ticketservice.service.MovieEventService;
 import com.stackroute.eplay.ticketservice.service.TicketedEventService;
-
+import com.stackroute.eplay.ticketservice.streams.FinalMovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
 import com.stackroute.eplay.ticketservice.streams.ShowStreams;
@@ -26,7 +26,7 @@ import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
 import com.stackroute.eplay.ticketservice.streams.UpdateMovieEventStreams;
 
 
-@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class, UpdateMovieEventStreams.class})
+@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class, UpdateMovieEventStreams.class,FinalMovieEventStreams.class})
 
 public class KafkaListener {
 	
