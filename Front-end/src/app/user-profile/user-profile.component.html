@@ -6,7 +6,7 @@
             <mat-grid-tile colspan="4" rowspan="6">
                 <mat-card class="example-card">
                     <app-event-card [name]="movie.name" [poster]="movie.poster"></app-event-card>
-                    <br> {{movie.releaseDate}}
+                    <br>Release Date: {{movie.releaseDate}}
                     <br>{{yourData.movieEvent[i].city}} | {{theatreList[i].theatreName}} | {{theatreList[i].theatreLocation}}
                     <br>Duration: {{yourData.movieEvent[i].week}} week
                     <br>Shows: {{yourData.movieEvent[i].showTimes}}
