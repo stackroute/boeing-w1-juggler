@@ -12,42 +12,42 @@
     # scheme defaults to 'http'.
 
     static_configs:
-     - targets: ['10.0.5.93:9090']
+     - targets: ['prometheus:9090']
 
   - job_name: 'eureka-server'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:9089']
+     - targets: ['eureka-server:9089']
 
   - job_name: 'config-service'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8091']
+     - targets: ['config-service:8091']
 
   - job_name: 'api-gateway'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8092']
+     - targets: ['api-gateway:8092']
 
   - job_name: 'downstream-service'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8095']
+     - targets: ['downstream-service:8095']
 
   - job_name: 'upstream-service'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8094']
+     - targets: ['upstream-service:8094']
 
   - job_name: 'rsvp'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8097']
+     - targets: ['rsvp:8097']
 
   - job_name: 'ticket'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8091']
+     - targets: ['ticket:8091']
 
   - job_name: 'search'
     metrics_path: '/actuator/prometheus'
@@ -57,25 +57,25 @@
   - job_name: 'user-registration'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8090']
+     - targets: ['user-registration:8090']
 
   - job_name: 'show-scheduler'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8099']
+     - targets: ['show-scheduler:8099']
 
   - job_name: 'recommendation'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:8098']
+     - targets: ['recommendation:8098']
 
   - job_name: 'email'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:9000']
+     - targets: ['email:9000']
 
   - job_name: 'ticket-engine'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['10.0.5.93:9001']
+     - targets: ['ticket-engine:9001']
 
