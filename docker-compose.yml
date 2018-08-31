@@ -7,6 +7,11 @@ services:
     depends_on:
       config-service:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
+	
     restart: always
     network_mode: "host"
     image: eureka-service
@@ -35,6 +40,10 @@ services:
       config-service:
         condition: service_healthy
       eureka-server:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy
     restart: always
     network_mode: "host"
@@ -117,6 +126,29 @@ services:
      - ./import:/import
    healthcheck:
       test: "exit 0"
+
+  prometheus:
+    ports:
+      - 9089:9098
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    image: prom/prometheus
+    restart: always
+    healthcheck:
+      test: "exit 0"
+
+  grafana:
+    image: grafana/grafana:5.2.2
+    container_name: grafana
+    volumes:
+      - /var/lib/grafana
+    restart: always
+    ports:
+      - 3000:3000
+    healthcheck:
+      test: "exit 0"
         
   downstream-service:
     build: downstream-service/
@@ -135,6 +167,10 @@ services:
       mongodb:
         condition: service_healthy
       kafka:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy
     healthcheck:
       test: "exit 0"
@@ -159,6 +195,10 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
@@ -179,6 +219,10 @@ services:
       mongodb:
         condition: service_healthy
       kafka:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy
     healthcheck:
       test: "exit 0"
@@ -201,6 +245,10 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
@@ -221,6 +269,10 @@ services:
       mongodb:
         condition: service_healthy
       kafka:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy
     healthcheck:
       test: "exit 0"
@@ -243,6 +295,10 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
       
@@ -263,6 +319,10 @@ services:
       mongodb:
         condition: service_healthy
       kafka:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy
     healthcheck:
       test: "exit 0"
@@ -287,6 +347,10 @@ services:
       kafka:
         condition: service_healthy
       neo4j:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy  
     healthcheck:
       test: "exit 0"
@@ -305,6 +369,10 @@ services:
       config-service:
         condition: service_healthy
       eureka-server:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy
     healthcheck:
       test: "exit 0"    
@@ -326,6 +394,10 @@ services:
       redis:
         condition: service_healthy  
       kafka:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy  
     healthcheck:
       test: "exit 0"          
