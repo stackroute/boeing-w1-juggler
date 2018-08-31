@@ -11,7 +11,6 @@ services:
         condition: service_healthy
       grafana:
         condition: service_healthy
-	
     restart: always
     network_mode: "host"
     image: eureka-service
