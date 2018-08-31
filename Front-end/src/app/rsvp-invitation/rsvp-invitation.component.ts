@@ -34,10 +34,18 @@ export class RsvpInvitationComponent implements OnInit {
    // console.log("bhaiiii", this.id);
     
     console.log("event id is ",localStorage.getItem("eventId"));
-    this.id=localStorage.getItem("eventId");
+    console.log("rsvp id is",localStorage.getItem("RSVPId"));
+    
+    if(localStorage.getItem("RSVPId")==null||localStorage.getItem("RSVPId")=="-1")
+    {
+      this.id=localStorage.getItem("eventId");
+    }
+    else{
+    this.id=localStorage.getItem("RSVPId");
     console.log("id coming",this.id);
+  }
     
-    
+
 
     console.log("this.rsvpModel");
     this.inputEmailsDetails.emailBcc = [];
@@ -71,7 +79,7 @@ export class RsvpInvitationComponent implements OnInit {
   }
 
   onSubmit2() {
-    this.id=localStorage.getItem("eventId");
+    this.id=localStorage.getItem("RSVPId");
     this.inputEmailsDetails.emailAddress = "aerospacevishal@gmail.com";
     this.inputEmailsDetails.subject =
       "You are invited to: " + this.rsvpModel.name;

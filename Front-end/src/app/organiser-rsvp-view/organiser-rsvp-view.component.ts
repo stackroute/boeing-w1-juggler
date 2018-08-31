@@ -33,7 +33,8 @@ export class OrganiserRsvpViewComponent implements OnInit {
    // console.log("bhaiiii", this.id);
     
     console.log("event id is ",localStorage.getItem("eventId"));
-    this.id=localStorage.getItem("eventId");
+    console.log("rsvp id is ",localStorage.getItem("RSVPId"));
+    this.id=localStorage.getItem("RSVPId")
     console.log("id coming",this.id);
     
     
