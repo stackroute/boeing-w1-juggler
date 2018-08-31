@@ -17,7 +17,7 @@
     <div class="ArenaLayout">
       <div class="rows" *ngFor= "let row of totalRow">
         <div class="columns" *ngFor= "let col of totalCol">
-           <div *ngIf="col!=passage[0] && col!=passage[1] && row!=rowPassage; else Passage">
+         <div *ngIf="col!=passage[0] && col!=passage[1] && row!=rowPassage; else Passage">
            <div  *ngIf="seatStatus(row,col); else SeatAvailable">
              <div id = {{row}}{{col}} *ngIf="seatBook(row,col); else SeatBlocked" class="seat booked">
                 <!-- {{row}}{{col}} -->
@@ -28,11 +28,11 @@
                 </div>
               </ng-template>
            </div>
-           <ng-template #SeatAvailable>
-             <div id={{row}}{{col}} class="seat available" (click)="onclick(row,col)">
-               <!-- {{row}}{{col}} -->
-             </div>
-           </ng-template>
+              <ng-template #SeatAvailable>
+                <div id={{row}}{{col}} class="seat available" (click)="onclick(row,col)">
+                  <!-- {{row}}{{col}} -->
+                </div>
+              </ng-template>
           </div>
           <ng-template #Passage>
             <div class=" seatPassage passage"></div>

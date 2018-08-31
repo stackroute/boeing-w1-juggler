@@ -3,7 +3,7 @@ version: '2.1'
 services:
   eureka-server:
     build: eureka-server/
-    mem_limit: 2g
+    #mem_limit: 2g
     depends_on:
       config-service:
         condition: service_healthy
@@ -23,7 +23,7 @@ services:
   config-service:
     build: config-service/
     restart: always
-    mem_limit: 2g
+    #mem_limit: 2g
     network_mode: "host"
     image: config-service
     hostname: localhost
@@ -34,7 +34,7 @@ services:
 
   api-gateway:
     build: zuul-apigateway/
-    mem_limit: 2g 
+    #mem_limit: 2g 
     depends_on:
       config-service:
         condition: service_healthy
@@ -56,7 +56,7 @@ services:
  
   zookeeper:
     image: wurstmeister/zookeeper
-    mem_limit: 2g
+    #mem_limit: 2g
     ports:
       - "2181:2181"
     network_mode: "host"
@@ -67,7 +67,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka
-    mem_limit: 2g
+    #mem_limit: 2g
     ports:
       - "9092:9092"
     environment:
@@ -85,7 +85,7 @@ services:
   mongodb:
     image: mongo
     container_name: "mongodb"
-    mem_limit: 100m
+    #mem_limit: 100m
     volumes:
       - ./data/db:/data/db
     ports:
@@ -98,7 +98,7 @@ services:
     image: redis:latest
     container_name: "redis"
     command: redis-server --appendonly yes
-    mem_limit: 2g
+    #mem_limit: 2g
     volumes:
       - ./data:/data
     ports:
@@ -109,7 +109,7 @@ services:
    
   neo4j:
    image: neo4j:latest
-   mem_limit: 2g
+   #mem_limit: 2g
    ports:
      - "7474:7474"
      - "7687:7687"
@@ -152,7 +152,7 @@ services:
   downstream-service:
     build: downstream-service/
     image: downstream-service
-    mem_limit: 2g 
+    #mem_limit: 2g 
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -179,7 +179,7 @@ services:
   upstream-service:
     build: upstream-service/
     image: upstream-service
-    mem_limit: 2g 
+    #mem_limit: 2g 
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -204,7 +204,7 @@ services:
   rsvp:
     build: rsvp-service/
     image: rsvp-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -229,7 +229,7 @@ services:
   search:
     build: search-service/
     image: search-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -254,7 +254,7 @@ services:
   ticket:
     build: ticket-service/
     image: ticket-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -279,7 +279,7 @@ services:
   user-registration:
     build: user-registration/
     image: user-registration
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -304,7 +304,7 @@ services:
   show-scheduler:
     build: show-scheduler/
     image: show-scheduler
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -330,7 +330,7 @@ services:
   recommendation:
     build: recommendation-service/
     image: recommendation-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -358,7 +358,7 @@ services:
   email:
     build: email-service/
     image: email-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -379,7 +379,7 @@ services:
   ticket-engine:
     build: ticket-engine/
     image: ticket-engine
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
