@@ -29,7 +29,7 @@ export class RsvpEventComponent implements OnInit {
        localStorage.setItem("eventId", JSON.stringify(res.id));
       // // console.log(localStorage.getItem("eventId"));
       localStorage.setItem("RSVPId","-1");
-        this.router.navigate(["/rsvpInvitation"]);
+        this.router.navigate(["/"+res.id+"/rsvpInvitation"]);
       
     });
   }
