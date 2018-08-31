@@ -26,13 +26,15 @@ export class RsvpEventpageComponent implements OnInit {
   ,private router:Router
   ) { }
 
-  id:any;
+ 
   
   ngOnInit() {
     //this.id=this.rsvpCreateService.getRsvpEventId;
    this.activatedRoute.paramMap.subscribe((param: ParamMap)=>this.finalId=parseInt(param.get('id')));
     console.log(this.rsvpModel);
-    this.id=localStorage.getItem("RSVPId");
+   // this.id=localStorage.getItem("RSVPId");
+   console.log("final id is",this.finalId);
+   
    this.rsvpCreateService.getRsvpEventById(this.finalId).subscribe(p=>{
      this.rsvpModel=p;
    });
@@ -40,7 +42,7 @@ export class RsvpEventpageComponent implements OnInit {
   }
 
   onSubmit(){console.log("to change status");
-  this.id=localStorage.getItem("RSVPId");
+ 
   console.log(this.rsvpInvitationModel);
   this.rsvpInvitationModel.status=true;
    this.rsvpCreateService.updateRsvp(this.rsvpInvitationModel, this.finalId).subscribe(res=>{console.log('saved')

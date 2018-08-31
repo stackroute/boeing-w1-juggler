@@ -74,9 +74,11 @@ export class UserProfileComponent implements OnInit {
 
   onClick(id){
     console.log("in the on click");
-    localStorage.setItem('RSVPId',(id));
+   // localStorage.setItem('RSVPId',(id));
     console.log("rsvp id is",id," this id is generated in local",localStorage.getItem("RSVPId"));
+    this.router.navigate(["/"+id+"/organiserRsvpView"]);
     
+
 
   }
   
