@@ -64,7 +64,7 @@ const routes: Routes = [
     component: RsvpEventComponent, canActivate:[AuthGuard]
   },
   {
-    path: "rsvpInvitation",
+    path: ":id/rsvpInvitation",
     component: RsvpInvitationComponent ,canActivate:[AuthGuard]
   },
   {
@@ -100,11 +100,11 @@ const routes: Routes = [
     component: SocketConnectionComponent
   },
   {
-    path:"InviteeDetails",
+    path:":id/InviteeDetails",
     component:InviteeDetailsComponent, canActivate:[AuthGuard]
   },
   {
-    path:"organiserRsvpView",
+    path:":id/organiserRsvpView",
     component:OrganiserRsvpViewComponent, canActivate:[AuthGuard]
   }
 ];
