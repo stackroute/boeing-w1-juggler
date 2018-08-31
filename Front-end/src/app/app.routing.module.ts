@@ -20,7 +20,9 @@ import { SocketConnectionComponent } from "./socket-connection/socket-connection
 import { InviteeDetailsComponent } from "./invitee-details/invitee-details.component";
 import {PaymentPageComponent} from "./payment-page/payment-page.component"
 import{OrganiserRsvpViewComponent} from "./organiser-rsvp-view/organiser-rsvp-view.component";
-import { BookingHistoryComponent } from "./booking-history/booking-history.component"
+import { BookingHistoryComponent } from "./booking-history/booking-history.component";
+import {TicketedInfoComponent} from "./ticketed-info/ticketed-info.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -74,6 +76,10 @@ const routes: Routes = [
   {
     path: "movieinfo",
     component: MovieInfoComponent
+  },
+  {
+    path: "ticketinfo",
+    component: TicketedInfoComponent
   },
   {
     path: "createOtherTicketedEvent",

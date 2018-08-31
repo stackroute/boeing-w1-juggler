@@ -49,7 +49,8 @@ import { InviteeDetailsComponent } from './invitee-details/invitee-details.compo
 import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { OrganiserRsvpViewComponent } from './organiser-rsvp-view/organiser-rsvp-view.component';
-import { BookingHistoryComponent } from './booking-history/booking-history.component'
+import { BookingHistoryComponent } from './booking-history/booking-history.component';
+import { TicketedInfoComponent } from './ticketed-info/ticketed-info.component'
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { BookingHistoryComponent } from './booking-history/booking-history.compo
     ExistingUsernameValidatorDirective,
     PaymentPageComponent,
     OrganiserRsvpViewComponent,
-    BookingHistoryComponent
+    BookingHistoryComponent,
+    TicketedInfoComponent
   ],
   imports: [
     MatMenuModule,
