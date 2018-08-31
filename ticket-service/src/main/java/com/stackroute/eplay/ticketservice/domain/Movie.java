@@ -26,7 +26,8 @@ public class Movie {
     @Id
     private int id;
     private String name;
-    private String poster;
+    private String backGroundPoster;
+    private String cardPoster;
     private String genre;
     private String language;
     private String reviews;
