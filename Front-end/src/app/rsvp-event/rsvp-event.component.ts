@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class RsvpEventComponent implements OnInit {
   rsvpModel = new RsvpCreate();
   id: number;
-
+  public dateTime: Date;
   constructor(
     private rsvpCreateService: RsvpCreateService,
     private router: Router,
