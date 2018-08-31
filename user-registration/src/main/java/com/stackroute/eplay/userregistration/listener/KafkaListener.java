@@ -90,9 +90,9 @@ public class KafkaListener {
 			if (user.getRsvpEvents() == null)
 				rsvpEvents = new ArrayList<>();
 			else
-				rsvpEvent.setLocalStartDate(rsvpEvent.getStartDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+				rsvpEvent.setLocalStartDate(rsvpEvent.getStartDate().toString().substring(0, 10));
 
-			    rsvpEvent.setLocalEndDate(rsvpEvent.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+			    rsvpEvent.setLocalEndDate(rsvpEvent.getEndDate().toString().substring(0, 10));
 				rsvpEvents = user.getRsvpEvents();
 			rsvpEvents.add(rsvpEvent);
 			user.setRsvpEvents(rsvpEvents);
@@ -128,7 +128,8 @@ public class KafkaListener {
 			if (user.getTicketedEvent() == null)
 				ticketedEvents = new ArrayList<>();
 			else
-				ticketedEvent.setLocalDate(ticketedEvent.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+				
+				ticketedEvent.setLocalDate(ticketedEvent.getDate().toString().substring(0, 10));
 				ticketedEvents = user.getTicketedEvent();
 			ticketedEvents.add(ticketedEvent);
 			user.setTicketedEvent(ticketedEvents);
