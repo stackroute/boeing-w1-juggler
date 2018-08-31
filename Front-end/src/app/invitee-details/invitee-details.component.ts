@@ -1,11 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { RsvpInvitation } from "../RsvpInvitation";
 import { RsvpInvitationService } from "../rsvp-invitation.service";
-import { ActivatedRoute, RouterLink, Router } from "@angular/router";
+
 import { RsvpCreate } from "../RsvpCreate";
 import { RsvpCreateService } from "../rsvp-create.service";
 import { InputEmailsDetails } from "../InputEmailsDetails";
 import { EmailService } from "../email.service";
+import { ActivatedRoute, RouterLink, Router, ParamMap } from "@angular/router";
+
 
 @Component({
   selector: "app-invitee-details",
@@ -18,7 +20,7 @@ export class InviteeDetailsComponent implements OnInit {
   public rsvpModel: any;
   message: string;
 
-  id: any;
+  id;
   constructor(
     private emailService: EmailService,
     private rsvpCreateService: RsvpCreateService,
@@ -28,9 +30,11 @@ export class InviteeDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("this.rsvpModel");
-    this.id=localStorage.getItem("RSVPId");
-    this.inputEmailsDetails.emailBcc = [];
+
+    this.activatedRoute.paramMap.subscribe((param: ParamMap)=>this.id=parseInt(param.get('id')));
+
+    
+    
     //  console.log(this.rsvpModel);
     this.rsvpCreateService
       .getRsvpEventById(this.id)
@@ -40,10 +44,5 @@ export class InviteeDetailsComponent implements OnInit {
       });
     console.log("something", this.rsvpModel);
   }
-  onSubmit1() {
-    this.id=localStorage.getItem("RSVPId");
-    console.log("vishal ppuuu");
-    this.router.navigate(["/rsvpEvent/" + this.id]);
-    // this.router.navigate(["InviteeDetails"]);
-  }
+  
 }
