@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.ticketservice.domain.Movie;
@@ -125,4 +124,12 @@ public class TicketEventController {
 		return new ResponseEntity<TicketedEvent>(ticketedEventService.updateTicketedEvent(ticketedEvent),
 				HttpStatus.OK);
 	}
+	
+	/*@PutMapping("/bookTicketedEvent/{id}")
+	public String bookTicketedEvent(@PathVariable int id) {
+		TicketedEvent ticketedEvent = ticketedEventService.getTicketedEventById(id);
+		ticketedEvent.setRemainingSeats(ticketedEvent.getRemainingSeats()-1);
+		return "";
+	}*/
+
 }
