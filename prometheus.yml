@@ -12,12 +12,12 @@
     # scheme defaults to 'http'.
 
     static_configs:
-     - targets: ['13.232.40.6:9089']
+     - targets: ['13.232.40.6:9090']
 
   - job_name: 'eureka-server'
     metrics_path: '/actuator/prometheus'
     static_configs:
-     - targets: ['13.232.40.6:9090']
+     - targets: ['13.232.40.6:9089']
 
   - job_name: 'config-service'
     metrics_path: '/actuator/prometheus'
