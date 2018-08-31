@@ -85,7 +85,7 @@ export class RsvpInvitationComponent implements OnInit {
       "You are invited to: " + this.rsvpModel.name;
     this.inputEmailsDetails.body =
       "click here to view Invitation http://172.23.238.188:4200/rsvpEvent/" +
-      this.id;
+      339;
 
     for (var i = 0; i < this.rsvpModel.rsvpInvitation.length; i++) {
       this.inputEmailsDetails.emailBcc.push(

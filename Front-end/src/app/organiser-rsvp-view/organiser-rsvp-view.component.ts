@@ -40,7 +40,7 @@ export class OrganiserRsvpViewComponent implements OnInit {
     
 
     console.log("this.rsvpModel");
-    this.inputEmailsDetails.emailBcc = [];
+    
     //  console.log(this.rsvpModel);
     this.rsvpCreateService
       .getRsvpEventById(this.id)
