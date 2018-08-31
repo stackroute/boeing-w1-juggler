@@ -86,8 +86,21 @@
         </li>
         <li class="nav-item">
           <button mat-raised-button matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active" *ngIf="!authenticationService.loggedIn()">Login/SignUp</button>
-          <button mat-raised-button matTooltip="Click to quickly Logout" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()">Logout</button>
-        </li>
+          <li class="nav-item dropdown">
+
+            <mat-icon class="nav-link dropdown-toggle" data-toggle="dropdown"  role="button"  *ngIf="authenticationService.loggedIn()" style="margin-right: 50px">person</mat-icon>
+            <div class="dropdown-menu">
+              <a class="dropdown-item"  href="profile">Event History</a>
+              <a class="dropdown-item" href="bookingHistory">Booking History</a>
+              <a class="dropdown-item" href="userLogin"> Accout & Settings</a>
+              <a class="dropdown-item" href="#"> Help</a>
+              <!-- <div class="dropdown-divider"></div> -->
+              <a class="dropdown-item" href="home" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()" >Not {{User}}? Logout</a>
+            </div>
+          <!-- </li> -->
+          </li>
+          <!-- <button mat-raised-button matTooltip="Click to quickly Logout" (click)="authenticationService.logout()" *ngIf="authenticationService.loggedIn()">Logout</button> -->
+        <!-- </li> -->
         <li class="nav-item">
           <a href="#" class="nav-link"></a>
         </li>

@@ -60,6 +60,7 @@ export class SearchResultsComponent implements OnInit {
 
   onSearch() {
     console.log("Hi on searchevents for search is called ", this.message);
+    localStorage.setItem('searchKey',this.omdbSearchTitle);
     this.data.getSearchedMovies(this.omdbSearchTitle).subscribe(data => {
       this.movie$ = data;
       console.log(data);
@@ -71,23 +72,27 @@ export class SearchResultsComponent implements OnInit {
   }
   fetchEvents() {
     console.log("Hi fetchevents for search is called ", this.message);
-    this.data.getSearchedEvents(this.message).subscribe(data => {
+    this.data.getSearchedEvents(localStorage.getItem('searchKey')).subscribe(data => {
       this.event$ = data;
       console.log("event$", data);
     });
-    this.data.getSearchedMovies(this.message).subscribe(data => {
+    this.data.getSearchedMovies(localStorage.getItem('searchKey')).subscribe(data => {
       this.movie$ = data;
       console.log("movie$", data);
     });
-    this.data.getSearchedMovies(this.message).subscribe(data => {
-      this.movie$ = data;
-      console.log(data);
-    });
+    // this.data.getSearchedMovies(this.message).subscribe(data => {
+    //   this.movie$ = data;
+    //   console.log(data);
+    // });
   }
   goMoviePage(movie) {
+    console.log("inside goMoviePage");
+    localStorage.setItem("movieInfo",JSON.stringify(movie));
+    console.log("Recommended movies",localStorage.getItem('recommended'));
+    console.log("Movie info",localStorage.getItem("movieInfo"));
+    localStorage.setItem('clickedRecommended',movie.id);
     this.data.changeMovieMessage(movie);
     console.log(movie);
-    this.router.navigate(["/movieinfo"]);
   }
   gocheck() {
     console.log("something just like this");
@@ -107,5 +112,7 @@ export class SearchResultsComponent implements OnInit {
         window.location.reload();
       });
   }
-  
+  loggedIn(){
+    return this.authenticationService.loggedIn();
+   }
 }
