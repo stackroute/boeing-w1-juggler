@@ -86,13 +86,11 @@ public class KafkaListener {
 		try {
 			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
-			List<RSVPEvent> rsvpEvents;
+			
+			List<RSVPEvent> rsvpEvents=user.getRsvpEvents();
 			if (user.getRsvpEvents() == null) {
 				rsvpEvents = new ArrayList<>();
 			}
-			
-				rsvpEvent.setLocalStartDate(rsvpEvent.getStartDate().toString().substring(0, 10));
-				rsvpEvents = user.getRsvpEvents();
 			rsvpEvents.add(rsvpEvent);
 			user.setRsvpEvents(rsvpEvents);
 
@@ -129,7 +127,6 @@ public class KafkaListener {
 				ticketedEvents = new ArrayList<>();
 			}
 			System.out.println(ticketedEvent.getDate());
-			ticketedEvent.setLocalDate(ticketedEvent.getDate().toString().substring(0, 10));
 			ticketedEvents.add(ticketedEvent);
 			user.setTicketedEvent(ticketedEvents);
 			
