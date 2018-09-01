@@ -22,6 +22,15 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/chat', function (blockedSeats) {
             console.log("Response: "+blockedSeats.body);
+            if(localStorage.getItem("showId")==JSON.parse(blockedSeats.body)["showId"]){
+                JSON.parse(blockedSeats.body)["seats"].forEach(element => {
+                    id = element;
+                    if(parseInt(element, 10)<10){
+                        id = "0"+element;
+                    }
+                    $("#"+id).addClass("blocked");
+                });
+            }
         });
     });
 }
