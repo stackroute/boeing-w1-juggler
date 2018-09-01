@@ -22,7 +22,9 @@
     width: 20%;
     margin-left: 20px;
    } */
-
+   .userregister{
+    background-image: url("/assets/images/userandregisterbckground.1.jpg"); 
+ }
    .medium-list {
     /* margin: auto; */
     /* width: 600px; */

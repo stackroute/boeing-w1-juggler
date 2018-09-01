@@ -6,6 +6,9 @@
   margin-bottom: 5%;
   width: 100%
 } */
+.eventtype{
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH9Ek_k3Fi609lW2xADg_FJbfyoMqZcnuakf8uFDWf1Xxd25yN"); 
+}
 mat-grid-list {
   margin-top: 50px;
 }
