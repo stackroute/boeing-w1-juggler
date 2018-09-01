@@ -42,53 +42,55 @@
 
 
 <!--Rahul-->
-<div class="jumbotron">
-  <div class="medium-list">
-    <div class="list-viewer-wrapper">
-      <div class="list-header-title">Register</div>
+<div class="userregister">
+  <div class="jumbotron">
+    <div class="medium-list">
+      <div class="list-viewer-wrapper">
+        <div class="list-header-title">Register</div>
 
-      <form [formGroup]="registerForm">
-        <div class="form-container">
-          <mat-form-field>
-            <input id="userName" matInput formControlName="userName" [(ngModel)]="user.userName" placeholder="Enter your userName" />
-            <div *ngIf="userName.dirty && userName.errors" class="error">
-              <div *ngIf="userName.errors.required" class="validation_message">
-                Username required.
+        <form [formGroup]="registerForm">
+          <div class="form-container">
+            <mat-form-field>
+              <input id="userName" matInput formControlName="userName" [(ngModel)]="user.userName" placeholder="Enter your userName" />
+              <div *ngIf="userName.dirty && userName.errors" class="error">
+                <div *ngIf="userName.errors.required" class="validation_message">
+                  Username required.
+                </div>
+                <div *ngIf="userName.errors.userNameExists" class="validation_message">
+                  Username already exists.
+                </div>
               </div>
-              <div *ngIf="userName.errors.userNameExists" class="validation_message">
-                Username already exists.
-              </div>
-            </div>
-          </mat-form-field>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Enter your email" />
-            <div *ngIf="email.dirty && email.errors" class="error">
-              <div *ngIf="email.errors.required" class="validation_message"> 
-                Email required.
+            <mat-form-field>
+              <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Enter your email" />
+              <div *ngIf="email.dirty && email.errors" class="error">
+                <div *ngIf="email.errors.required" class="validation_message">
+                  Email required.
+                </div>
+                <div *ngIf="email.errors.email" class="validation_message">
+                  Email not valid.
+                </div>
+                <div *ngIf="email.errors.emailExists" class="validation_message">
+                  Email already exists.
+                </div>
               </div>
-              <div *ngIf="email.errors.email" class="validation_message">
-                Email not valid.
-              </div>
-              <div *ngIf="email.errors.emailExists" class="validation_message">
-                Email already exists.
-              </div>
-            </div>
-          </mat-form-field>
+            </mat-form-field>
 
-          <mat-form-field>
-            <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Enter your password" [type]="hide ? 'password':'text'"
-            />
-            <mat-icon matSuffix (click)="hide = !hide">
-              {{hide ? 'visibility' : 'visibility_off'}}
-            </mat-icon>
-          </mat-form-field>
+            <mat-form-field>
+              <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Enter your password" [type]="hide ? 'password':'text'"
+              />
+              <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility' : 'visibility_off'}}
+              </mat-icon>
+            </mat-form-field>
 
-          <button mat-button type="onSubmit"  (click)="openSnackBar(message.value, action.value)" class="mat-raised-button mat-primary" routerLink="/userLogin" routerLinkActive="active" [disabled]="!registerForm.valid" (click)="onSubmit()">Register</button>
-          <button mat-button routerLink="/userLogin" routerLinkActive="active" class="divider">Login</button>
-        </div>
-      </form>
+            <button mat-button type="onSubmit" (click)="openSnackBar(message.value, action.value)" class="mat-raised-button mat-primary"
+              routerLink="/userLogin" routerLinkActive="active" [disabled]="!registerForm.valid" (click)="onSubmit()">Register</button>
+            <button mat-button routerLink="/userLogin" routerLinkActive="active" class="divider">Login</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-

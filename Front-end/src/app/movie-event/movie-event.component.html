@@ -1,58 +1,61 @@
 <app-nav-bar></app-nav-bar>
-<div class="jumbotron">
-  <div class="medium-list">
-    <div class="list-viewer-wrapper">
-      <div class="list-header-title">Movie Event</div>
-      <div class="form-container">
-        <mat-form-field>
-          <mat-select placeholder="Select Movie" [formControl]="movieEventControl">
-            <mat-option *ngFor="let movie of movies" [value]="movie.name" (click)="findMovieId(movie)">
-              {{movie.name}} 
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
-            <mat-option *ngFor="let theatre of theatres" [value]="theatre.theatreName" (click)="findTheatreId(theatre)" >
-              {{theatre.theatreName}} | {{ theatre.city}} 
+<div class="movieevent">
+  <div class="jumbotron">
+    <div class="medium-list">
+      <div class="list-viewer-wrapper">
+        <div class="list-header-title">Movie Event</div>
+        <div class="form-container">
+          <mat-form-field>
+            <mat-select placeholder="Select Movie" [formControl]="movieEventControl">
+              <mat-option *ngFor="let movie of movies" [value]="movie.name" (click)="findMovieId(movie)">
+                {{movie.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-select placeholder="Select Theater " [formControl]="movieEventControl">
+              <mat-option *ngFor="let theatre of theatres" [value]="theatre.theatreName" (click)="findTheatreId(theatre)">
+                {{theatre.theatreName}} | {{ theatre.city}}
 
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.week">
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.showTimes" >
-        </mat-form-field>
-        <br>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Number of running weeks " [(ngModel)]="movieEventModel.week">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput placeholder="Show timings" [(ngModel)]="movieEventModel.showTimes">
+          </mat-form-field>
+          <br>
+        </div>
+        <p align="center">
+          <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()" routerLink="/home"
+            routerLinkActive="active">Create Movie</button>
+        </p>
+        <p align="center">
+          <button type="submit" class="example-button" name="button" class="btn btn-secondary" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
+        </p>
       </div>
-      <p align="center">
-        <button type="submit" class="example-button" name="button" class="btn btn-secondary"  (click)="onSubmit()" routerLink="/home" routerLinkActive="active">Create Movie</button>
-      </p>
-      <p align="center">
-        <button type="submit" class="example-button" name="button" class="btn btn-secondary" routerLink="/theatre" routerLinkActive="active">Create Theatre</button>
-      </p>
-    </div>
 
-    <div>
-
-      <!-- <p align="center">
-        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()" routerLink="/home">Create Movie Event</button>
-      </p> -->
       <div>
 
+        <!-- <p align="center">
+        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="onSubmit()" routerLink="/home">Create Movie Event</button>
+      </p> -->
+        <div>
+
+
+        </div>
 
       </div>
 
-    </div>
-
-    <!-- <div class="btn-group">
+      <!-- <div class="btn-group">
       <button type="submit" name="button" class="btn button1" (click)="onSubmit()" routerLink="/home">Create Movie</button>
     </div> -->
-  </div>
+    </div>
 
+  </div>
 </div>

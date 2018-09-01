@@ -22,10 +22,11 @@
 /* header{
   height: 58px;
 } */
-a{
+.a{
   font-family: "Anton", sans-serif;
   /* font-family: "Lobster", cursive; */
 }
+
 .navbar {
   background: -webkit-linear-gradient(top,  #5e635e 0,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
 }
