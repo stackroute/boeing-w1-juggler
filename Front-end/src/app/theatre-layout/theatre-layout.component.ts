@@ -144,6 +144,7 @@ export class TheatreLayoutComponent implements OnInit {
     });
     this.blockedSeat.showId = this.showId;
     this.blockedSeat.seats = this.seatNum;
+    this.blockedSeat.status = "blocked";
     this.data.changePayMessage(this.blockedSeat);
     (window as any).sendBlockedSeats(this.blockedSeat);
     console.log(this.seatNum);

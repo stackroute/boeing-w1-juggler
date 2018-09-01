@@ -1,7 +1,8 @@
 export class Movie {
   id: number;
   name: string;
-  poster: String;
+  cardPoster: String;
+  backGroundPoster: String;
   genre: String;
   language: String;
   reviews: string;

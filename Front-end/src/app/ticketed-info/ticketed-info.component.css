@@ -58,13 +58,11 @@
   
   .bookButton button{
     width: 15%;
-    margin-top: 3%;
     float: right;
-    display: inline;
     margin-right: 2%;
     color: white;
    background-color:rgb(52, 111, 223);
-
+    margin-top: 3%;
   }
 
   .bookButton{   
@@ -104,9 +102,13 @@
 h2{
   margin-left: 2%;
   width: 96%;
+  display: block;
   margin-top: 1%;
-  background-color:rgb(245, 245, 214);
+  background-color:rgb(255, 255, 255);
   border-radius: 5px;
   padding-left: 1.2%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.menu{
+  color: darkgray
 }

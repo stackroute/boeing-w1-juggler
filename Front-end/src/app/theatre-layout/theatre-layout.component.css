@@ -72,12 +72,12 @@
 
 .booked{
     background-color: lightcoral;
-    /* pointer-events: none; */
+    pointer-events: none;
 }
 
 .blocked{
     background-color: rgb(139, 137, 137);
-    /* pointer-events: none; */
+    pointer-events: none;
 }
 
 .name h2{

@@ -5,7 +5,7 @@ export class TicketedEvent {
     city:string;
     location:string;
     cardPoster:string;
-    backgroundPoster:string;
+    backGroundPoster:string;
     type:string;
     capacity:number;
     description:string;
