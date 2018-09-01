@@ -12,7 +12,7 @@
           <input matInput [matDatepicker]="picker" placeholder="Choose a starting date" [(ngModel)]="ticketedEvent.date" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field> -->
+        </mat-form-fieldng> -->
 
         
         <!-- <mat-form-field>
@@ -36,8 +36,12 @@
         </mat-form-field> -->
 
         <mat-form-field>
-          <input matInput placeholder="Poster" [(ngModel)]="ticketedEvent.poster">
+          <input matInput placeholder="Card Poster" [(ngModel)]="ticketedEvent.cardPoster">
         </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Background Poster" [(ngModel)]="ticketedEvent.backGroundPoster">
+          </mat-form-field>
 
         <!-- <mat-form-field>
           <input matInput placeholder="Type" [(ngModel)]="ticketedEvent.type">
@@ -63,7 +67,7 @@
 
       </div>
       <p align="center">
-        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="submitTicketedEvent()">Create Event</button>
+        <button type="submit" class="example-button" name="button" class="btn btn-secondary" (click)="submitTicketedEvent()" routerLinkActive="active" routerLink="/home">Create Event</button>
       </p>
     </div>
     <div>

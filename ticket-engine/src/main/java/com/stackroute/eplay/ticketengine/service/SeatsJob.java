@@ -36,7 +36,7 @@ public class SeatsJob implements Job {
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		String id = context.getTrigger().getJobKey().toString().replace("DEFAULT.", "");
 		logger.info("id: " + id);
-		if (blockedSeatsService.findById(id) != null) {
+		if (blockedSeatsService.findById(id) != null && blockedSeatsService.findById(id).isPresent()) {
 			BlockedSeats seats = blockedSeatsService.findById(id).get();
 			blockedSeatsService.delete(id);
 			Show show = showRepository.find(seats.getShowId());

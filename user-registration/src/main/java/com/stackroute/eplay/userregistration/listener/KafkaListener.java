@@ -4,6 +4,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -32,6 +34,7 @@ import com.stackroute.eplay.userregistration.stream.TheatreStream;
 import com.stackroute.eplay.userregistration.stream.TicketedEventStream;
 import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
 
+
 @EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class, MovieBookedSeatsStream.class, EmailStream.class, BookTicketedEventStream.class })
 public class KafkaListener {
 
@@ -40,6 +43,9 @@ public class KafkaListener {
 	private MovieEventRepository movieEventRepository;
 	private EmailStream emailStream;
 	private BookTicketedEventStream bookTicketedEventStream;
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	
 	@Autowired
 	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream, MovieEventRepository movieEventRepository, EmailStream emailStream,
@@ -246,10 +252,12 @@ public class KafkaListener {
 
 	@StreamListener(BookTicketedEventStream.INPUT)
 	public void bookedTicketedEventPost(@Payload Ticket ticket) {
-		
+		logger.info("sending email for " + ticket.toString());
 		String userName = ticket.getUserName();
+		logger.info("entering try block...  " + userName);
 		try {
-			Registration user = registerUser.findByUsername(userName);			
+			Registration user = registerUser.findByUsername(userName);	
+			logger.info("got user " + user.toString());
 //			int movieId = movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId();
 //			if (user.getBookedMovieId() == null)
 //				bookedMovieId = new ArrayList<>();
@@ -283,7 +291,7 @@ public class KafkaListener {
 //			} else {
 //				message+="Your payment is failed for booking seats in movieEventId: "+bookedMovieTickets.getMovieEventId() + ". Please try again.";
 //			}
-			
+			logger.info("composing email");
 			String message = "You have booked " + ticket.getNoOfSeats() + " tickets for the event " + ticket.getTicketedEventId() + ".\nHope you enjoy.";
 			InputEmailDetails email= new InputEmailDetails();
 			email.setEmailAddress(user.getEmail());
@@ -292,6 +300,7 @@ public class KafkaListener {
 			MessageChannel messageChannelEmail = emailStream.outboundEmail();
 			messageChannelEmail.send(MessageBuilder.withPayload(email)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+			logger.info("message sent to email service");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

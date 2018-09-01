@@ -16,8 +16,6 @@
 
 
 
-
-
   body {
     margin: 0;
 }
@@ -69,8 +67,9 @@
   .medium-list{
     margin-bottom: 15%;
   }
+
   .button {
-    background-color: #4CAF50; /* Green */
+    background-color:rgb(102, 105, 104);
     border: none;
     color: white;
     padding: 15px 32px;

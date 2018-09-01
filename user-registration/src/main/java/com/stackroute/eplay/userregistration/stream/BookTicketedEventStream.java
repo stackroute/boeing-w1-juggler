@@ -1,11 +1,11 @@
 package com.stackroute.eplay.userregistration.stream;
 
-import org.springframework.cloud.stream.annotation.Output;
-import org.springframework.messaging.MessageChannel;
+import org.springframework.cloud.stream.annotation.Input;
+import org.springframework.messaging.SubscribableChannel;
 
 public interface BookTicketedEventStream {
 	String INPUT = "ticketed-event-ticket-in";
 
-	@Output(INPUT)
-	MessageChannel inboundTicketedEventTicket();
+	@Input(INPUT)
+	SubscribableChannel inboundTicketedEventTicket();
 }

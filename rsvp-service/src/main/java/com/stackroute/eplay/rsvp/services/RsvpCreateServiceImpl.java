@@ -69,6 +69,13 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 		if(invitiesList==null) {
 			invitiesList=new ArrayList<Invitation>();
 		}
+		Invitation tempInvitation = null;
+		for(Invitation currInvitation: invitiesList) {
+			if(currInvitation.getInviteeEmail().equals(invitation.getInviteeEmail()))
+				tempInvitation = currInvitation;
+		}
+		if(tempInvitation != null)
+			invitiesList.remove(tempInvitation);
 		invitiesList.add(invitation);
 		rsvpEvent.setRsvpInvitation(invitiesList);
 		return rsvpCreateRepository.save(rsvpEvent);
