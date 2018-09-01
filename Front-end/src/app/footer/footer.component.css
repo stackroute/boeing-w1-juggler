@@ -11,4 +11,14 @@ footer {
     /* padding: 20px; */
     /* background-color: #efefef;
     text-align: center; */
+  
+    background: -webkit-linear-gradient(bottom,  #5e635e 0,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
+  }
+  h6{
+    font-family: "Anton", sans-serif;
+  /* font-family: "Lobster", cursive; */
+  }
+  p,a{
+    font-size: 1.2em;
+     /* font-family: "Lobster", cursive;  */
   }

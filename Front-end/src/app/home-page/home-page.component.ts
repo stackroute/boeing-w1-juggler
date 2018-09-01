@@ -16,14 +16,15 @@ export class HomePageComponent implements OnInit {
   movie$: any;
   message: string;
   rec$: any;
-  recommendedMovie:any;
+  recommendedMovie= null;
   constructor(private data: SearchDataService, private router: Router, private recommendationService: RecommendationService, private authenticationService:AuthenticationService) {
     this.items=[
       { name :"{{movie.poster}}"}
-      // { name :'assets/images/thumb2.jpg'}
-
     ];
   }
+  scroll(el) {
+    el.scrollIntoView();
+ }
   ngOnInit() {
     this.data.currentMessage.subscribe(message => (this.message = message));
     this.fetchEvents();

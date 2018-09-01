@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RsvpInvitation } from "../RsvpInvitation";
 import { RsvpInvitationService } from "../rsvp-invitation.service";
-import { ActivatedRoute, RouterLink, Router } from "@angular/router";
+import { ActivatedRoute, RouterLink, Router, ParamMap } from "@angular/router";
 import { RsvpCreate } from "../RsvpCreate";
 import { RsvpCreateService } from "../rsvp-create.service";
 import { InputEmailsDetails } from "../InputEmailsDetails";
@@ -17,6 +17,7 @@ export class RsvpInvitationComponent implements OnInit {
   public rsvpModel: any;
   message: string;
   id;
+  finalId;
 
   // backgroundImg;
   constructor(
@@ -32,26 +33,14 @@ export class RsvpInvitationComponent implements OnInit {
     // this.id=this.rsvpCreateService.getRsvpEventId();
   //  this.id = this.rsvpCreateService.id;
    // console.log("bhaiiii", this.id);
-    
-    console.log("event id is ",localStorage.getItem("eventId"));
-    console.log("rsvp id is",localStorage.getItem("RSVPId"));
-    
-    if(localStorage.getItem("RSVPId")==null||localStorage.getItem("RSVPId")=="-1")
-    {
-      this.id=localStorage.getItem("eventId");
-    }
-    else{
-    this.id=localStorage.getItem("RSVPId");
-    console.log("id coming",this.id);
-  }
-    
-
-
+   this.activatedRoute.paramMap.subscribe((param: ParamMap)=>this.finalId=parseInt(param.get('id')));
+   console.log("jysgciuwhgckw ",this.finalId); 
+ 
     console.log("this.rsvpModel");
     this.inputEmailsDetails.emailBcc = [];
     //  console.log(this.rsvpModel);
     this.rsvpCreateService
-      .getRsvpEventById(this.id)
+      .getRsvpEventById(this.finalId)
       .subscribe(rsvpCreateService => {
         this.rsvpModel = rsvpCreateService;
         console.log(this.rsvpModel);
@@ -63,11 +52,11 @@ export class RsvpInvitationComponent implements OnInit {
     console.log("vishal ppu");
     //console.log(this.rsvpInvitationModel);
     this.rsvpCreateService
-      .updateRsvp(this.rsvpInvitationModel, this.id)
+      .updateRsvp(this.rsvpInvitationModel, this.finalId)
       .subscribe(res => {
         console.log("saved");
       });
-      console.log("bhaaaaaai",this.id);
+      console.log("bhaaaaaai",this.finalId);
       
        location.reload();
   }
@@ -79,14 +68,13 @@ export class RsvpInvitationComponent implements OnInit {
   }
 
   onSubmit2() {
-    this.id=localStorage.getItem("RSVPId");
+  
     this.inputEmailsDetails.emailAddress = "aerospacevishal@gmail.com";
     this.inputEmailsDetails.subject =
       "You are invited to: " + this.rsvpModel.name;
     this.inputEmailsDetails.body =
-      "click here to view Invitation http://172.23.238.188:4200/rsvpEvent/" +
-      this.id;
-
+      "click here to view Invitation http://172.23.238.188:4200/rsvpEvent/"+this.finalId;
+      
     for (var i = 0; i < this.rsvpModel.rsvpInvitation.length; i++) {
       this.inputEmailsDetails.emailBcc.push(
         this.rsvpModel.rsvpInvitation[i].inviteeEmail

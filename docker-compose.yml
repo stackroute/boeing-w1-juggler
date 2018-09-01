@@ -3,23 +3,27 @@ version: '2.1'
 services:
   eureka-server:
     build: eureka-server/
-    mem_limit: 2g
+    #mem_limit: 2g
     depends_on:
       config-service:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy
     restart: always
     network_mode: "host"
     image: eureka-service
     hostname: localhost
     ports:
-      - 9090:9090
+      - 9089:9089
     healthcheck:
       test: "exit 0"
 
   config-service:
     build: config-service/
     restart: always
-    mem_limit: 2g
+    #mem_limit: 2g
     network_mode: "host"
     image: config-service
     hostname: localhost
@@ -30,11 +34,15 @@ services:
 
   api-gateway:
     build: zuul-apigateway/
-    mem_limit: 2g 
+    #mem_limit: 2g 
     depends_on:
       config-service:
         condition: service_healthy
       eureka-server:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy
     restart: always
     network_mode: "host"
@@ -48,7 +56,7 @@ services:
  
   zookeeper:
     image: wurstmeister/zookeeper
-    mem_limit: 2g
+    #mem_limit: 2g
     ports:
       - "2181:2181"
     network_mode: "host"
@@ -59,7 +67,7 @@ services:
 
   kafka:
     image: wurstmeister/kafka
-    mem_limit: 2g
+    #mem_limit: 2g
     ports:
       - "9092:9092"
     environment:
@@ -77,7 +85,7 @@ services:
   mongodb:
     image: mongo
     container_name: "mongodb"
-    mem_limit: 100m
+    #mem_limit: 100m
     volumes:
       - ./data/db:/data/db
     ports:
@@ -90,7 +98,7 @@ services:
     image: redis:latest
     container_name: "redis"
     command: redis-server --appendonly yes
-    mem_limit: 2g
+    #mem_limit: 2g
     volumes:
       - ./data:/data
     ports:
@@ -101,7 +109,7 @@ services:
    
   neo4j:
    image: neo4j:latest
-   mem_limit: 2g
+   #mem_limit: 2g
    ports:
      - "7474:7474"
      - "7687:7687"
@@ -117,11 +125,34 @@ services:
      - ./import:/import
    healthcheck:
       test: "exit 0"
+
+  prometheus:
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    image: prom/prometheus
+    restart: always
+    healthcheck:
+      test: "exit 0"
+
+  grafana:
+    image: grafana/grafana:5.2.2
+    container_name: grafana
+    volumes:
+      - /var/lib/grafana
+    restart: always
+    ports:
+      - 3000:3000
+    healthcheck:
+      test: "exit 0"
         
   downstream-service:
     build: downstream-service/
     image: downstream-service
-    mem_limit: 2g 
+    #mem_limit: 2g 
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -136,6 +167,10 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
     
@@ -144,7 +179,7 @@ services:
   upstream-service:
     build: upstream-service/
     image: upstream-service
-    mem_limit: 2g 
+    #mem_limit: 2g 
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -159,13 +194,17 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
   rsvp:
     build: rsvp-service/
     image: rsvp-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -180,13 +219,17 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
   search:
     build: search-service/
     image: search-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -201,13 +244,17 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
   ticket:
     build: ticket-service/
     image: ticket-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -222,13 +269,17 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
 
   user-registration:
     build: user-registration/
     image: user-registration
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -243,13 +294,17 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
       
   show-scheduler:
     build: show-scheduler/
     image: show-scheduler
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -264,6 +319,10 @@ services:
         condition: service_healthy
       kafka:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"
       
@@ -271,7 +330,7 @@ services:
   recommendation:
     build: recommendation-service/
     image: recommendation-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -287,6 +346,10 @@ services:
       kafka:
         condition: service_healthy
       neo4j:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy  
     healthcheck:
       test: "exit 0"
@@ -295,7 +358,7 @@ services:
   email:
     build: email-service/
     image: email-service
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -306,13 +369,17 @@ services:
         condition: service_healthy
       eureka-server:
         condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
+        condition: service_healthy
     healthcheck:
       test: "exit 0"    
   
   ticket-engine:
     build: ticket-engine/
     image: ticket-engine
-    mem_limit: 2g
+    #mem_limit: 2g
     restart: always
     network_mode: "host"
     hostname: localhost
@@ -326,6 +393,10 @@ services:
       redis:
         condition: service_healthy  
       kafka:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+      grafana:
         condition: service_healthy  
     healthcheck:
       test: "exit 0"          

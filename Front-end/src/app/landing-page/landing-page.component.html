@@ -35,85 +35,101 @@
 
 <!-- <div class="image"> -->
 
+<div class="container-image">
 
-<div class="row" id="features">
-  <div class="container-fluid">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- <div class="modal-header"> -->
+
+  <div class="row" id="features">
+    <div class="container-fluid">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- <div class="modal-header"> -->
           <!-- <h3><span class="label label-warning" id="qid"></span> Choose your city</h3> -->
-        <!-- </div> -->
-        <div class="modal-body">
-          <div class="col-xs-3 col-xs-offset-5">
-            <div id="loadbar" style="display: none;">
-              <div class="blockG" id="rotateG_01"></div>
-              <div class="blockG" id="rotateG_02"></div>
-              <div class="blockG" id="rotateG_03"></div>
-              <div class="blockG" id="rotateG_04"></div>
-              <div class="blockG" id="rotateG_05"></div>
-              <div class="blockG" id="rotateG_06"></div>
-              <div class="blockG" id="rotateG_07"></div>
-              <div class="blockG" id="rotateG_08"></div>
+          <!-- </div> -->
+          <div class="modal-body">
+            <div class="col-xs-3 col-xs-offset-5">
+              <div id="loadbar" style="display: none;">
+                <div class="blockG" id="rotateG_01"></div>
+                <div class="blockG" id="rotateG_02"></div>
+                <div class="blockG" id="rotateG_03"></div>
+                <div class="blockG" id="rotateG_04"></div>
+                <div class="blockG" id="rotateG_05"></div>
+                <div class="blockG" id="rotateG_06"></div>
+                <div class="blockG" id="rotateG_07"></div>
+                <div class="blockG" id="rotateG_08"></div>
+              </div>
+            </div>
+
+            <div class="quiz" id="quiz" data-toggle="buttons" >
+              <a (click)="onclick1()" routerLink="/home" routerLinkActive="active">
+                <label class="element-animation1 btn btn-lg btn-secondary btn-block">
+                  <span class="btn-label">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </span>
+                  <h5>
+                    Delhi
+                  </h5>
+                </label>
+              </a>
+              <a (click)="onclick2()" routerLink="/home" routerLinkActive="active">
+                <label class="element-animation2 btn btn-lg btn-secondary btn-block">
+                  <span class="btn-label">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </span>
+                  <h5>
+                    Mumbai
+                  </h5>
+                </label>
+              </a>
+              <a (click)="onclick3()" routerLink="/home" routerLinkActive="active">
+                <label class="element-animation3 btn btn-lg btn-secondary btn-block">
+                  <span class="btn-label">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </span>
+                  <h5>
+                    Bangalore
+                  </h5>
+                </label>
+              </a>
+              <a (click)="onclick4()" routerLink="/home" routerLinkActive="active">
+                <label class="element-animation4 btn btn-lg btn-secondary btn-block">
+                  <span class="btn-label">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </span>
+                  <h5>
+                    Hyderabad
+                  </h5>
+
+                </label>
+              </a>
+              <a (click)="onclick5()" routerLink="/home" routerLinkActive="active">
+                <label class="element-animation4 btn btn-lg btn-secondary btn-block">
+                  <span class="btn-label">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </span>
+                  <h5>
+                    Chennai
+                  </h5>
+                </label>
+              </a>
+              <a (click)="onclick6()" routerLink="/home" routerLinkActive="active">
+                <label class="element-animation4 btn btn-lg btn-secondary btn-block">
+                  <span class="btn-label">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                  </span>
+                  <h5>
+                    Pune
+                  </h5>
+                </label>
+              </a>
+
+
+
             </div>
           </div>
-
-          <div class="quiz" id="quiz" data-toggle="buttons">
-            <a (click)="onclick1()" routerLink="/home" routerLinkActive="active">
-              <label class="element-animation1 btn btn-lg btn-primary btn-block">
-                <span class="btn-label">
-                  <i class="glyphicon glyphicon-chevron-right"></i>
-                </span>
-                Delhi
-              </label>
-            </a>
-            <a (click)="onclick2()" routerLink="/home" routerLinkActive="active">
-              <label class="element-animation2 btn btn-lg btn-primary btn-block">
-                <span class="btn-label">
-                  <i class="glyphicon glyphicon-chevron-right"></i>
-                </span>
-                Mumbai
-              </label>
-            </a>
-            <a (click)="onclick3()" routerLink="/home" routerLinkActive="active">
-              <label class="element-animation3 btn btn-lg btn-primary btn-block">
-                <span class="btn-label">
-                  <i class="glyphicon glyphicon-chevron-right"></i>
-                </span>
-                Bangalore
-              </label>
-            </a>
-            <a (click)="onclick4()" routerLink="/home" routerLinkActive="active">
-              <label class="element-animation4 btn btn-lg btn-primary btn-block">
-                <span class="btn-label">
-                  <i class="glyphicon glyphicon-chevron-right"></i>
-                </span>
-                Hyderabad
-              </label>
-            </a>
-            <a (click)="onclick5()" routerLink="/home" routerLinkActive="active">
-              <label class="element-animation4 btn btn-lg btn-primary btn-block">
-                <span class="btn-label">
-                  <i class="glyphicon glyphicon-chevron-right"></i>
-                </span>
-                Chennai
-              </label>
-            </a>
-            <a (click)="onclick6()" routerLink="/home" routerLinkActive="active">
-              <label class="element-animation4 btn btn-lg btn-primary btn-block">
-                <span class="btn-label">
-                  <i class="glyphicon glyphicon-chevron-right"></i>
-                </span>
-                Pune
-              </label>
-            </a>
-            
-
-
-          </div>
-        </div>
-        <!-- <div class="modal-footer text-muted">
+          <!-- <div class="modal-footer text-muted">
           <span id="answer"></span>
         </div> -->
+        </div>
       </div>
     </div>
   </div>

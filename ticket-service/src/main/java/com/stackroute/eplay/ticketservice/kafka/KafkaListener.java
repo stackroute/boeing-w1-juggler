@@ -44,7 +44,7 @@ public class KafkaListener {
 	}
 	@StreamListener(UpdateMovieEventStreams.INPUT)
 	public void movieShowPost(@Payload Show show){
-		System.out.println(show.toString());
+		System.out.println("Coming from SchedulerStream"+show.toString());
 		movieEventService.updateMovieEvent(show);
 	
 	}
@@ -52,7 +52,7 @@ public class KafkaListener {
 	@StreamListener(MovieEventStreams.INPUT)
 	public void movieEventPost(@Payload MovieEvent event) {
 		try {
-			System.out.println(event.toString());
+			System.out.println("Coming from upstream"+event.toString());
 			movieEventService.saveMovieEvent(event);
 		} catch (MovieEventAlreadyExistException e) {
 			// TODO Auto-generated catch block
@@ -61,7 +61,7 @@ public class KafkaListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(event.toString()+" movie");
+		System.out.println("After show is made"+event.toString()+" movie");
 	}
 	@StreamListener(MovieStreams.INPUT)
 	public void moviePost(@Payload Movie movie) {

@@ -3,8 +3,8 @@ import{RsvpCreate} from '../RsvpCreate';
 import{RsvpInvitation} from '../RsvpInvitation';
 import{RsvpInvitationService} from '../rsvp-invitation.service';
 import{RsvpCreateService} from '../rsvp-create.service';
-import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { InputEmailsDetails } from "../InputEmailsDetails";
+import { ActivatedRoute, RouterLink, Router, ParamMap } from "@angular/router";
 
 @Component({
   selector: 'app-organiser-rsvp-view',
@@ -26,21 +26,22 @@ export class OrganiserRsvpViewComponent implements OnInit {
   ) { }
 
   id:any;
+  
 
   ngOnInit() {
     // this.id=this.rsvpCreateService.getRsvpEventId();
   //  this.id = this.rsvpCreateService.id;
    // console.log("bhaiiii", this.id);
+   this.activatedRoute.paramMap.subscribe((param: ParamMap)=>this.id=parseInt(param.get('id')));
+
+  
     
-    console.log("event id is ",localStorage.getItem("eventId"));
-    console.log("rsvp id is ",localStorage.getItem("RSVPId"));
-    this.id=localStorage.getItem("RSVPId")
-    console.log("id coming",this.id);
     
+    console.log("id in org rsvp",this.id);
     
 
     console.log("this.rsvpModel");
-    this.inputEmailsDetails.emailBcc = [];
+    
     //  console.log(this.rsvpModel);
     this.rsvpCreateService
       .getRsvpEventById(this.id)
@@ -55,12 +56,16 @@ export class OrganiserRsvpViewComponent implements OnInit {
     //this.id=this.rsvpModel.id;
     console.log("vishal ppuuu");
     // this.router.navigate(["/rsvpEvent/" + this.id]);
-    this.router.navigate(["InviteeDetails"]);
+    this.router.navigate(["/"+this.id+"/InviteeDetails"]);
   }
   onSubmit2() {
     //this.id=this.rsvpModel.id;
     console.log("vishal ppuuu");
     // this.router.navigate(["/rsvpEvent/" + this.id]);
-    this.router.navigate(["rsvpInvitation"]);
+
+    console.log("this id is",this.id);
+    
+    this.router.navigate(["/"+this.id+"/rsvpInvitation"]);
+
   }
 }

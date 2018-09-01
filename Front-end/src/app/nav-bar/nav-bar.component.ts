@@ -25,7 +25,7 @@ export class NavBarComponent implements OnInit {
   onSearch(){
     console.log(this.omdbSearchTitle);
     this.data.changeMessage(this.omdbSearchTitle);
-    
+    localStorage.setItem('searchKey',this.omdbSearchTitle);
 
   }
   form: FormGroup;
@@ -76,4 +76,7 @@ export class NavBarComponent implements OnInit {
     localStorage.removeItem('rec');
     window.location.reload();
   }
+  loggedIn(){
+    return this.authenticationService.loggedIn();
+   }
 }
