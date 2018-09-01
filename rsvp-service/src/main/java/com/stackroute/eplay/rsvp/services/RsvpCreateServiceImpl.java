@@ -71,7 +71,7 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 		}
 		Invitation tempInvitation = null;
 		for(Invitation currInvitation: invitiesList) {
-			if(currInvitation.getInvitationId()==invitation.getInvitationId())
+			if(currInvitation.getInviteeEmail()==invitation.getInviteeEmail())
 				tempInvitation = currInvitation;
 		}
 		if(tempInvitation != null)
