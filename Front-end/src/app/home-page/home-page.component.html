@@ -39,7 +39,7 @@
       <ng-template #item let-item let i="index">
         <div *ngFor="let movie of recommendedMovie" class="items">
           <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
-            <img class="movieposter" [width]="15000" src="{{ movie.poster }}">
+            <img class="movieposter" [width]="15000" src="{{movie.backGroundPoster}}">
           </a>
         </div>
 
