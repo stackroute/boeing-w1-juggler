@@ -24,7 +24,7 @@ public class TicketedEvent {
     private int id;
     private String name;
     private Date date;
-   
+    private String localDate;
     private String city;
     private String location;
     private String backGroundPoster;
