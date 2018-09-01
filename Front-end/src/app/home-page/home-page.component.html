@@ -121,7 +121,7 @@
                       <h5>{{movie.name}}</h5>
                     </mat-card-title>
                   </mat-card-header>
-                  <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
+                  <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
                   <mat-card-actions>
                     <button class="btn btn-secondary" mat-button mat-raised-button>View and Book</button>
                   </mat-card-actions>
@@ -166,7 +166,7 @@
                 <h5>{{movie.name}}</h5>
               </mat-card-title>
             </mat-card-header>
-            <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
+            <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
             <mat-card-actions>
               <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
             </mat-card-actions>
