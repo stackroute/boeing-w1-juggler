@@ -95,7 +95,7 @@ const routes: Routes = [
   },
   {
     path:'rsvpEvent/:id',
-    component:RsvpEventpageComponent, canActivate:[AuthGuard]
+    component:RsvpEventpageComponent
   },
   {
     path:"theatreLayout",
