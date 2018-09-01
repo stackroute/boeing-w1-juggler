@@ -20,7 +20,7 @@
         <!-- <a href="https://example.com/" class="btn">Go ahead...</a> -->
       </div>
     </section>
-    <div *ngIf="loggedIn() && recommendedMovie!=null">
+    <div *ngIf="recommendedMovie!=null && recommendedMovie.length>0">
       <!-- <div *ngFor="let movie of recommendedMovie"> -->
 
       <div id="container">
@@ -127,7 +127,7 @@
                         <h5>{{movie.name}}</h5>
                       </mat-card-title>
                     </mat-card-header>
-                    <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
+                    <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
                     <mat-card-actions>
                       <button class="btn btn-secondary" mat-button mat-raised-button>View and Book</button>
                     </mat-card-actions>

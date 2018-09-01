@@ -27,7 +27,8 @@ public class TicketedEvent {
    
     private String city;
     private String location;
-    private String poster;
+    private String backGroundPoster;
+    private String cardPoster;
     private String type;
     private int capacity;
     private int remainingSeats;
