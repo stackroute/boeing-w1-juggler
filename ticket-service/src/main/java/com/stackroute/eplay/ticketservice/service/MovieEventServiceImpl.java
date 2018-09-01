@@ -72,9 +72,9 @@ public class MovieEventServiceImpl implements MovieEventService{
 				Show show=new Show();
 				show.setSeats(seats);
 				show.setShowId(nextSequenceService.getNextSequence("counter"));
-		//		LocalTime showTime=sdf.parse(showTimes[j].trim()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-				LocalTime showTime=LocalTime.parse(showTimes[j].trim(),
-				           DateTimeFormatter.ofPattern("HH:mm"));
+				LocalTime showTime=sdf.parse(showTimes[j].trim()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+		//		LocalTime showTime=LocalTime.parse(showTimes[j].trim(),
+			//	           DateTimeFormatter.ofPattern("HH:mm"));
 				show.setStartTime(showTime);
 				show.setPrice(200);
 				show.setDate(releaseDate.plusDays(i));
