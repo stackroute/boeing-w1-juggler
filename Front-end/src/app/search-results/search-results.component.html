@@ -167,7 +167,7 @@
     <h4 style="margin-top: 75px">Your search results..</h4>
     <div *ngFor="let movie of event$">
       <mat-grid-tile colspan="4" rowspan="5">
-        <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
+        <a [routerLink]="['/ticketinfo']" (click)="goMoviePage(movie)">
           <mat-card class="example-card">
             <mat-card-header>
               <!-- <div mat-card-avatar class="example-header-image"></div> -->
@@ -177,7 +177,7 @@
             </mat-card-header>
             <img mat-card-image src="{{movie.poster}}" alt="movie poster">
             <mat-card-actions>
-              <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
+              <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/ticketinfo" (click)="goMoviePage(movie)">View and Book</button>
             </mat-card-actions>
           </mat-card>
         </a>

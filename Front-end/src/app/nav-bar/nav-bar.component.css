@@ -29,6 +29,8 @@
 
 .navbar {
   background: -webkit-linear-gradient(top,  #5e635e 0,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
+  height: 50px;
+  /* padding-bottom: 0px */
 }
  /* .navbar ul {
    list-style: none;
@@ -81,7 +83,9 @@
   background-color: #45454e;
   color: #000000;
 } */
-
+li p .btn {
+  margin-top: 2.5px;
+}
 
 .column {
   flex: 30%;

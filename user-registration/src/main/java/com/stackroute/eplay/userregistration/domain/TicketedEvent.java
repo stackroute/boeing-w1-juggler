@@ -25,18 +25,12 @@ public class TicketedEvent {
 	public String name;
 	public String userName;
 	public Date date;
-	public String localDate;
-	public String time;
 	public String city;
 	public String location;
 	public String poster;
-	public String type;
 	public int capacity;
-	public int remainingSeats;
 	public String description;
 	public String price;
-	public String performers;
-	public String termsAndConditions;
-	public String notes;
+	
 }
 
