@@ -9,6 +9,8 @@ export interface Tile {
   rows: number;
   text: string;
   color: string;
+  price: number;
+  count: number;
 }
 
 @Component({
@@ -24,7 +26,9 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020001_13082018125322.jpg",
-      color: ""
+      color: "",
+      price: 280,
+      count: 0
     },
     {
       text: "Couple Combo",
@@ -32,7 +36,9 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020005_17082018144820.jpg",
-      color: ""
+      color: "",
+      price: 570,
+      count: 0
     },
     {
       text: "Regular Combo",
@@ -40,9 +46,11 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020007_16082018153109.jpg",
-      color: ""
+      color: "",
+      price: 380,
+      count: 0
     },
-    { text: "two", cols: 1.8, rows: 7, poster: "", color: "white" },
+    { text: "two", cols: 1.8, rows: 7, poster: "", color: "white", price: 0, count: 0 },
     //{text: '', cols: 1, rows: 7,poster:'', color: ''},
     {
       text: "Nachos with Salsa",
@@ -50,7 +58,9 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020006_06082018135441.jpg",
-      color: ""
+      color: "",
+      price: 250,
+      count: 0
     },
     {
       text: "Veg Burger",
@@ -58,7 +68,9 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020016_17082018120212.jpg",
-      color: ""
+      color: "",
+      price: 150,
+      count: 0
     },
     {
       text: "Sandwich",
@@ -66,21 +78,28 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020446_20082018182121.jpg",
-      color: ""
+      color: "",
+      price: 150,
+      count: 0
     }
     // {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
-  noSeats: any;
+  noSeats = 0;
   user: any;
   emailId: any;
   paymentStatus: BlockSeat;
-  price: any;
+  price = 0;
+  totalAmount = 0;
   status: any;
+  items = [];
+  tax = 0;
+  tile1 : Tile;
+  //itemCount=1;
 
   intervalId = 0;
-  message = "";
+  timer = "";
   seconds = 60;
-  minutes=2;
+  minutes = 9;
 
   constructor(private data: PaymentService) {}
 
@@ -93,6 +112,8 @@ export class PaymentPageComponent implements OnInit {
     console.log("pay and seats", this.paymentStatus);
     this.noSeats = this.paymentStatus.seats.length;
     this.price = this.noSeats * 200;
+    this.tax = ( this.noSeats * 200 * .18);
+    this.totalAmount =( this.noSeats * 200 )+ this.tax; 
   }
 
   onClickFail() {
@@ -103,9 +124,7 @@ export class PaymentPageComponent implements OnInit {
     //this.paymentStatus.showId=2;
     this.paymentStatus.status = "open";
     console.log("payment staus", this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus).subscribe(res => {
-      console.log("staus posted");
-    });
+    this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
   }
 
@@ -117,10 +136,45 @@ export class PaymentPageComponent implements OnInit {
     // this.paymentStatus.showId=2;
     this.paymentStatus.status = "booked";
     console.log("payment status", this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus).subscribe(status => {
-      console.log("status", status);
-    });
+    this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
+  }
+
+  itemsAdded(it) {
+    //this.items=items;
+    if (this.items.length < 4) {
+      this.items.push(it);
+      console.log(JSON.stringify(this.items));
+    }
+    if (this.items.length > 4) {
+      console.log("Max 4 items allowed");
+    }
+  }
+
+  minusItem(i,itemCount) {
+    
+    if(this.items[i].count < 1) {
+      this.items.splice(this.items.indexOf(this.items),1);
+    }
+    // items.count -= 1;
+    // console.log(items.count);
+    this.items[i].count= itemCount - 1;
+  }
+
+  addItem(i,itemCount) {
+    console.log("Index" + itemCount);
+    this.items[i].count = itemCount + 1;
+    console.log(this.items[i]);
+    console.log(this.items);
+  }
+
+  //  addItem(tile) {
+  //    tile.count +=1;
+  //   this.items= tile;
+  //   console.log(" Tile count inside Additem" +tile.count);
+  // }
+  deleteItem(items) {
+    this.items.splice(this.items.indexOf(items),1);
   }
 
   clearTimer() {
@@ -142,21 +196,19 @@ export class PaymentPageComponent implements OnInit {
     this.intervalId = window.setInterval(() => {
       this.seconds -= 1;
       if (this.minutes < 0) {
-        this.message = "Time Lapsed!";
-        console.log(this.message);
+        this.timer = "Time Lapsed!";
+        console.log(this.timer);
         this.stop();
-      }
-      else if(this.seconds < 10) {
-        this.message = `0${this.minutes}:0${this.seconds}`;
-      
-       if(this.seconds == 0) {
-        this.seconds = 60;
-        this.minutes -= 1;
-      }
-    }
-      else {
-        this.message = `0${this.minutes}:${this.seconds}`;
-        console.log("Time Left: " + this.message);
+      } else if (this.seconds < 10) {
+        this.timer = `0${this.minutes}:0${this.seconds}`;
+
+        if (this.seconds == 0) {
+          this.seconds = 60;
+          this.minutes -= 1;
+        }
+      } else {
+        this.timer = `0${this.minutes}:${this.seconds}`;
+        //console.log("Time Left: " + this.timer);
       }
     }, 1000);
   }
