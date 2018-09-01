@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,6 @@ import org.quartz.SimpleTrigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stackroute.eplay.showscheduler.domain.MovieEvent;
@@ -75,6 +75,10 @@ public class ShowTrigger {
 			LocalTime oldShowTime = show.getStartTime();
 			LocalDate showDate = show.getDate();
 			LocalTime showTime=oldShowTime.minusMinutes(330);
+			LocalTime time = LocalTime.parse("05:30", DateTimeFormatter.ofPattern("HH:mm"));
+			if(oldShowTime.compareTo(time)<=0) {
+				showDate = showDate.minusDays(1);
+			}
 			LocalDateTime showDateTime = LocalDateTime.of(showDate, showTime);
 			long showTimeInMilliSeconds = Timestamp.valueOf(showDateTime).getTime();
 
