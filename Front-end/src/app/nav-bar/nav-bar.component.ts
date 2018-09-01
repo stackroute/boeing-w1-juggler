@@ -25,7 +25,7 @@ export class NavBarComponent implements OnInit {
   onSearch(){
     console.log(this.omdbSearchTitle);
     this.data.changeMessage(this.omdbSearchTitle);
-    
+    localStorage.setItem('searchKey',this.omdbSearchTitle);
 
   }
   form: FormGroup;

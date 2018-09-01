@@ -8,15 +8,16 @@
           <input matInput placeholder="Event Name" [(ngModel)]="ticketedEvent.name" required>
         </mat-form-field>
 
-        <mat-form-field>
+        <!-- <mat-form-field>
           <input matInput [matDatepicker]="picker" placeholder="Choose a starting date" [(ngModel)]="ticketedEvent.date" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field>
+        
+        <!-- <mat-form-field>
           <input matInput placeholder="Time" [(ngModel)]="ticketedEvent.time">
-        </mat-form-field>
+        </mat-form-field> -->
 
 
         <mat-form-field>
@@ -24,16 +25,23 @@
         </mat-form-field>
 
         <mat-form-field>
+            <input matInput placeholder="Choose a starting date"
+            [(ngModel)]="ticketedEvent.date"
+                   [owlDateTimeTrigger]="picker" [owlDateTime]="picker">
+            <owl-date-time #picker></owl-date-time>
+          </mat-form-field>
+
+        <!-- <mat-form-field>
           <input matInput placeholder="Location" [(ngModel)]="ticketedEvent.location">
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field>
           <input matInput placeholder="Poster" [(ngModel)]="ticketedEvent.poster">
         </mat-form-field>
 
-        <mat-form-field>
+        <!-- <mat-form-field>
           <input matInput placeholder="Type" [(ngModel)]="ticketedEvent.type">
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field>
           <input matInput placeholder="Capacity" [(ngModel)]="ticketedEvent.capacity">
@@ -47,9 +55,9 @@
           <input matInput placeholder="Price" [(ngModel)]="ticketedEvent.price">
         </mat-form-field>
 
-        <mat-form-field>
+        <!-- <mat-form-field>
           <input matInput placeholder="Performers" [(ngModel)]="ticketedEvent.performers">
-        </mat-form-field>
+        </mat-form-field> -->
 
         <!-- <button type="submit" class="example-button" name="button" class="btn btn-success" (click)="submitTicketedEvent()">Submit</button> -->
 

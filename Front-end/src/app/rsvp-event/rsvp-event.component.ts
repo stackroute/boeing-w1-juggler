@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class RsvpEventComponent implements OnInit {
   rsvpModel = new RsvpCreate();
   id: number;
-
+  public dateTime: Date;
   constructor(
     private rsvpCreateService: RsvpCreateService,
     private router: Router,
@@ -24,11 +24,10 @@ export class RsvpEventComponent implements OnInit {
 
     // console.log("id of the saved rsvpEvent is ", res.id-118);
       // this.rsvpCreateService.id = res.id;
-    //  console.log("id of the saved rsvpEvent is ", res.id);
-
-       localStorage.setItem("eventId", JSON.stringify(res.id));
+      
       // // console.log(localStorage.getItem("eventId"));
-        this.router.navigate(["/rsvpInvitation"]);
+      
+        this.router.navigate(["/"+res.id+"/rsvpInvitation"]);
       
     });
   }

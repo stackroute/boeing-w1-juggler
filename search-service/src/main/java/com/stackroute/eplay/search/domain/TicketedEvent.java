@@ -18,7 +18,7 @@ public class TicketedEvent {
 	private int id;
 	private String name;
 	private Date date;
-	private Date time;
+	private String time;
 	private String city;
 	private String location;
 	private String poster;

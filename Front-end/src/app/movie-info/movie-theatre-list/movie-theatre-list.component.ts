@@ -18,14 +18,16 @@ export class MovieTheatreListComponent implements OnInit {
     this._searchDataService.movieMessage.subscribe(movie => this.movie = movie)
     
     this.recommendedMovies=JSON.parse(localStorage.getItem('recommended'));
+    console.log("Movie inside recom and thearlist"+this.recommendedMovies);
     this.movie=JSON.parse(localStorage.getItem('movieInfo'));
     
     console.log("print in child" , this.recommendedMovies);
     
     this._searchDataService.getMovieByCitynId(localStorage.getItem('clickedRecommended')).subscribe(movieRecommend => {this.movieRecommend = movieRecommend
-    console.log("recsn a ll",this.movieRecommend)})
+      //console.log("recsn a ll",this.movieRecommend)
+    })
     this.theatreList= this.movie.theatres;
-    this.theatreList=this.theatreList[0];
+    //this.theatreList=this.theatreList[0];
   }
 
   sendShowId(id){

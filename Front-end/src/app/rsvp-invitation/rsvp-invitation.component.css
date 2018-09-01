@@ -65,7 +65,8 @@ body {
   margin-bottom: 15%;
 }
 .button {
-  background-color: #4CAF50; /* Green */
+  width: 30%;
+  background-color: rgb(103, 107, 103); /* Green */
   border: none;
   color: white;
   padding: 15px 32px;

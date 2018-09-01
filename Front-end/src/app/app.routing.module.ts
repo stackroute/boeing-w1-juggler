@@ -20,6 +20,9 @@ import { SocketConnectionComponent } from "./socket-connection/socket-connection
 import { InviteeDetailsComponent } from "./invitee-details/invitee-details.component";
 import {PaymentPageComponent} from "./payment-page/payment-page.component"
 import{OrganiserRsvpViewComponent} from "./organiser-rsvp-view/organiser-rsvp-view.component";
+import { BookingHistoryComponent } from "./booking-history/booking-history.component";
+import {TicketedInfoComponent} from "./ticketed-info/ticketed-info.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -39,7 +42,7 @@ const routes: Routes = [
   },
   {
     path :"profile",
-    component :UserProfileComponent
+    component :UserProfileComponent, canActivate:[AuthGuard]
   },
   {
     path :"search",
@@ -55,40 +58,44 @@ const routes: Routes = [
   },
   {
     path: "createEvent",
-    component: EventTypeComponent
+    component: EventTypeComponent, canActivate:[AuthGuard]
     // component: EventTypeComponent, canActivate:[AuthGuard]
   },
   {
     path: "createRSVPEvent",
-    component: RsvpEventComponent
+    component: RsvpEventComponent, canActivate:[AuthGuard]
   },
   {
-    path: "rsvpInvitation",
-    component: RsvpInvitationComponent
+    path: ":id/rsvpInvitation",
+    component: RsvpInvitationComponent ,canActivate:[AuthGuard]
   },
   {
-    path: "userProfile",
-    component: UserProfileComponent
+    path: "bookingHistory",
+    component: BookingHistoryComponent, canActivate:[AuthGuard]
   },
   {
     path: "movieinfo",
     component: MovieInfoComponent
   },
   {
+    path: "ticketinfo",
+    component: TicketedInfoComponent
+  },
+  {
     path: "createOtherTicketedEvent",
-    component: OtherTicketedEventComponent
+    component: OtherTicketedEventComponent, canActivate:[AuthGuard]
   },
   {
     path: "createMovieEvent",
-    component: MovieEventComponent
+    component: MovieEventComponent, canActivate:[AuthGuard]
   },
   {
     path: "theatre",
-    component: TheatreComponent
+    component: TheatreComponent, canActivate:[AuthGuard]
   },
   {
     path:'rsvpEvent/:id',
-    component:RsvpEventpageComponent
+    component:RsvpEventpageComponent, canActivate:[AuthGuard]
   },
   {
     path:"theatreLayout",
@@ -99,12 +106,12 @@ const routes: Routes = [
     component: SocketConnectionComponent
   },
   {
-    path:"InviteeDetails",
-    component:InviteeDetailsComponent
+    path:":id/InviteeDetails",
+    component:InviteeDetailsComponent, canActivate:[AuthGuard]
   },
   {
-    path:"organiserRsvpView",
-    component:OrganiserRsvpViewComponent
+    path:":id/organiserRsvpView",
+    component:OrganiserRsvpViewComponent, canActivate:[AuthGuard]
   }
 ];
 

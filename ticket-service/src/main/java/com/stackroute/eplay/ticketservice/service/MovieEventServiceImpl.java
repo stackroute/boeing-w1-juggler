@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,6 +48,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 		this.movieRepository=movieRepository;
 		this.movieEventRepository = movieEventRepository;
 		this.movieEventStreams= movieEventStreams;
+		this.finalMovieEventStreams=finalMovieEventStreams;
 		this.updateMovieEventStreams=updateMovieEventStreams;
 	}
 	public MovieEventServiceImpl() {}
@@ -70,7 +72,9 @@ public class MovieEventServiceImpl implements MovieEventService{
 				Show show=new Show();
 				show.setSeats(seats);
 				show.setShowId(nextSequenceService.getNextSequence("counter"));
-				LocalTime showTime=sdf.parse(showTimes[j].trim()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+		//		LocalTime showTime=sdf.parse(showTimes[j].trim()).toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+				LocalTime showTime=LocalTime.parse(showTimes[j].trim(),
+				           DateTimeFormatter.ofPattern("HH:mm"));
 				show.setStartTime(showTime);
 				show.setPrice(200);
 				show.setDate(releaseDate.plusDays(i));
@@ -108,7 +112,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 		return movieEventRepository.findById(id);
 	}
 	public void updateMovieEvent(Show show) {
-		
+		System.out.println("Change the status after scheduler");
 		MovieEvent movieEvent= getMovieEventById(show.getMovieEventId()).get();
 		//int showCount=movieEvent.getShowCount()+1;
 		//movieEvent.setShowCount(showCount);
@@ -127,7 +131,7 @@ public class MovieEventServiceImpl implements MovieEventService{
 		movieEvent.setShows(shows);
 		
 		movieEventRepository.save(movieEvent);
-		   movieEventRepository.save(movieEvent);
+		  
 			MessageChannel messageChannel = finalMovieEventStreams.outboundfinalMovieEvent();
 	        messageChannel.send(MessageBuilder.withPayload(movieEvent)
 	                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
