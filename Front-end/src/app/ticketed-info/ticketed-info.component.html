@@ -2,9 +2,9 @@
 <div class="test">
     <div class="poster-container">
         <!--"https://picsum.photos/1300/300?image=992"-->
-        <img src={{event.poster}} alt="Sorry movie not available" />
-        <h2>{{event.name}}</h2>
+        <img src={{event.backGroundPoster}} alt="Sorry movie not available" />
     </div>
+    <h2>{{event.name}}</h2>
     <div class="bookButton">
         <button mat-raised-button (click)="bookEvent()">Book Now</button>
     </div>
@@ -20,6 +20,7 @@
               </div>
               <div class="labelDate">
                   Date: {{event.date | date:'dd/MM/yyyy'}}
+                  at {{event.date | date:'HH:mm'}}
               </div>
               <div class="labelPrice">
                   Ticket Price: {{event.price}}

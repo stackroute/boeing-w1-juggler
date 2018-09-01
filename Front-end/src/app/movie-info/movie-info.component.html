@@ -2,7 +2,7 @@
 <div class="test">
     <div class="poster-container">
         <!--"https://picsum.photos/1300/300?image=992"-->
-        <img src={{movies.poster}} alt="Sorry movie not available" />
+        <img src={{movies.backGroundPoster}} alt="Sorry movie not available" />
         <h2>{{movies.name}}</h2>
     </div>
     <div *ngIf="movieDescription(); else filler" class="description">

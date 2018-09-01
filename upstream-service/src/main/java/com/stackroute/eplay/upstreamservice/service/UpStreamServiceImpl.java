@@ -70,7 +70,7 @@ public class UpStreamServiceImpl implements UpStreamService{
 	public void postTicketedEvent(TicketedEvent event) {
 		// Set Ticket event Id
 		event.setId(nextSequenceService.getNextSequence("counter"));
-		
+		event.setLocalDate(event.getDate().toString().substring(0, 10));
 		MessageChannel messageChannel = ticketedEventStream.outboundEvents();
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)

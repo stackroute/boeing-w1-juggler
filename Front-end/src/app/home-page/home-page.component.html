@@ -1,8 +1,8 @@
 <app-nav-bar></app-nav-bar>
 
 <mat-grid-list cols="12">
-  <section *ngIf="!loggedIn()" class="hero" >
-    <div  class="hero-inner">
+  <section *ngIf="!loggedIn()" class="hero">
+    <div class="hero-inner">
       <h1>Welcome to E-Play</h1>
       <h2>Create Events,book movie tickets and much more..!!</h2>
       <p>
@@ -11,11 +11,17 @@
       <p>
         <button class="btn btn-info" (click)="scroll(target)" mat-button mat-raised-button>Book movies</button>
         <!-- <a href="profileasa">Book movies</a> -->
+
+        <button class="btn btn-info" (click)="scroll(target1)" mat-button mat-raised-button style="margin-left: 8px">Upcoming events</button>
       </p>
+
+
+
       <!-- <a href="https://example.com/" class="btn">Go ahead...</a> -->
     </div>
   </section>
-  <div *ngIf="loggedIn() && recommendedMovie!=null">
+
+  <div *ngIf=" recommendedMovie!=null && recommendedMovie.length>0">
     <!-- <div *ngFor="let movie of recommendedMovie"> -->
 
     <div id="container">
@@ -38,8 +44,9 @@
         </div>
 
       </ng-template>
-      <h3>You might also like..</h3>
+      <h3 style="margin-top: 0px;">You might also like..</h3>
     </div>
+
     <!-- <div>
         <button type="reset" mat-raised-button class="btn btn-secondary" (click)="reset()">Go back to homepage</button>
       </div> -->
@@ -109,7 +116,7 @@
     </div>
     <ng-template #elseBlock>
       <mat-grid-list cols="12">
-        <h3>Movies</h3>
+        <h3 style="margin-top: 0%">Movies</h3>
         <div id="profileasa">
           <div class="movieCard" *ngFor="let movie of movie$">
             <mat-grid-tile colspan="4" rowspan="5">
@@ -121,7 +128,7 @@
                       <h5>{{movie.name}}</h5>
                     </mat-card-title>
                   </mat-card-header>
-                  <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
+                  <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
                   <mat-card-actions>
                     <button class="btn btn-secondary" mat-button mat-raised-button>View and Book</button>
                   </mat-card-actions>
@@ -153,7 +160,7 @@
 
   <mat-grid-list cols="12">
 
-    <h3>Events</h3>
+    <h3 #target1>Events</h3>
 
 
     <div *ngFor="let movie of event$">
@@ -166,7 +173,7 @@
                 <h5>{{movie.name}}</h5>
               </mat-card-title>
             </mat-card-header>
-            <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
+            <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
             <mat-card-actions>
               <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
             </mat-card-actions>

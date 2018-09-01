@@ -91,14 +91,11 @@ public class KafkaListener {
 		try {
 			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
-			List<RSVPEvent> rsvpEvents;
-			if (user.getRsvpEvents() == null)
+			
+			List<RSVPEvent> rsvpEvents=user.getRsvpEvents();
+			if (user.getRsvpEvents() == null) {
 				rsvpEvents = new ArrayList<>();
-			else
-				rsvpEvent.setLocalStartDate(rsvpEvent.getStartDate().toString().substring(0, 10));
-
-			    rsvpEvent.setLocalEndDate(rsvpEvent.getEndDate().toString().substring(0, 10));
-				rsvpEvents = user.getRsvpEvents();
+			}
 			rsvpEvents.add(rsvpEvent);
 			user.setRsvpEvents(rsvpEvents);
 
@@ -129,15 +126,15 @@ public class KafkaListener {
 		try {
 			Registration user = registerUser.findByUsername(userName);
 			System.out.println(user.getUserName() + " " + user.getFullName());
-			List<TicketedEvent> ticketedEvents;
-			if (user.getTicketedEvent() == null)
+			List<TicketedEvent> ticketedEvents=user.getTicketedEvent();
+			
+			if (ticketedEvents== null) {
 				ticketedEvents = new ArrayList<>();
-			else
-				
-				ticketedEvent.setLocalDate(ticketedEvent.getDate().toString().substring(0, 10));
-				ticketedEvents = user.getTicketedEvent();
+			}
+			System.out.println(ticketedEvent.getDate());
 			ticketedEvents.add(ticketedEvent);
 			user.setTicketedEvent(ticketedEvents);
+			
 
 			/*
 			 * updating the content in database
