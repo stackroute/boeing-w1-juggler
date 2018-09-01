@@ -35,6 +35,7 @@ public class TicketedEventServiceImpl implements TicketedEventService {
 	public TicketedEvent saveTicketedEvent(TicketedEvent ticketedEvent) throws TicketedEventAlreadyExistException {
 		TicketedEvent te = getTicketedEventById(ticketedEvent.getId());
 		if (te == null) {
+			ticketedEvent.setRemainingSeats(ticketedEvent.getCapacity());
 			te = ticketedEventRepository.save(ticketedEvent);
 			return te;
 		}
