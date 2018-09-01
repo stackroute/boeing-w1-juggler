@@ -20,7 +20,8 @@
         <!-- <a href="https://example.com/" class="btn">Go ahead...</a> -->
       </div>
     </section>
-    <div *ngIf="recommendedMovie!=null && recommendedMovie.length>0">
+
+    <div *ngIf=" recommendedMovie!=null && recommendedMovie.length>0">
       <!-- <div *ngFor="let movie of recommendedMovie"> -->
 
       <div id="container">
@@ -43,7 +44,7 @@
           </div>
 
         </ng-template>
-        <h3 style="margin-top: 4px;color: azure">You might also like..</h3>
+        <h3 style="margin-top: 0px;">You might also like..</h3>
       </div>
 
       <!-- <div>
@@ -74,9 +75,9 @@
 
     <!-- <mat-grid-list cols="12"> -->
 
-    <div #target id="target">
+    <div #target>
       <div *ngIf="rec$; else elseBlock">
-        <h2 style="margin-top: 4px;color: azure">Your filtered results..</h2>
+        <h2>Your filtered results..</h2>
         <div align="center">
           <button type="reset" mat-raised-button class="btn btn-secondary" (click)="reset()">Reset</button>
         </div>
@@ -115,18 +116,18 @@
       </div>
       <ng-template #elseBlock>
         <mat-grid-list cols="12">
-          <h3 style="margin-top: 4px;color: azure">Movies</h3>
+          <h3 style="color:azure;margin-top:4px">Movies</h3>
           <div id="profileasa">
             <div class="movieCard" *ngFor="let movie of movie$">
               <mat-grid-tile colspan="4" rowspan="5">
                 <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
-                  <mat-card class="example-card">
-                    <mat-card-header>
-                      <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                      <mat-card-title>
-                        <h5>{{movie.name}}</h5>
-                      </mat-card-title>
-                    </mat-card-header>
+                  <mat-card class="render1">
+                    <!-- <mat-card-header>
+                    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                    <!-- <mat-card-title>
+                      <h5>{{movie.name}}</h5>
+                    </mat-card-title>
+                  </mat-card-header> -->
                     <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
                     <mat-card-actions>
                       <button class="btn btn-secondary" mat-button mat-raised-button>View and Book</button>
@@ -159,23 +160,26 @@
 
     <mat-grid-list cols="12">
 
-      <h3 #target1 style="margin-top: 4px;color: azure">Events</h3>
-
-
+      <h3 #target1 style="color:azure;margin-top:4px">Events</h3>
       <div *ngFor="let movie of event$">
         <mat-grid-tile colspan="4" rowspan="5">
-          <a [routerLink]="['/ticketinfo']" (click)="goMoviePage(movie)">
-            <mat-card class="example-card">
-              <mat-card-header>
-                <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                <mat-card-title>
-                  <h5>{{movie.name}}</h5>
-                </mat-card-title>
-              </mat-card-header>
-              <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
+          <a href="ticketinfo" (click)="goMoviePage(movie)">
+            <mat-card class="render1">
+              <!-- <mat-card-header>
+              <!-- <div mat-card-avatar class="example-header-image"></div> -->
+              <!-- <mat-card-title>
+                <h5>{{movie.name}}</h5>
+              </mat-card-title>
+            </mat-card-header> -->
+
+              <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
               <mat-card-actions>
-                <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
+                <h6 style="font-family: 'Times New Roman', Times, serif"> {{movie.name}}</h6>
+                {{movie.city}} {{movie.localDate}}
+
+                <!-- <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button> -->
               </mat-card-actions>
+
             </mat-card>
           </a>
         </mat-grid-tile>
@@ -184,5 +188,4 @@
 
 
   </mat-grid-list>
-
 </div>

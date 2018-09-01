@@ -51,12 +51,24 @@ mat-grid-list {
   transform: scale(1.1, 1.1); /** default is 1, scale it to 1.5 */
   opacity: 1.2;
 }
-.render {
+/* .render {
   /* min-height: auto;
     max-height: auto; */
-  height: 300px; /* Your height here */
-  width: 345px;
+  /* height: 300px; /* Your height here */
+  /* width: 345px; */
+  /* overflow: hidden; */
+ 
+/* }  */
+.render1{
+  border-radius: 15px;
+  /* height: 300px;  */
+  /* width: 345px; */
   overflow: hidden;
+ 
+}
+.render{
+  width: 300px; 
+  height: 345px;
 }
 
 #left,
@@ -74,13 +86,13 @@ mat-grid-list {
 
 mat-card {
   border: 1px solid #999;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   /* border : 12px dashed #1b1a19; */
   /* border : 3px dashed #ccc; */
   /* background: #5bc0de */
-  background: #33b5e5;
+   background: #ffffff; 
   /* width: auto */
-}
+ }  
 
 h3 {
   text-align: center;
@@ -197,3 +209,10 @@ p {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+/* 
+.example-card{
+  border-radius: 25px;
+  border: 1px solid #999;
+  background: #33b5e5;
+} */
+

@@ -43,6 +43,13 @@ export class InviteeDetailsComponent implements OnInit {
         console.log(this.rsvpModel);
       });
     console.log("something", this.rsvpModel);
+
+    for (var i = 0; i < this.rsvpModel.rsvpInvitation.length; i++) 
+      {
+        this.rsvpModel.rsvpInvitation[i].inviteeEmail
+      }
+
+    
   }
   
 }
