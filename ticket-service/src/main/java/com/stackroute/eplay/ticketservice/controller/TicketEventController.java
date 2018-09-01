@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.eplay.ticketservice.domain.Movie;
 import com.stackroute.eplay.ticketservice.domain.MovieEvent;
+import com.stackroute.eplay.ticketservice.domain.Ticket;
 import com.stackroute.eplay.ticketservice.domain.TicketedEvent;
 import com.stackroute.eplay.ticketservice.exception.MovieAlreadyExistException;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
@@ -27,6 +28,7 @@ import com.stackroute.eplay.ticketservice.exception.TicketedEventAlreadyExistExc
 import com.stackroute.eplay.ticketservice.service.MovieEventService;
 import com.stackroute.eplay.ticketservice.service.MovieService;
 import com.stackroute.eplay.ticketservice.service.TicketedEventService;
+import com.stackroute.eplay.ticketservice.streams.BookTicketedEventStreams;
 import com.stackroute.eplay.ticketservice.streams.FinalMovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
@@ -38,7 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("ticket-service/api/v1")
-@EnableBinding({ MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class,FinalMovieEventStreams.class })
+@EnableBinding({ MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class,FinalMovieEventStreams.class, BookTicketedEventStreams.class })
 public class TicketEventController {
 	@Autowired
 	Environment env;
@@ -131,5 +133,11 @@ public class TicketEventController {
 		ticketedEvent.setRemainingSeats(ticketedEvent.getRemainingSeats()-1);
 		return "";
 	}*/
+	
+	@PutMapping("/bookTicketedEvent")
+	public ResponseEntity<?> bookTicketedEvent(@RequestBody Ticket ticket) {
+		return new ResponseEntity<Ticket>(ticketedEventService.bookTicketedEvent(ticket),
+				HttpStatus.OK);
+	}
 
 }
