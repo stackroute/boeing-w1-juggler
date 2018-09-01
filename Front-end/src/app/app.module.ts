@@ -51,6 +51,7 @@ import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { OrganiserRsvpViewComponent } from './organiser-rsvp-view/organiser-rsvp-view.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
 import { TicketedInfoComponent } from './ticketed-info/ticketed-info.component'
+import { AlertsModule } from 'angular-alert-module';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { TicketedInfoComponent } from './ticketed-info/ticketed-info.component'
     Ng2CarouselamosModule,
     MatExpansionModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    AlertsModule.forRoot()
   ],
   providers: [MatNativeDateModule],
 

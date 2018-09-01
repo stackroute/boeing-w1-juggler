@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { BlockSeat } from "../models/SeatBlock";
 import { PaymentService } from "../payment.service";
 import { Observable } from "rxjs";
+import { AlertsService } from 'angular-alert-module';
 
 export interface Tile {
   poster: string;
@@ -101,7 +102,7 @@ export class PaymentPageComponent implements OnInit {
   seconds = 60;
   minutes = 9;
 
-  constructor(private data: PaymentService) {}
+  constructor(private data: PaymentService, private alerts: AlertsService) {}
 
   ngOnInit() {
     this.start();
@@ -126,6 +127,7 @@ export class PaymentPageComponent implements OnInit {
     console.log("payment staus", this.paymentStatus);
     this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
+    this.alerts.setMessage('Payment failed, please try again.','error');
   }
 
   onClickSuccess() {
@@ -138,6 +140,7 @@ export class PaymentPageComponent implements OnInit {
     console.log("payment status", this.paymentStatus);
     this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
+    this.alerts.setMessage('Seat No: '+JSON.stringify(this.paymentStatus.seats)+' booked successfully','success');
   }
 
   itemsAdded(it) {
