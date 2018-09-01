@@ -1,40 +1,40 @@
 <app-nav-bar></app-nav-bar>
+<div class="homepage">
+  <mat-grid-list cols="12">
+    <section *ngIf="!loggedIn()" class="hero">
+      <div class="hero-inner">
+        <h1>Welcome to E-Play</h1>
+        <h2>Create Events,book movie tickets and much more..!!</h2>
+        <p>
+          <button class="btn btn-danger" mat-button mat-raised-button routerLink="/createEvent" routerLinkActive="active">Create Event</button>
+        </p>
+        <p>
+          <button class="btn btn-info" (click)="scroll(target)" mat-button mat-raised-button>Book movies</button>
+          <!-- <a href="profileasa">Book movies</a> -->
 
-<mat-grid-list cols="12">
-  <section *ngIf="!loggedIn()" class="hero">
-    <div class="hero-inner">
-      <h1>Welcome to E-Play</h1>
-      <h2>Create Events,book movie tickets and much more..!!</h2>
-      <p>
-        <button class="btn btn-danger" mat-button mat-raised-button routerLink="/createEvent" routerLinkActive="active">Create Event</button>
-      </p>
-      <p>
-        <button class="btn btn-info" (click)="scroll(target)" mat-button mat-raised-button>Book movies</button>
-        <!-- <a href="profileasa">Book movies</a> -->
-
-        <button class="btn btn-info" (click)="scroll(target1)" mat-button mat-raised-button style="margin-left: 8px">Upcoming events</button>
-      </p>
+          <button class="btn btn-info" (click)="scroll(target1)" mat-button mat-raised-button style="margin-left: 8px">Upcoming events</button>
+        </p>
 
 
 
-      <!-- <a href="https://example.com/" class="btn">Go ahead...</a> -->
-    </div>
-  </section>
-
-  <div *ngIf=" recommendedMovie!=null && recommendedMovie.length>0">
-    <!-- <div *ngFor="let movie of recommendedMovie"> -->
-
-    <div id="container">
-      <div ng2-carouselamos class="slide-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next" [$item]="item">
+        <!-- <a href="https://example.com/" class="btn">Go ahead...</a> -->
       </div>
+    </section>
 
-      <ng-template #prev>
-        <img src="/assets/images/if_icon-ios7-arrow-back_211686.png" id="left">
-      </ng-template>
+    <div *ngIf=" recommendedMovie!=null && recommendedMovie.length>0">
+      <!-- <div *ngFor="let movie of recommendedMovie"> -->
 
-      <ng-template #next>
-        <img src="/assets/images/if_icon-ios7-arrow-forward_211688.png" id="right">
-      </ng-template>
+      <div id="container">
+        <div ng2-carouselamos class="slide-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next" [$item]="item">
+        </div>
+
+        <ng-template #prev>
+          <img src="/assets/images/if_icon-ios7-arrow-back_211686.png" id="left">
+        </ng-template>
+
+        <ng-template #next>
+          <img src="/assets/images/if_icon-ios7-arrow-forward_211688.png" id="right">
+        </ng-template>
 
       <ng-template #item let-item let i="index">
         <div *ngFor="let movie of recommendedMovie" class="items">
@@ -43,17 +43,17 @@
           </a>
         </div>
 
-      </ng-template>
-      <h3 style="margin-top: 0px;">You might also like..</h3>
-    </div>
+        </ng-template>
+        <h3 style="margin-top: 0px;">You might also like..</h3>
+      </div>
 
-    <!-- <div>
+      <!-- <div>
         <button type="reset" mat-raised-button class="btn btn-secondary" (click)="reset()">Go back to homepage</button>
       </div> -->
-    <!-- </div> -->
-  </div>
+      <!-- </div> -->
+    </div>
 
-  <!-- <div *ngIf="rec$; else elseBlock">
+    <!-- <div *ngIf="rec$; else elseBlock">
     Recommendations for you..!
     <div>
         <button type="reset" mat-raised-button color="secondary" (click)="reset()">Reset</button>
@@ -73,36 +73,36 @@
   
 </mat-grid-list> -->
 
-  <!-- <mat-grid-list cols="12"> -->
+    <!-- <mat-grid-list cols="12"> -->
 
-  <div #target>
-    <div *ngIf="rec$; else elseBlock">
-      <h2>Your filtered results..</h2>
-      <div align="center">
-        <button type="reset" mat-raised-button class="btn btn-secondary" (click)="reset()">Reset</button>
-      </div>
-      <div id="container">
-        <div ng2-carouselamos class="slide-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next" [$item]="item">
+    <div #target>
+      <div *ngIf="rec$; else elseBlock">
+        <h2>Your filtered results..</h2>
+        <div align="center">
+          <button type="reset" mat-raised-button class="btn btn-secondary" (click)="reset()">Reset</button>
+        </div>
+        <div id="container">
+          <div ng2-carouselamos class="slide-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next" [$item]="item">
+          </div>
+
+          <ng-template #prev>
+            <img src="/assets/images/if_icon-ios7-arrow-back_211686.png" id="left">
+          </ng-template>
+
+          <ng-template #next>
+            <img src="/assets/images/if_icon-ios7-arrow-forward_211688.png" id="right">
+          </ng-template>
+
+          <ng-template #item let-item let i="index">
+            <div *ngFor="let movie of rec$" class="items">
+              <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
+                <img class="movieposter" src="{{ movie.poster }}">
+              </a>
+            </div>
+          </ng-template>
         </div>
 
-        <ng-template #prev>
-          <img src="/assets/images/if_icon-ios7-arrow-back_211686.png" id="left">
-        </ng-template>
-
-        <ng-template #next>
-          <img src="/assets/images/if_icon-ios7-arrow-forward_211688.png" id="right">
-        </ng-template>
-
-        <ng-template #item let-item let i="index">
-          <div *ngFor="let movie of rec$" class="items">
-            <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
-              <img class="movieposter" src="{{ movie.poster }}">
-            </a>
-          </div>
-        </ng-template>
-      </div>
-
-      <!-- <div *ngFor="let movie of rec$">
+        <!-- <div *ngFor="let movie of rec$">
   
         <mat-grid-tile colspan="4" rowspan="6">
           <mat-card class="example-card">
@@ -113,38 +113,38 @@
           </mat-card>
         </mat-grid-tile>
       </div> -->
-    </div>
-    <ng-template #elseBlock>
-      <mat-grid-list cols="12">
-        <h3 style="margin-top: 0%">Movies</h3>
-        <div id="profileasa">
-          <div class="movieCard" *ngFor="let movie of movie$">
-            <mat-grid-tile colspan="4" rowspan="5">
-              <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
-                <mat-card class="render1">
-                  <!-- <mat-card-header>
+      </div>
+      <ng-template #elseBlock>
+        <mat-grid-list cols="12">
+          <h3 style="color:azure;margin-top:4px">Movies</h3>
+          <div id="profileasa">
+            <div class="movieCard" *ngFor="let movie of movie$">
+              <mat-grid-tile colspan="4" rowspan="5">
+                <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
+                  <mat-card class="render1">
+                    <!-- <mat-card-header>
                     <!-- <div mat-card-avatar class="example-header-image"></div> -->
                     <!-- <mat-card-title>
                       <h5>{{movie.name}}</h5>
                     </mat-card-title>
-                  </mat-card-header> --> 
-                  <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
-                  <mat-card-actions>
-                    <button class="btn btn-secondary" mat-button mat-raised-button>View and Book</button>
-                  </mat-card-actions>
-                </mat-card>
-              </a>
-            </mat-grid-tile>
+                  </mat-card-header> -->
+                    <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
+                    <mat-card-actions>
+                      <button class="btn btn-secondary" mat-button mat-raised-button>View and Book</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </a>
+              </mat-grid-tile>
+            </div>
           </div>
-        </div>
-      </mat-grid-list>
-    </ng-template>
-  </div>
+        </mat-grid-list>
+      </ng-template>
+    </div>
 
-  <!-- </mat-grid-list> -->
-  <!-- <hr> -->
-  <!-- </mat-grid-list> -->
-  <!-- <mat-grid-list cols="12">
+    <!-- </mat-grid-list> -->
+    <!-- <hr> -->
+    <!-- </mat-grid-list> -->
+    <!-- <mat-grid-list cols="12">
     <h1>Events</h1>
     <div *ngFor="let movie of event$">
       <mat-grid-tile colspan="4" rowspan="6">
@@ -158,36 +158,34 @@
     </div>
   </mat-grid-list> -->
 
-  <mat-grid-list cols="12">
+    <mat-grid-list cols="12">
 
-    <h3 #target1>Events</h3>
-
-
-    <div *ngFor="let movie of event$">
-      <mat-grid-tile colspan="4" rowspan="5">
-        <a href="ticketinfo" (click)="goMoviePage(movie)">
-          <mat-card class="render1">
-            <!-- <mat-card-header>
+      <h3 #target1 style="color:azure;margin-top:4px">Events</h3>
+      <div *ngFor="let movie of event$">
+        <mat-grid-tile colspan="4" rowspan="5">
+          <a href="ticketinfo" (click)="goMoviePage(movie)">
+            <mat-card class="render1">
+              <!-- <mat-card-header>
               <!-- <div mat-card-avatar class="example-header-image"></div> -->
               <!-- <mat-card-title>
                 <h5>{{movie.name}}</h5>
               </mat-card-title>
             </mat-card-header> -->
-            
-            <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
-            <mat-card-actions>
-               <h6 style="font-family: 'Times New Roman', Times, serif"> {{movie.name}}</h6>
-                {{movie.city}}
-                {{movie.localDate}}
-               
-              <!-- <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button> -->
-            </mat-card-actions>
-           
-          </mat-card>
-        </a>
-      </mat-grid-tile>
-    </div>
+
+              <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
+              <mat-card-actions>
+                <h6 style="font-family: 'Times New Roman', Times, serif"> {{movie.name}}</h6>
+                {{movie.city}} {{movie.localDate}}
+
+                <!-- <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button> -->
+              </mat-card-actions>
+
+            </mat-card>
+          </a>
+        </mat-grid-tile>
+      </div>
+    </mat-grid-list>
+
+
   </mat-grid-list>
-
-
-</mat-grid-list>
+</div>

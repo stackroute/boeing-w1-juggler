@@ -136,6 +136,7 @@ public class TicketEventController {
 	
 	@PutMapping("/bookTicketedEvent")
 	public ResponseEntity<?> bookTicketedEvent(@RequestBody Ticket ticket) {
+		logger.info("inside controller: ticket =  " + ticket.toString());
 		return new ResponseEntity<Ticket>(ticketedEventService.bookTicketedEvent(ticket),
 				HttpStatus.OK);
 	}

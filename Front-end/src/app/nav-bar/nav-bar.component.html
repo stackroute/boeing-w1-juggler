@@ -57,9 +57,11 @@
             </div>
           </div>
         </li>  -->
-
+        <li class="nav-item">
+          <a href="#" class="nav-link"></a>
+        </li>
         <li class="nav-item active">
-          <a routerLink="/changeCity" matTooltip="Change your city" class="nav-link">City</a>
+          <a routerLink="/changeCity" matTooltip="Change your city" class="nav-link">Change City</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link"></a>
@@ -183,7 +185,7 @@
                 <br>
 
                 <div>
-                  <button class="btn btn-info" mat-raised-button>Select</button>
+                  <button class="btn btn-info" (click)="scroll()"mat-raised-button>Select</button>
                 </div>
                 <br>
                 <div>

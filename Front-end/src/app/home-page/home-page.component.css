@@ -26,10 +26,11 @@ mat-grid-list {
   margin-top: 1%;
 }
 
+
 #container {
   width: 100%;
-  margin: 5em auto;
-  padding: 0;
+  margin-top: 50px;
+  /* padding-bottom: -50px; */
   background: transparent;
 }
 .items {
@@ -73,8 +74,9 @@ mat-grid-list {
 #left,
 #right {
   margin: 30px;
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
+  color: aliceblue
 }
 
 /* img{
@@ -94,10 +96,10 @@ mat-card {
 
 h3 {
   text-align: center;
-  text-shadow: 2px 2px;
-  padding-bottom: 0;
+  /* text-shadow: 2px 2px; */
+  /* padding-bottom: 0; */
   color: rgb(127, 130, 133);
-  margin-top: 4%;
+  /* margin-top: 1%; */
 }
 h2 {
   text-align: center;
@@ -167,7 +169,7 @@ div ng2-carouselamos {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 .bgimage h5 {
   margin-top: 50px;
@@ -193,7 +195,15 @@ p {
 
   /* Background styles */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://secure.static.tumblr.com/4d3dd0aabf6c52c57afc18879c169ae1/riqitkz/9nhn15y8u/tumblr_static_2012_movies_collage.jpg");
+    url("/assets/images/Heroimage.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.homepage{
+  background: url("http://getwallpapers.com/wallpaper/full/9/0/9/994206-free-large-background-images-2560x1440.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

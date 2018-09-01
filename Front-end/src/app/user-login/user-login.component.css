@@ -39,10 +39,12 @@ body {
   margin: auto;
   max-width: 70%;
   max-height: 20%;
-  margin-bottom: 2%;
+  /* margin-bottom: %; */
   background: transparent;
 }
-
+.userlog,body{
+   background-image: url("/assets/images/userandregisterbckground.1.jpg"); 
+}
 .list-viewer-wrapper {
   border: outset;
 }

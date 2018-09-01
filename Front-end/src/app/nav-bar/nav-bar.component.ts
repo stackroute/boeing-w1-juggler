@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { SearchDataService } from "../search-data.service";
 import { RecommendationService } from "../recommendation.service";
 import { Movie } from "../movie";
 import { AuthenticationService } from '../authentication.service';
 import { FormBuilder,FormGroup,FormArray,FormControl,ValidatorFn} from "@angular/forms";
+import { HomePageComponent } from "../home-page/home-page.component";
+import { Router } from "@angular/router";
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
+
 export class NavBarComponent implements OnInit {
   
   omdbSearchTitle: string;
   User: string;
-
+ // @Inject(HomePageComponent) homePage: HomePageComponent;
   // constructor(
   //   private data: SearchDataService,
   //   private authenticationService:AuthenticationService
@@ -46,8 +50,10 @@ export class NavBarComponent implements OnInit {
 
   constructor(
     private recommendationservice: RecommendationService,
-    private formBuilder: FormBuilder,private data: SearchDataService,
-    private authenticationService:AuthenticationService
+    private formBuilder: FormBuilder,
+    private data: SearchDataService,
+    private authenticationService:AuthenticationService,
+    private router: Router,
   ) {
     // Create a new array with a form control for each order
     const controls = this.genresList.map(c => new FormControl(false));
@@ -56,7 +62,10 @@ export class NavBarComponent implements OnInit {
       genresList: new FormArray(controls)
     });
   }
-
+  //constructor(private data: SearchDataService, private router: Router, private recommendationService: RecommendationService, private authenticationService:AuthenticationService) {
+   
+  
+ 
   submit() {
     console.log("inside submit")
     const selectedGenres = this.form.value.genresList
@@ -78,5 +87,11 @@ export class NavBarComponent implements OnInit {
   }
   loggedIn(){
     return this.authenticationService.loggedIn();
+   }
+
+   scroll(){
+   console.log("inside scroll()");
+   let homePage = new HomePageComponent(this.data,this.router,this.recommendationservice,this.authenticationService);
+   homePage.scrollTOTarget();
    }
 }

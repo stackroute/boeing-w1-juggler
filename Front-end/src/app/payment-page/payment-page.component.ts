@@ -11,6 +11,7 @@ export interface Tile {
   color: string;
   price: number;
   count: number;
+  overflow:string;
 }
 
 @Component({
@@ -26,9 +27,10 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020001_13082018125322.jpg",
-      color: "",
+      color: "wheat",
       price: 280,
-      count: 0
+      count: 0,
+      overflow:""
     },
     {
       text: "Couple Combo",
@@ -36,9 +38,10 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020005_17082018144820.jpg",
-      color: "",
+      color: "wheat",
       price: 570,
-      count: 0
+      count: 0,
+      overflow:""
     },
     {
       text: "Regular Combo",
@@ -46,11 +49,12 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020007_16082018153109.jpg",
-      color: "",
+      color: "wheat",
       price: 380,
-      count: 0
+      count: 0,
+      overflow:""
     },
-    { text: "two", cols: 1.8, rows: 7, poster: "", color: "white", price: 0, count: 0 },
+    { text: "two", cols: 1.8, rows: 7, poster: "", color: "wheat", price: 0, count: 0,overflow:"scroll" },
     //{text: '', cols: 1, rows: 7,poster:'', color: ''},
     {
       text: "Nachos with Salsa",
@@ -58,9 +62,10 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020006_06082018135441.jpg",
-      color: "",
+      color: "wheat",
       price: 250,
-      count: 0
+      count: 0,
+      overflow:""
     },
     {
       text: "Veg Burger",
@@ -68,9 +73,10 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020016_17082018120212.jpg",
-      color: "",
+      color: "wheat",
       price: 150,
-      count: 0
+      count: 0,
+      overflow:""
     },
     {
       text: "Sandwich",
@@ -78,9 +84,10 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020446_20082018182121.jpg",
-      color: "",
+      color: "wheat",
       price: 150,
-      count: 0
+      count: 0,
+      overflow:""
     }
     // {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
@@ -95,11 +102,12 @@ export class PaymentPageComponent implements OnInit {
   tax = 0;
   tile1 : Tile;
   //itemCount=1;
-
+  flag:any;
+  clicked:any;
   intervalId = 0;
   timer = "";
-  seconds = 60;
-  minutes = 9;
+  seconds = 50;
+  minutes = 0;
 
   constructor(private data: PaymentService) {}
 
@@ -117,6 +125,7 @@ export class PaymentPageComponent implements OnInit {
   }
 
   onClickFail() {
+    this.flag= true; 
     this.data.payMessage.subscribe(message => (this.paymentStatus = message));
     console.log("earlier payMessage", this.paymentStatus);
     this.paymentStatus.userName = localStorage.getItem("currentUser");
@@ -129,6 +138,8 @@ export class PaymentPageComponent implements OnInit {
   }
 
   onClickSuccess() {
+    this.clicked=true;
+    this.flag= true;
     this.data.payMessage.subscribe(message => (this.paymentStatus = message));
     console.log("earlier payMessage", this.paymentStatus);
     this.paymentStatus.userName = localStorage.getItem("currentUser");
@@ -197,6 +208,7 @@ export class PaymentPageComponent implements OnInit {
       this.seconds -= 1;
       if (this.minutes < 0) {
         this.timer = "Time Lapsed!";
+        this.flag= true;
         console.log(this.timer);
         this.stop();
       } else if (this.seconds < 10) {

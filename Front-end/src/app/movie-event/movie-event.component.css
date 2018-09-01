@@ -14,7 +14,9 @@
 /* .example-button {
     margin-left: 175px;
   } */
-
+.movieevent{
+  background-image: url("/assets/images/userandregisterbckground.1.jpg"); 
+}
 body {
   margin: 0;
 }
