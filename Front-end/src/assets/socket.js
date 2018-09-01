@@ -1,5 +1,5 @@
 var stompClient = null;
-
+var bookedSeatsTemp = null;
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
     $("#disconnect").prop("disabled", !connected);
@@ -22,13 +22,23 @@ function connect() {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/chat', function (blockedSeats) {
             console.log("Response: "+blockedSeats.body);
-            if(localStorage.getItem("showId")==JSON.parse(blockedSeats.body)["showId"]){
-                JSON.parse(blockedSeats.body)["seats"].forEach(element => {
+            var seats = JSON.parse(blockedSeats.body);
+            var elementClass=seats.status;
+            bookedSeatsTemp = seats;
+            if(localStorage.getItem("showId")==seats.showId){
+                seats.seats.forEach(element => {
                     id = element;
                     if(parseInt(element, 10)<10){
                         id = "0"+element;
                     }
-                    $("#"+id).addClass("blocked");
+                    if(elementClass=="open"){
+                        $("#"+id).removeClass("blocked");
+                        $("#"+id).removeClass("booked");
+                    } else{
+                        $("#"+id).removeClass("blocked");
+                        $("#"+id).addClass(elementClass);
+                        console.log("Hi i ma here: "+elementClass+" "+id);
+                    }
                 });
             }
         });
@@ -47,6 +57,8 @@ function disconnect() {
 }
 
 function sendBlockedSeats(blockedSeat) {
+    if(blockedSeat.status!="blocked")
+        blockedSeat.id = bookedSeatsTemp.id;
     console.log("Blocked Seats: " +  JSON.stringify(blockedSeat));
     stompClient.send("/app/send/message", {}, JSON.stringify(blockedSeat));
 }
