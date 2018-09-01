@@ -114,14 +114,14 @@
           <div class="movieCard" *ngFor="let movie of movie$">
             <mat-grid-tile colspan="4" rowspan="5">
               <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
-                <mat-card class="example-card">
-                  <mat-card-header>
+                <mat-card class="render1">
+                  <!-- <mat-card-header>
                     <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                    <mat-card-title>
+                    <!-- <mat-card-title>
                       <h5>{{movie.name}}</h5>
                     </mat-card-title>
-                  </mat-card-header>
-                  <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
+                  </mat-card-header> --> 
+                  <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
                   <mat-card-actions>
                     <button class="btn btn-secondary" mat-button mat-raised-button>View and Book</button>
                   </mat-card-actions>
@@ -158,18 +158,24 @@
 
     <div *ngFor="let movie of event$">
       <mat-grid-tile colspan="4" rowspan="5">
-        <a [routerLink]="['/ticketinfo']" (click)="goMoviePage(movie)">
-          <mat-card class="example-card">
-            <mat-card-header>
+        <a href="ticketinfo" (click)="goMoviePage(movie)">
+          <mat-card class="render1">
+            <!-- <mat-card-header>
               <!-- <div mat-card-avatar class="example-header-image"></div> -->
-              <mat-card-title>
+              <!-- <mat-card-title>
                 <h5>{{movie.name}}</h5>
               </mat-card-title>
-            </mat-card-header>
-            <img class="render" mat-card-image src="{{movie.poster}}" alt="movie poster">
+            </mat-card-header> -->
+            
+            <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
             <mat-card-actions>
-              <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
+               <h6 style="font-family: 'Times New Roman', Times, serif"> {{movie.name}}</h6>
+                {{movie.city}}
+                {{movie.localDate}}
+               
+              <!-- <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button> -->
             </mat-card-actions>
+           
           </mat-card>
         </a>
       </mat-grid-tile>
