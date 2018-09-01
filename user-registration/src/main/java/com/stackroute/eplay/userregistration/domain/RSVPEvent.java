@@ -30,16 +30,10 @@ public class RSVPEvent {
 	private String userName;
 	private String name;
 	private Date startDate;
-	private String localStartDate;
 	private String startTime;
-
-
 	private String venue;
 	private String poster;
-
 	private String description;
-
-
 	private int numberOfAttendees;
 	private boolean isCompleted;
 	private List<Invitation> rsvpInvitation;
