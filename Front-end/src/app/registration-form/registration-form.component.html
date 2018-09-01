@@ -50,7 +50,7 @@
       <form [formGroup]="registerForm">
         <div class="form-container">
           <mat-form-field>
-            <input id="userName" matInput formControlName="userName" [(ngModel)]="user.userName" placeholder="Enter your userName" />
+            <input id="userName" matInput formControlName="userName" [(ngModel)]="user.userName" placeholder="Enter your userName"  #message/>
             <div *ngIf="userName.dirty && userName.errors" class="error">
               <div *ngIf="userName.errors.required" class="validation_message">
                 Username required.
@@ -62,7 +62,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Enter your email" />
+            <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Enter your email" #action/>
             <div *ngIf="email.dirty && email.errors" class="error">
               <div *ngIf="email.errors.required" class="validation_message"> 
                 Email required.

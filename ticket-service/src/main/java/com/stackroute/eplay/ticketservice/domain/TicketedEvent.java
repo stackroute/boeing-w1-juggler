@@ -24,7 +24,7 @@ public class TicketedEvent {
     private int id;
     private String name;
     private Date date;
-    private String time;
+   
     private String city;
     private String location;
     private String poster;
@@ -34,8 +34,7 @@ public class TicketedEvent {
     private String description;
     private String price;
     private String performers;
-    private String termsAndConditions;
-    private String notes;
+ 
     private String userName;
 
 }

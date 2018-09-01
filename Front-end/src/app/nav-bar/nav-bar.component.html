@@ -91,21 +91,26 @@
           <a href="#" class="nav-link"></a>
         </li>
         <li class="nav-item">
-          <p>
+          
             <button class="btn btn-danger" mat-button mat-raised-button routerLink="/createEvent" routerLinkActive="active">Create Event</button>
-          </p>
+          
         </li>
         <!-- <li class="nav-item"> -->
         <button class="mat-raised-button btn-info" matTooltip="Click to quickly Signup" routerLink="/userRegistration" routerLinkActive="active"
           *ngIf="!authenticationService.loggedIn()">Login/SignUp</button>
-
+        <li class="nav-item">
+          <a href="#" class="nav-link"></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link"></a>
+        </li>
         <li class="nav-item dropdown">
 
           <mat-icon class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" *ngIf="authenticationService.loggedIn()"
             style="margin-right: 50px">person</mat-icon>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="profile">Event History</a>
-            <a class="dropdown-item" href="profile">Booking History</a>
+            <a class="dropdown-item" href="bookingHistory">Booking History</a>
             <a class="dropdown-item" href="#"> Accout & Settings</a>
             <a class="dropdown-item" href="#"> Help</a>
             <!-- <div class="dropdown-divider"></div> -->
@@ -214,8 +219,8 @@
             </div>
           </li>  -->
           <li class="nav-item">
-              <a href="#" class="nav-link"></a>
-            </li>
+            <a href="#" class="nav-link"></a>
+          </li>
           <li class="nav-item active">
             <a routerLink="/changeCity" matTooltip="Change your city" class="nav-link">Change City</a>
           </li>
