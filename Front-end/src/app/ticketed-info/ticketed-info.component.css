@@ -104,8 +104,11 @@ h2{
   width: 96%;
   display: block;
   margin-top: 1%;
-  background-color:rgb(245, 245, 214);
+  background-color:rgb(255, 255, 255);
   border-radius: 5px;
   padding-left: 1.2%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.menu{
+  color: darkgray
 }
