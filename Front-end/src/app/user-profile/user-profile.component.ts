@@ -65,9 +65,9 @@ export class UserProfileComponent implements OnInit {
         }
         
 
-        // console.log("movie List is", this.movieList);
-        // console.log("city list is", this.cityList);
-        // console.log("thatre list is", this.theatreList);
+        console.log("movie List is", this.movieList);
+        console.log("city list is", this.cityList);
+        console.log("thatre list is", this.theatreList);
       });
     
   }

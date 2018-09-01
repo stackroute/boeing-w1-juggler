@@ -1,10 +1,4 @@
-mat-card{
-    border :1px solid #999; 
-    /* border : 12px dashed #1b1a19; */
-    /* border : 3px dashed #ccc; */
-    /* background: #5bc0de */
-    background: #33b5e5;
-}
+
 
 h4, h2{
     text-align: left;
@@ -12,3 +6,23 @@ h4, h2{
     padding-bottom: 0;
     color: aliceblue
 }
+p {
+    margin-top: 50px;
+  }
+  .render1{
+    border-radius: 15px;
+    /* height: 300px;  */
+    /* width: 345px; */
+    overflow: hidden;
+   
+  }
+  .render{
+    width: 300px; 
+    height: 345px;
+  }
+  .mat-figure{
+    border-radius: 15px;
+    /* height: 300px;  */
+    /* width: 345px; */
+    overflow: hidden;
+  }

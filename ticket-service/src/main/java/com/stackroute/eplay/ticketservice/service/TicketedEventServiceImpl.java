@@ -69,6 +69,7 @@ public class TicketedEventServiceImpl implements TicketedEventService {
 	@Override
 	public Ticket bookTicketedEvent(Ticket ticket) {
 		// TODO Auto-generated method stub
+		logger.info("start of service impl of booking ticketed event");
 		int noOfSeats = ticket.getNoOfSeats();
 		int ticketedEventId = ticket.getTicketedEventId();
 		
@@ -76,6 +77,7 @@ public class TicketedEventServiceImpl implements TicketedEventService {
 		
 		int remainingSeats = ticketedEvent.getRemainingSeats() -  noOfSeats;
 		
+		logger.info("extracted data");
 		if(remainingSeats >= 0) {
 			ticketedEvent.setRemainingSeats(remainingSeats);
 			ticketedEventRepository.save(ticketedEvent);

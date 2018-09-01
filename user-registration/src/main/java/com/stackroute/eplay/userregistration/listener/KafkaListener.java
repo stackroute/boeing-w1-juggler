@@ -254,8 +254,10 @@ public class KafkaListener {
 	public void bookedTicketedEventPost(@Payload Ticket ticket) {
 		logger.info("sending email for " + ticket.toString());
 		String userName = ticket.getUserName();
+		logger.info("entering try block...  " + userName);
 		try {
-			Registration user = registerUser.findByUsername(userName);			
+			Registration user = registerUser.findByUsername(userName);	
+			logger.info("got user " + user.toString());
 //			int movieId = movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId();
 //			if (user.getBookedMovieId() == null)
 //				bookedMovieId = new ArrayList<>();
@@ -289,7 +291,7 @@ public class KafkaListener {
 //			} else {
 //				message+="Your payment is failed for booking seats in movieEventId: "+bookedMovieTickets.getMovieEventId() + ". Please try again.";
 //			}
-			
+			logger.info("composing email");
 			String message = "You have booked " + ticket.getNoOfSeats() + " tickets for the event " + ticket.getTicketedEventId() + ".\nHope you enjoy.";
 			InputEmailDetails email= new InputEmailDetails();
 			email.setEmailAddress(user.getEmail());

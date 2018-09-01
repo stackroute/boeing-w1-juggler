@@ -51,3 +51,26 @@
     margin-top: -30px;
     margin-left: 150px;
 }
+
+/* .payment{
+  margin-top:0;
+  background: url("http://getwallpapers.com/wallpaper/full/9/0/9/994206-free-large-background-images-2560x1440.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+} */
+
+hr {
+  border: none;
+  height: 1px;
+  /* Set the hr color */
+  color: #333; /* old IE */
+  background-color: #333; /* Modern Browsers */
+}
+.test{
+  border: #333;
+}
+.figure{
+  background: black
+}
