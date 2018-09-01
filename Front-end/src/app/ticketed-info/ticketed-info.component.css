@@ -26,6 +26,7 @@
     background-color: transparent;
     margin-right: 20px;
     color: black;
+    background-color:rgb(245, 245, 214);
   }
   
   
@@ -61,6 +62,13 @@
     float: right;
     display: inline;
     margin-right: 2%;
+    color: white;
+   background-color:rgb(52, 111, 223);
+
+  }
+
+  .bookButton{   
+    background-color:rgb(245, 245, 214);
   }
 
   .content{
@@ -72,17 +80,17 @@
  .labelLocation{
    color: black;
    display: block;
-   width: 35%;
+
 }
 .labelDate{
    color: black;
    display: block;
-   width: 35%;
+
 }
 .labelPrice{
    color:black;
    display: block;
-   width: 35%;
+
 }
  .details{
    margin-top: 3%;
