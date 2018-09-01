@@ -17,6 +17,8 @@ export class HomePageComponent implements OnInit {
   message: string;
   rec$: any;
   recommendedMovie= null;
+  myElement: HTMLElement = document.getElementById('target');
+
   constructor(private data: SearchDataService, private router: Router, private recommendationService: RecommendationService, private authenticationService:AuthenticationService) {
     this.items=[
       { name :"{{movie.poster}}"}
@@ -67,5 +69,10 @@ export class HomePageComponent implements OnInit {
 
   loggedIn(){
    return this.authenticationService.loggedIn();
+  }
+
+  scrollTOTarget(){
+    console.log("inside scrollTOTarget()");
+    this.myElement.scrollIntoView();
   }
 }

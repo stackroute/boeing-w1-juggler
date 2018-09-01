@@ -2,6 +2,8 @@ package com.stackroute.eplay.ticketservice.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
@@ -22,6 +24,8 @@ public class TicketedEventServiceImpl implements TicketedEventService {
 	TicketedEventStreams ticketedEventStreams;
 	BookTicketedEventStreams bookTicketedEventStreams;
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	public TicketedEventServiceImpl(TicketedEventRepository ticketedEventRepository,
 			TicketedEventStreams ticketedEventStreams, 
@@ -65,6 +69,7 @@ public class TicketedEventServiceImpl implements TicketedEventService {
 	@Override
 	public Ticket bookTicketedEvent(Ticket ticket) {
 		// TODO Auto-generated method stub
+		logger.info("start of service impl of booking ticketed event");
 		int noOfSeats = ticket.getNoOfSeats();
 		int ticketedEventId = ticket.getTicketedEventId();
 		
@@ -72,15 +77,18 @@ public class TicketedEventServiceImpl implements TicketedEventService {
 		
 		int remainingSeats = ticketedEvent.getRemainingSeats() -  noOfSeats;
 		
+		logger.info("extracted data");
 		if(remainingSeats >= 0) {
 			ticketedEvent.setRemainingSeats(remainingSeats);
 			ticketedEventRepository.save(ticketedEvent);
 			
+			logger.info("sending ticket: " + ticket.toString() + " to kafka");
 			MessageChannel messageChannel = bookTicketedEventStreams.outboundTicketedEventTicket();
 			messageChannel.send(MessageBuilder.withPayload(ticket)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
 			
 		} else {
+			logger.info("remaining seats less than " + ticket.getNoOfSeats());
 			ticket.setNoOfSeats(-1);
 		}
 		
