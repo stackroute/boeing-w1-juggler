@@ -1,69 +1,68 @@
-mat-grid-list{
-    margin-top: 58px;
+mat-grid-list {
+  margin-top: 58px;
 }
 
-
-  
-  /* .example-header-image {
+/* .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
   } */
 
 footer {
-    /* position: ficlass="example-card"xed; */
-    right: 0;
-    bottom: 0;
-    /* margin-bottom: 0px; */
-    left: 0;
-    padding: 1rem;
-    background: #333;
-    color: #eee;
-    font-size: 11px;
-    /* padding: 20px; */
-    /* background-color: #efefef;
+  /* position: ficlass="example-card"xed; */
+  right: 0;
+  bottom: 0;
+  /* margin-bottom: 0px; */
+  left: 0;
+  padding: 1rem;
+  background: #333;
+  color: #eee;
+  font-size: 11px;
+  /* padding: 20px; */
+  /* background-color: #efefef;
     text-align: center; */
-
-
-    
-  }
-
-  mat-grid-list{
-      margin-bottom:15%;
-  }
-
-  #container{
-    width:100%;
-    margin:5em auto;
-    padding :0;
-    background: transparent
 }
-.items{
-    max-width: 900px;
-    /* max-height:300px; 
+
+mat-grid-list {
+  margin-top: 1%;
+}
+
+#container {
+  width: 100%;
+  margin: 5em auto;
+  padding: 0;
+  background: transparent;
+}
+.items {
+  max-width: 900px;
+  /* max-height:300px; 
     background: rgb(24, 23, 23); */
 }
-.movieposter{
-    /* min-height: auto;
+.movieposter {
+  /* min-height: auto;
      max-height: auto; */
-     height: 350px; /* Your height here */
-   width: 900px;
-   margin: auto
-   /* overflow: hidden; */
- }
-.render{
-    /* min-height: auto;
+  height: 350px; /* Your height here */
+  width: 900px;
+  margin: auto;
+
+  /* overflow: hidden; */
+}
+.movieposter:hover {
+  transform: scale(1.1, 1.1); /** default is 1, scale it to 1.5 */
+  opacity: 1.2;
+}
+.render {
+  /* min-height: auto;
     max-height: auto; */
-    height: 300px; /* Your height here */
+  height: 300px; /* Your height here */
   width: 345px;
   overflow: hidden;
 }
 
-
-#left ,#right{
-    margin:30px;
-    height: 30px;
-    width: 30px;
-
+#left,
+#right {
+  margin: 30px;
+  height: 100px;
+  width: 100px;
 }
 
 /* img{
@@ -71,54 +70,120 @@ footer {
     max-height: auto;
 } */
 
-mat-card{
-    border :1px solid #999; 
-    /* border : 12px dashed #1b1a19; */
-    /* border : 3px dashed #ccc; */
-    /* background: #5bc0de */
-    background: #33b5e5;
+mat-card {
+  border: 1px solid #999;
+  border-radius: 25px;
+  /* border : 12px dashed #1b1a19; */
+  /* border : 3px dashed #ccc; */
+  /* background: #5bc0de */
+  background: #33b5e5;
+  /* width: auto */
 }
 
-h3{
-    text-align: center;
-    text-shadow: 2px 2px;
-    padding-bottom: 0;
-    color: aliceblue
+h3 {
+  text-align: center;
+  text-shadow: 2px 2px;
+  padding-bottom: 0;
+  color: rgb(127, 130, 133);
+  margin-top: 4%;
 }
-h2{
-    text-align: center;
-    text-shadow: 2px 2px;
-    padding-bottom: 0;
-    color: aliceblue
-    /* text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF; */
+h2 {
+  text-align: center;
+  text-shadow: 1px 1px;
+  padding-bottom: 0;
+  color: white;
+  margin-top: 0%;
+  /* text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF; */
 }
-
-h5{
-    text-align: center;
-    /* text-shadow: 2px 2px; */
-    text-shadow:2px 8px 6px rgba(245, 216, 216, 0.2),
-                 0px -5px 35px rgba(255,255,255,0.3);
+h1 {
+  font-family: "Anton", sans-serif;
+  font-family: "Lobster", cursive;
+}
+h5 {
+  text-align: center;
+  /* text-shadow: 2px 2px; */
+  text-shadow: 2px 8px 6px rgba(245, 216, 216, 0.2),
+    0px -5px 35px rgba(255, 255, 255, 0.3);
 }
 /* .example-card {
     max-width: 400px;
   } */
-  
-  .example-header-image {
-      /* align-content: flex-start; */
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
 
- 
-  mat-grid-tile{
-      margin-top: 0
-  }
+.example-header-image {
+  /* align-content: flex-start; */
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
 
-  mat-grid-list{
-    grid-gap: 5px;
-  }
+mat-grid-tile {
+  margin-top: 0;
+  width: 100px;
+}
 
-  
-  div ng2-carouselamos {
-    background: transparent
-  }  
+mat-grid-list {
+  grid-gap: 5px;
+}
+
+div ng2-carouselamos {
+  background: transparent;
+}
+
+.movieCard {
+  margin-top: -2%;
+}
+
+.split {
+  height: 100%;
+  width: 88%;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  margin-top: 3%;
+  /* overflow-x: hidden; */
+  /* padding-top: 20px; */
+}
+
+.right {
+  right: 0;
+  /* background-color: red; */
+}
+
+.bgimage {
+  width: 100%;
+  height: 500px;
+  background: url("https://images.wallpaperscraft.com/image/film_negative_glare_123282_3840x2400.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.bgimage h5 {
+  margin-top: 50px;
+  color: white;
+  text-shadow: 2px 2px #333;
+}
+p {
+  margin-top: 50px;
+}
+.hero {
+  /* Sizing */
+  width: 100%;
+  height: 100vh;
+
+  /* Flexbox stuff */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Text styles */
+  text-align: center;
+  color: white;
+
+  /* Background styles */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://secure.static.tumblr.com/4d3dd0aabf6c52c57afc18879c169ae1/riqitkz/9nhn15y8u/tumblr_static_2012_movies_collage.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
