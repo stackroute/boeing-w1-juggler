@@ -32,7 +32,7 @@ import com.stackroute.eplay.userregistration.stream.TheatreStream;
 import com.stackroute.eplay.userregistration.stream.TicketedEventStream;
 import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
 
-@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class, MovieBookedSeatsStream.class, EmailStream.class })
+@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class, MovieBookedSeatsStream.class, EmailStream.class, BookTicketedEventStream.class })
 public class KafkaListener {
 
 	private RegisterUser registerUser;
