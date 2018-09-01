@@ -14,6 +14,7 @@ var jquery: any;
   styleUrls: ["./theatre-layout.component.css"]
 })
 export class TheatreLayoutComponent implements OnInit {
+  // shownav=false;
   recievedBlockedSeats;
   showId;
   blockedSeat = new BlockSeat();
