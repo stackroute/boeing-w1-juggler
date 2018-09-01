@@ -3,6 +3,8 @@ package com.stackroute.eplay.ticketengine.service;
 import static org.quartz.DateBuilder.futureDate;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 
+import java.util.Optional;
+
 import org.quartz.DateBuilder.IntervalUnit;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
@@ -61,8 +63,8 @@ public class BlockedSeatsServiceImpl implements BlockedSeatsService {
 	}
 
 	@Override
-	public BlockedSeats findById(String id) {
-		return blockedSeatsRepository.findById(id).get();
+	public Optional<BlockedSeats> findById(String id) {
+		return blockedSeatsRepository.findById(id);
 	}
 
 	@Override
