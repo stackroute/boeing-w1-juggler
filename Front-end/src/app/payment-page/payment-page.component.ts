@@ -124,9 +124,7 @@ export class PaymentPageComponent implements OnInit {
     //this.paymentStatus.showId=2;
     this.paymentStatus.status = "open";
     console.log("payment staus", this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus).subscribe(res => {
-      console.log("staus posted");
-    });
+    this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
   }
 
@@ -138,9 +136,7 @@ export class PaymentPageComponent implements OnInit {
     // this.paymentStatus.showId=2;
     this.paymentStatus.status = "booked";
     console.log("payment status", this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus).subscribe(status => {
-      console.log("status", status);
-    });
+    this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
   }
 
