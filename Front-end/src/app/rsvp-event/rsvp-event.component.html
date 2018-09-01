@@ -13,23 +13,24 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        
         <mat-form-field>
           <input matInput placeholder="startTime" [(ngModel)]="rsvpModel.startTime">
         </mat-form-field>
 
-        <mat-form-field>
+        <!-- <mat-form-field>
           <input matInput [matDatepicker]="picker2" placeholder="Choose end date" [(ngModel)]="rsvpModel.endDate">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field>
+        <!-- <mat-form-field>
           <input matInput placeholder="endTime" [(ngModel)]="rsvpModel.endTime">
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field>
+        <!-- <mat-form-field>
           <input matInput placeholder="city" [(ngModel)]="rsvpModel.city" required>
-        </mat-form-field>
+        </mat-form-field> -->
 
         <mat-form-field>
           <input matInput placeholder="location" [(ngModel)]="rsvpModel.location" required>
@@ -42,7 +43,7 @@
         <mat-form-field>
           <input matInput placeholder="description" [(ngModel)]="rsvpModel.description">
         </mat-form-field>
-        <mat-form-field>
+        <!-- <mat-form-field>
           <input matInput placeholder="performers" [(ngModel)]="rsvpModel.performers">
         </mat-form-field>
 
@@ -52,7 +53,7 @@
 
         <mat-form-field>
           <input matInput placeholder="notes" [(ngModel)]="rsvpModel.notes">
-        </mat-form-field>
+        </mat-form-field> -->
         <!-- <button type="submit" class="example-button" name="button" class="btn btn-success" class="button" 
           (click)="onSubmit()">Create RSVP Event</button> -->
 

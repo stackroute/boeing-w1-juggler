@@ -416,5 +416,16 @@
   } */
 
   .row{
-      width: 100%
+      width: 100%;
   }
+  .container-image{
+      background-image: url('https://thumbs.dreamstime.com/b/monuments-collage-india-asia-83365041.jpg');
+      /* opacity: 2; */
+    }
+
+    a h5{
+        font-family: 'Anton', sans-serif;
+        font-family: 'Lobster', cursive;
+        font-family: 'Righteous', cursive;
+    }
+  

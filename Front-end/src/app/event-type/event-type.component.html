@@ -1,10 +1,58 @@
 <app-nav-bar></app-nav-bar>
+<mat-grid-list cols="12">
+  <div class="movieCard">
+    <mat-grid-tile colspan="4" rowspan="5">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h5>Movie Event</h5>
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://experienceluxury.co/wp-content/uploads/2016/08/private-cinema.jpg">
+        <mat-card-actions>
+          <button mat-raised-button routerLink="/createMovieEvent" routerLinkActive="active" class="btn btn-secondary">Create Movie Event</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </div>
+  <div class="movieCard">
+    <mat-grid-tile colspan="4" rowspan="5">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h5>RSVP Event</h5>
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://www.thespruce.com/thmb/bemK09j9zjxqDkEfF0Yv02-kakU=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/blush-rsvp-card-56fc19073df78c7d9edb6fcb.png"
+          alt="movie poster">
+        <mat-card-actions>
+          <button mat-raised-button routerLink="/createRSVPEvent" routerLinkActive="active" class="btn btn-secondary">Create RSVP Event</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </div>
+  <div class="movieCard">
+    <mat-grid-tile colspan="4" rowspan="5">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>
+            <h5>Other Ticketed Events</h5>
+          </mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://www.romania-insider.com/wp-content/uploads/2016/01/concert.jpg" alt="movie poster">
+        <mat-card-actions>
+          <button mat-raised-button routerLink="/createOtherTicketedEvent" routerLinkActive="active" class="btn btn-secondary">Create Other Events</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </div>
+</mat-grid-list>
 
-<div class="row" id="features">
+<!-- <div class="row" id="features">
   <section class="col-sm-4 feature">
     <mat-card class="example-card">
       <mat-card-header>
-        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        
         <mat-card-title>
           <h5>Movie Event</h5>
         </mat-card-title>
@@ -21,7 +69,7 @@
   <section class="col-sm-4 feature">
     <mat-card class="example-card">
       <mat-card-header>
-        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+        
         <mat-card-title>
           <h5>RSVP Event</h5>
         </mat-card-title>
@@ -32,14 +80,14 @@
         <button mat-raised-button routerLink="/createRSVPEvent" routerLinkActive="active" class="btn btn-info">Create RSVP Event</button>
       </mat-card-actions>
     </mat-card>
-    <!-- end panel -->
+    
   </section>
-  <!-- end feature -->
+  
 
   <section class="col-sm-4 feature">
     <mat-card class="example-card">
       <mat-card-header>
-        <!-- <div mat-card-avatar class="example-header-image"></div> -->
+       
         <mat-card-title>
           <h5>Other Events</h5>
         </mat-card-title>
@@ -51,141 +99,5 @@
       </mat-card-actions>
     </mat-card>
   </section>
-  <!-- end feature -->
 </div>
-<!-- end features -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="flex-container"> -->
-<!-- <mat-grid-list cols="12" rowHeight="100px">
-
-  <mat-grid-tile colspan="4" rowspan="6">
-    <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Movie</mat-card-title>
-        <mat-card-subtitle>Click here to create a movie</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://thumbs.dreamstime.com/b/let-s-make-movie-clapper-board-film-making-message-words-to-create-video-other-project-entertainment-learning-56871288.jpg"
-        alt="Movie Poster">
-<mat-grid-list cols="12" rowHeight="100px">
- <mat-grid-tile colspan="4" rowspan="6">
-   <mat-card class="example-card">
-     <mat-card-header>
-       <div mat-card-avatar class="example-header-image"></div>
-       <mat-card-title>Movie</mat-card-title>
-       <mat-card-subtitle>Click here to create a movie</mat-card-subtitle>
-     </mat-card-header>
-     <img mat-card-image src="https://thumbs.dreamstime.com/b/let-s-make-movie-clapper-board-film-making-message-words-to-create-video-other-project-entertainment-learning-56871288.jpg"
-       alt="Movie Poster">
-
-     <mat-card-actions>
-       <button mat-raised-button color="primary" routerLink="/createMovieEvent" routerLinkActive="active">Create Movie</button>
-     </mat-card-actions>
-   </mat-card>
- </mat-grid-tile>
-
- <mat-grid-tile colspan="4" rowspan="6">
-   <mat-card class="example-card">
-     <mat-card-header>
-       <div mat-card-avatar class="example-header-image"></div>
-       <mat-card-title>RSVP</mat-card-title>
-       <mat-card-subtitle>Click here to create an RSVP event</mat-card-subtitle>
-     </mat-card-header>
-     <img mat-card-image src="https://kaizenprint.co.uk/media/catalog/product/cache/1/image/574x288/9df78eab33525d08d6e5fb8d27136e95/r/s/rsvpheader_1.png"
-       alt="Movie Poster">
-
-      <mat-card-actions>
-        <button mat-raised-button color="primary" routerLink="/createRSVPEvent" routerLinkActive="active">Create RSVP Event</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-
- <mat-grid-tile colspan="4" rowspan="6">
-   <mat-card class="example-card">
-     <mat-card-header>
-       <div mat-card-avatar class="example-header-image"></div>
-       <mat-card-title>Other Events</mat-card-title>
-       <mat-card-subtitle>Click here to create other events</mat-card-subtitle>
-     </mat-card-header>
-     <img mat-card-image src="https://iaaeknp.theshopfloor.in/uploads/event.jpg" alt="Movie Poster">
-
-      <mat-card-actions>
-        <button mat-raised-button color="primary" routerLink="/createOtherTicketedEvent" routerLinkActive="active">Create Other Event</button>
-      </mat-card-actions>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list> -->
-<!-- </div> -->
-<!-- <footer>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-2">
-					<h6>Copyright &copy; 2018 </h6>
-				</div>
-				
-				<div class="col-sm-4">
-					<h6>About Us</h6>
-					<p>We are a team of 11 multi-talented professionals dedicated for the development of 
-            a multi-purpose event management application.</p>
-				</div>
-				
-
-				<div class="col-sm-2">
-					<h6>Useful Links</h6>
-					<ul class="unstyled">
-						<li>
-							<a href="">24/7 Customer care</a>
-						</li>
-						<li>
-							<a href="">Resend booking confirmation</a>
-						</li>
-						<li>
-							<a href="">Newsletter</a>
-						</li>
-						<li>
-							<a href="">Movie reviews</a>
-						</li>
-					</ul>
-				</div>
-				
-
-				<div class="col-sm-2">
-					<h6>Follow Us</h6>
-					<ul class="unstyled">
-						<li>
-							<a href="#">Twitter</a>
-							<a href="#" class="fa fa-twitter"></a>
-						</li>
-						<li>
-							<a href="#">Facebook</a>
-							<a href="#" class="fa fa-facebook"></a>
-						</li>
-						<li>
-							<a href="#">Google Plus</a>
-							<a href="#" class="fa fa-google"></a>
-						</li>
-					</ul>
-				</div>
-				
-
-				<div class="col-sm-2">
-					<h6>Coded 
-						<span class="glyphicon glyphicon-heart"></span>by Boeing</h6>
-				</div>
-				
-			</div>
-			
-		</div>
-		
-	</footer> -->
+ -->

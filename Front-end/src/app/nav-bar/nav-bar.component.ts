@@ -76,4 +76,7 @@ export class NavBarComponent implements OnInit {
     localStorage.removeItem('rec');
     window.location.reload();
   }
+  loggedIn(){
+    return this.authenticationService.loggedIn();
+   }
 }

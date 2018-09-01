@@ -14,8 +14,8 @@
       <h2>Theatre Layout</h2>
     </div>
     <hr>
-    <div class="ArenaLayout">
-      <div class="rows" *ngFor= "let row of totalRow">
+    <div class="ArenaLayout" >
+      <div class="rows" *ngFor= "let row of totalRow" >
         <div class="columns" *ngFor= "let col of totalCol">
            <div *ngIf="col!=passage[0] && col!=passage[1] && row!=rowPassage; else Passage">
            <div  *ngIf="seatStatus(row,col); else SeatAvailable">
