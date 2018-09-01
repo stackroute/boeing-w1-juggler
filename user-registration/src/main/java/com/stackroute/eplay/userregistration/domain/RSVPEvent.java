@@ -32,17 +32,14 @@ public class RSVPEvent {
 	private Date startDate;
 	private String localStartDate;
 	private String startTime;
-	private Date endDate;
-	private String localEndDate;
-	private String endTime;
-	private String city;
-	private String location;
+
+
+	private String venue;
 	private String poster;
-	private String type;
+
 	private String description;
-	private String performers;
-	private String termsAndConditions;
-	private String notes;
+
+
 	private int numberOfAttendees;
 	private boolean isCompleted;
 	private List<Invitation> rsvpInvitation;
