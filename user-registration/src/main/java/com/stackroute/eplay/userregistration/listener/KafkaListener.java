@@ -19,9 +19,11 @@ import com.stackroute.eplay.userregistration.domain.MovieEvent;
 import com.stackroute.eplay.userregistration.domain.RSVPEvent;
 import com.stackroute.eplay.userregistration.domain.Registration;
 import com.stackroute.eplay.userregistration.domain.Theatre;
+import com.stackroute.eplay.userregistration.domain.Ticket;
 import com.stackroute.eplay.userregistration.domain.TicketedEvent;
 import com.stackroute.eplay.userregistration.repository.MovieEventRepository;
 import com.stackroute.eplay.userregistration.service.RegisterUser;
+import com.stackroute.eplay.userregistration.stream.BookTicketedEventStream;
 import com.stackroute.eplay.userregistration.stream.EmailStream;
 import com.stackroute.eplay.userregistration.stream.MovieBookedSeatsStream;
 import com.stackroute.eplay.userregistration.stream.MovieEventStream;
@@ -30,20 +32,23 @@ import com.stackroute.eplay.userregistration.stream.TheatreStream;
 import com.stackroute.eplay.userregistration.stream.TicketedEventStream;
 import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
 
-@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class, MovieBookedSeatsStream.class, EmailStream.class })
+@EnableBinding({ TheatreStream.class, RSVPEventStream.class, MovieEventStream.class, TicketedEventStream.class, UserRegistrationStream.class, MovieBookedSeatsStream.class, EmailStream.class, BookTicketedEventStream.class })
 public class KafkaListener {
 
 	private RegisterUser registerUser;
 	private UserRegistrationStream userRegistrationStream;
 	private MovieEventRepository movieEventRepository;
 	private EmailStream emailStream;
+	private BookTicketedEventStream bookTicketedEventStream;
 	
 	@Autowired
-	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream, MovieEventRepository movieEventRepository, EmailStream emailStream) {
+	public KafkaListener(RegisterUser registerUser, UserRegistrationStream userRegistrationStream, MovieEventRepository movieEventRepository, EmailStream emailStream,
+			BookTicketedEventStream bookTicketedEventStream) {
 		this.registerUser = registerUser;
 		this.userRegistrationStream = userRegistrationStream;
 		this.movieEventRepository = movieEventRepository;
 		this.emailStream = emailStream;
+		this.bookTicketedEventStream = bookTicketedEventStream;
 	}
 
 	@StreamListener(TheatreStream.INPUT)
@@ -239,4 +244,62 @@ public class KafkaListener {
 
 	}
 
+	@StreamListener(BookTicketedEventStream.INPUT)
+	public void bookedTicketedEventPost(@Payload Ticket ticket) {
+		
+		String userName = ticket.getUserName();
+		try {
+			Registration user = registerUser.findByUsername(userName);			
+//			int movieId = movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId();
+//			if (user.getBookedMovieId() == null)
+//				bookedMovieId = new ArrayList<>();
+//			else
+//				bookedMovieId = user.getBookedMovieId();
+//			if(!bookedMovieId.contains(movieId))
+//				bookedMovieId.add(movieId);
+//			user.setBookedMovieId(bookedMovieId);
+
+			/*
+			 * updating the content in database
+			 */
+
+			//registerUser.updateUser(user, userName);
+
+			/*
+			 * putting content in the message bus
+			 */
+
+//			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
+//			messageChannel.send(MessageBuilder.withPayload(user)
+//					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+//			
+//			String message = "";
+//			if(bookedMovieTickets.getStatus().equals("booked")) {
+//				message = "Congrats, You have booked Seat No: ";
+//				for(int i:bookedMovieTickets.getSeats()) {
+//					message+=i+", ";
+//				}
+//				message+="for movieEventId: "+bookedMovieTickets.getMovieEventId();
+//			} else {
+//				message+="Your payment is failed for booking seats in movieEventId: "+bookedMovieTickets.getMovieEventId() + ". Please try again.";
+//			}
+			
+			String message = "You have booked " + ticket.getNoOfSeats() + " tickets for the event " + ticket.getTicketedEventId() + ".\nHope you enjoy.";
+			InputEmailDetails email= new InputEmailDetails();
+			email.setEmailAddress(user.getEmail());
+			email.setSubject("Event Seat Booking");
+			email.setBody(message);
+			MessageChannel messageChannelEmail = emailStream.outboundEmail();
+			messageChannelEmail.send(MessageBuilder.withPayload(email)
+					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	
+	
+	
+	
 }
