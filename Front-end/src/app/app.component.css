@@ -30,3 +30,9 @@ body {
   background-attachment: fixed;
 }
 
+app-alerts{
+  position: absolute;
+  z-index:1000;
+  width: 100%;
+  top: 50px;
+}

@@ -5,6 +5,7 @@ import { MovieEventService } from "../movie-event.service";
 import { SearchDataService } from "../search-data.service";
 import { Movie } from "../models/movie";
 import { UserRegistration } from "../models/user-registration";
+import { AlertsService } from 'angular-alert-module';
 
 @Component({
   selector: "app-movie-event",
@@ -19,7 +20,7 @@ export class MovieEventComponent implements OnInit {
   theatres: Theatre[];
   movieId; // ID corresponding to selected movie Name from Dropdown
  
-  constructor(private movieEventService :MovieEventService,private _searchDataService:SearchDataService) {}
+  constructor(private movieEventService :MovieEventService,private _searchDataService:SearchDataService, private alerts: AlertsService) {}
   
   ngOnInit() {
     this._searchDataService.getAllMovies().subscribe(data => 
@@ -57,6 +58,7 @@ export class MovieEventComponent implements OnInit {
     this.movieEventService
       .saveMovieEvent(this.movieEventModel)
       .subscribe(res => console.log("Saved Movie Event"))
+    this.alerts.setMessage('Movie Event Created','success');
      
   }
 }

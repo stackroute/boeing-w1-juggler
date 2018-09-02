@@ -1,3 +1,5 @@
+<html>
+  <body>
 <app-nav-bar></app-nav-bar>
 <!-- 
 <button mat-raised-button style="margin-top: 100px" (click)="onClickSuccess()" >Payment done</button>
@@ -17,9 +19,14 @@
           </div>
           <div class="details-display">
             <p> Seats Selected: {{paymentStatus.seats}} ({{noSeats}} seats)</p>
+            <p> Ticket Price: {{price}} </p>
+            <p> Taxes: {{tax}} </p>
+            <hr>  
+            <p> Sub Total: {{subTotal}} </p>
             <p *ngIf="items.length >0">Items Added:</p>
-            <p *ngFor="let item of items; index as i"> {{item.text}}
-
+            <div *ngFor="let item of items; index as i"> 
+              <div *ngIf="item.count > 0">
+                  {{item.text}}
               <span (click)="minusItem(i,item.count)">
                 <mat-icon>remove</mat-icon>
               </span>
@@ -28,13 +35,13 @@
                 <mat-icon>add</mat-icon>
               </span>
 
-              <span (click)="deleteItem(tile.text)">
+              <span (click)="deleteItem(i,tile.text)">
                 <mat-icon>delete</mat-icon>
               </span>
-            </p>
-            <p> Ticket Price: {{price}} </p>
-            <hr>
-            <p> Taxes: {{tax}} </p>
+              </div>
+            </div>
+            <br>
+            <p>Food & Beverage: {{food}}</p>
             <hr>
             <p> Amount Payable: {{totalAmount}} </p>
             <hr>
@@ -46,7 +53,7 @@
 
             <div *ngIf="!user && !clicked">
               <form class="form-inline">
-                <input type="text" class="form-control" id="searchbar" [(ngModel)]="emailId" [ngModelOptions]="{standalone: true}">
+                <input type="text" placeholder="Enter your Email Id" class="form-control" id="searchbar" [(ngModel)]="emailId" [ngModelOptions]="{standalone: true}">
               </form>
             </div>
 
@@ -78,7 +85,8 @@
               <p id="price">₹{{tile.price}}</p>
 
 
-              <button class="btn btn-primary add-button" mat-button mat-raised-button (click)="itemsAdded(tile)">ADD</button>
+              <button class="btn btn-primary add-button" mat-button mat-raised-button (click)="itemsAdded(tile)" aria-required="true">ADD</button>
+              
             </mat-card-actions>
           </mat-card>
         </div>
@@ -86,3 +94,5 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+</body>
+</html>

@@ -21,7 +21,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(private data: SearchDataService, private router: Router, private recommendationService: RecommendationService, private authenticationService:AuthenticationService) {
     this.items=[
-      { name :"{{movie.poster}}"}
+      { name :"{{movie.backGroundPoster}}"}
     ];
   }
   scroll(el) {
