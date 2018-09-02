@@ -1,3 +1,5 @@
+<html>
+  <body>
 <app-nav-bar></app-nav-bar>
 <!-- 
 <button mat-raised-button style="margin-top: 100px" (click)="onClickSuccess()" >Payment done</button>
@@ -17,6 +19,10 @@
           </div>
           <div class="details-display">
             <p> Seats Selected: {{paymentStatus.seats}} ({{noSeats}} seats)</p>
+            <p> Ticket Price: {{price}} </p>
+            <p> Taxes: {{tax}} </p>
+            <hr>  
+            <p> Sub Total: {{subTotal}} </p>
             <p *ngIf="items.length >0">Items Added:</p>
             <p *ngFor="let item of items; index as i"> {{item.text}}
 
@@ -28,13 +34,11 @@
                 <mat-icon>add</mat-icon>
               </span>
 
-              <span (click)="deleteItem(tile.text)">
+              <span (click)="deleteItem(i,tile.text)">
                 <mat-icon>delete</mat-icon>
               </span>
             </p>
-            <p> Ticket Price: {{price}} </p>
-            <hr>
-            <p> Taxes: {{tax}} </p>
+            <p>Food & Beverage: {{food}}</p>
             <hr>
             <p> Amount Payable: {{totalAmount}} </p>
             <hr>
@@ -79,6 +83,7 @@
 
 
               <button class="btn btn-primary add-button" mat-button mat-raised-button (click)="itemsAdded(tile)">ADD</button>
+              
             </mat-card-actions>
           </mat-card>
         </div>
@@ -86,3 +91,5 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+</body>
+</html>

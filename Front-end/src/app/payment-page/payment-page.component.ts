@@ -3,6 +3,8 @@ import { BlockSeat } from "../models/SeatBlock";
 import { PaymentService } from "../payment.service";
 import { Observable } from "rxjs";
 import { AlertsService } from 'angular-alert-module';
+import { Router } from '@angular/router';
+import { PlatformLocation } from '@angular/common'
 
 export interface Tile {
   poster: string;
@@ -13,6 +15,9 @@ export interface Tile {
   price: number;
   count: number;
   overflow:string;
+  amount:number;
+  border:string;
+
 }
 
 @Component({
@@ -28,10 +33,13 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020001_13082018125322.jpg",
-      color: "wheat",
+      color: "white",
       price: 280,
-      count: 0,
-      overflow:""
+      count: 1,
+      overflow:"",
+      amount: 0,
+      border:""
+
     },
     {
       text: "Couple Combo",
@@ -39,10 +47,12 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020005_17082018144820.jpg",
-      color: "wheat",
+      color: "white",
       price: 570,
-      count: 0,
-      overflow:""
+      count: 1,
+      overflow:"",
+      amount: 0,
+      border:""
     },
     {
       text: "Regular Combo",
@@ -50,12 +60,15 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020007_16082018153109.jpg",
-      color: "wheat",
+      color: "white",
       price: 380,
-      count: 0,
-      overflow:""
+      count: 1,
+      overflow:"",
+      amount: 0,
+      border:""
     },
-    { text: "two", cols: 1.8, rows: 7, poster: "", color: "wheat", price: 0, count: 0,overflow:"scroll" },
+    { text: "two", cols: 0.1, rows: 7, poster: "", color: "grey", price: 0, count: 0,overflow:"", amount: 0,border:""},
+    { text: "two", cols: 1.8, rows: 7, poster: "", color: "white", price: 0, count: 0,overflow:"scroll", amount: 0,border:"ridge" },
     //{text: '', cols: 1, rows: 7,poster:'', color: ''},
     {
       text: "Nachos with Salsa",
@@ -63,10 +76,12 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020006_06082018135441.jpg",
-      color: "wheat",
+      color: "white",
       price: 250,
-      count: 0,
-      overflow:""
+      count: 1,
+      overflow:"",
+      amount: 0,
+      border:""
     },
     {
       text: "Veg Burger",
@@ -74,10 +89,12 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020016_17082018120212.jpg",
-      color: "wheat",
+      color: "white",
       price: 150,
-      count: 0,
-      overflow:""
+      count: 1,
+      overflow:"",
+      amount: 0,
+      border:""
     },
     {
       text: "Sandwich",
@@ -85,10 +102,12 @@ export class PaymentPageComponent implements OnInit {
       rows: 3,
       poster:
         "https://in.bmscdn.com/bmsin/v2/Web-v2/d-combo/1020446_20082018182121.jpg",
-      color: "wheat",
+      color: "white",
       price: 150,
-      count: 0,
-      overflow:""
+      count: 1,
+      overflow:"",
+      amount: 0,
+      border:""
     }
     // {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
@@ -101,6 +120,8 @@ export class PaymentPageComponent implements OnInit {
   status: any;
   items = [];
   tax = 0;
+  food = 0;
+  subTotal 
   tile1 : Tile;
   //itemCount=1;
   flag:any;
@@ -110,7 +131,14 @@ export class PaymentPageComponent implements OnInit {
   seconds = 50;
   minutes = 0;
 
-  constructor(private data: PaymentService, private alerts: AlertsService) {}
+  constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
+    location.onPopState(() => {
+      this.router.navigateByUrl('/home');
+      console.log('Back button pressed!');
+
+  });
+
+  }
 
   ngOnInit() {
     this.start();
@@ -122,7 +150,8 @@ export class PaymentPageComponent implements OnInit {
     this.noSeats = this.paymentStatus.seats.length;
     this.price = this.noSeats * 200;
     this.tax = ( this.noSeats * 200 * .18);
-    this.totalAmount =( this.noSeats * 200 )+ this.tax; 
+    this.subTotal = ( this.noSeats * 200 )+ this.tax; 
+    this.totalAmount = (this.subTotal)+(this.food); 
   }
 
   onClickFail() {
@@ -142,6 +171,7 @@ export class PaymentPageComponent implements OnInit {
   onClickSuccess() {
     this.clicked=true;
     this.flag= true;
+    this.alerts.setMessage('Seat No: '+JSON.stringify(this.paymentStatus.seats)+' booked successfully','success');
     this.data.payMessage.subscribe(message => (this.paymentStatus = message));
     console.log("earlier payMessage", this.paymentStatus);
     this.paymentStatus.userName = localStorage.getItem("currentUser");
@@ -151,13 +181,15 @@ export class PaymentPageComponent implements OnInit {
     console.log("payment status", this.paymentStatus);
     this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
-    this.alerts.setMessage('Seat No: '+JSON.stringify(this.paymentStatus.seats)+' booked successfully','success');
+    
   }
 
   itemsAdded(it) {
     //this.items=items;
     if (this.items.length < 4) {
       this.items.push(it);
+      it.amount = (it.count)*(it.price);
+      this.foodPrice();
       console.log(JSON.stringify(this.items));
     }
     if (this.items.length > 4) {
@@ -167,28 +199,44 @@ export class PaymentPageComponent implements OnInit {
 
   minusItem(i,itemCount) {
     
-    if(this.items[i].count < 1) {
-      this.items.splice(this.items.indexOf(this.items),1);
-    }
+    // if(this.items[i].count < 1) {
+    //   this.items.splice(this.items.indexOf(this.items),1);
+    //   this.items[i].count=1;
+    // }
     // items.count -= 1;
     // console.log(items.count);
     this.items[i].count= itemCount - 1;
+    this.items[i].amount = (this.items[i].count)*(this.items[i].price);
+    this.foodPrice();
+    if(this.items[i].count < 1) {
+      this.items[i].count=1;
+      this.items.splice(this.items.indexOf(this.items),1);
+    }
   }
 
   addItem(i,itemCount) {
-    console.log("Index" + itemCount);
+    console.log("Index" + i);
     this.items[i].count = itemCount + 1;
     console.log(this.items[i]);
     console.log(this.items);
+    this.items[i].amount = (this.items[i].count)*(this.items[i].price);
+    this.foodPrice();
   }
 
-  //  addItem(tile) {
-  //    tile.count +=1;
-  //   this.items= tile;
-  //   console.log(" Tile count inside Additem" +tile.count);
-  // }
-  deleteItem(items) {
+  deleteItem(i,items) {
+    this.items[i].amount=0;
+    this.items[i].count=1;
+    this.foodPrice();
     this.items.splice(this.items.indexOf(items),1);
+  }
+
+  foodPrice() {
+    this.food=0;
+    for(var i=0;i<this.items.length;i++) {
+      this.food = (this.food) + (this.items[i].amount);
+    }
+    this.totalAmount = (this.subTotal)+(this.food);
+    console.log("Total food price: " + this.food);
   }
 
   clearTimer() {
