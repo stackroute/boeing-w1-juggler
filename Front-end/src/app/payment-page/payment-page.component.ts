@@ -67,7 +67,6 @@ export class PaymentPageComponent implements OnInit {
       amount: 0,
       border:""
     },
-    { text: "two", cols: 0.1, rows: 7, poster: "", color: "grey", price: 0, count: 0,overflow:"", amount: 0,border:""},
     { text: "two", cols: 1.8, rows: 7, poster: "", color: "white", price: 0, count: 0,overflow:"scroll", amount: 0,border:"ridge" },
     //{text: '', cols: 1, rows: 7,poster:'', color: ''},
     {
