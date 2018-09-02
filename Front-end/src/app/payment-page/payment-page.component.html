@@ -19,11 +19,11 @@
               Your Booking Summary:
             </div>
             <div class="details-display">
-              <p> Seats Selected: {{paymentStatus.seats}} ({{noSeats}} seats)</p>
-              <p> Ticket Price: {{price}} </p>
-              <p> Taxes: {{tax}} </p>
+              <p> <b>Seats Selected: </b> {{paymentStatus.seats}} ({{noSeats}} seats)</p>
+              <p> <b>Ticket Price: </b>{{price}}</p>
+              <p> <b>Taxes:</b> {{tax}} </p>
               <hr>
-              <p> Sub Total: {{subTotal}} </p>
+              <p> <b>Sub Total:</b> {{subTotal}} </p>
               <p *ngIf="items.length >0">Items Added:</p>
               <div *ngFor="let item of items; index as i">
                 <div *ngIf="item.count > 0">
@@ -42,9 +42,9 @@
                 </div>
               </div>
               <br>
-              <p>Food & Beverage: {{food}}</p>
+              <p><b style="color: brown">Food & Beverage:</b> {{food}}</p>
               <hr>
-              <p> Amount Payable: {{totalAmount}} </p>
+              <p> <b style="color: brown">Amount Payable:</b> {{totalAmount}} </p>
               <hr>
               <p *ngIf="!clicked">
                 Time Left: {{timer}}
