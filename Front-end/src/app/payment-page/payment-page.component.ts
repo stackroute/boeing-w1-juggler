@@ -186,7 +186,7 @@ export class PaymentPageComponent implements OnInit {
 
   itemsAdded(it) {
     //this.items=items;
-    if (this.items.length < 4) {
+    if (this.items.length < 4 && !(this.items.indexOf(it)>-1)) {
       this.items.push(it);
       it.amount = (it.count)*(it.price);
       this.foodPrice();
