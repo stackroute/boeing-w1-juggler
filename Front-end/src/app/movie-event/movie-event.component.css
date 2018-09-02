@@ -15,7 +15,10 @@
     margin-left: 175px;
   } */
 .movieevent{
-  background-image: url("/assets/images/userandregisterbckground.1.jpg"); 
+  background-image: url("https://agc.creativelive.com/agc/courses/2432-1.jpg"); 
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 body {
   margin: 0;

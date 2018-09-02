@@ -59,19 +59,22 @@ const routes: Routes = [
   {
     path: "createEvent",
     component: EventTypeComponent, canActivate:[AuthGuard]
-    // component: EventTypeComponent, canActivate:[AuthGuard]
+    // component: EventTypeComponent
   },
   {
     path: "createRSVPEvent",
     component: RsvpEventComponent, canActivate:[AuthGuard]
+    // component: RsvpEventComponent
   },
   {
     path: ":id/rsvpInvitation",
     component: RsvpInvitationComponent ,canActivate:[AuthGuard]
+    // component: RsvpInvitationComponent 
   },
   {
     path: "bookingHistory",
     component: BookingHistoryComponent, canActivate:[AuthGuard]
+    // component: BookingHistoryComponent
   },
   {
     path: "movieinfo",
@@ -84,14 +87,17 @@ const routes: Routes = [
   {
     path: "createOtherTicketedEvent",
     component: OtherTicketedEventComponent, canActivate:[AuthGuard]
+    // component: OtherTicketedEventComponent
   },
   {
     path: "createMovieEvent",
     component: MovieEventComponent, canActivate:[AuthGuard]
+    // component: MovieEventComponent
   },
   {
     path: "theatre",
     component: TheatreComponent, canActivate:[AuthGuard]
+    // component: TheatreComponent
   },
   {
     path:'rsvpEvent/:id',
@@ -108,10 +114,12 @@ const routes: Routes = [
   {
     path:":id/InviteeDetails",
     component:InviteeDetailsComponent, canActivate:[AuthGuard]
+    // component:InviteeDetailsComponent
   },
   {
     path:":id/organiserRsvpView",
     component:OrganiserRsvpViewComponent, canActivate:[AuthGuard]
+    // component:OrganiserRsvpViewComponent
   }
 ];
 
