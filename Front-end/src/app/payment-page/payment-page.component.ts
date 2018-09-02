@@ -128,7 +128,7 @@ export class PaymentPageComponent implements OnInit {
   clicked:any;
   intervalId = 0;
   timer = "";
-  seconds = 50;
+  seconds = 59;
   minutes = 0;
 
   constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
