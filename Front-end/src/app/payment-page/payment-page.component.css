@@ -24,9 +24,10 @@
 }
 
 .summary {
-  color: red;
+  color: rgb(3, 3, 3);
+  font-family: "Anton", sans-serif;
   margin-bottom: 25px;
-  font-size: 20px;
+  font-size: 30px;
   position: static;
 }
 
@@ -72,4 +73,13 @@ hr {
 }
 .figure{
   background: black
+}
+
+.scroll-on-content-add{
+  position:absolute;
+  top: 50px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  overflow-y:scroll;        
 }
