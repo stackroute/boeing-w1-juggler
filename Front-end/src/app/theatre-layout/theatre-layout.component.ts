@@ -16,6 +16,7 @@ var jquery: any;
 export class TheatreLayoutComponent implements OnInit {
   // shownav=false;
   recievedBlockedSeats;
+  duplicateId;
   showId;
   blockedSeat = new BlockSeat();
   seatingValue = [];
@@ -45,6 +46,10 @@ export class TheatreLayoutComponent implements OnInit {
 
     this.id = [];
     this.seatNum = [];
+    this.duplicateId = localStorage.getItem("duplicateId");
+    if(this.duplicateId=="refresh") {
+      window.location.href="/movieinfo";
+    }
 
     this.showId = localStorage.getItem("showId");
     console.log("Show Id from movie-info " + this.showId);
@@ -109,20 +114,22 @@ export class TheatreLayoutComponent implements OnInit {
         }
       });
 
-      $(".seat").mouseenter(function() {
-        $(this).addClass("hovering");
+      // $(".seat").mouseenter(function() {
+      //   $(this).addClass("hovering");
 
-        $(".seat").mouseleave(function() {
-          $(this).removeClass("hovering");
-        });
-      });
+      //   $(".seat").mouseleave(function() {
+      //     $(this).removeClass("hovering");
+      //   });
+      // });
     });
   }
 
   //  For adding a seat Id in an Array on every click
   onclick(x, y) {
     this.id.push(x * 10 + y);
-    console.log(this.id);
+    this.id.sort();
+    //console.log(this.id);
+   this.seatSelected();
   }
 
   // To make an array of filtered seats which are to be sent to booking API
@@ -191,12 +198,55 @@ export class TheatreLayoutComponent implements OnInit {
 
   seatSelected()
   {
-    console.log("Inside Seat Selected");
+    var count: number=1;
+    var flag : boolean=false; 
+    console.log("count"+count)
+    console.log("length"+this.id.length);
+    //console.log("Inside Seat Selected");
     console.log(this.id);
-    if(this.id.length != 0)
+   for(var i=0;i<this.id.length;){
+  
+      //console.log("Inside first for loop");
+      for(var j=i+1; j<this.id.length; j++){
+          if(this.id[i]== this.id[j])
+            {
+                count++; // should be even
+              // console.log("Count inside IF loop: " + this.count);
+            }  
+            else
+            { 
+             
+              i=j;
+              //console.log("Inside else block where i==j: " + i);
+              break;
+            }
+      }
+
+      // When j = length i.e for last sequence of values
+      if(j==this.id.length && this.id[i]==this.id[j-1]){
+        if(count%2!=0){
+          console.log("Inside first count checker block")
+          flag=true;
+          
+        }
+        break;
+       
+      }
+
+      // When j < length i.e for first sequence
+      console.log("sankjncdjksackjnsaj :" + count)
+      if(count%2!=0 ){
+       console.log("jksankcjnsajcas")
+        flag=true;
+        break;
+      }
+      count=1; 
+      console.log("Outside 2nd for"+ flag);
+    }
+    //console.log("SeatNum : " + this.seatNum);
+    if(flag)
     return true;
     else
     return false;
   }
-
 }

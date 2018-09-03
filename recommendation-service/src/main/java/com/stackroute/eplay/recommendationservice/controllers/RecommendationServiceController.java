@@ -82,7 +82,15 @@ public class RecommendationServiceController {
 		Date date = ticketedEventKafka.getDate();
 		City city = new City(ticketedEventKafka.getCity());
 		Category category =  new Category(ticketedEventKafka.getType());
-		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category);
+		String BackGroundPoster = null;
+		String CardPoster = null;
+		if(ticketedEventKafka.getBackGroundPoster()!=null) {
+			BackGroundPoster = ticketedEventKafka.getBackGroundPoster();
+		}
+		if(ticketedEventKafka.getCardPoster()!=null) {
+			CardPoster = ticketedEventKafka.getCardPoster();
+		}
+		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category,BackGroundPoster,CardPoster);
 		return new ResponseEntity<TicketedEvent> (ticketedEventService.saveTicketedEvent(ticketedEvent),HttpStatus.OK);		
 	}
 	
@@ -254,7 +262,7 @@ public class RecommendationServiceController {
 	 */
 	@GetMapping("/getTypeBasedTicketedEventsForUser")
 	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName){
-		return new ResponseEntity<List<Movie>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);	
+		return new ResponseEntity<List<TicketedEvent>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);	
 	}	
 	
 	/*

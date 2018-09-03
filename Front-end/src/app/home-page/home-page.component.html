@@ -10,48 +10,79 @@
         </p>
         <p>
           <button class="btn btn-info" (click)="scroll(target)" mat-button mat-raised-button>Book movies</button>
-          <!-- <a href="profileasa">Book movies</a> -->
-
           <button class="btn btn-info" (click)="scroll(target1)" mat-button mat-raised-button style="margin-left: 8px">Upcoming events</button>
         </p>
-
-
-
-        <!-- <a href="https://example.com/" class="btn">Go ahead...</a> -->
       </div>
     </section>
 
+    <!--Movies Carousel-->
     <div *ngIf=" recommendedMovie!=null && recommendedMovie.length>0">
-      <!-- <div *ngFor="let movie of recommendedMovie"> -->
-
       <div id="container">
         <div ng2-carouselamos class="slide-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next" [$item]="item">
         </div>
-
         <ng-template #prev>
           <img src="/assets/images/if_icon-ios7-arrow-back_211686.png" id="left">
         </ng-template>
-
         <ng-template #next>
           <img src="/assets/images/if_icon-ios7-arrow-forward_211688.png" id="right">
         </ng-template>
-
-      <ng-template #item let-item let i="index">
-        <div *ngFor="let movie of recommendedMovie" class="items">
-          <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
-            <img class="movieposter" [width]="15000" src="{{movie.backGroundPoster}}">
-          </a>
-        </div>
-
+        <ng-template #item let-item let i="index">
+          <div *ngFor="let movie of recommendedMovie" class="items">
+            <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
+              <img class="movieposter" [width]="15000" src="{{movie.backGroundPoster}}">
+            </a>
+          </div>
         </ng-template>
-        <h3 style="margin-top: 0px;">You might also like..</h3>
+        <h3 style="color:azure;margin-top:6px">You might also like..</h3>
       </div>
-
-      <!-- <div>
-        <button type="reset" mat-raised-button class="btn btn-secondary" (click)="reset()">Go back to homepage</button>
-      </div> -->
-      <!-- </div> -->
     </div>
+
+    <!--Ticketed events cards recomm-->
+    <mat-grid-list cols="12">
+      <div *ngIf=" recommendedEvent!=null && recommendedEvent.length>0">
+        <h3 style="color:azure;margin-top:4px">Event recommendations</h3>
+        <div *ngFor="let events of recommendedEvent">
+          <mat-grid-tile colspan="4" rowspan="5">
+            <a href="ticketinfo" (click)="goMoviePage(movie)">
+              <mat-card class="render1">
+                <img class="render" mat-card-image src="{{events.cardPoster}}" alt="event poster">
+                <mat-card-actions>
+                  <h6 style="font-family: 'Times New Roman', Times, serif"> {{events.name}}</h6>
+                  {{events.city}}
+                </mat-card-actions>
+              </mat-card>
+            </a>
+          </mat-grid-tile>
+        </div>
+      </div>
+    </mat-grid-list>
+
+    <!--Ticketed Event Carousel-->
+    <!-- <div *ngIf=" recommendedEvent!=null && recommendedEvent.length>0">
+        
+  
+        <div id="container">
+          <div ng2-carouselamos class="slide-wrapper" [items]="items" [width]="900" [$prev]="prev" [$next]="next" [$item]="item">
+          </div>
+  
+          <ng-template #prev>
+            <img src="/assets/images/if_icon-ios7-arrow-back_211686.png" id="left">
+          </ng-template>
+  
+          <ng-template #next>
+            <img src="/assets/images/if_icon-ios7-arrow-forward_211688.png" id="right">
+          </ng-template>
+  
+          <ng-template #item let-item let i="index">
+            <div *ngFor="let events of recommendedEvent" class="items">
+              <a [routerLink]="['/ticketinfo']" (click)="goMoviePage(movie)">
+                <img class="movieposter" [width]="15000" src="{{events.cardPoster}}">
+              </a>
+            </div>
+          </ng-template>
+          <h3 style="margin-top: 0px;">You might also like(events)..</h3>
+        </div>
+      </div> -->
 
     <!-- <div *ngIf="rec$; else elseBlock">
     Recommendations for you..!
@@ -76,7 +107,7 @@
     <!-- <mat-grid-list cols="12"> -->
 
     <div #target>
-      <div *ngIf="rec$; else elseBlock">
+      <div *ngIf="rec$!=null && rec$.length>0; else elseBlock">
         <h2>Your filtered results..</h2>
         <div align="center">
           <button type="reset" mat-raised-button class="btn btn-secondary" (click)="reset()">Reset</button>
@@ -96,24 +127,14 @@
           <ng-template #item let-item let i="index">
             <div *ngFor="let movie of rec$" class="items">
               <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
-                <img class="movieposter" src="{{ movie.poster }}">
+                <img class="movieposter" src="{{movie.cardPoster}}">
               </a>
             </div>
           </ng-template>
         </div>
-
-        <!-- <div *ngFor="let movie of rec$">
-  
-        <mat-grid-tile colspan="4" rowspan="6">
-          <mat-card class="example-card">
-            <app-event-card [name]="movie.name" [poster]="movie.poster" [city]="movie.city"></app-event-card>
-            <mat-card-actions>
-              <button mat-button routerLink="/movieinfo" (click)="goMoviePage(movie)">Book</button>
-            </mat-card-actions>
-          </mat-card>
-        </mat-grid-tile>
-      </div> -->
       </div>
+
+      
       <ng-template #elseBlock>
         <mat-grid-list cols="12">
           <h3 style="color:azure;margin-top:4px">Movies</h3>

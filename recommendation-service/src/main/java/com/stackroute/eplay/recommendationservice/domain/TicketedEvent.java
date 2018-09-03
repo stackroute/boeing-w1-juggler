@@ -27,15 +27,18 @@ public class TicketedEvent {
 	private int id;
 	private String name;
 	private Date date;
+	private String backGroundPoster;
+	private String cardPoster;
 	
 	
-	
-	public TicketedEvent(int id, String name, Date date, City city, Category category) {
+	public TicketedEvent(int id, String name, Date date, City city, Category category, String backGroundPoster, String cardPoster) {
 		this.id = id;
 		this.name = name;
 		this.date = date;
 		this.city = city;
 		this.category= category;
+		this.cardPoster=cardPoster;
+		this.backGroundPoster= backGroundPoster;
 	}
 	
 	@Relationship(type="HOSTED_IN",direction=Relationship.OUTGOING)

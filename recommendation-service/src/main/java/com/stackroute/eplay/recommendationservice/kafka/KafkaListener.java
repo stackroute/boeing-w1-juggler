@@ -85,7 +85,16 @@ public class KafkaListener {
 		Date date = ticketedEventKafka.getDate();
 		City city = new City(ticketedEventKafka.getCity());
 		Category category =  new Category(ticketedEventKafka.getType());
-		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category);
+		String BackGroundPoster = null;
+		String CardPoster = null;
+		if(ticketedEventKafka.getBackGroundPoster()!=null) {
+			BackGroundPoster = ticketedEventKafka.getBackGroundPoster();
+		}
+		if(ticketedEventKafka.getCardPoster()!=null) {
+			CardPoster = ticketedEventKafka.getCardPoster();
+		}
+		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category,BackGroundPoster,CardPoster);
+		
 		ticketedEventService.saveTicketedEvent(ticketedEvent);
 		System.out.println(ticketedEventKafka.toString());
 	}
