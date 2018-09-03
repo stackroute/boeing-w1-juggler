@@ -32,6 +32,6 @@ export class MovieTheatreListComponent implements OnInit {
 
   sendShowId(id){
     localStorage.setItem('showId',id);
-    localStorage.setItem('duplicateId',"test");
+    localStorage.setItem('duplicateId',"initial");
   }
 }
