@@ -253,7 +253,7 @@ public class RecommendationServiceController {
 	 */
 	@GetMapping("/getTypeBasedTicketedEventsForUser")
 	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName){
-		return new ResponseEntity<List<Movie>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);	
+		return new ResponseEntity<List<TicketedEvent>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);	
 	}	
 	
 	/*

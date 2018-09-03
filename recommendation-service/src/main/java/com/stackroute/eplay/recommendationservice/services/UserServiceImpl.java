@@ -18,6 +18,7 @@ import com.stackroute.eplay.recommendationservice.domain.City;
 import com.stackroute.eplay.recommendationservice.domain.Genre;
 
 import com.stackroute.eplay.recommendationservice.domain.Movie;
+import com.stackroute.eplay.recommendationservice.domain.TicketedEvent;
 import com.stackroute.eplay.recommendationservice.domain.User;
 import com.stackroute.eplay.recommendationservice.domain.UserKafka;
 import com.stackroute.eplay.recommendationservice.repositories.MovieRepository;
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 
-	public List<Movie> getTypeBasedTicketedEventsForUser(String userName){
+	public List<TicketedEvent> getTypeBasedTicketedEventsForUser(String userName){
 		return userrepository.getTypeBasedTicketedEventsForUser(userName);
 	}
 

@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import com.stackroute.eplay.recommendationservice.domain.City;
 import com.stackroute.eplay.recommendationservice.domain.User;
 import com.stackroute.eplay.recommendationservice.domain.Movie;
+import com.stackroute.eplay.recommendationservice.domain.TicketedEvent;
 import com.stackroute.eplay.recommendationservice.domain.User;
 
 public interface UserRepository extends Neo4jRepository<User,Integer>{
@@ -24,6 +25,6 @@ public interface UserRepository extends Neo4jRepository<User,Integer>{
 
 	
 	@Query("Match (u:User)-[:ATTENDED]->(t:TicketedEvent)-[:IS_OF_TYPE]->(cat:Category)<-[:IS_OF_TYPE]-(e:TicketedEvent) where u.userName= {userName} Match (e)-[:HOSTED_IN]->(c:City)<-[:LIVES_IN]-(u) return (e)")
-    public List<Movie> getTypeBasedTicketedEventsForUser(@Param("userName") String userName);
+    public List<TicketedEvent> getTypeBasedTicketedEventsForUser(@Param("userName") String userName);
 
 }
