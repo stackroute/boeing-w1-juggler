@@ -27,7 +27,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input formControlName="date" matInput placeholder="Choose a starting date" [(ngModel)]="ticketedEvent.date" [owlDateTimeTrigger]="picker" [owlDateTime]="picker">
+            <input formControlName="date" matInput placeholder="Choose a starting date" [(ngModel)]="ticketedEvent.date" [owlDateTimeTrigger]="picker" [owlDateTime]="picker" required>
             <owl-date-time #picker></owl-date-time>
           </mat-form-field>
 
@@ -35,14 +35,14 @@
           <input matInput placeholder="Location" [(ngModel)]="ticketedEvent.location">
         </mat-form-field> -->
           <mat-form-field>
-            <input matInput placeholder="Category" [(ngModel)]="ticketedEvent.type">
+            <input formControlName="type" matInput placeholder="Category" [(ngModel)]="ticketedEvent.type" required>
           </mat-form-field>
           <mat-form-field>
-            <input matInput formControlName="cardPoster" placeholder="Card Poster" [(ngModel)]="ticketedEvent.cardPoster">
+            <input matInput formControlName="cardPoster" placeholder="Card Poster" [(ngModel)]="ticketedEvent.cardPoster" required>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput formControlName="backGroundPoster" placeholder="Background Poster" [(ngModel)]="ticketedEvent.backGroundPoster">
+            <input matInput formControlName="backGroundPoster" placeholder="Background Poster" [(ngModel)]="ticketedEvent.backGroundPoster" required>
           </mat-form-field>
 
           <!-- <mat-form-field>
@@ -50,15 +50,15 @@
         </mat-form-field> -->
 
           <mat-form-field>
-            <input matInput formControlName="capacity" placeholder="Capacity" [(ngModel)]="ticketedEvent.capacity">
+            <input matInput formControlName="capacity" placeholder="Capacity" [(ngModel)]="ticketedEvent.capacity" required>
           </mat-form-field>
 
           <mat-form-field>
-            <textarea matInput formControlName="description" placeholder="Description" [(ngModel)]="ticketedEvent.description"></textarea>
+            <textarea matInput formControlName="description" placeholder="Description" [(ngModel)]="ticketedEvent.description" required></textarea>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput formControlName="price" placeholder="Price" [(ngModel)]="ticketedEvent.price">
+            <input matInput formControlName="price" placeholder="Price" [(ngModel)]="ticketedEvent.price" required>
           </mat-form-field>
 
           <!-- <mat-form-field>
