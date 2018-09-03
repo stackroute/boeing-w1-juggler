@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
   message: string;
   rec$: any;
   recommendedMovie= null;
+  recommendedEvent=null;
   myElement: HTMLElement = document.getElementById('target');
 
   constructor(private data: SearchDataService, private router: Router, private recommendationService: RecommendationService, private authenticationService:AuthenticationService) {
@@ -28,6 +29,7 @@ export class HomePageComponent implements OnInit {
     el.scrollIntoView();
  }
   ngOnInit() {
+    localStorage.setItem('duplicateId','refresh');
     this.data.currentMessage.subscribe(message => (this.message = message));
     this.fetchEvents();
     this.rec$ = JSON.parse(localStorage.getItem("rec"));
@@ -63,8 +65,16 @@ export class HomePageComponent implements OnInit {
    .subscribe(res=>{
      this.recommendedMovie=res;
      localStorage.setItem('recommended',JSON.stringify(this.recommendedMovie));
-     console.log("stronig recommendedin local",localStorage.getItem('recommended'));
+     console.log("storing recommended movies",localStorage.getItem('recommended'));
    });
+  }
+  getTypeBasedTicketedEventsForUser(){
+    this.recommendationService.getTypeBasedTicketedEventsForUser(localStorage.getItem('currentUser'))
+    .subscribe(res=>{
+      this.recommendedEvent=res;
+      localStorage.setItem('recommended1',JSON.stringify(this.recommendedEvent));
+      console.log("storing recommended events",localStorage.getItem('recommended1'));
+    })
   }
 
   loggedIn(){

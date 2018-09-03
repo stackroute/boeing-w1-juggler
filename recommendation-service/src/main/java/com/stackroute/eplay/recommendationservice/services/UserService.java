@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.stackroute.eplay.recommendationservice.domain.City;
 import com.stackroute.eplay.recommendationservice.domain.Movie;
+import com.stackroute.eplay.recommendationservice.domain.TicketedEvent;
 import com.stackroute.eplay.recommendationservice.domain.User;
 
 public interface UserService {
@@ -11,7 +12,7 @@ public interface UserService {
 	public City getCityOfUser(String userName);
 	// public User getAllFollowers(String name);
 	public List<Movie> getGenreBasedMoviesForUser(String userName);
-	public List<Movie> getTypeBasedTicketedEventsForUser(String userName);
+	public List<TicketedEvent> getTypeBasedTicketedEventsForUser(String userName);
 //	public User getAllFollowers(String name);
 
 }

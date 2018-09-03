@@ -174,6 +174,7 @@ export class PaymentPageComponent implements OnInit {
   }
 
   openCheckout() {
+    localStorage.setItem("guestEmail", this.emailId);
     this.handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_K2C3smobEhEs1C5VDNs9iXn6',
       locale: 'auto',
@@ -201,17 +202,21 @@ export class PaymentPageComponent implements OnInit {
         //       console.log(data);
         //     }
         //   }); // end ajax call
+        localStorage.setItem("closeItems", "yes");
+        (window as any).sendBookedSeats();
+        (window as any).disconnect();
       }
     });
     
     this.handler.open({
       name: 'Payment Gateway',
-      amount: 2000
+      amount: (this.totalAmount*100)
     });
     
   }
 
   onClickFail() {
+    this.clicked=true;
     this.flag= true; 
     this.data.payMessage.subscribe(message => (this.paymentStatus = message));
     console.log("earlier payMessage", this.paymentStatus);
@@ -228,14 +233,14 @@ export class PaymentPageComponent implements OnInit {
     this.clicked=true;
     this.flag= true;
     this.alerts.setMessage('Seat No: '+JSON.stringify(this.paymentStatus.seats)+' booked successfully','success');
-    this.data.payMessage.subscribe(message => (this.paymentStatus = message));
-    console.log("earlier payMessage", this.paymentStatus);
-    this.paymentStatus.userName = localStorage.getItem("currentUser");
-    this.paymentStatus.guestUserEmailId = this.emailId;
-    this.paymentStatus.status = "booked";
-    console.log("payment status", this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus);
-    (window as any).disconnect();
+    // this.data.payMessage.subscribe(message => (this.paymentStatus = message));
+    // console.log("earlier payMessage", this.paymentStatus);
+    // this.paymentStatus.userName = localStorage.getItem("currentUser");
+    // this.paymentStatus.guestUserEmailId = this.emailId;
+    // this.paymentStatus.status = "booked";
+    // console.log("payment status", this.paymentStatus);
+    // this.data.sendStatus(this.paymentStatus);
+    // (window as any).disconnect();
     
   }
 
@@ -312,6 +317,10 @@ export class PaymentPageComponent implements OnInit {
   private countDown() {
     this.clearTimer();
     this.intervalId = window.setInterval(() => {
+      if(localStorage.getItem("closeItems")=="yes"){
+        this.onClickSuccess();
+        localStorage.setItem("closeItems", "no");
+      }
       this.seconds -= 1;
       if (this.minutes < 0) {
         this.timer = "Time Lapsed!";

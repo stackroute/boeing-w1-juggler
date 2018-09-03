@@ -54,4 +54,8 @@ export class RecommendationService {
     console.log("inside getGenreBasedMoviesForUser");
     return this.http.get<Movie[]>(this.url+"/getGenreBasedMoviesForUser?userName="+userName);
   }
+  getTypeBasedTicketedEventsForUser(userName:String):Observable<TicketedEvent[]>{
+    console.log("inside getTypeBasedTicketedEventsForUser");
+    return this.http.get<TicketedEvent[]>(this.url+"/getTypeBasedTicketedEventsForUser?userName="+userName);
+  }
 }
