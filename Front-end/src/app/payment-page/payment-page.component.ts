@@ -185,19 +185,16 @@ export class PaymentPageComponent implements OnInit {
         // Get the token ID to your server-side code for use.
         console.log(token)
         $.ajax({
-            url: "http://http://13.232.40.6:8092/ticket-engine/api/v1/charge",
+            url: "http://13.232.40.6:9001/api/v1/charge",
             type: 'post',
             data: {id:token.id,amount:amount},
-            success: function(data) {
+            success: function() {
               localStorage.setItem("paymentStatus", "success");
             },
-            error: function(data) {
+            error: function() {
               localStorage.setItem("paymentStatus", "fail");
             }
           }); // end ajax call
-        
-        (window as any).sendBookedSeats();
-        (window as any).disconnect();
       }
     });
     
@@ -226,14 +223,14 @@ export class PaymentPageComponent implements OnInit {
     this.clicked=true;
     this.flag= true;
     this.alerts.setMessage('Seat No: '+JSON.stringify(this.paymentStatus.seats)+' booked successfully','success');
-    // this.data.payMessage.subscribe(message => (this.paymentStatus = message));
-    // console.log("earlier payMessage", this.paymentStatus);
-    // this.paymentStatus.userName = localStorage.getItem("currentUser");
-    // this.paymentStatus.guestUserEmailId = this.emailId;
-    // this.paymentStatus.status = "booked";
-    // console.log("payment status", this.paymentStatus);
-    // this.data.sendStatus(this.paymentStatus);
-    // (window as any).disconnect();
+    this.data.payMessage.subscribe(message => (this.paymentStatus = message));
+    console.log("earlier payMessage", this.paymentStatus);
+    this.paymentStatus.userName = localStorage.getItem("currentUser");
+    this.paymentStatus.guestUserEmailId = this.emailId;
+    this.paymentStatus.status = "booked";
+    console.log("payment status", this.paymentStatus);
+    this.data.sendStatus(this.paymentStatus);
+    (window as any).disconnect();
     
   }
 
