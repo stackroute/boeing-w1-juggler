@@ -134,9 +134,7 @@ export class PaymentPageComponent implements OnInit {
     location.onPopState(() => {
       this.router.navigateByUrl('/home');
       console.log('Back button pressed!');
-
   });
-
   }
 
   ngOnInit() {
