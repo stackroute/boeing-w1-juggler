@@ -48,7 +48,7 @@ export class TheatreLayoutComponent implements OnInit {
     this.seatNum = [];
     this.duplicateId = localStorage.getItem("duplicateId");
     if(this.duplicateId==null) {
-      window.location.href=window.location.href+"/home"
+      window.location.href="/home";
     }
 
     this.showId = localStorage.getItem("showId");

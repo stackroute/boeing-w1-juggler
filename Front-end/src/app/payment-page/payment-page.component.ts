@@ -141,7 +141,7 @@ export class PaymentPageComponent implements OnInit {
 
   constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
     location.onPopState(() => {
-      this.router.navigateByUrl('/home');
+      window.location.href="/movieinfo";
       console.log('Back button pressed!');
   });
   }
