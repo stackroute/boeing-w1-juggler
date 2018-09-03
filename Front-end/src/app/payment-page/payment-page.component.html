@@ -43,7 +43,6 @@
             </p>
           </div>
           <div class="booking-button">
-
             <div *ngIf="!user && !clicked">
               <form class="form-inline">
                 <input type="text" class="form-control" id="searchbar" [(ngModel)]="emailId" [ngModelOptions]="{standalone: true}">
@@ -51,9 +50,9 @@
             </div>
 
             <p *ngIf="!flag; else disabledButton">
-              <button class="btn btn-secondary mat-raised-button" (click)="onClickSuccess()">Complete Payment</button>
+              <button class="btn btn-secondary mat-raised-button" (click)="openCheckout()">Complete Payment</button>
               <ng-template #disabledButton>
-                  <button class="btn btn-secondary disabled mat-raised-button" (click)="onClickSuccess()">Complete Payment</button>
+                  <button class="btn btn-secondary disabled mat-raised-button" (click)="openCheckout()">Complete Payment</button>
               </ng-template>
             </p>
             <p *ngIf="!flag; else disabledButton">
