@@ -74,6 +74,7 @@
     </span>
   </mat-toolbar-row>
 </mat-toolbar> -->
+<div class="homepage">
 <header class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
   <div class="container" *ngIf="loggedIn();else elseBlock">
     <button class="navbar-toggler" data-target="#navbarCollapse" data-toggle="collapse" type="button">
@@ -391,10 +392,13 @@
     </div>
   </ng-template>
 </header>
-
+<br>
+    <br>
+    <br>
 <mat-grid-list cols="12" rowHeight="100px">
   <div *ngIf="event$[0] || movie$[0]; else elseBlock">
-    <h4 style="margin-top: 75px">Your search results..</h4>
+    
+    <h4 style="color: papayawhip;margin-left: 550px">Your search results..</h4>
     <div *ngFor="let movie of event$">
       <mat-grid-tile colspan="4" rowspan="5">
         <a [routerLink]="['/ticketinfo']" (click)="goMoviePage(movie)">
@@ -444,3 +448,4 @@
     <h4 style="margin-top: 75px">No result found!!</h4>
   </ng-template>
 </mat-grid-list>
+</div>
