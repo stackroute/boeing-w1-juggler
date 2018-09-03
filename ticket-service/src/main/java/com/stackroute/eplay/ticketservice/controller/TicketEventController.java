@@ -1,6 +1,7 @@
 package com.stackroute.eplay.ticketservice.controller;
 
 import java.text.ParseException;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ import com.stackroute.eplay.ticketservice.domain.Ticket;
 import com.stackroute.eplay.ticketservice.domain.TicketedEvent;
 import com.stackroute.eplay.ticketservice.exception.MovieAlreadyExistException;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
+import com.stackroute.eplay.ticketservice.exception.MovieNotFoundException;
 import com.stackroute.eplay.ticketservice.exception.TicketedEventAlreadyExistException;
 import com.stackroute.eplay.ticketservice.service.MovieEventService;
 import com.stackroute.eplay.ticketservice.service.MovieService;
@@ -34,13 +36,17 @@ import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
 import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
 
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @CrossOrigin("*")
-@RequestMapping("ticket-service/api/v1")
+
+
+@RequestMapping("/api/v1")
 @EnableBinding({ MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class,FinalMovieEventStreams.class, BookTicketedEventStreams.class })
+
 public class TicketEventController {
 	@Autowired
 	Environment env;
@@ -105,6 +111,13 @@ public class TicketEventController {
 	public ResponseEntity<?> getAllMovieEvent() {
 		return new ResponseEntity<Iterable<MovieEvent>>(movieEventService.getAllMovieEvent(), HttpStatus.OK);
 	}
+   @GetMapping("/getByID/{id}")
+    public ResponseEntity<?> getMovieById(@PathVariable int id) throws MovieNotFoundException{
+    	
+    	   Optional<Movie> movie=movieService.getMovieById(id);
+    	   return new ResponseEntity<Optional<Movie>> (movie,HttpStatus.OK);
+    	    	
+    }
 
 	@GetMapping("/getAllMovie")
 	public ResponseEntity<?> getAllMovie() {
@@ -126,19 +139,19 @@ public class TicketEventController {
 		return new ResponseEntity<TicketedEvent>(ticketedEventService.updateTicketedEvent(ticketedEvent),
 				HttpStatus.OK);
 	}
-	
-	/*@PutMapping("/bookTicketedEvent/{id}")
-	public String bookTicketedEvent(@PathVariable int id) {
-		TicketedEvent ticketedEvent = ticketedEventService.getTicketedEventById(id);
-		ticketedEvent.setRemainingSeats(ticketedEvent.getRemainingSeats()-1);
-		return "";
-	}*/
-	
+
+	/*
+	 * @PutMapping("/bookTicketedEvent/{id}") public String
+	 * bookTicketedEvent(@PathVariable int id) { TicketedEvent ticketedEvent =
+	 * ticketedEventService.getTicketedEventById(id);
+	 * ticketedEvent.setRemainingSeats(ticketedEvent.getRemainingSeats()-1); return
+	 * ""; }
+	 */
+
 	@PutMapping("/bookTicketedEvent")
 	public ResponseEntity<?> bookTicketedEvent(@RequestBody Ticket ticket) {
 		logger.info("inside controller: ticket =  " + ticket.toString());
-		return new ResponseEntity<Ticket>(ticketedEventService.bookTicketedEvent(ticket),
-				HttpStatus.OK);
+		return new ResponseEntity<Ticket>(ticketedEventService.bookTicketedEvent(ticket), HttpStatus.OK);
 	}
 
 }

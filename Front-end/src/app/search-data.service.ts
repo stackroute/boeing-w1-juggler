@@ -32,7 +32,7 @@ export class SearchDataService {
  constructor(private http: HttpClient, private router: Router) { }
 
  getAllMovies(): Observable<Movie[]>{
-  return this.http.get<Movie[]>('http://13.232.40.6:8092/ticket-service/ticket-service/api/v1/getAllMovie')
+  return this.http.get<Movie[]>('http://13.232.40.6:8092/ticket-service/api/v1/getAllMovie')
 }
 
 getUserByUserName(name){
@@ -70,6 +70,6 @@ getMovieByCitynId(movieId) {
 
 }
 getMovieByCitynIduser(movieId,city){
- return this.http.get('http://13.232.40.6:8092/search-service/api/v1/movie/'+movieId+'/city/'+city);
+ return this.http.get('http://13.232.40.6:8092/ticket-service/api/v1/getByID/'+movieId);
 }
 }
