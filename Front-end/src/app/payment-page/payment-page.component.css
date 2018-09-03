@@ -24,11 +24,11 @@
 }
 
 .summary {
-
-    
-  font-size: 20px;
+  color: rgb(3, 3, 3);
+  font-family: "Anton", sans-serif;
+  margin-bottom: 25px;
+  font-size: 30px;
   position: static;
-  /* margin:auto; */
 }
 
 .details-display {
@@ -66,11 +66,20 @@ hr {
   height: 1px;
   /* Set the hr color */
   color: #333; /* old IE */
-  background-color: #333; /* Modern Browsers */
+  background-color: #C0C0C0; /* Modern Browsers */
 }
 .test{
   border: #333;
 }
 .figure{
   background: black
+}
+
+.scroll-on-content-add{
+  position:absolute;
+  top: 50px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  overflow-y:scroll;        
 }

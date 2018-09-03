@@ -7,7 +7,11 @@
   width: 100%
 } */
 .eventtype{
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH9Ek_k3Fi609lW2xADg_FJbfyoMqZcnuakf8uFDWf1Xxd25yN"); 
+  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH9Ek_k3Fi609lW2xADg_FJbfyoMqZcnuakf8uFDWf1Xxd25yN");  */
+  background-image: url("/assets/images/eventType.crdownload");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 mat-grid-list {
   margin-top: 50px;
