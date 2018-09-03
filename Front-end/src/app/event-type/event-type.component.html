@@ -3,48 +3,42 @@
 <mat-grid-list cols="12">
   <div class="movieCard">
     <mat-grid-tile colspan="4" rowspan="5">
-      <mat-card class="example-card">
-        <mat-card-header>
-          <mat-card-title>
-            <h5>Movie Event</h5>
-          </mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="https://experienceluxury.co/wp-content/uploads/2016/08/private-cinema.jpg">
+        
+      <mat-card class="render1">
+       
+        <img mat-card-image class="render" src="https://experienceluxury.co/wp-content/uploads/2016/08/private-cinema.jpg">
         <mat-card-actions>
-          <button mat-raised-button routerLink="/createMovieEvent" routerLinkActive="active" class="btn btn-secondary">Create Movie Event</button>
+          <button mat-raised-button routerLink="/createMovieEvent" routerLinkActive="active" class="btn btn-danger" style="margin-top: -14px;margin-left: 110px;">Movie Event</button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
   </div>
   <div class="movieCard">
     <mat-grid-tile colspan="4" rowspan="5">
-      <mat-card class="example-card">
-        <mat-card-header>
-          <mat-card-title>
-            <h5>RSVP Event</h5>
-          </mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="https://www.thespruce.com/thmb/bemK09j9zjxqDkEfF0Yv02-kakU=/450x0/filters:no_upscale():max_bytes(150000):strip_icc()/blush-rsvp-card-56fc19073df78c7d9edb6fcb.png"
+        
+      <mat-card class="render1">
+       
+        <img mat-card-image class="render" src="https://i0.wp.com/rsvpify.com/wp-content/uploads/2017/11/corporate-rsvp-wording-rsvpify.png?fit=375%2C290&ssl=1"
           alt="movie poster">
         <mat-card-actions>
-          <button mat-raised-button routerLink="/createRSVPEvent" routerLinkActive="active" class="btn btn-secondary">Create RSVP Event</button>
+          <button mat-raised-button routerLink="/createRSVPEvent" routerLinkActive="active" class="btn btn-danger" style="margin-top: -14px;margin-left: 110px;">RSVP Event</button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>
   </div>
   <div class="movieCard">
     <mat-grid-tile colspan="4" rowspan="5">
-      <mat-card class="example-card">
-        <mat-card-header>
-          <mat-card-title>
-            <h5>Other Ticketed Events</h5>
-          </mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="https://www.romania-insider.com/wp-content/uploads/2016/01/concert.jpg" alt="movie poster">
-        <mat-card-actions>
-          <button mat-raised-button routerLink="/createOtherTicketedEvent" routerLinkActive="active" class="btn btn-secondary">Create Other Events</button>
+      
+      <mat-card class="render1">
+       
+        <img mat-card-image class="render" src="https://www.romania-insider.com/wp-content/uploads/2016/01/concert.jpg" alt="movie poster">
+
+        <mat-card-actions class="render2">
+            <button mat-raised-button routerLink="/createOtherTicketedEvent" routerLinkActive="active" class="btn btn-danger" style="margin-top: -14px;margin-left: 110px;">Other Event</button>
+         
         </mat-card-actions>
       </mat-card>
+     
     </mat-grid-tile>
   </div>
 </mat-grid-list>
