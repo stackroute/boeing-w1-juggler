@@ -137,25 +137,12 @@ export class PaymentPageComponent implements OnInit {
   timer = "";
   seconds = 59;
   minutes = 0;
-<<<<<<< HEAD
-  // movieinfourl:string;
-  constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
-    location.onPopState(() => {
-      var pathname="localhost:4200/movieinfo"
-      history.back();
-
-      // window.location.href = window.location.href.replace('/payment', '/movieinfo');
-      // this.router.navigateByUrl('/home');
-      // history.pushState(null, null, window.location.pathname);
-
-=======
   handler;
 
   constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
     location.onPopState(() => {
       this.router.navigateByUrl('/home');
       console.log('Back button pressed!');
->>>>>>> 3175556eec4ab1342fe3d97583a1d8e0d288ec3b
   });
   }
   
