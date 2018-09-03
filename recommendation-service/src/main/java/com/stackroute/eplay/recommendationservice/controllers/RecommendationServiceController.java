@@ -59,12 +59,13 @@ public class RecommendationServiceController {
 		int id = movieKafka.getId();
 		String name = movieKafka.getName();
 		String language = movieKafka.getLanguage();
-		String poster = movieKafka.getPoster();
+		String backGroundPoster = movieKafka.getBackGroundPoster();
+		String cardPoster = movieKafka.getCardPoster();
 		int ratings = movieKafka.getRating();
 		String g = movieKafka.getGenre();
 		LocalDate releaseDate = movieKafka.getReleaseDate();
 		Genre genre = new Genre(g);
-		Movie movie = new Movie(id,name,language,poster,ratings,genre,releaseDate);
+		Movie movie = new Movie(id,name,language,backGroundPoster,cardPoster,ratings,genre,releaseDate);
 		return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);		
 	}
 	
