@@ -42,8 +42,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @CrossOrigin("*")
+
+
 @RequestMapping("/api/v1")
 @EnableBinding({ MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class,FinalMovieEventStreams.class, BookTicketedEventStreams.class })
+
 public class TicketEventController {
 	@Autowired
 	Environment env;
@@ -136,19 +139,19 @@ public class TicketEventController {
 		return new ResponseEntity<TicketedEvent>(ticketedEventService.updateTicketedEvent(ticketedEvent),
 				HttpStatus.OK);
 	}
-	
-	/*@PutMapping("/bookTicketedEvent/{id}")
-	public String bookTicketedEvent(@PathVariable int id) {
-		TicketedEvent ticketedEvent = ticketedEventService.getTicketedEventById(id);
-		ticketedEvent.setRemainingSeats(ticketedEvent.getRemainingSeats()-1);
-		return "";
-	}*/
-	
+
+	/*
+	 * @PutMapping("/bookTicketedEvent/{id}") public String
+	 * bookTicketedEvent(@PathVariable int id) { TicketedEvent ticketedEvent =
+	 * ticketedEventService.getTicketedEventById(id);
+	 * ticketedEvent.setRemainingSeats(ticketedEvent.getRemainingSeats()-1); return
+	 * ""; }
+	 */
+
 	@PutMapping("/bookTicketedEvent")
 	public ResponseEntity<?> bookTicketedEvent(@RequestBody Ticket ticket) {
 		logger.info("inside controller: ticket =  " + ticket.toString());
-		return new ResponseEntity<Ticket>(ticketedEventService.bookTicketedEvent(ticket),
-				HttpStatus.OK);
+		return new ResponseEntity<Ticket>(ticketedEventService.bookTicketedEvent(ticket), HttpStatus.OK);
 	}
 
 }
