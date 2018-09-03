@@ -1,6 +1,6 @@
 <app-nav-bar></app-nav-bar>
 <h2 style="margin-top: 100px">MOVIES</h2>
-<mat-grid-list cols="12" rowHeight="100px">
+<mat-grid-list cols="12" rowHeight="100px" style="margin-bottom:25%">
     <div *ngIf=" movieList[0]; else elseBlock">
         <div *ngFor="let movie of movieList;let i=index">
             <mat-grid-tile colspan="4" rowspan="5">
@@ -12,6 +12,9 @@
         </div>
     </div>
     <ng-template #elseBlock>
-        <h4 style="margin-top: 75px">No Bookings found!!</h4>
+        <h4 style="margin-bottom: 75px">No Bookings found!!</h4>
+        <div style="height: 50%;margin-bottom: 100px">
+
+        </div>
     </ng-template>
 </mat-grid-list>

@@ -113,8 +113,8 @@ public class KafkaListener {
 		for(int id:userKafka.getBookedMovieId()) {
 			movies.add(movieService.findById(id));
 		}}
-		if(userKafka.getBookeedTicketedEventId()!=null) {
-		for(int id:userKafka.getBookeedTicketedEventId()) {
+		if(userKafka.getBookedTicketedEventId()!=null) {
+		for(int id:userKafka.getBookedTicketedEventId()) {
 			events.add(ticketedEventService.findById(id));
 		}
 	}

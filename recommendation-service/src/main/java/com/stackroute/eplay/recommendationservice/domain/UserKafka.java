@@ -26,5 +26,5 @@ public class UserKafka {
 	private String gender;
 	private String city;
 	List<Integer> bookedMovieId;
-	List<Integer> bookeedTicketedEventId;
+	List<Integer> bookedTicketedEventId;
 }
