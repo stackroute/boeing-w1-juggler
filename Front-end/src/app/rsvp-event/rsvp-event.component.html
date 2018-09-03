@@ -4,9 +4,10 @@
     <div class="medium-list">
       <div class="list-viewer-wrapper">
         <div class="list-header-title">RSVP Event</div>
+        <form [formGroup]="rsvpForm">
         <div class="form-container">
           <mat-form-field>
-            <input matInput placeholder="Event Name" [(ngModel)]="rsvpModel.name">
+            <input id="name"  matInput formControlName="name" placeholder="Event Name" [(ngModel)]="rsvpModel.name" required>
           </mat-form-field>
 
           <!-- <mat-form-field>
@@ -15,10 +16,13 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field> -->
 
+         
+
           <mat-form-field>
-            <input matInput placeholder="Choose a starting date" [(ngModel)]="rsvpModel.startDate" [owlDateTimeTrigger]="picker" [owlDateTime]="picker">
-            <owl-date-time #picker></owl-date-time>
-          </mat-form-field>
+              <input id="startDate"  matInput formControlName="startDate" [(ngModel)]="rsvpModel.startDate" placeholder="Choose a starting date" 
+              [owlDateTimeTrigger]="picker" [owlDateTime]="picker" required/>
+              <owl-date-time #picker></owl-date-time>
+            </mat-form-field>
 
 
           <!-- <mat-form-field>
@@ -39,7 +43,7 @@
         </mat-form-field> -->
 
           <mat-form-field>
-            <input matInput placeholder="Venue" [(ngModel)]="rsvpModel.city" required>
+            <input id="city"  matInput formControlName="city" placeholder="Venue" [(ngModel)]="rsvpModel.city" required>
           </mat-form-field>
 
           <!-- <mat-form-field>
@@ -47,11 +51,11 @@
         </mat-form-field> -->
 
           <mat-form-field>
-            <input matInput placeholder="Poster" [(ngModel)]="rsvpModel.poster">
+            <input id="poster"  matInput formControlName="poster" placeholder="Poster" [(ngModel)]="rsvpModel.poster" required>
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Description" [(ngModel)]="rsvpModel.description">
+            <input id="description"  matInput formControlName="description" placeholder="Description" [(ngModel)]="rsvpModel.description" required>
           </mat-form-field>
           <!-- <mat-form-field>
           <input matInput placeholder="performers" [(ngModel)]="rsvpModel.performers">
@@ -69,13 +73,10 @@
 
 
           <p align="center">
-              <button  type="submit" class="button" name="button" class="btn btn-secondary"  (click)="onSubmit()">Create RSVP Event</button>
+              <button  type="submit" class="button" name="button" class="btn btn-secondary"  [disabled]="!rsvpForm.valid" (click)="onSubmit()">Create RSVP Event</button>
             </p>
       </div>
-      <div>
-
-
-      </div>
+     </form>
     </div>
   </div>
-</div>
+</div> 

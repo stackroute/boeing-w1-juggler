@@ -174,6 +174,7 @@ export class PaymentPageComponent implements OnInit {
   }
 
   openCheckout() {
+    var amount=this.totalAmount*100;
     localStorage.setItem("guestEmail", this.emailId);
     this.handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_K2C3smobEhEs1C5VDNs9iXn6',
@@ -182,29 +183,18 @@ export class PaymentPageComponent implements OnInit {
       token: function (token: any) {
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
-        //this.data.sendToken("token").subscribe(res => console.log(res));
-        // console.log(token)
-        // $.ajax({
-        //     url: "http://localhost:8080/api/v1/charge",
-        //     type: 'post',
-        //     data: token.id,
-        //     success: function(data) {
-        //       if (data == 'success') {
-        //           console.log("Card successfully charged!");
-        //       }
-        //       else {
-        //           console.log("Success Error!");
-        //       }
-  
-        //     },
-        //     error: function(data) {
-        //       console.log("Ajax Error!");
-        //       console.log(data);
-        //     }
-        //   }); // end ajax call
-        localStorage.setItem("closeItems", "yes");
-        (window as any).sendBookedSeats();
-        (window as any).disconnect();
+        console.log(token)
+        $.ajax({
+            url: "http://13.232.40.6:9001/api/v1/charge",
+            type: 'post',
+            data: {id:token.id,amount:amount},
+            success: function() {
+              localStorage.setItem("paymentStatus", "success");
+            },
+            error: function() {
+              localStorage.setItem("paymentStatus", "fail");
+            }
+          }); // end ajax call
       }
     });
     
@@ -226,21 +216,21 @@ export class PaymentPageComponent implements OnInit {
     console.log("payment staus", this.paymentStatus);
     this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
-    this.alerts.setMessage('Payment failed, please try again.','error');
+    this.alerts.setMessage('Payment failed. Your card is not supported.','error');
   }
 
   onClickSuccess() {
     this.clicked=true;
     this.flag= true;
     this.alerts.setMessage('Seat No: '+JSON.stringify(this.paymentStatus.seats)+' booked successfully','success');
-    // this.data.payMessage.subscribe(message => (this.paymentStatus = message));
-    // console.log("earlier payMessage", this.paymentStatus);
-    // this.paymentStatus.userName = localStorage.getItem("currentUser");
-    // this.paymentStatus.guestUserEmailId = this.emailId;
-    // this.paymentStatus.status = "booked";
-    // console.log("payment status", this.paymentStatus);
-    // this.data.sendStatus(this.paymentStatus);
-    // (window as any).disconnect();
+    this.data.payMessage.subscribe(message => (this.paymentStatus = message));
+    console.log("earlier payMessage", this.paymentStatus);
+    this.paymentStatus.userName = localStorage.getItem("currentUser");
+    this.paymentStatus.guestUserEmailId = this.emailId;
+    this.paymentStatus.status = "booked";
+    console.log("payment status", this.paymentStatus);
+    this.data.sendStatus(this.paymentStatus);
+    (window as any).disconnect();
     
   }
 
@@ -317,9 +307,12 @@ export class PaymentPageComponent implements OnInit {
   private countDown() {
     this.clearTimer();
     this.intervalId = window.setInterval(() => {
-      if(localStorage.getItem("closeItems")=="yes"){
+      if(localStorage.getItem("paymentStatus")=="success"){
         this.onClickSuccess();
-        localStorage.setItem("closeItems", "no");
+        localStorage.setItem("paymentStatus", "none");
+      } else if(localStorage.getItem("paymentStatus")=="fail"){
+        this.onClickFail();
+        localStorage.setItem("paymentStatus", "none");
       }
       this.seconds -= 1;
       if (this.minutes < 0) {
