@@ -237,8 +237,8 @@ export class PaymentPageComponent implements OnInit {
       this.foodPrice();
       console.log(JSON.stringify(this.items));
     }
-    if (this.items.length > 4) {
-      console.log("Max 4 items allowed");
+    if (this.items.length > 6) {
+      console.log("Max 6 items allowed");
     }
   }
 
