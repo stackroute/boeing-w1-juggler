@@ -101,12 +101,16 @@ public class KafkaListener {
 	
 	@StreamListener(UserStreams.INPUT)
 	public void userPost(@Payload UserKafka userKafka) {
+		System.out.println(userKafka);
 		String userName = userKafka.getUserName();
-		String fullName = null;
-		if(userKafka.getFullName()!=null){
-		fullName = userKafka.getFullName();
-		}		
-		City city = new City(userKafka.getCity());
+//		String fullName = null;
+//		if(userKafka.getFullName()!=null){
+//		fullName = userKafka.getFullName();
+//		}		
+		City city = null;
+		if(userKafka.getCity()!=null) {
+	    city = new City(userKafka.getCity());
+		}
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();
 		if(userKafka.getBookedMovieId()!=null) {
@@ -118,7 +122,7 @@ public class KafkaListener {
 			events.add(ticketedEventService.findById(id));
 		}
 	}
-		User user = new User(userName,fullName,city,movies,events);
+		User user = new User(userName,city,movies,events);
 		userservice.saveUser(user);
 		System.out.println(userKafka);
 	}
