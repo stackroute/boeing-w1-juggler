@@ -6,6 +6,20 @@
   margin-bottom: 5%;
   width: 100%
 } */
+.render1{
+  border-radius: 15px;
+  /* height: 300px;  */
+  /* width: 345px; */
+  overflow: hidden;
+  width: 370px; 
+  
+ 
+}
+.render{
+  width: 370px; 
+  height: 320px;
+}
+
 .eventtype{
   /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH9Ek_k3Fi609lW2xADg_FJbfyoMqZcnuakf8uFDWf1Xxd25yN");  */
   background-image: url("/assets/images/eventType.crdownload");
@@ -24,9 +38,10 @@ mat-card {
   /* border : 12px dashed #1b1a19; */
   /* border : 3px dashed #ccc; */
   /* background: #5bc0de */
-  background: #33b5e5;
+  background: -webkit-linear-gradient(top,  #5e635e 0,#0e0e0e 100%);
   /* width: auto */
 }
+
 h5{
   font-family: "Anton", sans-serif;
   /* font-family: "Lobster", cursive; */
