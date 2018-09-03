@@ -21,9 +21,9 @@ export class PaymentService {
     (window as any).sendBlockedSeats(status);
   }
 
-  sendToken(token: any): Observable<any> {
+  sendToken(token: String): Observable<String> {
     console.log(token);
   //  return this.http.post<Theatre>(this._url+"registerTheatre", theatre);
-   return this.http.post<any>("http://localhost:8080/api/v1/charge", token);
+   return this.http.post<String>("http://localhost:8080/api/v1/charge", token);
   }
 }
