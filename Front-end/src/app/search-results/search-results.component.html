@@ -86,7 +86,7 @@
         <li class="nav-item">
           <a href="#" class="nav-link"></a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <button class="btn btn-info" mat-raised-button [matMenuTriggerFor]="menu">Filters</button>
           <mat-menu #menu="matMenu">
             <form [formGroup]="form" (ngSubmit)="submit()" class="menuToggle">
@@ -106,7 +106,7 @@
               </div>
             </form>
           </mat-menu>
-        </li>
+        </li> -->
         <!-- <li class="nav-item">
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" [matMenuTriggerFor]="menu" id="dropdownMenuButton" data-toggle="dropdown"
@@ -342,7 +342,7 @@
               style="margin-right: 50px">person</mat-icon>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="profile">Event History</a>
-              <a class="dropdown-item" href="profile">Booking History</a>
+              <a class="dropdown-item" href="bookingHistory">Booking History</a>
               <a class="dropdown-item" href="#"> Accout & Settings</a>
               <a class="dropdown-item" href="#"> Help</a>
               <!-- <div class="dropdown-divider"></div> -->
@@ -398,18 +398,16 @@
     <div *ngFor="let movie of event$">
       <mat-grid-tile colspan="4" rowspan="5">
         <a [routerLink]="['/ticketinfo']" (click)="goMoviePage(movie)">
-          <mat-card class="example-card">
-            <mat-card-header>
-              <!-- <div mat-card-avatar class="example-header-image"></div> -->
-              <mat-card-title>
-                <h5>{{movie.name}}</h5>
-              </mat-card-title>
-            </mat-card-header>
-            <img mat-card-image src="{{movie.poster}}" alt="movie poster">
+          <mat-card class="render1">
+            <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
             <mat-card-actions>
-              <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/ticketinfo" (click)="goMoviePage(movie)">View and Book</button>
+                <h6 style="font-family: 'Times New Roman', Times, serif"> {{movie.name}}</h6>
+                {{movie.city}}
+                {{movie.localDate}}
+                
+                <!-- <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button> -->
             </mat-card-actions>
-          </mat-card>
+        </mat-card>
         </a>
       </mat-grid-tile>
       <!-- <mat-grid-tile colspan="4" rowspan="6">
@@ -424,18 +422,10 @@
     <div *ngFor="let movie of movie$">
       <mat-grid-tile colspan="4" rowspan="5">
         <a [routerLink]="['/movieinfo']" (click)="goMoviePage(movie)">
-          <mat-card class="example-card">
-            <mat-card-header>
-              <!-- <div mat-card-avatar class="example-header-image"></div> -->
-              <mat-card-title>
-                <h5>{{movie.name}}</h5>
-              </mat-card-title>
-            </mat-card-header>
-            <img mat-card-image src="{{movie.poster}}" alt="movie poster">
-            <mat-card-actions>
-              <button class="btn btn-secondary" mat-button mat-raised-button routerLink="/movieinfo" (click)="goMoviePage(movie)">View and Book</button>
-            </mat-card-actions>
-          </mat-card>
+          <mat-card class="render1">
+            <img class="render" mat-card-image src="{{movie.cardPoster}}" alt="movie poster">
+             <br> {{movie.name}}
+           </mat-card>
         </a>
       </mat-grid-tile>
     </div>
