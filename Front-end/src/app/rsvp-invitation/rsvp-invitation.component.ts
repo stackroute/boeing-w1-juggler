@@ -48,7 +48,7 @@ export class RsvpInvitationComponent implements OnInit {
     console.log("something", this.rsvpModel);
   }
   onSubmit() {
-    this.id=localStorage.getItem("eventId");
+    //this.id=localStorage.getItem("eventId");
     console.log("vishal ppu");
     //console.log(this.rsvpInvitationModel);
     this.rsvpCreateService
@@ -59,6 +59,9 @@ export class RsvpInvitationComponent implements OnInit {
       console.log("bhaaaaaai",this.finalId);
       
        location.reload();
+      // $route.reload();
+      // this.ngOnInit();
+      //this.router.navigate(["/"+this.finalId+"/rsvpInvitation"]);
   }
   onSubmit1() {
     //this.id=this.rsvpModel.id;
@@ -100,4 +103,7 @@ export class RsvpInvitationComponent implements OnInit {
         console.log(res);
       });
   }
+
+
+ 
 }

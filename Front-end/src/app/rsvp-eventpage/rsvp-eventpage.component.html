@@ -14,17 +14,17 @@
       
      
 
-    <h3>
+    <h2>
       {{rsvpModel.name}}
-    </h3>
+    </h2>
     <h4>
-      {{rsvpModel.description}}
+      description:  {{rsvpModel.description}}
       </h4>
       <br>
     
 
     <h4>
-       {{rsvpModel.city}}
+       city: {{rsvpModel.city}}
     </h4>
     <h4>
       Start Date: {{rsvpModel.startDate|date}} at start time {{rsvpModel.startDate|date:"HH:mm"}}
@@ -35,7 +35,7 @@
   
     
 
-    <br>
+   
 
     <mat-form-field>
       <textarea matInput placeholder="Your name" [(ngModel)]="rsvpInvitationModel.inviteeName" ngModel #inviteeName="ngModel" required
