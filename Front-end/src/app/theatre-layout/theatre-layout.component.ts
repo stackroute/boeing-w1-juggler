@@ -16,6 +16,7 @@ var jquery: any;
 export class TheatreLayoutComponent implements OnInit {
   // shownav=false;
   recievedBlockedSeats;
+  duplicateId;
   showId;
   blockedSeat = new BlockSeat();
   seatingValue = [];
@@ -45,6 +46,10 @@ export class TheatreLayoutComponent implements OnInit {
 
     this.id = [];
     this.seatNum = [];
+    this.duplicateId = localStorage.getItem("duplicateId");
+    if(this.duplicateId==null) {
+      window.location.href=window.location.href+"/home"
+    }
 
     this.showId = localStorage.getItem("showId");
     console.log("Show Id from movie-info " + this.showId);
