@@ -255,32 +255,37 @@ public class KafkaListener {
 		logger.info("sending email for " + ticket.toString());
 		String userName = ticket.getUserName();
 		logger.info("entering try block...  " + userName);
+		
 		try {
 			Registration user = registerUser.findByUsername(userName);	
 			logger.info("got user " + user.toString());
+			List<Integer> bookedTicketedEventId;
 //			int movieId = movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId();
-//			if (user.getBookedMovieId() == null)
-//				bookedMovieId = new ArrayList<>();
-//			else
-//				bookedMovieId = user.getBookedMovieId();
-//			if(!bookedMovieId.contains(movieId))
-//				bookedMovieId.add(movieId);
-//			user.setBookedMovieId(bookedMovieId);
+			//int eventId = 
+			if (user.getBookedTicketedEventId() == null)
+				bookedTicketedEventId = new ArrayList<>();
+			else
+				bookedTicketedEventId = user.getBookedTicketedEventId();
+			
+			if(!bookedTicketedEventId.contains(ticket.getTicketedEventId()))
+				bookedTicketedEventId.add(ticket.getTicketedEventId());
 
+			user.setBookedTicketedEventId(bookedTicketedEventId);
 			/*
 			 * updating the content in database
 			 */
 
-			//registerUser.updateUser(user, userName);
+			registerUser.updateUser(user, userName);
 
 			/*
 			 * putting content in the message bus
 			 */
 
-//			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
-//			messageChannel.send(MessageBuilder.withPayload(user)
-//					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
-//			
+			logger.info("sending updated user data...");
+			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
+			messageChannel.send(MessageBuilder.withPayload(user)
+					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+			
 //			String message = "";
 //			if(bookedMovieTickets.getStatus().equals("booked")) {
 //				message = "Congrats, You have booked Seat No: ";

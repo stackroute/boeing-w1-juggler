@@ -34,8 +34,13 @@
           <!-- <mat-form-field>
           <input matInput placeholder="Location" [(ngModel)]="ticketedEvent.location">
         </mat-form-field> -->
+  
           <mat-form-field>
-            <input formControlName="type" matInput placeholder="Category" [(ngModel)]="ticketedEvent.type" required>
+            <mat-select placeholder="Select Type">
+              <mat-option *ngFor="let type of types" [value]="type" (click)="setType(type)" >
+                {{type}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
           <mat-form-field>
             <input matInput formControlName="cardPoster" placeholder="Card Poster" [(ngModel)]="ticketedEvent.cardPoster" required>
