@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 })
 export class TicketedInfoService {
 
-  private url: string = "http://13.232.40.6:8092/ticket-service/ticket-service/api/v1/bookTicketedEvent";
+  private url: string = "http://13.232.40.6:8092/ticket-service/api/v1/bookTicketedEvent";
   constructor(private http: HttpClient) {}
 
 
