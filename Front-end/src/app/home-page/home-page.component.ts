@@ -28,6 +28,7 @@ export class HomePageComponent implements OnInit {
     el.scrollIntoView();
  }
   ngOnInit() {
+    localStorage.setItem('duplicateId','refresh');
     this.data.currentMessage.subscribe(message => (this.message = message));
     this.fetchEvents();
     this.rec$ = JSON.parse(localStorage.getItem("rec"));

@@ -60,7 +60,7 @@
                 </form>
               </div>
 
-              <p *ngIf="!flag; else disabledButton">
+              <p *ngIf="!flag  && !clicked; else disabledButton">
                 <button style="margin-top: 10px;" class="btn btn-primary mat-raised-button" (click)="openCheckout()">Complete Payment</button>
                 <ng-template #disabledButton>
                   <button class="btn btn-primary disabled mat-raised-button" (click)="openCheckout()">Complete Payment</button>

@@ -212,6 +212,7 @@ export class PaymentPageComponent implements OnInit {
   }
 
   onClickFail() {
+    this.clicked=true;
     this.flag= true; 
     this.data.payMessage.subscribe(message => (this.paymentStatus = message));
     console.log("earlier payMessage", this.paymentStatus);
