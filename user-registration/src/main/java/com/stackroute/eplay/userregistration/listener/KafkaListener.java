@@ -281,10 +281,11 @@ public class KafkaListener {
 			 * putting content in the message bus
 			 */
 
-//			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
-//			messageChannel.send(MessageBuilder.withPayload(user)
-//					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
-//			
+			logger.info("sending updated user data...");
+			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
+			messageChannel.send(MessageBuilder.withPayload(user)
+					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+			
 //			String message = "";
 //			if(bookedMovieTickets.getStatus().equals("booked")) {
 //				message = "Congrats, You have booked Seat No: ";
