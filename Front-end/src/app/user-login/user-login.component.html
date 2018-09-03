@@ -8,20 +8,20 @@
         <form [formGroup]="loginForm">
           <div class="form-container">
             <mat-form-field>
-              <input id="userName" matInput formControlName="username" [(ngModel)]="user.username" placeholder="Enter your userName" />
+              <input id="userName" matInput formControlName="username" [(ngModel)]="user.username" placeholder="Username" />
             </mat-form-field>
 
             <mat-form-field>
-              <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Enter your password" [type]="hide ? 'password':'text'"
+              <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Password" [type]="hide ? 'password':'text'"
               />
               <mat-icon matSuffix (click)="hide = !hide">
                 {{hide ? 'visibility' : 'visibility_off'}}
               </mat-icon>
             </mat-form-field>
 
-            <button type="submit" class="mat-raised-button mat-primary" (click)="onSubmit()">Login</button>
+            <button type="submit" class="btn btn-info" style="margin: auto;  margin-top: 10px !important; " (click)="onSubmit()">Login</button>
 
-            <button mat-button routerLink="/userRegistration" routerLinkActive="active" class="divider">Register</button>
+            <button  mat-button routerLink="/userRegistration" routerLinkActive="active" class="divider" class="btn btn-info" style="margin: auto;  margin-top: 10px !important; margin-bottom: 10px">Register</button>
           </div>
         </form>
       </div>
