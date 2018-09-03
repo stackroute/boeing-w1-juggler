@@ -63,3 +63,12 @@ function sendBlockedSeats(blockedSeat) {
     stompClient.send("/app/send/message", {}, JSON.stringify(blockedSeat));
 }
 
+function sendBookedSeats() {
+    blockedSeat = bookedSeatsTemp;
+    blockedSeat.guestUserEmailId = localStorage.getItem("guestEmail");
+    blockedSeat.status="booked";
+    blockedSeat.userName = localStorage.getItem("currentUser");
+    console.log("Blocked Seats: " +  JSON.stringify(blockedSeat));
+    stompClient.send("/app/send/message", {}, JSON.stringify(blockedSeat));
+}
+

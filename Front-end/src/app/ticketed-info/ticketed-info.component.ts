@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ticket } from '../models/Ticket';
+import { AlertsService } from 'angular-alert-module';
 import { TicketedInfoService} from '../ticketed-info.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class TicketedInfoComponent implements OnInit {
   User: any;
   url: any;
   result: any;
-  constructor(private ticketedInfoObject: TicketedInfoService) { }
+  constructor(private ticketedInfoObject: TicketedInfoService, private alerts: AlertsService) { }
 
   ngOnInit() {
     this.ticketInfo=new Ticket();
@@ -36,7 +37,7 @@ export class TicketedInfoComponent implements OnInit {
     this.ticketInfo.ticketedEventId = this.event.id;
     this.ticketInfo.userName= this.User;
     this.ticketInfo.noOfSeats= 1;
-    
+    this.alerts.setMessage('Booked successfully','success');
     this.ticketedInfoObject.sendTicketedInfo(this.ticketInfo).subscribe(r=>{
       console.log("inside service of sendTicketedInfo")
     })

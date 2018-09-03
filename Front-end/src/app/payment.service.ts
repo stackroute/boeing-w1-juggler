@@ -20,4 +20,10 @@ export class PaymentService {
     //return this.http.post<string>('http://13.232.40.6:8092/ticket-engine/api/v1/blockedSeatsStatus',status);
     (window as any).sendBlockedSeats(status);
   }
+
+  sendToken(token: any): Observable<any> {
+    console.log(token);
+  //  return this.http.post<Theatre>(this._url+"registerTheatre", theatre);
+   return this.http.post<any>("http://localhost:8080/api/v1/charge", token);
+  }
 }
