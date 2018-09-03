@@ -13,6 +13,8 @@ export class BookingHistoryComponent implements OnInit {
   movieList: any[];
   yourData: any;
   movie: any;
+  ticket: any;
+  ticketList: any[];
 
 
   constructor(
@@ -22,6 +24,7 @@ export class BookingHistoryComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.movieList = [];
+    this.ticketList=[];
     this.userData
       .getUser(localStorage.getItem("currentUser"))
       .subscribe(data => {
@@ -39,7 +42,19 @@ export class BookingHistoryComponent implements OnInit {
             
           });
         }
-        console.log("booked movies",this.movieList);
+        for (var i = 0; i < this.yourData.bookedTicketedEventId.length; i++) {
+          console.log("top i is", i);
+          this.data
+          .getTicketEventById(
+            this.yourData.bookedTicketedEventId[i],localStorage.getItem('city')
+          )
+          .subscribe(data => {
+            this.ticket = data;
+            this.ticketList.push(this.ticket);
+            
+          });
+        }
+        console.log("booked ticket",this.ticketList);
       }
 )
 }

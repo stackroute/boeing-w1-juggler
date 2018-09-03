@@ -72,4 +72,7 @@ getMovieByCitynId(movieId) {
 getMovieByCitynIduser(movieId,city){
  return this.http.get('http://13.232.40.6:8092/ticket-service/api/v1/getByID/'+movieId);
 }
+getTicketEventById(ticketId,city){
+ return this.http.get('http://13.232.40.6:8092/ticket-service/api/v1/getTicketedEventById/'+ticketId);
+}
 }
