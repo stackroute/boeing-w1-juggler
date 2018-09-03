@@ -35,6 +35,6 @@ public class Registration {
 	private List<MovieEvent> movieEvent;
 	private List<TicketedEvent> ticketedEvent;
 	private List<Integer> bookedMovieId;
-	private List<Integer> bookeedTicketedEventId;
+	private List<Integer> bookedTicketedEventId;
 
 }
