@@ -3,6 +3,7 @@ import { FormControl,Validators,FormBuilder,FormGroup, FormsModule } from "@angu
 import { TicketedEvent } from "../ticketedEvent";
 import { TicketedEventService } from "../ticketed-event.service";
 
+
 @Component({
   selector: "app-other-ticketed-event",
   templateUrl: "./other-ticketed-event.component.html",
@@ -12,6 +13,7 @@ import { TicketedEventService } from "../ticketed-event.service";
 export class OtherTicketedEventComponent implements OnInit {
 
   public dateTime: Date;
+  public types: String[];
   otherTicketedEventForm: FormGroup;
 
   otherTicketedEventControl = new FormControl();
@@ -31,6 +33,13 @@ export class OtherTicketedEventComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+      this.types=[];
+      this.types.push("Plays");
+      this.types.push("Sports");
+      this.types.push("Concert");
+      
+     
       this.otherTicketedEventForm = this.formBuilder.group({
         name: [
           '',
@@ -52,10 +61,6 @@ export class OtherTicketedEventComponent implements OnInit {
           '',
           [Validators.required],
         ],
-        type: [
-          '',
-          [Validators.required],
-        ],
         capacity: [
           '',
           [Validators.required],
@@ -69,6 +74,11 @@ export class OtherTicketedEventComponent implements OnInit {
           [Validators.required],
         ],
       }); 
+    }
+    setType(type){
+      console.log(type);
+     this.ticketedEvent.type=type;
+  
     }
 }
 
