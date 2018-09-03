@@ -35,7 +35,7 @@
           <input matInput placeholder="Location" [(ngModel)]="ticketedEvent.location">
         </mat-form-field> -->
           <mat-form-field>
-            <input matInput placeholder="Category" [(ngModel)]="ticketedEvent.type">
+            <input formControlName="type" matInput placeholder="Category" [(ngModel)]="ticketedEvent.type" required>
           </mat-form-field>
           <mat-form-field>
             <input matInput formControlName="cardPoster" placeholder="Card Poster" [(ngModel)]="ticketedEvent.cardPoster" required>
@@ -54,7 +54,7 @@
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput formControlName="description" placeholder="Description" [(ngModel)]="ticketedEvent.description" required>
+            <textarea matInput formControlName="description" placeholder="Description" [(ngModel)]="ticketedEvent.description" required></textarea>
           </mat-form-field>
 
           <mat-form-field>

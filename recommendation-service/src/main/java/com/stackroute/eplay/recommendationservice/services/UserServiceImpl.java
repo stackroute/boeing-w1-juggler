@@ -41,18 +41,20 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
-	public List<Movie> getGenreBasedMoviesForUser(String userName){
-		return userrepository.getGenreBasedMoviesForUser(userName);
+	public List<Movie> getGenreBasedMoviesForUser(String userName, String cityName){
+		return userrepository.getGenreBasedMoviesForUser(userName,cityName);
 	}
 
 
-	public List<TicketedEvent> getTypeBasedTicketedEventsForUser(String userName){
-		return userrepository.getTypeBasedTicketedEventsForUser(userName);
+	public List<TicketedEvent> getTypeBasedTicketedEventsForUser(String userName,String cityName){
+		return userrepository.getTypeBasedTicketedEventsForUser(userName,cityName);
 	}
 
 
 	@Override
 	public City getCityOfUser(String userName) {
 		return userrepository.getCityOfUser(userName);
-	}	 
+	}
+
+		 
 }
