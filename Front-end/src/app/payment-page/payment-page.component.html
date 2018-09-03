@@ -12,7 +12,7 @@
 </div> -->
   <div class="payment">
     <mat-grid-list cols="5" rowHeight="100px">
-      <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color" [style.overflow]="tile.overflow">
+      <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
         <div *ngIf="tile.cols==1.8; else elseBlock">
           <div class="scroll-on-content-add">
             <div class="summary">
@@ -47,7 +47,7 @@
               <p> <b style="color: brown">Amount Payable:</b> {{totalAmount}} </p>
               <hr>
               <p *ngIf="!clicked">
-                Time Left: {{timer}}
+                Hurry up..  : {{timer}}
               </p>
             </div>
             <div class="booking-button">

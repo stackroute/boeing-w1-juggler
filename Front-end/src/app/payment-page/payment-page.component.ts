@@ -136,15 +136,21 @@ export class PaymentPageComponent implements OnInit {
   timer = "";
   seconds = 59;
   minutes = 0;
-
+  // movieinfourl:string;
   constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
     location.onPopState(() => {
-      this.router.navigateByUrl('/home');
-      console.log('Back button pressed!');
+      var pathname="localhost:4200/movieinfo"
+      history.back();
+
+      // window.location.href = window.location.href.replace('/payment', '/movieinfo');
+      // this.router.navigateByUrl('/home');
+      // history.pushState(null, null, window.location.pathname);
 
   });
 
   }
+  
+
 
   ngOnInit() {
     this.start();
