@@ -11,6 +11,7 @@ export class TicketedEvent {
     description:string;
     price:string;
     performers:string;
+    remainingSeats:number;
     termsAndConditions:string;
     notes:string;
     userName:string;
