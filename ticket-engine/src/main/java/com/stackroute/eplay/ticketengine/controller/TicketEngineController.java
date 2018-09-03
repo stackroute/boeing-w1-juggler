@@ -1,5 +1,6 @@
 package com.stackroute.eplay.ticketengine.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -31,6 +32,9 @@ import com.stackroute.eplay.ticketengine.repository.ShowRepository;
 import com.stackroute.eplay.ticketengine.service.BlockedSeatsService;
 import com.stackroute.eplay.ticketengine.streams.BookedSeatsStream;
 import com.stackroute.eplay.ticketengine.streams.EmailStream;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
 
 @RestController
 @CrossOrigin("*")
@@ -159,6 +163,28 @@ public class TicketEngineController {
 			MessageChannel messageChannelEmail = emailStream.outboundEmail();
 			messageChannelEmail.send(MessageBuilder.withPayload(email)
 					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+		}
+	}
+	
+	@PostMapping("/charge")
+	public ResponseEntity<?> saveCharge(@RequestBody String token) {
+		Stripe.apiKey = "sk_test_6ENKtOtZz0CNzeQb8cKk9nT7";
+		logger.info(token);
+		String id = token.split("&")[0].split("=")[1];
+		String amount = token.split("&")[1].split("=")[1];
+		Map<String, Object> params = new HashMap<>();
+		params.put("amount", amount);
+		params.put("currency", "INR");
+		params.put("description", "Example charge");
+		params.put("source", id);
+		try {
+			Charge charge = Charge.create(params);
+			logger.info(charge.toString());
+			return new ResponseEntity<String> (charge.toString(), HttpStatus.OK);
+		} catch (StripeException e) {
+			// TODO Auto-generated catch block
+			logger.info(e.toString());
+			return new ResponseEntity<String> ("payment failed", HttpStatus.BAD_REQUEST);
 		}
 	}
 }
