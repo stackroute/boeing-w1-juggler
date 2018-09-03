@@ -48,7 +48,7 @@
               <hr>
               <p> <b style="color: brown">Amount Payable:</b> {{totalAmount}} </p>
               <hr>
-              <div style="color:red; margin-bottom: 10px;" *ngIf="!clicked">
+              <div style="color:red; margin-left: 170px;" *ngIf="!clicked">
                 Hurry up..  : {{timer}}
               </div>
             </div>
@@ -60,8 +60,8 @@
                 </form>
               </div>
 
-              <p *ngIf="!flag  && !clicked; else disabledButton">
-                <button style="margin-top: 10px;" class="btn btn-primary mat-raised-button" (click)="openCheckout()">Complete Payment</button>
+              <p *ngIf="!flag  && !clicked; else disabledButton" style="margin-left: 160px;">
+                <button style="margin-top: 12px;" class="btn btn-primary mat-raised-button" (click)="openCheckout()">Complete Payment</button>
                 <ng-template #disabledButton>
                   <button class="btn btn-primary disabled mat-raised-button" (click)="openCheckout()">Complete Payment</button>
                 </ng-template>
