@@ -118,6 +118,7 @@ public class TicketEventController {
     	   return new ResponseEntity<Optional<Movie>> (movie,HttpStatus.OK);
     	    	
     }
+   
 
 	@GetMapping("/getAllMovie")
 	public ResponseEntity<?> getAllMovie() {
