@@ -11,10 +11,13 @@ export class RecommendationService {
   private url :string ="http://13.232.40.6:8092/recommendation-service/api/v1";
   private urlCityGenre; 
   private urlCityType;
+  //private citySelected;
   genreNames;
   typeNames;
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    //this.citySelected = localStorage.getItem('city');
+   }
 
   getMoviesByGenre(name:string, genreNames):Observable<Movie[]>{
     
@@ -52,10 +55,12 @@ export class RecommendationService {
 
   getGenreBasedMoviesForUser(userName:String):Observable<Movie[]>{
     console.log("inside getGenreBasedMoviesForUser");
-    return this.http.get<Movie[]>(this.url+"/getGenreBasedMoviesForUser?userName="+userName);
+    let citySelected = localStorage.getItem('city');
+    return this.http.get<Movie[]>(this.url+"/getGenreBasedMoviesForUser?userName="+userName+"&cityName="+citySelected);
   }
   getTypeBasedTicketedEventsForUser(userName:String):Observable<TicketedEvent[]>{
     console.log("inside getTypeBasedTicketedEventsForUser");
-    return this.http.get<TicketedEvent[]>(this.url+"/getTypeBasedTicketedEventsForUser?userName="+userName);
+    let citySelected = localStorage.getItem('city');
+    return this.http.get<TicketedEvent[]>(this.url+"/getTypeBasedTicketedEventsForUser?userName="+userName+"&cityName="+citySelected);
   }
 }

@@ -39,7 +39,9 @@ export class BookingHistoryComponent implements OnInit {
             
           });
         }
-  })
+        console.log("booked movies",this.movieList);
+      }
+)
 }
   
 }

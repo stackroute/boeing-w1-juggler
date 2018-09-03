@@ -400,3 +400,15 @@ services:
         condition: service_healthy  
     healthcheck:
       test: "exit 0"          
+
+  angular-app:
+    build: Front-end/
+    image: angular
+    restart: always
+    container_name: Angular
+    network_mode: "host"
+    hostname: localhost
+    ports:
+      - 4200:4200
+    healthcheck:
+      test: "exit 0"   
