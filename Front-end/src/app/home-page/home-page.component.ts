@@ -45,6 +45,7 @@ export class HomePageComponent implements OnInit {
       console.log(data);
     });
     this.getGenreBasedMoviesForUser();
+    this.getTicketedEventsByCity();
   }
   goMoviePage(movie) {
     console.log("inside goMoviePage");
@@ -68,11 +69,12 @@ export class HomePageComponent implements OnInit {
      console.log("storing recommended movies",localStorage.getItem('recommended'));
    });
   }
-  getTypeBasedTicketedEventsForUser(){
-    this.recommendationService.getTypeBasedTicketedEventsForUser(localStorage.getItem('currentUser'))
+  getTicketedEventsByCity(){
+    console.log("inside recommendedevent")
+    this.recommendationService.getTicketedEventsByCity()
     .subscribe(res=>{
       this.recommendedEvent=res;
-      localStorage.setItem('recommended1',JSON.stringify(this.recommendedEvent));
+      localStorage.setItem('recommendedEvent',JSON.stringify(this.recommendedEvent));
       console.log("storing recommended events",localStorage.getItem('recommended1'));
     })
   }
