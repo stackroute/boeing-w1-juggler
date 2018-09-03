@@ -110,7 +110,7 @@ public class RecommendationServiceController {
 		for(int id:userKafka.getBookedMovieId()) {
 			movies.add(movieservice.findById(id));
 		}
-		for(int id:userKafka.getBookeedTicketedEventId()) {
+		for(int id:userKafka.getBookedTicketedEventId()) {
 			events.add(ticketedEventService.findById(id));
 		}
 		User user = new User(userName,fullName,city,movies,events);

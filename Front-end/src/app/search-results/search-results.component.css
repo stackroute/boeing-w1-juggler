@@ -203,7 +203,7 @@ mat-grid-list {
   }
   
   .homepage{
-    background: url("http://getwallpapers.com/wallpaper/full/9/0/9/994206-free-large-background-images-2560x1440.jpg");
+    /* background: url("http://getwallpapers.com/wallpaper/full/9/0/9/994206-free-large-background-images-2560x1440.jpg"); */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
