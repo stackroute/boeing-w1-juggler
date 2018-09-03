@@ -203,29 +203,31 @@ public class KafkaListener {
 		String userName = bookedMovieTickets.getUserName();
 		try {
 			Registration user = registerUser.findByUsername(userName);
-			List<Integer> bookedMovieId;
-			int movieId = movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId();
-			if (user.getBookedMovieId() == null)
-				bookedMovieId = new ArrayList<>();
-			else
-				bookedMovieId = user.getBookedMovieId();
-			if(!bookedMovieId.contains(movieId))
-				bookedMovieId.add(movieId);
-			user.setBookedMovieId(bookedMovieId);
+			if(bookedMovieTickets.getStatus().equals("booked")) {
+				List<Integer> bookedMovieId;
+				int movieId = movieEventRepository.findById(bookedMovieTickets.getMovieEventId()).get().getMovieId();
+				if (user.getBookedMovieId() == null)
+					bookedMovieId = new ArrayList<>();
+				else
+					bookedMovieId = user.getBookedMovieId();
+				if(!bookedMovieId.contains(movieId))
+					bookedMovieId.add(movieId);
+				user.setBookedMovieId(bookedMovieId);
 
-			/*
-			 * updating the content in database
-			 */
+				/*
+				 * updating the content in database
+				 */
 
-			registerUser.updateUser(user, userName);
+				registerUser.updateUser(user, userName);
 
-			/*
-			 * putting content in the message bus
-			 */
+				/*
+				 * putting content in the message bus
+				 */
 
-			MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
-			messageChannel.send(MessageBuilder.withPayload(user)
-					.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+				MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
+				messageChannel.send(MessageBuilder.withPayload(user)
+						.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON).build());
+			}
 			
 			String message = "";
 			if(bookedMovieTickets.getStatus().equals("booked")) {
