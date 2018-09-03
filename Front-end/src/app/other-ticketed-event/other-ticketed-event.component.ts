@@ -52,6 +52,10 @@ export class OtherTicketedEventComponent implements OnInit {
           '',
           [Validators.required],
         ],
+        type: [
+          '',
+          [Validators.required],
+        ],
         capacity: [
           '',
           [Validators.required],

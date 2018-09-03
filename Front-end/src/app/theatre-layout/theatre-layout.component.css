@@ -53,7 +53,7 @@
     text-align: center;
     font-family: cursive;
     margin-top:2%;
-    color: white;
+    color: black;
     font-weight: bold;
     font-size: 140%;
 }
@@ -82,6 +82,6 @@
 
 .name h2{
     text-align: center;
-    color: antiquewhite;
-    margin-top: 70px;
+    color: black;
+    margin-top: 50px;
 }

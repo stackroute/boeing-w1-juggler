@@ -251,8 +251,8 @@ public class RecommendationServiceController {
 	 * If successful,it will give the HTTP status code 201 
 	 */
 	@GetMapping("/getGenreBasedMoviesForUser")
-	public ResponseEntity<?> getGenreBasedMoviesForUser(@RequestParam String userName){
-		return new ResponseEntity<List<Movie>>(userservice.getGenreBasedMoviesForUser(userName),HttpStatus.OK);	
+	public ResponseEntity<?> getGenreBasedMoviesForUser(@RequestParam String userName,@RequestParam String cityName){
+		return new ResponseEntity<List<Movie>>(userservice.getGenreBasedMoviesForUser(userName,cityName),HttpStatus.OK);	
 	}
 	
 	/*
@@ -261,8 +261,8 @@ public class RecommendationServiceController {
 	 * will be "api/v1/getGenreBasedMoviesForUser".If successful,it will give the HTTP status code 201
 	 */
 	@GetMapping("/getTypeBasedTicketedEventsForUser")
-	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName){
-		return new ResponseEntity<List<TicketedEvent>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);	
+	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName,@RequestParam String cityName){
+		return new ResponseEntity<List<TicketedEvent>>(userservice.getTypeBasedTicketedEventsForUser(userName,cityName),HttpStatus.OK);	
 	}	
 	
 	/*
