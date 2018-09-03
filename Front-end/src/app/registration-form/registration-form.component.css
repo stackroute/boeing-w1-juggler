@@ -67,13 +67,16 @@
 
   .jumbotron{
     margin: auto;
-    max-width: 70%;
+    max-width: 40%;
     max-height: 20%;
     margin-bottom: 0%;
     background: transparent;
   }
   .list-viewer-wrapper{
     border: outset
+  }
+  .mat-raised-button{
+    margin: auto;
   }
 
   footer {
