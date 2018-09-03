@@ -1,8 +1,10 @@
 <html>
-
-<body>
-  <app-nav-bar></app-nav-bar>
-  <!-- 
+  <body>
+<app-nav-bar></app-nav-bar>
+<div>
+    <p style="margin-top: 100px;margin-bottom: -130px; margin-left: 318px; font-size: 28px;">  Grab a Bite! </p>
+</div>
+<!-- 
 <button mat-raised-button style="margin-top: 100px" (click)="onClickSuccess()" >Payment done</button>
 <button mat-raised-button style="margin-top: 100px" (click)="onClickFail()" >Failed</button>
 <div *ngIf="!user">
@@ -59,9 +61,9 @@
               </div>
 
               <p *ngIf="!flag; else disabledButton">
-                <button style="margin-top: 10px;" class="btn btn-primary mat-raised-button" (click)="onClickSuccess()">Complete Payment</button>
+                <button style="margin-top: 10px;" class="btn btn-primary mat-raised-button" (click)="openCheckout()">Complete Payment</button>
                 <ng-template #disabledButton>
-                  <button class="btn btn-primary disabled mat-raised-button" (click)="onClickSuccess()">Complete Payment</button>
+                  <button class="btn btn-primary disabled mat-raised-button" (click)="openCheckout()">Complete Payment</button>
                 </ng-template>
               </p>
               <p *ngIf="!flag; else disabledButton">

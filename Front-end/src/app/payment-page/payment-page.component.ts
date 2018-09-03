@@ -3,6 +3,7 @@ import { BlockSeat } from "../models/SeatBlock";
 import { PaymentService } from "../payment.service";
 import { Observable } from "rxjs";
 import { AlertsService } from 'angular-alert-module';
+import * as $ from "jquery";
 import { Router } from '@angular/router';
 import { PlatformLocation } from '@angular/common'
 
@@ -136,6 +137,7 @@ export class PaymentPageComponent implements OnInit {
   timer = "";
   seconds = 59;
   minutes = 0;
+<<<<<<< HEAD
   // movieinfourl:string;
   constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
     location.onPopState(() => {
@@ -146,12 +148,20 @@ export class PaymentPageComponent implements OnInit {
       // this.router.navigateByUrl('/home');
       // history.pushState(null, null, window.location.pathname);
 
-  });
+=======
+  handler;
 
+  constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
+    location.onPopState(() => {
+      this.router.navigateByUrl('/home');
+      console.log('Back button pressed!');
+>>>>>>> 3175556eec4ab1342fe3d97583a1d8e0d288ec3b
+  });
   }
   
 
 
+  
   ngOnInit() {
     this.start();
     this.paymentStatus = new BlockSeat();
@@ -166,13 +176,50 @@ export class PaymentPageComponent implements OnInit {
     this.totalAmount = (this.subTotal)+(this.food); 
   }
 
+  openCheckout() {
+    this.handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_K2C3smobEhEs1C5VDNs9iXn6',
+      locale: 'auto',
+      currency: 'INR',
+      token: function (token: any) {
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.
+        //this.data.sendToken("token").subscribe(res => console.log(res));
+        // console.log(token)
+        // $.ajax({
+        //     url: "http://localhost:8080/api/v1/charge",
+        //     type: 'post',
+        //     data: token.id,
+        //     success: function(data) {
+        //       if (data == 'success') {
+        //           console.log("Card successfully charged!");
+        //       }
+        //       else {
+        //           console.log("Success Error!");
+        //       }
+  
+        //     },
+        //     error: function(data) {
+        //       console.log("Ajax Error!");
+        //       console.log(data);
+        //     }
+        //   }); // end ajax call
+      }
+    });
+    
+    this.handler.open({
+      name: 'Payment Gateway',
+      amount: 2000
+    });
+    
+  }
+
   onClickFail() {
     this.flag= true; 
     this.data.payMessage.subscribe(message => (this.paymentStatus = message));
     console.log("earlier payMessage", this.paymentStatus);
     this.paymentStatus.userName = localStorage.getItem("currentUser");
     this.paymentStatus.guestUserEmailId = this.emailId;
-    //this.paymentStatus.showId=2;
     this.paymentStatus.status = "open";
     console.log("payment staus", this.paymentStatus);
     this.data.sendStatus(this.paymentStatus);
@@ -188,7 +235,6 @@ export class PaymentPageComponent implements OnInit {
     console.log("earlier payMessage", this.paymentStatus);
     this.paymentStatus.userName = localStorage.getItem("currentUser");
     this.paymentStatus.guestUserEmailId = this.emailId;
-    // this.paymentStatus.showId=2;
     this.paymentStatus.status = "booked";
     console.log("payment status", this.paymentStatus);
     this.data.sendStatus(this.paymentStatus);
@@ -272,6 +318,9 @@ export class PaymentPageComponent implements OnInit {
       this.seconds -= 1;
       if (this.minutes < 0) {
         this.timer = "Time Lapsed!";
+        if(this.handler!=null)
+          this.handler.close();
+
         this.flag= true;
         console.log(this.timer);
         this.stop();
