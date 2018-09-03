@@ -17,6 +17,7 @@ export interface Tile {
   overflow:string;
   amount:number;
   border:string;
+  position:string;
 
 }
 
@@ -38,7 +39,8 @@ export class PaymentPageComponent implements OnInit {
       count: 1,
       overflow:"",
       amount: 0,
-      border:""
+      border:"",
+      position:""
 
     },
     {
@@ -52,7 +54,8 @@ export class PaymentPageComponent implements OnInit {
       count: 1,
       overflow:"",
       amount: 0,
-      border:""
+      border:"",
+      position:""
     },
     {
       text: "Regular Combo",
@@ -65,9 +68,10 @@ export class PaymentPageComponent implements OnInit {
       count: 1,
       overflow:"",
       amount: 0,
-      border:""
+      border:"",
+      position:""
     },
-    { text: "two", cols: 1.8, rows: 7, poster: "", color: "white", price: 0, count: 0,overflow:"scroll", amount: 0,border:"ridge" },
+    { text: "two", cols: 1.8, rows: 7, poster: "", color: "white", price: 0, count: 0,overflow:"scroll", amount: 0,border:"ridge",position:"" },
     //{text: '', cols: 1, rows: 7,poster:'', color: ''},
     {
       text: "Nachos with Salsa",
@@ -80,7 +84,8 @@ export class PaymentPageComponent implements OnInit {
       count: 1,
       overflow:"",
       amount: 0,
-      border:""
+      border:"",
+      position:""
     },
     {
       text: "Veg Burger",
@@ -93,7 +98,8 @@ export class PaymentPageComponent implements OnInit {
       count: 1,
       overflow:"",
       amount: 0,
-      border:""
+      border:"",
+      position:""
     },
     {
       text: "Sandwich",
@@ -106,7 +112,8 @@ export class PaymentPageComponent implements OnInit {
       count: 1,
       overflow:"",
       amount: 0,
-      border:""
+      border:"",
+      position:""
     }
     // {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
   ];
@@ -120,7 +127,7 @@ export class PaymentPageComponent implements OnInit {
   items = [];
   tax = 0;
   food = 0;
-  subTotal 
+  subTotal =0;
   tile1 : Tile;
   //itemCount=1;
   flag:any;
@@ -183,7 +190,7 @@ export class PaymentPageComponent implements OnInit {
 
   itemsAdded(it) {
     //this.items=items;
-    if (this.items.length < 4 && !(this.items.indexOf(it)>-1)) {
+    if (this.items.length < 6 && !(this.items.indexOf(it)>-1)) {
       this.items.push(it);
       it.amount = (it.count)*(it.price);
       this.foodPrice();
@@ -233,6 +240,7 @@ export class PaymentPageComponent implements OnInit {
       this.food = (this.food) + (this.items[i].amount);
     }
     this.totalAmount = (this.subTotal)+(this.food);
+    console.log("total amount"+this.totalAmount)
     console.log("Total food price: " + this.food);
   }
 

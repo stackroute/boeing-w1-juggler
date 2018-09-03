@@ -12,90 +12,89 @@
     <input type="text" class="form-control" id="searchbar" [(ngModel)]="emailId" [ngModelOptions]="{standalone: true}">
   </form>
 </div> -->
-<div class="payment">
-  <mat-grid-list cols="5" rowHeight="100px">
-    <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color" [style.overflow]="tile.overflow">
-      <div *ngIf="tile.cols==1.8; else elseBlock">
-        <div class="test">
-          <div class="summary">
-            BOOKING SUMMARY
-          </div>
-          <div class="details-display">
-            <p> Seats Selected: {{paymentStatus.seats}} ({{noSeats}} seats)</p>
-            <p> Ticket Price: {{price}} </p>
-            <p> Taxes: {{tax}} </p>
-            <hr>  
-            <p> Sub Total: {{subTotal}} </p>
-            <p *ngIf="items.length >0">Items Added:</p>
-            <div *ngFor="let item of items; index as i"> 
-              <div *ngIf="item.count > 0">
+  <div class="payment">
+    <mat-grid-list cols="5" rowHeight="100px">
+      <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan] ="tile.rows" [style.background]="tile.color" [style.overflow]="tile.overflow">
+        <div *ngIf="tile.cols==1.8; else elseBlock">
+          <div class="scroll-on-content-add">
+            <div class="summary">
+              Your Booking Summary:
+            </div>
+            <div class="details-display">
+              <p> <b>Seats Selected: </b> {{paymentStatus.seats}} ({{noSeats}} seats)</p>
+              <p> <b>Ticket Price: </b>{{price}}</p>
+              <p> <b>Taxes:</b> {{tax}} </p>
+              <hr>
+              <p> <b>Sub Total:</b> {{subTotal}} </p>
+              <p *ngIf="items.length >0">Items Added:</p>
+              <div *ngFor="let item of items; index as i">
+                <div *ngIf="item.count > 0">
                   {{item.text}}
-              <span (click)="minusItem(i,item.count)">
-                <mat-icon>remove</mat-icon>
-              </span>
-              {{item.count}}
-              <span (click)="addItem(i,item.count)">
-                <mat-icon>add</mat-icon>
-              </span>
+                  <span (click)="minusItem(i,item.count)">
+                    <mat-icon>remove</mat-icon>
+                  </span>
+                  {{item.count}}
+                  <span (click)="addItem(i,item.count)">
+                    <mat-icon>add</mat-icon>
+                  </span>
 
-              <span (click)="deleteItem(i,tile.text)">
-                <mat-icon>delete</mat-icon>
-              </span>
+                  <span (click)="deleteItem(i,tile.text)">
+                    <mat-icon>delete</mat-icon>
+                  </span>
+                </div>
               </div>
+              <br>
+              <p><b style="color: brown">Food & Beverage:</b> {{food}}</p>
+              <hr>
+              <p> <b style="color: brown">Amount Payable:</b> {{totalAmount}} </p>
+              <hr>
+              <p *ngIf="!clicked">
+                Time Left: {{timer}}
+              </p>
             </div>
-            <br>
-            <p>Food & Beverage: {{food}}</p>
-            <hr>
-            <p> Amount Payable: {{totalAmount}} </p>
-            <hr>
-            <p *ngIf="!clicked">
-              Time Left: {{timer}}
-            </p>
-          </div>
-          <div class="booking-button">
+            <div class="booking-button">
 
-            <div *ngIf="!user && !clicked && !flag">
-              <form class="form-inline">
-                <input type="text" placeholder="Enter your Email Id" class="form-control" id="searchbar" [(ngModel)]="emailId" [ngModelOptions]="{standalone: true}">
-              </form>
-            </div>
+              <div *ngIf="!user && !clicked && !flag">
+                <form class="form-inline">
+                  <input type="text" placeholder="Enter your Email Id" class="form-control" id="searchbar" [(ngModel)]="emailId" [ngModelOptions]="{standalone: true}">
+                </form>
+              </div>
 
-            <p *ngIf="!flag; else disabledButton">
-              <button style="margin-top: 10px;" class="btn btn-primary mat-raised-button" (click)="onClickSuccess()">Complete Payment</button>
-              <ng-template #disabledButton>
+              <p *ngIf="!flag; else disabledButton">
+                <button style="margin-top: 10px;" class="btn btn-primary mat-raised-button" (click)="onClickSuccess()">Complete Payment</button>
+                <ng-template #disabledButton>
                   <button class="btn btn-primary disabled mat-raised-button" (click)="onClickSuccess()">Complete Payment</button>
-              </ng-template>
-            </p>
-            <p *ngIf="!flag; else disabledButton">
-              <button style="margin-top: -5px;" class="btn btn-primary mat-raised-button" (click)="onClickFail()">Fail Payment</button>
-              <ng-template #disabledButton>
-                <button class="btn btn-primary mat-raised-button" (click)="onClickFail()">Fail Payment</button>
-              </ng-template>
-            </p>
+                </ng-template>
+              </p>
+              <p *ngIf="!flag; else disabledButton">
+                <button style="margin-top: -5px;" class="btn btn-primary mat-raised-button" (click)="onClickFail()">Fail Payment</button>
+                <ng-template #disabledButton>
+                  <button class="btn btn-primary mat-raised-button" (click)="onClickFail()">Fail Payment</button>
+                </ng-template>
+              </p>
 
+            </div>
           </div>
-
-
         </div>
-      </div>
-      <ng-template #elseBlock>
-        <div class="offers-card">
-          <mat-card class="example-card">
-            <img class="render" mat-card-image src="{{tile.poster}}" alt="poster">
-            <mat-card-actions>
+        <ng-template #elseBlock>
+          <div class="offers-card">
+            <mat-card class="example-card">
+              <img class="render" mat-card-image src="{{tile.poster}}" alt="poster">
+              <mat-card-actions>
 
-              <p id="text">{{tile.text}}</p>
-              <p id="price">₹{{tile.price}}</p>
+                <p id="text">{{tile.text}}</p>
+                <p id="price">₹{{tile.price}}</p>
 
 
-              <button class="btn btn-info add-button" mat-button mat-raised-button (click)="itemsAdded(tile)" aria-required="true">ADD</button>
-              
-            </mat-card-actions>
-          </mat-card>
-        </div>
-      </ng-template>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
+                <button class="btn btn-info add-button" mat-button mat-raised-button (click)="itemsAdded(tile)" aria-required="true">ADD</button>
+
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </ng-template>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
 </body>
+
 </html>
