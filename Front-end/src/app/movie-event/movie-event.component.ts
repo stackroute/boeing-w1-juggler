@@ -6,6 +6,7 @@ import { SearchDataService } from "../search-data.service";
 import { Movie } from "../models/movie";
 import { UserRegistration } from "../models/user-registration";
 import { AlertsService } from 'angular-alert-module';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: "app-movie-event",
@@ -18,11 +19,23 @@ export class MovieEventComponent implements OnInit {
   movies:Movie[];
   user;
   theatres: Theatre[];
+  movieForm: FormGroup;
+
   movieId; // ID corresponding to selected movie Name from Dropdown
  
-  constructor(private movieEventService :MovieEventService,private _searchDataService:SearchDataService, private alerts: AlertsService) {}
+  constructor(private movieEventService :MovieEventService,private formBuilder: FormBuilder,private _searchDataService:SearchDataService, private alerts: AlertsService) {}
   
   ngOnInit() {
+    this.movieForm = this.formBuilder.group({
+      week : [
+        '',
+        [Validators.required],
+      ],
+      showTimes: [
+        '',
+        [Validators.required],
+      ],
+    });
     this._searchDataService.getAllMovies().subscribe(data => 
       {
         this.movies=data
