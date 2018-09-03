@@ -6,6 +6,8 @@ import { RsvpCreate } from "../RsvpCreate";
 import { RsvpCreateService } from "../rsvp-create.service";
 import { InputEmailsDetails } from "../InputEmailsDetails";
 import { EmailService } from "../email.service";
+import { FormGroup, FormBuilder, Validators,FormControl } from "@angular/forms";
+
 @Component({
  selector: "app-rsvp-invitation",
  templateUrl: "./rsvp-invitation.component.html",
@@ -18,9 +20,11 @@ export class RsvpInvitationComponent implements OnInit {
  message: string;
  id;
  finalId;
+ invitationForm: FormGroup;
+
 
  // backgroundImg;
- constructor(
+ constructor(private formBuilder: FormBuilder,
    private emailService: EmailService,
    private rsvpCreateService: RsvpCreateService,
    private rsvpInvitationService: RsvpInvitationService,
@@ -30,6 +34,21 @@ export class RsvpInvitationComponent implements OnInit {
    // this.backgroundImg rsvpCreateService= sanitizer.bypassSecurityTrustStyle('url(http://www.freephotos.se/images/photos_medium/white-flower-4.jpg)');
  }
  ngOnInit() {
+  this.invitationForm = this.formBuilder.group({
+    inviteeName: [
+      '',
+      [Validators.required],
+    ],
+    inviteeEmail: [
+      '',
+      [Validators.required],
+    ],
+    inviteePhoneNo: [
+      '',
+      [Validators.required],
+    ]
+  });
+
    // this.id=this.rsvpCreateService.getRsvpEventId();
  //  this.id = this.rsvpCreateService.id;
   // console.log("bhaiiii", this.id);
