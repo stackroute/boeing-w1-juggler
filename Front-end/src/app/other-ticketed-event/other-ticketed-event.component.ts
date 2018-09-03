@@ -12,11 +12,12 @@ import { TicketedEventService } from "../ticketed-event.service";
 export class OtherTicketedEventComponent implements OnInit {
 
   public dateTime: Date;
-  
+  otherTicketedEventForm: FormGroup;
+
   otherTicketedEventControl = new FormControl();
   ticketedEvent = new TicketedEvent();
  
-  constructor(private ticketedEventService: TicketedEventService) {}
+  constructor(private ticketedEventService: TicketedEventService,private formBuilder: FormBuilder) {}
 
     submitTicketedEvent() {
     
@@ -30,7 +31,40 @@ export class OtherTicketedEventComponent implements OnInit {
     }
 
     ngOnInit() {
-      
+      this.otherTicketedEventForm = this.formBuilder.group({
+        name: [
+          '',
+          [Validators.required],
+        ],
+        city: [
+          '',
+          [Validators.required],
+        ],
+        date: [
+          '',
+          [Validators.required],
+        ],
+        cardPoster: [
+          '',
+          [Validators.required],
+        ],
+        backGroundPoster: [
+          '',
+          [Validators.required],
+        ],
+        capacity: [
+          '',
+          [Validators.required],
+        ],
+        description: [
+          '',
+          [Validators.required],
+        ],
+        price: [
+          '',
+          [Validators.required],
+        ],
+      }); 
     }
 }
 
