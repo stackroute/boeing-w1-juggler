@@ -138,10 +138,11 @@ export class PaymentPageComponent implements OnInit {
   seconds = 59;
   minutes = 0;
   handler;
+  duplicateId;
 
   constructor(private data: PaymentService, private alerts: AlertsService, private router: Router, location: PlatformLocation) {
     location.onPopState(() => {
-      this.router.navigateByUrl('/home');
+      window.location.href="/movieinfo";
       console.log('Back button pressed!');
   });
   }
@@ -150,6 +151,14 @@ export class PaymentPageComponent implements OnInit {
 
   
   ngOnInit() {
+    console.log("id: "+this.duplicateId);
+    this.duplicateId = localStorage.getItem("duplicateId");
+    console.log("id after: "+this.duplicateId);
+    if(this.duplicateId=="refresh") {
+      console.log("id: "+this.duplicateId);
+      window.location.href="/movieinfo";
+    }
+    localStorage.setItem('duplicateId','refresh');
     this.start();
     this.paymentStatus = new BlockSeat();
     this.user = localStorage.getItem("currentUser");
@@ -161,6 +170,7 @@ export class PaymentPageComponent implements OnInit {
     this.tax = ( this.noSeats * 200 * .18);
     this.subTotal = ( this.noSeats * 200 )+ this.tax; 
     this.totalAmount = (this.subTotal)+(this.food); 
+    
   }
 
   openCheckout() {
@@ -202,6 +212,7 @@ export class PaymentPageComponent implements OnInit {
   }
 
   onClickFail() {
+    this.clicked=true;
     this.flag= true; 
     this.data.payMessage.subscribe(message => (this.paymentStatus = message));
     console.log("earlier payMessage", this.paymentStatus);
@@ -237,8 +248,8 @@ export class PaymentPageComponent implements OnInit {
       this.foodPrice();
       console.log(JSON.stringify(this.items));
     }
-    if (this.items.length > 4) {
-      console.log("Max 4 items allowed");
+    if (this.items.length > 6) {
+      console.log("Max 6 items allowed");
     }
   }
 

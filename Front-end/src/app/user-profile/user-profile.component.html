@@ -56,8 +56,9 @@
         <mat-grid-tile colspan="4" rowspan="5">
             <mat-card class="render1">
             <img class="render" mat-card-image src="{{RSVPEvent.poster}}" alt="movie poster">
-            {{RSVPEvent.name}}
-                <br> {{RSVPEvent.startDate}}
+            <br>{{RSVPEvent.name}}
+                <br> {{RSVPEvent.startDate| date}} 
+                {{RSVPEvent.startDate| date:"HH:mm"}} 
                 <mat-card-actions>
                     <button class="btn btn-secondary" mat-button mat-raised-button  routerLinkActive="active" (click)="onClick(RSVPEvent.id)">View</button>
                 </mat-card-actions>

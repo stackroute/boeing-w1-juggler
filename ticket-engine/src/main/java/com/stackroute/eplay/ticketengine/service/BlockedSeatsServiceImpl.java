@@ -53,7 +53,7 @@ public class BlockedSeatsServiceImpl implements BlockedSeatsService {
 		JobDetail job = JobBuilder.newJob(SeatsJob.class).withIdentity(jobKey).build();
 		TriggerKey triggerKey = TriggerKey.triggerKey(blockedSeats.getId());
 		SimpleTrigger trigger = TriggerBuilder.newTrigger().withIdentity(triggerKey)
-				.startAt(futureDate(10, IntervalUnit.SECOND)).forJob(job).withSchedule(simpleSchedule()).build();
+				.startAt(futureDate(60, IntervalUnit.SECOND)).forJob(job).withSchedule(simpleSchedule()).build();
 		Scheduler sc = StdSchedulerFactory.getDefaultScheduler();
 		sc.getContext().put("seat", blockedSeats.getId());
 		sc.scheduleJob(job, trigger);

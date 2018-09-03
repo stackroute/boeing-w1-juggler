@@ -59,12 +59,13 @@ public class RecommendationServiceController {
 		int id = movieKafka.getId();
 		String name = movieKafka.getName();
 		String language = movieKafka.getLanguage();
-		String poster = movieKafka.getPoster();
+		String backGroundPoster = movieKafka.getBackGroundPoster();
+		String cardPoster = movieKafka.getCardPoster();
 		int ratings = movieKafka.getRating();
 		String g = movieKafka.getGenre();
 		LocalDate releaseDate = movieKafka.getReleaseDate();
 		Genre genre = new Genre(g);
-		Movie movie = new Movie(id,name,language,poster,ratings,genre,releaseDate);
+		Movie movie = new Movie(id,name,language,backGroundPoster,cardPoster,ratings,genre,releaseDate);
 		return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);		
 	}
 	
@@ -81,7 +82,15 @@ public class RecommendationServiceController {
 		Date date = ticketedEventKafka.getDate();
 		City city = new City(ticketedEventKafka.getCity());
 		Category category =  new Category(ticketedEventKafka.getType());
-		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category);
+		String BackGroundPoster = null;
+		String CardPoster = null;
+		if(ticketedEventKafka.getBackGroundPoster()!=null) {
+			BackGroundPoster = ticketedEventKafka.getBackGroundPoster();
+		}
+		if(ticketedEventKafka.getCardPoster()!=null) {
+			CardPoster = ticketedEventKafka.getCardPoster();
+		}
+		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category,BackGroundPoster,CardPoster);
 		return new ResponseEntity<TicketedEvent> (ticketedEventService.saveTicketedEvent(ticketedEvent),HttpStatus.OK);		
 	}
 	
