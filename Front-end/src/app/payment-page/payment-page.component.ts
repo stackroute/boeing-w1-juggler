@@ -151,6 +151,7 @@ export class PaymentPageComponent implements OnInit {
 
   
   ngOnInit() {
+    localStorage.setItem("paymentStatus", "none");
     console.log("id: "+this.duplicateId);
     this.duplicateId = localStorage.getItem("duplicateId");
     console.log("id after: "+this.duplicateId);
@@ -214,7 +215,8 @@ export class PaymentPageComponent implements OnInit {
     this.paymentStatus.guestUserEmailId = this.emailId;
     this.paymentStatus.status = "open";
     console.log("payment staus", this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus);
+    if((window as any).bookedSeatsTemp!=null)
+      this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
     this.alerts.setMessage('Payment failed. Your card is not supported.','error');
   }
@@ -229,7 +231,8 @@ export class PaymentPageComponent implements OnInit {
     this.paymentStatus.guestUserEmailId = this.emailId;
     this.paymentStatus.status = "booked";
     console.log("payment status", this.paymentStatus);
-    this.data.sendStatus(this.paymentStatus);
+    if((window as any).bookedSeatsTemp!=null)
+      this.data.sendStatus(this.paymentStatus);
     (window as any).disconnect();
     
   }
@@ -295,6 +298,8 @@ export class PaymentPageComponent implements OnInit {
   }
   ngOnDestroy() {
     this.clearTimer();
+    (window as any).sendBookedSeats();
+    (window as any).disconnect();
   }
 
   start() {
@@ -308,11 +313,11 @@ export class PaymentPageComponent implements OnInit {
     this.clearTimer();
     this.intervalId = window.setInterval(() => {
       if(localStorage.getItem("paymentStatus")=="success"){
+        localStorage.setItem("paymentStatus", "none");
         this.onClickSuccess();
-        localStorage.setItem("paymentStatus", "none");
       } else if(localStorage.getItem("paymentStatus")=="fail"){
-        this.onClickFail();
         localStorage.setItem("paymentStatus", "none");
+        this.onClickFail();
       }
       this.seconds -= 1;
       if (this.minutes < 0) {
