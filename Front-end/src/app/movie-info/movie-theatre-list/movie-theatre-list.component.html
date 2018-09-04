@@ -27,7 +27,7 @@
         <div class="show-time">
            <ng-container *ngFor="let show of theatre.shows">   
                 <button *ngIf="show.status; else disableButton" routerLink="/theatreLayout"
-                 mat-stroked-button color="basic" (click)="sendShowId(show.showId)">
+                 mat-stroked-button color="primary" (click)="sendShowId(show.showId)">
                         {{show.date}} || {{show.startTime}}
                 </button>
                 <ng-template #disableButton>
