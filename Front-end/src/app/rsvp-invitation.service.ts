@@ -9,9 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class RsvpInvitationService {
 
-  private _url: string="http://localhost:8092/api/v1/invitation";
-  private _url1: string="http://localhost:8092/api/v1/invitations";
-  private _url2: string="http://localhost:8092/api/v1/invitation";
+  private _url: string="http://13.232.40.6:8092/rsvp/api/v1/invitation";
+  private _url1: string="http://13.232.40.6:8092/rsvp/api/v1/invitations";
+  private _url2: string="http://13.232.40.6:8092/rsvp/api/v1/invitation";
+
+  private _url5: string = "http://13.232.40.6:8092/rsvp/api/v1/invitation/";
 
   constructor(private http:HttpClient) { }
 
@@ -29,4 +31,10 @@ export class RsvpInvitationService {
   {
     return this.http.delete(this._url2+invitationId);
   }
+  getInvitaionByInviteeEmail(inviteeEmail):Observable<RsvpInvitation>
+  {
+    return this.http.get<RsvpInvitation>(this._url5+inviteeEmail);
+  }
+
+  
 }

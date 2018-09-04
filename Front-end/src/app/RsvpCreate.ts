@@ -1,11 +1,12 @@
+import{RsvpInvitation} from './RsvpInvitation';
 export class RsvpCreate{
     id:number;
     name:string;
     userName:string;
     startDate:Date;
-    startTime:Date;
+    startTime:String;
     endDate:Date;
-    endTime:Date;
+    endTime:String;
     city:string;
     location:string;
     poster:string;
@@ -16,8 +17,8 @@ export class RsvpCreate{
     notes:string;
     numberOfAttendees:number;
     isCompleted:boolean;
+    rsvpInvitationList: RsvpInvitation[];
     
-
     
 
 

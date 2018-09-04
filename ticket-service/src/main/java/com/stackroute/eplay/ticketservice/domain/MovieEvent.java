@@ -24,9 +24,10 @@ public class MovieEvent {
     private int movieId;
     private int theatreId;
     private int showCount;
-    private List<Show> shows;
+    private String showTimes;
     private String city;
     private String userName;
+    private List<Show> shows;
     private int week;
     
 }

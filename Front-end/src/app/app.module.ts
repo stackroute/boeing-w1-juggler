@@ -16,18 +16,42 @@ import { OtherTicketedEventComponent } from "./other-ticketed-event/other-ticket
 import { MovieEventComponent } from "./movie-event/movie-event.component";
 import { MatSelectModule } from "@angular/material/select";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { NativeDateModule } from "@angular/material";
-import { MatNativeDateModule } from "@angular/material";
+import { MatNativeDateModule, MatNavList } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
-import { RsvpInvitationComponent } from './rsvp-invitation/rsvp-invitation.component';
-import { RsvpEventComponent } from './rsvp-event/rsvp-event.component';
+import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.component";
+import { RsvpEventComponent } from "./rsvp-event/rsvp-event.component";
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { EventCardComponent } from './home-page/event-card/event-card.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { TheatreComponent } from './theatre/theatre.component';
-import { RsvpEventpageComponent } from './rsvp-eventpage/rsvp-eventpage.component';
-import {MatRadioModule} from '@angular/material/radio';
+import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { EventCardComponent } from "./home-page/event-card/event-card.component";
+import { NavBarComponent } from "./nav-bar/nav-bar.component";
+import { UserLoginComponent } from "./user-login/user-login.component";
+import { TheatreComponent } from "./theatre/theatre.component";
+import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
+import { MatRadioModule } from "@angular/material/radio";
+import { SearchResultsComponent } from "./search-results/search-results.component";
+import { MovieInfoComponent } from "./movie-info/movie-info.component";
+import { MovieTheatreListComponent } from "./movie-info/movie-theatre-list/movie-theatre-list.component";
+import { SideNavComponent } from "./side-nav/side-nav.component";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { UserProfileComponent } from "./user-profile/user-profile.component";
+// import { ArenaLayoutSocketComponent } from './arena-layout-socket/arena-layout-socket.component';
+import { TheatreLayoutComponent } from "./theatre-layout/theatre-layout.component";
+import { Ng2CarouselamosModule } from "ng2-carouselamos";
+import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
+import { MultipleCheckboxesModule } from "multiple-checkboxes";
+import {MatExpansionModule} from '@angular/material/expansion';
+import { FooterComponent } from './footer/footer.component';
+import {MatIconModule} from '@angular/material/icon';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { InviteeDetailsComponent } from './invitee-details/invitee-details.component';
+import { ExistingUsernameValidatorDirective } from './registration-form/customValidaters/existingUserName';
+import { PaymentPageComponent } from './payment-page/payment-page.component';
+import { OrganiserRsvpViewComponent } from './organiser-rsvp-view/organiser-rsvp-view.component';
+import { BookingHistoryComponent } from './booking-history/booking-history.component';
+import { TicketedInfoComponent } from './ticketed-info/ticketed-info.component'
+import { AlertsModule } from 'angular-alert-module';
 
 @NgModule({
   declarations: [
@@ -44,10 +68,31 @@ import {MatRadioModule} from '@angular/material/radio';
     LandingPageComponent,
     EventCardComponent,
     NavBarComponent,
+    RsvpEventpageComponent,
+    SearchResultsComponent,
+    MovieInfoComponent,
+    MovieTheatreListComponent,
+    UserLoginComponent,
     TheatreComponent,
-    RsvpEventpageComponent
+    UserProfileComponent,
+    SideNavComponent,
+    UserProfileComponent,
+    // ArenaLayoutSocketComponent
+    TheatreLayoutComponent,
+    SocketConnectionComponent,
+    FooterComponent,
+    InviteeDetailsComponent,
+    ExistingUsernameValidatorDirective,
+    PaymentPageComponent,
+    OrganiserRsvpViewComponent,
+    BookingHistoryComponent,
+    TicketedInfoComponent
   ],
   imports: [
+   
+    OwlNativeDateTimeModule,
+    OwlDateTimeModule,
+    MatMenuModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -61,9 +106,17 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCheckboxModule,
+    MultipleCheckboxesModule,
+    Ng2CarouselamosModule,
+    MatExpansionModule,
+    MatSnackBarModule,
+    MatIconModule,
+    AlertsModule.forRoot()
   ],
   providers: [MatNativeDateModule],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}

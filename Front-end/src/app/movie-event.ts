@@ -3,14 +3,10 @@ export class MovieEvent {
     movieEventId: number;
     movieId:number;
     theatreId: number;
-    theatreName:string;
     showCount: number;
-    bookingStartDate: Date;
-    bookingEndDate: Date;
-    weeks:number;
+    week:number;
     shows:Show[];
     city:string;
     userName:string;
-    timings:string;
+    showTimes:string;
   }
- 

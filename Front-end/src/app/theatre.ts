@@ -1,9 +1,14 @@
+
+import {Show} from "./Show";
+
 export class Theatre {
-    id: number;
-    theatreName: string;
-    theatreLocation: String;
-    capacity: String;
-    arenaFile: String;
-    userName: string;
-  }
+  theatreId: number;
+  theatreName: String;
+  theatreLocation: String;
+  shows:Array<Show>;
+  capacity : number;
+  userName: String;
+  city: String;
+  arenaFile: String;
+}
   

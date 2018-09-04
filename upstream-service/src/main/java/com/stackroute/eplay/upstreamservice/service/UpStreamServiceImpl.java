@@ -53,10 +53,10 @@ public class UpStreamServiceImpl implements UpStreamService{
 		event.setMovieEventId(nextSequenceService.getNextSequence("counter"));
 		
 		// Set ShowId for each show in a movie event
-		for(Show show: event.getShows()) {
+		/*for(Show show: event.getShows()) {
             show.setShowId(nextSequenceService.getNextSequence("counter"));
             show.setMovieEventId(event.getMovieEventId());
-        }
+        }*/
 		
 		MessageChannel messageChannel = movieEventStream.outboundEvents();
 		messageChannel.send(MessageBuilder.withPayload(event)
@@ -70,7 +70,7 @@ public class UpStreamServiceImpl implements UpStreamService{
 	public void postTicketedEvent(TicketedEvent event) {
 		// Set Ticket event Id
 		event.setId(nextSequenceService.getNextSequence("counter"));
-		
+		event.setLocalDate(event.getDate().toString().substring(0, 10));
 		MessageChannel messageChannel = ticketedEventStream.outboundEvents();
 		messageChannel.send(MessageBuilder.withPayload(event)
 				.setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)

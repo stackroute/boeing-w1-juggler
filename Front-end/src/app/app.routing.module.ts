@@ -8,8 +8,21 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { RsvpEventComponent } from "./rsvp-event/rsvp-event.component";
 import { RsvpInvitationComponent } from "./rsvp-invitation/rsvp-invitation.component";
 import { LandingPageComponent } from "./landing-page/landing-page.component";
+import { UserLoginComponent } from "./user-login/user-login.component"
+import { AuthGuard } from "./guards/auth.guard"
 import { TheatreComponent } from "./theatre/theatre.component";
 import { RsvpEventpageComponent } from "./rsvp-eventpage/rsvp-eventpage.component";
+import { SearchResultsComponent } from "./search-results/search-results.component";
+import { MovieInfoComponent } from "./movie-info/movie-info.component";
+import { UserProfileComponent } from "./user-profile/user-profile.component";
+import {TheatreLayoutComponent} from "./theatre-layout/theatre-layout.component";
+import { SocketConnectionComponent } from "./socket-connection/socket-connection.component";
+import { InviteeDetailsComponent } from "./invitee-details/invitee-details.component";
+import {PaymentPageComponent} from "./payment-page/payment-page.component"
+import{OrganiserRsvpViewComponent} from "./organiser-rsvp-view/organiser-rsvp-view.component";
+import { BookingHistoryComponent } from "./booking-history/booking-history.component";
+import {TicketedInfoComponent} from "./ticketed-info/ticketed-info.component";
+
 const routes: Routes = [
   {
     path: "",
@@ -24,37 +37,89 @@ const routes: Routes = [
     component :HomePageComponent
   },
   {
+    path :"payment",
+    component :PaymentPageComponent
+  },
+  {
+    path :"profile",
+    component :UserProfileComponent, canActivate:[AuthGuard]
+  },
+  {
+    path :"search",
+    component :SearchResultsComponent
+  },
+  {
     path: "userRegistration",
     component: RegistrationFormComponent
   },
   {
+    path: "userLogin",
+    component: UserLoginComponent
+  },
+  {
     path: "createEvent",
-    component: EventTypeComponent
+    component: EventTypeComponent, canActivate:[AuthGuard]
+    // component: EventTypeComponent
   },
   {
     path: "createRSVPEvent",
-    component: RsvpEventComponent
+    component: RsvpEventComponent, canActivate:[AuthGuard]
+    // component: RsvpEventComponent
   },
   {
-    path: "rsvpInvitation",
-    component: RsvpInvitationComponent
+    path: ":id/rsvpInvitation",
+    component: RsvpInvitationComponent ,canActivate:[AuthGuard]
+    // component: RsvpInvitationComponent 
+  },
+  {
+    path: "bookingHistory",
+    component: BookingHistoryComponent, canActivate:[AuthGuard]
+    // component: BookingHistoryComponent
+  },
+  {
+    path: "movieinfo",
+    component: MovieInfoComponent
+  },
+  {
+    path: "ticketinfo",
+    component: TicketedInfoComponent
   },
   {
     path: "createOtherTicketedEvent",
-    component: OtherTicketedEventComponent
+    component: OtherTicketedEventComponent, canActivate:[AuthGuard]
+    // component: OtherTicketedEventComponent
   },
   {
     path: "createMovieEvent",
-    component: MovieEventComponent
+    component: MovieEventComponent, canActivate:[AuthGuard]
+    // component: MovieEventComponent
   },
   {
     path: "theatre",
-    component: TheatreComponent
+    component: TheatreComponent, canActivate:[AuthGuard]
+    // component: TheatreComponent
   },
   {
-
     path:'rsvpEvent/:id',
     component:RsvpEventpageComponent
+  },
+  {
+    path:"theatreLayout",
+    component:TheatreLayoutComponent
+  },
+  {
+    path: "socketConnection",
+    component: SocketConnectionComponent
+  },
+  {
+    path:":id/InviteeDetails",
+    component:InviteeDetailsComponent, canActivate:[AuthGuard]
+    // component:InviteeDetailsComponent
+  },
+  {
+    path:":id/organiserRsvpView",
+    component:OrganiserRsvpViewComponent, canActivate:[AuthGuard]
+    // component:OrganiserRsvpViewComponent
   }
 ];
 
@@ -69,5 +134,10 @@ export const routingComponents = [
   OtherTicketedEventComponent,
   MovieEventComponent,
   RsvpEventComponent,
-  TheatreComponent
+  SearchResultsComponent,
+  TheatreComponent,
+  UserProfileComponent,
+  UserLoginComponent,
+  TheatreComponent,
+  UserProfileComponent
 ];

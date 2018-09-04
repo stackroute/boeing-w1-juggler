@@ -1,8 +1,7 @@
 package com.stackroute.eplay.userregistration.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.MessageChannel;
@@ -10,21 +9,20 @@ import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stackroute.eplay.userregistration.domain.User;
+import com.stackroute.eplay.userregistration.domain.Registration;
+import com.stackroute.eplay.userregistration.domain.Theatre;
+import com.stackroute.eplay.userregistration.exception.EmailAlreadyExistsException;
 import com.stackroute.eplay.userregistration.exception.UserAlreadyExistsException;
-import com.stackroute.eplay.userregistration.exception.UserNotFoundException;
-import com.stackroute.eplay.userregistration.service.UserService;
+import com.stackroute.eplay.userregistration.exception.UserNameAlreadyExistsException;
+import com.stackroute.eplay.userregistration.service.RegisterUser;
 import com.stackroute.eplay.userregistration.stream.UserRegistrationStream;
-import org.springframework.cloud.stream.annotation.EnableBinding;
 
 /*
  * Controller class for User Registration
@@ -33,86 +31,81 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin("*")
-
 @EnableBinding(UserRegistrationStream.class)
 public class UserController {
 
-	private UserService userService;
+	private RegisterUser registerUser;
 	private UserRegistrationStream userRegistrationStream;
 
 	@Autowired
-	public UserController(UserService userService, UserRegistrationStream userRegistrationStream) {
-		this.userService = userService;
-		this.userRegistrationStream =userRegistrationStream;
+	public UserController(RegisterUser registerUser, UserRegistrationStream userRegistrationStream) {
+		this.registerUser = registerUser;
+		this.userRegistrationStream = userRegistrationStream;
+		// this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
-	/*
-	 * saveUser() method is used to save user in database. Rest end point for this method will be "api/v1/user"
-	 * If the user is successfully saved then it will the HTPP status code 201 that is Created and if the 
-	 * user already registered then it will return the HTTP status code of 409 that is Conflict.
-	 */
-	
-	@PostMapping("/user")
-	public ResponseEntity<?> saveUser(@RequestBody User user) {
+	@RequestMapping("/")
+	public String hello() {
+		return "In Registration conotroller";
+	}
+
+	@PostMapping("/register")
+	public ResponseEntity<?> addUser(@RequestBody Registration registrant) throws UserAlreadyExistsException {
 		try {
+			registerUser.addUser(registrant);
+		
+			// kafkaTemplate.send(TOPIC , registrant);
 			 MessageChannel messageChannel = userRegistrationStream.outboundUserRegistration();
-		        messageChannel.send(MessageBuilder
-		                .withPayload(user)
+		     messageChannel.send(MessageBuilder
+		                .withPayload(registrant)
 		                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 		                .build());
-		        return new ResponseEntity<User>(userService.saveUser(user), HttpStatus.CREATED);
-		} catch (UserAlreadyExistsException e) {
-			return new ResponseEntity<String>("User Already Exists!", HttpStatus.CONFLICT);
+			return new ResponseEntity<String>("New User Added", HttpStatus.CREATED);
 		}
+		 catch(UserAlreadyExistsException e){
+    		// logger.error("This is an MovieAlreadyExistsException error");
+             return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
+         }
 	}
 	
-	/*
-	 * getAllUsers() method is used to get all the users registered. Rest end point for this method will be
-	 * "/api/v1/users". If it is successfully return all the users then it will return HTTP status code of 200
-	 * that us OK.
-	 */
+	@GetMapping("/login/getAllDetais/{userName}")
+	public ResponseEntity<?> getAllDetailsByUsername(@PathVariable String username){
+		return  new ResponseEntity<Registration>(registerUser.findByUsername(username), HttpStatus.OK);
 
-	@GetMapping("/users")
-	public ResponseEntity<?> getAllUsers() {
-		return new ResponseEntity<Iterable<User>>(userService.getAllUsers(), HttpStatus.OK);
 	}
 	
-	/*
-	 * getUserByUsername() method is used to get details of a specific user of which username is provided
-	 * Rest end point for this method will be "/api/v1/user/username". If the Get request is successful then 
-	 * it will return the HTTP status code 0f 200 that is OK.
-	 */
 
-	@GetMapping("/user/{username}")
-	public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+	@GetMapping("/register/check/userName/{userName}")
+	public boolean checkUserName(@PathVariable("userName") String userName) {
 		try {
-			return new ResponseEntity<Optional<User>>(userService.getUserByUsername(username), HttpStatus.OK);
-		} catch (UserNotFoundException e) {
-			return new ResponseEntity<String>("User Not Found", HttpStatus.UNAUTHORIZED);
+			registerUser.checkForUserName(userName);
+			return false;
+		} catch (UserNameAlreadyExistsException e) {
+			return true;
 		}
 	}
-	
-	/*
-	 * deleteUserByUsername() method is used to delete specific user of which username is provided
-	 * Rest end point for this method will be "/api/v1/user/username". If the Delete request is successful then 
-	 * it will return the HTTP status code 0f 200 that is OK.
-	 */
 
-	@DeleteMapping("/user/{username}")
-	public ResponseEntity<?> deleteUserByUsername(@PathVariable String username) {
-		userService.deleteUser(username);
-		return new ResponseEntity<String>("User Deleted", HttpStatus.OK);
+	@GetMapping("/register/check/email/{email}")
+	public boolean checkEmail(@PathVariable("email") String email) {
+		try {
+			registerUser.checkForEmail(email);
+			return false;
+		} catch (EmailAlreadyExistsException e) {
+			return true;
+		}
 	}
-
-	/*
-	 * updateUser() method is used to update details of a specific user of which username is provided
-	 * Rest end point for this method will be "/api/v1/user/username". If the put request is successful then 
-	 * it will return the HTTP status code 0f 200 that is OK.
-	 */
-	
-	@PutMapping("/user/{username}")
-	public ResponseEntity<?> updateUser(@PathVariable String username, @RequestBody User user) {
-		return new ResponseEntity<User>(userService.updateUser(user, username), HttpStatus.OK);
+	@GetMapping("/user/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable String username) {
+      //  try {
+            return new ResponseEntity<Registration>(registerUser.findByUsername(username), HttpStatus.OK);
+//        } catch (UserNotFoundException e) {
+//            return new ResponseEntity<String>("User Not Found", HttpStatus.UNAUTHORIZED);
+//        }
+    }
+	@PostMapping("/registerTheatre")
+	public ResponseEntity<?> saveTheatre(@RequestBody Theatre theatre) {
+		registerUser.saveTheatre(theatre);
+		// kafkaTemplate.send(TOPIC , registrant);
+		return new ResponseEntity<Registration>(HttpStatus.CREATED);
 	}
-
 }

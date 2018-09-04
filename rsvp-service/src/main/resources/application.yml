@@ -1,9 +1,26 @@
+#
 #spring:
+#  data:
+#     mongodb:
+#        uri: mongodb://0.0.0.0:27000/test
 #  cloud:
 #    stream:
 #      kafka:
 #        binder:
-#          brokers: 172.23.238.170:9092
+#          brokers: localhost:9092
+#      bindings:
+#        rsvp-event-in:
+#          destination: RSVPEvent
+#          contentType: application/json
+#        rsvp-event-out:
+#          destination: RSVPEvent
+#          contentType: application/json
+#
+#  cloud:
+#    stream:
+#      kafka:
+#        binder:
+#          brokers: 172.23.238.198:9092
 #      bindings:
 #        rsvp-event-in:
 #          destination: RSVPEvent
@@ -20,3 +37,4 @@
 ## data:
 ##      mongodb:
 ##         uri: mongodb://172.23.238.255:27000/test
+

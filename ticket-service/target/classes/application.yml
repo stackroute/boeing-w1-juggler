@@ -13,13 +13,16 @@
 #spring:
 #  data:
 #      mongodb:
-#         uri: mongodb://0.0.0.0:27000/ticket
+#         uri: mongodb://0.0.0.0:27000/test
 #  cloud:
 #    stream:
 #      kafka:
 #        binder:
-#          brokers: 172.23.238.170:9092
+#          brokers: localhost:9092
 #      bindings:
+#        updated-movie-event-in:
+#          destination: UpdatedShowEvent
+#          contentType: application/json         
 #        movie-event-in:
 #          destination: MovieEvent
 #          contentType: application/json
@@ -35,6 +38,9 @@
 #        theatre-in:
 #          destination: Theatre
 #          contentType: application/json
+#        updated-movie-event-out:
+#          destination: UpdatedMovieEvent
+#          contentType: application/json    
 #        movie-event-out:
 #          destination: MovieEvent
 #          contentType: application/json

@@ -8,8 +8,10 @@ import com.stackroute.eplay.search.domain.Movie;
 
 @Repository
 public interface MovieRepository extends MongoRepository<Movie, Long> {
-    //public Iterable<Movie> getEventsByCity(@Param("city") String city);
-	boolean existsById(int id);
-	
-	Movie findById(int id);
+	// public Iterable<Movie> getEventsByCity(@Param("city") String city);
+	public boolean existsById(int id);
+
+	public Iterable<Movie> getMovieByNameIgnoreCaseContaining(@Param("name") String name);
+
+	public Movie findById(int id);
 }

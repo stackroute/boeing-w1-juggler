@@ -20,13 +20,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Invitation {
-    @Id
-    private String invitationId;
-    private String eventId;
-    private String inviteeUserName;
-    private String inviteeName;
-    private String inviteeEmail;
-    private String inviteePhoneNo;
-    private boolean status;
-    
+	@Id
+	private String invitationId;
+	private String eventId;
+	private String inviteeUserName;
+	private String inviteeName;
+	private String inviteeEmail;
+	private String inviteePhoneNo;
+	private boolean status;
 }
