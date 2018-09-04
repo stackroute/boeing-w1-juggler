@@ -24,7 +24,7 @@ export class MovieTheatreListComponent implements OnInit {
     console.log("print in child" , this.recommendedMovies);
     
     this._searchDataService.getMovieByCitynId(localStorage.getItem('clickedRecommended')).subscribe(movieRecommend => {this.movieRecommend = movieRecommend
-      //console.log("recsn a ll",this.movieRecommend)
+      console.log("recsn a ll",this.movieRecommend)
     })
     this.theatreList= this.movie.theatres;
     //this.theatreList=this.theatreList[0];

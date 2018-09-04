@@ -8,11 +8,12 @@ import { SearchDataService } from '../search-data.service';
 export class MovieInfoComponent implements OnInit {
    movie;
    movies: any;
+   movieRecommend: any;
    recommendedMovies:any
   constructor(private _searchDataService:SearchDataService) {
     this.movies=JSON.parse(localStorage.getItem('movieInfo'));
-    // this.recommendedMovies = JSON.parse(localStorage.getItem('recommended'));
-    console.log(this.movies);
+    this.recommendedMovies = JSON.parse(localStorage.getItem('recommended'));
+    console.log("Recommended :"+ this.recommendedMovies.description);
 
   }
 
@@ -21,14 +22,19 @@ export class MovieInfoComponent implements OnInit {
     console.log("movies are " + JSON.stringify(this.movies));
     this.recommendedMovies = JSON.parse(localStorage.getItem('recommended'))
     console.log(" some recommended given movies",this.recommendedMovies);
-    this._searchDataService.movieMessage.subscribe(movies => this.movie = movies);
-    console.log("my theatre",this.movie);
+    
+    this._searchDataService.movieMessage.subscribe(movieSearch =>{ this.movie = movieSearch
+    });
+
+    this._searchDataService.getMovieByCitynId(localStorage.getItem('clickedRecommended')).subscribe(movieRecommend => {this.movieRecommend = movieRecommend
+      console.log("recsn a ll",this.movieRecommend)
+    })
   }
 
   movieDescription(){
-    console.log("inside movie description");
-    console.log(this.movies);
-    if(this.movies.description!=null)
+    // console.log("inside movie description");
+    // console.log(this.movies);
+    if(this.movieRecommend.description!=null)
     return true;
     else
     return false;

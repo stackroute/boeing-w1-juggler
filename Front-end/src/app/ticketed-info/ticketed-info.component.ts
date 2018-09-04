@@ -4,7 +4,6 @@ import { AlertsService } from 'angular-alert-module';
 import { TicketedInfoService} from '../ticketed-info.service';
 import {TicketedEvent} from '../ticketedEvent';
 import {Observable} from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ticketed-info',
@@ -37,7 +36,7 @@ export class TicketedInfoComponent implements OnInit {
 
    eventDescription(){
     console.log("inside eventDescription()");
-    if( this.updatedEvent.description!=null)
+    if(this.updatedEvent.description!=null)
     return true;
     else
     return false;
