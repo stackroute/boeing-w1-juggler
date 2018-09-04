@@ -25,15 +25,14 @@
  </div> -->
 
  <mat-form-field>
-   <input id="inviteePhoneNo" matInput formControlName="inviteePhoneNo" placeholder="phone no" [(ngModel)]="rsvpInvitationModel.inviteePhoneNo" 
+   <input id="inviteePhoneNo" matInput formControlName="inviteePhoneNo" placeholder="Phone no" [(ngModel)]="rsvpInvitationModel.inviteePhoneNo" 
      required pattern="^[2-9]{2}[0-9]{8}$">
  </mat-form-field>
 
  <p align="center">
 
    <button type="submit" class="button"  name="button" class="btn btn-secondary" [disabled]="!invitationForm.valid" (click)="onSubmit()" >Save Invitation</button>
-   <br>
-   <br>
+   &nbsp; &nbsp;<!-- <div class="divider"/> -->
      <button type="submit" class="button" name="button" class="btn btn-secondary" (click)="onSubmit2()" >Send Invitation </button>
    <br>
    </p>
@@ -47,3 +46,6 @@
 </div>
 </div>
 </div>
+<br>
+<br>
+<br>

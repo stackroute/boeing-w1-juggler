@@ -3,20 +3,35 @@ table {
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid black;
+    opacity: 20%;
+    
+    font-family: 'Courier New', Courier, monospace;
+    /* color:rgb(41, 41, 97); */
+    
+}
+td{
+    font-size: 20px;
 }
 
 table {
     align-self: auto;
     width: 80%;
-    background-color:gainsboro;
+    /* background-color:gainsboro; */
 }
 
 th {
     height: 50px;
+    font-size: 25px;
+    
+}
+tr:nth-child(odd) {
+    /* background-color:white; */
 }
 
-
+tr:nth-child(even) {
+    /* background-color: #dddddd; */
+}
 
 .example-container {
     
@@ -59,4 +74,10 @@ table {
 .counterCell:before {              
     content: counter(tableCount); 
     counter-increment: tableCount; 
+}
+
+.w3-container{
+    width: 100%;
+
+    background-image: url("4.jpg");
 }
