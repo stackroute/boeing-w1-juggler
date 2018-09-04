@@ -59,12 +59,13 @@ public class RecommendationServiceController {
 		int id = movieKafka.getId();
 		String name = movieKafka.getName();
 		String language = movieKafka.getLanguage();
-		String poster = movieKafka.getPoster();
+		String backGroundPoster = movieKafka.getBackGroundPoster();
+		String cardPoster = movieKafka.getCardPoster();
 		int ratings = movieKafka.getRating();
 		String g = movieKafka.getGenre();
 		LocalDate releaseDate = movieKafka.getReleaseDate();
 		Genre genre = new Genre(g);
-		Movie movie = new Movie(id,name,language,poster,ratings,genre,releaseDate);
+		Movie movie = new Movie(id,name,language,backGroundPoster,cardPoster,ratings,genre,releaseDate);
 		return new ResponseEntity<Movie> (movieservice.saveMovie(movie),HttpStatus.OK);		
 	}
 	
@@ -81,7 +82,15 @@ public class RecommendationServiceController {
 		Date date = ticketedEventKafka.getDate();
 		City city = new City(ticketedEventKafka.getCity());
 		Category category =  new Category(ticketedEventKafka.getType());
-		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category);
+		String BackGroundPoster = null;
+		String CardPoster = null;
+		if(ticketedEventKafka.getBackGroundPoster()!=null) {
+			BackGroundPoster = ticketedEventKafka.getBackGroundPoster();
+		}
+		if(ticketedEventKafka.getCardPoster()!=null) {
+			CardPoster = ticketedEventKafka.getCardPoster();
+		}
+		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category,BackGroundPoster,CardPoster);
 		return new ResponseEntity<TicketedEvent> (ticketedEventService.saveTicketedEvent(ticketedEvent),HttpStatus.OK);		
 	}
 	
@@ -94,17 +103,17 @@ public class RecommendationServiceController {
 	@PostMapping("/saveUser")	
 	public ResponseEntity<?> createUserNode(@RequestBody UserKafka userKafka){
 		String userName = userKafka.getUserName();
-		String fullName = userKafka.getFullName();
+		//String fullName = userKafka.getFullName();
 		City city = new City(userKafka.getCity());
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();
-		for(int id:userKafka.getMovieId()) {
+		for(int id:userKafka.getBookedMovieId()) {
 			movies.add(movieservice.findById(id));
 		}
-		for(int id:userKafka.getTicketedEventId()) {
+		for(int id:userKafka.getBookedTicketedEventId()) {
 			events.add(ticketedEventService.findById(id));
 		}
-		User user = new User(userName,fullName,city,movies,events);
+		User user = new User(userName,city,movies,events);
 		return new ResponseEntity<User>(userservice.saveUser(user),HttpStatus.OK);
 	}
 	
@@ -242,8 +251,8 @@ public class RecommendationServiceController {
 	 * If successful,it will give the HTTP status code 201 
 	 */
 	@GetMapping("/getGenreBasedMoviesForUser")
-	public ResponseEntity<?> getGenreBasedMoviesForUser(@RequestParam String userName){
-		return new ResponseEntity<List<Movie>>(userservice.getGenreBasedMoviesForUser(userName),HttpStatus.OK);	
+	public ResponseEntity<?> getGenreBasedMoviesForUser(@RequestParam String userName,@RequestParam String cityName){
+		return new ResponseEntity<List<Movie>>(userservice.getGenreBasedMoviesForUser(userName,cityName),HttpStatus.OK);	
 	}
 	
 	/*
@@ -252,8 +261,8 @@ public class RecommendationServiceController {
 	 * will be "api/v1/getGenreBasedMoviesForUser".If successful,it will give the HTTP status code 201
 	 */
 	@GetMapping("/getTypeBasedTicketedEventsForUser")
-	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName){
-		return new ResponseEntity<List<Movie>>(userservice.getTypeBasedTicketedEventsForUser(userName),HttpStatus.OK);	
+	public ResponseEntity<?> getTypeBasedTicketedEventsForUser(@RequestParam String userName,@RequestParam String cityName){
+		return new ResponseEntity<List<TicketedEvent>>(userservice.getTypeBasedTicketedEventsForUser(userName,cityName),HttpStatus.OK);	
 	}	
 	
 	/*

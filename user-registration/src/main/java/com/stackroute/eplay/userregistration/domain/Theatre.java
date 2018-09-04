@@ -24,11 +24,12 @@ import lombok.ToString;
 public class Theatre {
 
 	@Id
-	private String theatreId;
+	private int theatreId;
 	private String theatreName;
 	private String theatreLocation;
 	private int capacity;
 	private File arenaFile;
 	private String userName;
+	private String city;
 
 }

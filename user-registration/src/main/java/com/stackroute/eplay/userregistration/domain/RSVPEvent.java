@@ -1,5 +1,6 @@
 package com.stackroute.eplay.userregistration.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -29,17 +30,10 @@ public class RSVPEvent {
 	private String userName;
 	private String name;
 	private Date startDate;
-	private Date startTime;
-	private Date endDate;
-	private Date endTime;
-	private String city;
-	private String location;
+	private String startTime;
+	private String venue;
 	private String poster;
-	private String type;
 	private String description;
-	private String performers;
-	private String termsAndConditions;
-	private String notes;
 	private int numberOfAttendees;
 	private boolean isCompleted;
 	private List<Invitation> rsvpInvitation;

@@ -1,55 +1,43 @@
-
 <!-- Invisible checkbox -->
+<!-- <div class="asides"> -->
 <input type='checkbox' id='toggle'>
 <!-- Menu -->
+
 <aside class='leftbar'>
   <label for='toggle' class='exit'>X</label>
   <h2 class="example-h2">Filters</h2>
   <div class="flex-container">
-    <!-- <section class="example-section"> -->
-      <app-multiple-checkboxes (updatedListWithFulldata)="selectedPreferenceList($event)" [masterList]="genresList" [DisplayField]="'moviegenre'" [title]="'Select movie'" [height]="150" 
-        ></app-multiple-checkboxes>
-      
-      <!-- <mat-checkbox class="example-margin" (change)="onChange('Thriller')">
-        Thriller
-      </mat-checkbox>
-    </section>
-    <section class="example-section">
-      <mat-checkbox class="example-margin" (change)="onChange('Comedy')">
-        Comedy
-      </mat-checkbox>
-    </section>
-    <section class="example-section" (change)="onChange('Drama')">
-      <mat-checkbox class="example-margin">
-        Drama
-      </mat-checkbox>
-    </section>
-    <section class="example-section" (change)="onChange('Romance')">
-      <mat-checkbox class="example-margin">
-        Romance
-      </mat-checkbox>
-    </section>
-    <section class="example-section" (change)="onChange('Sports')">
-      <mat-checkbox class="example-margin">
-        Sports
-      </mat-checkbox>
-    </section>
-    <section class="example-section" (change)="onChange('Horror')">
-      <mat-checkbox class="example-margin">
-        Horror
-      </mat-checkbox> -->
-    <!-- </section> -->
+    <!-- <app-multiple-checkboxes (updatedListWithFulldata)="selectedPreferenceList($event)" [masterList]="genresList" [DisplayField]="'moviegenre'"
+      [title]="'Select Genre'" [height]="150"></app-multiple-checkboxes> -->
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label formArrayName="genresList">
+        <div *ngFor="let genres of form.controls.genresList.controls; let i = index">
+          <mat-checkbox type="checkbox" [formControlName]="i"></mat-checkbox> {{genresList[i].moviegenre}}
+          <br>
+        </div>
+      </label>
+      <br>
+      <!-- <div *ngIf="!form.valid">At least one order must be selected</div> -->
+      <div>
+        <button mat-raised-button color="primary">Select genres</button>
+      </div>
+      <br>
+      <div>
+        <button type="reset" mat-raised-button color="primary">Reset Filters</button>
+      </div>
+
+    </form>
+
   </div>
 </aside>
+
 <!-- Content -->
 <div class='content'>
-  <button mat-icon-button matTooltip="Click for filters" matTooltipClass="example-tooltip-red">
+  <button matTooltip="Click for filters" matTooltipClass="example-tooltip-red">
     <label for='toggle' class='button'></label>
     <mat-icon>find_in_page</mat-icon>
   </button>
 </div>
+<!-- </div> -->
 
 
-
-<!-- <app-multiple-checkboxes (updatedList)="selectedPreferenceList($event)" [height]="150" [masterList]="preferences" [title]="'Select Genre'"
-  [DisplayField]="'name'"></app-multiple-checkboxes> -->

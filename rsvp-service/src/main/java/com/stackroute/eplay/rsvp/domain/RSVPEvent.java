@@ -25,9 +25,9 @@ public class RSVPEvent {
 	private String userName; // user name will come from user table	
 	private String name;	// name of the event
 	private Date startDate;
-	private Date startTime;
+	private String startTime;
 	private Date endDate;
-	private Date endTime;
+	private String endTime;
 	private String city;
 	private String location;
 	private String poster;

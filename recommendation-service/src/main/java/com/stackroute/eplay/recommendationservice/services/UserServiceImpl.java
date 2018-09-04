@@ -18,6 +18,7 @@ import com.stackroute.eplay.recommendationservice.domain.City;
 import com.stackroute.eplay.recommendationservice.domain.Genre;
 
 import com.stackroute.eplay.recommendationservice.domain.Movie;
+import com.stackroute.eplay.recommendationservice.domain.TicketedEvent;
 import com.stackroute.eplay.recommendationservice.domain.User;
 import com.stackroute.eplay.recommendationservice.domain.UserKafka;
 import com.stackroute.eplay.recommendationservice.repositories.MovieRepository;
@@ -40,18 +41,20 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
-	public List<Movie> getGenreBasedMoviesForUser(String userName){
-		return userrepository.getGenreBasedMoviesForUser(userName);
+	public List<Movie> getGenreBasedMoviesForUser(String userName, String cityName){
+		return userrepository.getGenreBasedMoviesForUser(userName,cityName);
 	}
 
 
-	public List<Movie> getTypeBasedTicketedEventsForUser(String userName){
-		return userrepository.getTypeBasedTicketedEventsForUser(userName);
+	public List<TicketedEvent> getTypeBasedTicketedEventsForUser(String userName,String cityName){
+		return userrepository.getTypeBasedTicketedEventsForUser(userName,cityName);
 	}
 
 
 	@Override
 	public City getCityOfUser(String userName) {
 		return userrepository.getCityOfUser(userName);
-	}	 
+	}
+
+		 
 }

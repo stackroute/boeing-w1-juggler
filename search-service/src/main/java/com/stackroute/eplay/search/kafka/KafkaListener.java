@@ -10,12 +10,13 @@ import com.stackroute.eplay.search.domain.MovieEvent;
 import com.stackroute.eplay.search.domain.Theatre;
 import com.stackroute.eplay.search.domain.TicketedEvent;
 import com.stackroute.eplay.search.services.SearchService;
+import com.stackroute.eplay.search.streams.FinalMovieEventStream;
 import com.stackroute.eplay.search.streams.MovieEventStream;
 import com.stackroute.eplay.search.streams.MovieStream;
 import com.stackroute.eplay.search.streams.TheatreStream;
 import com.stackroute.eplay.search.streams.TicketedEventStream;
 
-@EnableBinding({ MovieEventStream.class, MovieStream.class, TheatreStream.class , TicketedEventStream.class})
+@EnableBinding({ MovieEventStream.class, MovieStream.class, TheatreStream.class , TicketedEventStream.class, FinalMovieEventStream.class})
 public class KafkaListener {
 
 	private SearchService searchService;
@@ -32,6 +33,17 @@ public class KafkaListener {
 	// Listener for movie event object stream
 	@StreamListener(MovieEventStream.INPUT)
 	public void movieEventPost(@Payload MovieEvent movieEvent) {
+		String city = movieEvent.getCity();
+		int movieId = movieEvent.getMovieId();
+		Movie movie = searchService.getMovieById(movieId);
+		Theatre theatre = searchService.getTheatreById(movieEvent.getTheatreId());
+		theatre.setShows(movieEvent.getShows());
+
+		searchService.updateCityMovies(city, movie, theatre);
+	}
+	
+	@StreamListener(FinalMovieEventStream.INPUT)
+	public void finalMovieEventPost(@Payload MovieEvent movieEvent) {
 		String city = movieEvent.getCity();
 		int movieId = movieEvent.getMovieId();
 		Movie movie = searchService.getMovieById(movieId);

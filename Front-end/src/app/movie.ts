@@ -3,7 +3,8 @@ import {Theatre} from "./theatre";
 export class Movie {
   id: number;
   name: string;
-  poster: string;
+  backGroundPoster: string;
+  cardPoster: string;
   genre: string;
   language: string;
   reviews: string;

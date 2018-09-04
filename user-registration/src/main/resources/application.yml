@@ -1,16 +1,20 @@
 #spring:
+#
+#  data:
+#      mongodb:
+#         uri: mongodb://0.0.0.0:27000/test
 #  cloud:
 #    stream:
 #      kafka:
 #        binder:
-#          brokers: 172.23.238.198:9092
+#          brokers: localhost:9092
 #      bindings:
 #        user-registration-out:
 #          destination: User
 #          contentType: application/json
-#        theatre-in:
-#          destination: Theatre
-#          contentType: application/json
+#        theatre-in:        
+#         destination: Theatre
+#         contentType: application/json
 #        rsvp-event-in:
 #          destination: RSVPEvent
 #          contentType: application/json

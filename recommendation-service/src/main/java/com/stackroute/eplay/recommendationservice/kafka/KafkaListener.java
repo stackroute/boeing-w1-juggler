@@ -53,12 +53,13 @@ public class KafkaListener {
 		int id = movieKafka.getId();
 		String name = movieKafka.getName();
 		String language = movieKafka.getLanguage();
-		String poster = movieKafka.getPoster();
+		String backGroundPoster = movieKafka.getBackGroundPoster();
+		String cardPoster = movieKafka.getCardPoster();
 		int ratings = movieKafka.getRating();
 		String g = movieKafka.getGenre();
 		LocalDate releaseDate = movieKafka.getReleaseDate();
 		Genre genre = new Genre(g);
-		Movie movie = new Movie(id,name,language,poster,ratings,genre,releaseDate);
+		Movie movie = new Movie(id,name,language,backGroundPoster,cardPoster,ratings,genre,releaseDate);
 		movieService.saveMovie(movie);
 	}
 	
@@ -84,28 +85,48 @@ public class KafkaListener {
 		Date date = ticketedEventKafka.getDate();
 		City city = new City(ticketedEventKafka.getCity());
 		Category category =  new Category(ticketedEventKafka.getType());
-		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category);
+		String BackGroundPoster = null;
+		String CardPoster = null;
+		if(ticketedEventKafka.getBackGroundPoster()!=null) {
+			BackGroundPoster = ticketedEventKafka.getBackGroundPoster();
+		}
+		if(ticketedEventKafka.getCardPoster()!=null) {
+			CardPoster = ticketedEventKafka.getCardPoster();
+		}
+		TicketedEvent ticketedEvent = new TicketedEvent(id,name,date,city,category,BackGroundPoster,CardPoster);
+		
 		ticketedEventService.saveTicketedEvent(ticketedEvent);
 		System.out.println(ticketedEventKafka.toString());
 	}
 	
 	@StreamListener(UserStreams.INPUT)
 	public void userPost(@Payload UserKafka userKafka) {
+		System.out.println(userKafka);
 		String userName = userKafka.getUserName();
-		String fullName = userKafka.getFullName();
-		City city = new City(userKafka.getCity());
+//		String fullName = null;
+//		if(userKafka.getFullName()!=null){
+//		fullName = userKafka.getFullName();
+//		}		
+		City city = null;
+		if(userKafka.getCity()!=null) {
+	    city = new City(userKafka.getCity());
+		}
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();
-		if(userKafka.getMovieId()!=null) {
-		for(int id:userKafka.getMovieId()) {
-			movies.add(movieService.findById(id));
-		}}
-		if(userKafka.getTicketedEventId()!=null) {
-		for(int id:userKafka.getTicketedEventId()) {
-			events.add(ticketedEventService.findById(id));
+		if(userKafka.getBookedMovieId()!=null) {
+		for(int id:userKafka.getBookedMovieId()) {
+			if(movieService.findById(id)!=null){
+				movies.add(movieService.findById(id));
+			}
+			}}
+		if(userKafka.getBookedTicketedEventId()!=null) {
+		for(int id:userKafka.getBookedTicketedEventId()) {
+			if(ticketedEventService.findById(id)!=null) {
+				events.add(ticketedEventService.findById(id));
+			}			
 		}
 	}
-		User user = new User(userName,fullName,city,movies,events);
+		User user = new User(userName,city,movies,events);
 		userservice.saveUser(user);
 		System.out.println(userKafka);
 	}

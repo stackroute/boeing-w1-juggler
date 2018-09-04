@@ -18,7 +18,7 @@ import com.stackroute.eplay.ticketservice.domain.TicketedEvent;
 import com.stackroute.eplay.ticketservice.exception.MovieEventAlreadyExistException;
 import com.stackroute.eplay.ticketservice.service.MovieEventService;
 import com.stackroute.eplay.ticketservice.service.TicketedEventService;
-
+import com.stackroute.eplay.ticketservice.streams.FinalMovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieEventStreams;
 import com.stackroute.eplay.ticketservice.streams.MovieStreams;
 import com.stackroute.eplay.ticketservice.streams.ShowStreams;
@@ -26,7 +26,7 @@ import com.stackroute.eplay.ticketservice.streams.TicketedEventStreams;
 import com.stackroute.eplay.ticketservice.streams.UpdateMovieEventStreams;
 
 
-@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class, UpdateMovieEventStreams.class})
+@EnableBinding({MovieEventStreams.class, TicketedEventStreams.class, MovieStreams.class, ShowStreams.class, UpdateMovieEventStreams.class,FinalMovieEventStreams.class})
 
 public class KafkaListener {
 	
@@ -44,7 +44,7 @@ public class KafkaListener {
 	}
 	@StreamListener(UpdateMovieEventStreams.INPUT)
 	public void movieShowPost(@Payload Show show){
-		System.out.println(show.toString());
+		System.out.println("Coming from SchedulerStream"+show.toString());
 		movieEventService.updateMovieEvent(show);
 	
 	}
@@ -52,7 +52,7 @@ public class KafkaListener {
 	@StreamListener(MovieEventStreams.INPUT)
 	public void movieEventPost(@Payload MovieEvent event) {
 		try {
-			System.out.println(event.toString());
+			System.out.println("Coming from upstream"+event.toString());
 			movieEventService.saveMovieEvent(event);
 		} catch (MovieEventAlreadyExistException e) {
 			// TODO Auto-generated catch block
@@ -61,7 +61,7 @@ public class KafkaListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(event.toString()+" movie");
+		System.out.println("After show is made"+event.toString()+" movie");
 	}
 	@StreamListener(MovieStreams.INPUT)
 	public void moviePost(@Payload Movie movie) {

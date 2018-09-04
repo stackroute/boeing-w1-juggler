@@ -1,72 +1,84 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { FormControl,Validators,FormBuilder,FormGroup, FormsModule } from "@angular/forms";
 import { TicketedEvent } from "../ticketedEvent";
 import { TicketedEventService } from "../ticketed-event.service";
+
+
 @Component({
   selector: "app-other-ticketed-event",
   templateUrl: "./other-ticketed-event.component.html",
   styleUrls: ["./other-ticketed-event.component.css"]
 })
+
 export class OtherTicketedEventComponent implements OnInit {
+
+  public dateTime: Date;
+  public types: String[];
+  otherTicketedEventForm: FormGroup;
+
   otherTicketedEventControl = new FormControl();
-  otherTicketedEventControl1 = new FormControl();
   ticketedEvent = new TicketedEvent();
-  constructor(private ticketedEventService: TicketedEventService) {}
-  submitTicketedEvent() {
-    this.ticketedEventService
-      .saveTicketedEvent(this.ticketedEvent)
-      .subscribe(res => console.log("Saved"));
-  }
+ 
+  constructor(private ticketedEventService: TicketedEventService,private formBuilder: FormBuilder) {}
 
-  cityGroup: CityGroup[] = [
-    {
-      name: "Cities",
-      city: [
-        { value: "Bangalore", viewValue: "Bangalore" },
-        { value: "New Delhi", viewValue: "New Delhi" },
-        { value: "Mumbai", viewValue: "Mumbai" },
-        { value: "Kolkata", viewValue: "Kolkata" },
-        { value: "Chennai", viewValue: "Chennai" },
-        { value: "Hyderabad", viewValue: "Hyderabad" }
-      ]
+    submitTicketedEvent() {
+    
+      this.ticketedEvent.userName=localStorage.getItem('currentUser').replace("\"", "").replace("\"", "");
+      console.log(this.ticketedEvent.date);
+      console.log(this.ticketedEvent);
+    
+      this.ticketedEventService
+        .saveTicketedEvent(this.ticketedEvent)
+        .subscribe(res => console.log("Saved"));
     }
-  ];
-  typegroup: TypeGroup[] = [
-    {
-      name: "Event Types",
-      type: [
-        { value: "Plays", viewValue: "Plays" },
-        { value: "Comedy", viewValue: "Comedy" },
-        { value: "Music", viewValue: "Music" },
-        { value: "Rockshow", viewValue: "Concerts" },
-        { value: "Sports", viewValue: "Sports" },
+
+    ngOnInit() {
         
-      ]
+      this.types=[];
+      this.types.push("Plays");
+      this.types.push("Sports");
+      this.types.push("Concert");
+      
+     
+      this.otherTicketedEventForm = this.formBuilder.group({
+        name: [
+          '',
+          [Validators.required],
+        ],
+        city: [
+          '',
+          [Validators.required],
+        ],
+        date: [
+          '',
+          [Validators.required],
+        ],
+        cardPoster: [
+          '',
+          [Validators.required],
+        ],
+        backGroundPoster: [
+          '',
+          [Validators.required],
+        ],
+        capacity: [
+          '',
+          [Validators.required],
+        ],
+        description: [
+          '',
+          [Validators.required],
+        ],
+        price: [
+          '',
+          [Validators.required],
+        ],
+      }); 
     }
-  ];
-
-  ngOnInit() {}
-}
-
-export interface City {
-  value: string;
-  viewValue: string;
-}
-
-export interface CityGroup {
-  disabled?: boolean;
-  name: string;
-  city: City[];
-}
-
-export interface Type {
-  value: string;
-  viewValue: string;
-}
-
-export interface TypeGroup {
-  disabled?: boolean;
-  name: string;
-  type: Type[];
+    setType(type){
+      console.log(type);
+     this.ticketedEvent.type=type;
+  
+    }
 }
 

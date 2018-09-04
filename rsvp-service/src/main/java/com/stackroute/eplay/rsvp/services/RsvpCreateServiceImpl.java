@@ -28,7 +28,7 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 	
 	public RSVPEvent saveRsvpCreate(RSVPEvent rsvpCreate) {
 		// TODO Auto-generated method stub
-		rsvpCreate.setId(nextSequenceService.getNextSequence("counter"));
+	//	rsvpCreate.setId(nextSequenceService.getNextSequence("counter"));
 		return rsvpCreateRepository.save(rsvpCreate);
 	}
 
@@ -69,6 +69,13 @@ public class RsvpCreateServiceImpl implements RsvpCreateService{
 		if(invitiesList==null) {
 			invitiesList=new ArrayList<Invitation>();
 		}
+		Invitation tempInvitation = null;
+		for(Invitation currInvitation: invitiesList) {
+			if(currInvitation.getInviteeEmail().equals(invitation.getInviteeEmail()))
+				tempInvitation = currInvitation;
+		}
+		if(tempInvitation != null)
+			invitiesList.remove(tempInvitation);
 		invitiesList.add(invitation);
 		rsvpEvent.setRsvpInvitation(invitiesList);
 		return rsvpCreateRepository.save(rsvpEvent);

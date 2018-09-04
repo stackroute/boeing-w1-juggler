@@ -34,5 +34,7 @@ public class Registration {
 	private List<RSVPEvent> rsvpEvents;
 	private List<MovieEvent> movieEvent;
 	private List<TicketedEvent> ticketedEvent;
+	private List<Integer> bookedMovieId;
+	private List<Integer> bookedTicketedEventId;
 
 }

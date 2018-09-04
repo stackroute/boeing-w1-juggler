@@ -1,16 +1,17 @@
 export class TicketedEvent {
     name:string;
     date:Date;
-    time:Date;
+    time:String;
     city:string;
     location:string;
-    poster:string;
+    cardPoster:string;
+    backGroundPoster:string;
     type:string;
     capacity:number;
-    remainingSeats:number;
     description:string;
     price:string;
     performers:string;
+    remainingSeats:number;
     termsAndConditions:string;
     notes:string;
     userName:string;
