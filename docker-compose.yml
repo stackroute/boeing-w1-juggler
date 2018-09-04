@@ -127,27 +127,41 @@ services:
       test: "exit 0"
 
   prometheus:
-    ports:
-      - 9090:9090
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
     image: prom/prometheus
-    restart: always
-    healthcheck:
-      test: "exit 0"
+    ports:
+     - "9090:9090"
+    mem_limit: 1g
+    volumes:
+     - ./prometheus.yml:/etc/prometheus/prometheus.yml
+     - ./prometheus/:/etc/prometheus/
+     - prometheus_data:/prometheus
+    command:
+     - '--config.file=/etc/prometheus/prometheus.yml'
+     - '--storage.tsdb.path=/prometheus'
+     - '--web.console.libraries=/etc/prometheus/console_libraries'
+     - '--web.console.templates=/etc/prometheus/consoles'
+     - '--storage.tsdb.retention=200h'
+     - '--web.enable-lifecycle'
+    container_name: prometheus
 
   grafana:
-    image: grafana/grafana:5.2.2
-    container_name: grafana
-    volumes:
-      - /var/lib/grafana
-    restart: always
     ports:
-      - 3000:3000
-    healthcheck:
-      test: "exit 0"
+      - "3000:3000"
+    mem_limit: 1g
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/datasources:/etc/grafana/datasources
+      - ./grafana/dashboards:/etc/grafana/dashboards
+      - ./grafana/setup.sh:/setup.sh
+    command: ./setup.sh
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+   links:
+    - prometheus
+   image: grafana/grafana
+   container_name: grafana
         
   downstream-service:
     build: downstream-service/
