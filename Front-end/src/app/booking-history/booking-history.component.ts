@@ -30,6 +30,7 @@ export class BookingHistoryComponent implements OnInit {
       .subscribe(data => {
         this.yourData = data;
         console.log("your data", data);
+        if(this.yourData.bookedMovieId!=null){
         for (var i = 0; i < this.yourData.bookedMovieId.length; i++) {
           console.log("top i is", i);
           this.data
@@ -42,6 +43,8 @@ export class BookingHistoryComponent implements OnInit {
             
           });
         }
+      }
+      if(this.yourData.bookedTicketedEventId!=null){
         for (var i = 0; i < this.yourData.bookedTicketedEventId.length; i++) {
           console.log("top i is", i);
           this.data
@@ -56,6 +59,8 @@ export class BookingHistoryComponent implements OnInit {
         }
         console.log("booked ticket",this.ticketList);
       }
+    }
+    
 )
 }
   

@@ -103,7 +103,7 @@ public class RecommendationServiceController {
 	@PostMapping("/saveUser")	
 	public ResponseEntity<?> createUserNode(@RequestBody UserKafka userKafka){
 		String userName = userKafka.getUserName();
-		String fullName = userKafka.getFullName();
+		//String fullName = userKafka.getFullName();
 		City city = new City(userKafka.getCity());
 		List<Movie> movies = new ArrayList<>();	
 		List<TicketedEvent> events = new ArrayList<>();
@@ -113,7 +113,7 @@ public class RecommendationServiceController {
 		for(int id:userKafka.getBookedTicketedEventId()) {
 			events.add(ticketedEventService.findById(id));
 		}
-		User user = new User(userName,fullName,city,movies,events);
+		User user = new User(userName,city,movies,events);
 		return new ResponseEntity<User>(userservice.saveUser(user),HttpStatus.OK);
 	}
 	
