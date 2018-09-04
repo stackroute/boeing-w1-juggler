@@ -166,7 +166,7 @@
       <h3 #target1 style="color:azure;margin-top:4px">Events</h3>
       <div *ngFor="let movie of event$">
         <mat-grid-tile colspan="4" rowspan="5">
-          <a href="ticketinfo" (click)="goMoviePage(movie)">
+          <a [routerLink]="['/ticketinfo']" (click)="goMoviePage(movie)">
             <mat-card class="render1">
               <!-- <mat-card-header>
               <!-- <div mat-card-avatar class="example-header-image"></div> -->

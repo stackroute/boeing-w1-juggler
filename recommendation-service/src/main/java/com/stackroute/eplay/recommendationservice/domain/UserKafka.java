@@ -20,7 +20,7 @@ public class UserKafka {
 	@Id
 	private String userName;
 	private String password;
-	private String fullName;
+	//private String fullName;
 	private String contactNo;
 	private String email;
 	private String gender;
