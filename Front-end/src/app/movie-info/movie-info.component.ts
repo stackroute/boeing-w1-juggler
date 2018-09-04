@@ -11,8 +11,8 @@ export class MovieInfoComponent implements OnInit {
    recommendedMovies:any
   constructor(private _searchDataService:SearchDataService) {
     this.movies=JSON.parse(localStorage.getItem('movieInfo'));
-    // this.recommendedMovies = JSON.parse(localStorage.getItem('recommended'));
-    console.log(this.movies);
+    this.recommendedMovies = JSON.parse(localStorage.getItem('recommended'));
+    console.log("Recommended :"+ this.recommendedMovies.description);
 
   }
 
