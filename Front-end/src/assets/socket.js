@@ -52,6 +52,7 @@ function disconnect() {
     if (stompClient !== null) {
         stompClient.disconnect();
     }
+    //bookedSeatsTemp = null;
     setConnected(false);
     console.log("Disconnected");
 }
@@ -66,7 +67,7 @@ function sendBlockedSeats(blockedSeat) {
 function sendBookedSeats() {
     blockedSeat = bookedSeatsTemp;
     blockedSeat.guestUserEmailId = localStorage.getItem("guestEmail");
-    blockedSeat.status="booked";
+    blockedSeat.status="open";
     blockedSeat.userName = localStorage.getItem("currentUser");
     console.log("Blocked Seats: " +  JSON.stringify(blockedSeat));
     stompClient.send("/app/send/message", {}, JSON.stringify(blockedSeat));

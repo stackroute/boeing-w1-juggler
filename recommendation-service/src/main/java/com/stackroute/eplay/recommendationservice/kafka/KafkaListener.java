@@ -115,11 +115,15 @@ public class KafkaListener {
 		List<TicketedEvent> events = new ArrayList<>();
 		if(userKafka.getBookedMovieId()!=null) {
 		for(int id:userKafka.getBookedMovieId()) {
-			movies.add(movieService.findById(id));
-		}}
+			if(movieService.findById(id)!=null){
+				movies.add(movieService.findById(id));
+			}
+			}}
 		if(userKafka.getBookedTicketedEventId()!=null) {
 		for(int id:userKafka.getBookedTicketedEventId()) {
-			events.add(ticketedEventService.findById(id));
+			if(ticketedEventService.findById(id)!=null) {
+				events.add(ticketedEventService.findById(id));
+			}			
 		}
 	}
 		User user = new User(userName,city,movies,events);

@@ -37,7 +37,25 @@
       </div>
     </div>
 
-
+   
+    <mat-grid-list cols="12">
+        <div *ngIf=" loggedIn() && recommendedEvent!=null && recommendedEvent.length>0">
+          <h3 style="color:azure;margin-top:50px;">Events recommendation for you..</h3>
+          <div *ngFor="let event of recommendedEvent">
+            <mat-grid-tile colspan="4" rowspan="5">
+              <a href="ticketinfo" (click)="goMoviePage(event)">
+                <mat-card class="render1">
+                  <img class="render" mat-card-image src="{{event.cardPoster}}" alt="event poster">
+                  <mat-card-actions>
+                    <h6 style="font-family: 'Times New Roman', Times, serif"> {{event.name}}</h6>
+                    {{event.city}}
+                  </mat-card-actions>
+                </mat-card>
+              </a>
+            </mat-grid-tile>
+          </div>
+        </div>
+      </mat-grid-list>
     <!--Ticketed events recommendations-->
 
 
@@ -97,24 +115,7 @@
 
 
       
-      <mat-grid-list cols="12">
-        <div *ngIf=" loggedIn() && recommendedEvent!=null && recommendedEvent.length>0">
-          <h3 style="color:azure;margin-top:50px;">Events nearby you..</h3>
-          <div *ngFor="let event of recommendedEvent">
-            <mat-grid-tile colspan="4" rowspan="5">
-              <a href="ticketinfo" (click)="goMoviePage(event)">
-                <mat-card class="render1">
-                  <img class="render" mat-card-image src="{{event.cardPoster}}" alt="event poster">
-                  <mat-card-actions>
-                    <h6 style="font-family: 'Times New Roman', Times, serif"> {{event.name}}</h6>
-                    {{event.city}}
-                  </mat-card-actions>
-                </mat-card>
-              </a>
-            </mat-grid-tile>
-          </div>
-        </div>
-      </mat-grid-list>
+      
 
 
       <ng-template #elseBlock>
