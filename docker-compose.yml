@@ -149,7 +149,7 @@ services:
       - "3000:3000"
     mem_limit: 1g
     volumes:
-      - grafana_data:/var/lib/grafana
+      - ./grafana_data:/var/lib/grafana
       - ./grafana/datasources:/etc/grafana/datasources
       - ./grafana/dashboards:/etc/grafana/dashboards
       - ./grafana/setup.sh:/setup.sh
