@@ -39,4 +39,18 @@ export class LandingPageComponent implements OnInit {
     localStorage.setItem("city", "Hyderabad");
     localStorage.removeItem("rec");
   }
+  onclick5() {
+    console.log("Location : Chennai");
+    localStorage.setItem("city", "Chennai");
+    this.data.changeMessage("chennai");
+    localStorage.setItem("city", "Chennai");
+    localStorage.removeItem("rec");
+  }
+  onclick6() {
+    console.log("Location : Pune");
+    localStorage.setItem("city", "Pune");
+    this.data.changeMessage("pune");
+    localStorage.setItem("city", "Pune");
+    localStorage.removeItem("rec");
+  }
 }
