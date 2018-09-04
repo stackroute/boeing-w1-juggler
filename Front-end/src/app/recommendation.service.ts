@@ -58,9 +58,9 @@ export class RecommendationService {
     let citySelected = localStorage.getItem('city');
     return this.http.get<Movie[]>(this.url+"/getGenreBasedMoviesForUser?userName="+userName+"&cityName="+citySelected);
   }
-  getTicketedEventsByCity():Observable<TicketedEvent[]>{
-    console.log("inside getTicketedEventsByCity");
+  getTypeBasedTicketedEventsForUser(userName:String):Observable<TicketedEvent[]>{
+    console.log("inside getTypeBasedTicketedEventsForUser");
     let citySelected = localStorage.getItem('city');
-    return this.http.get<TicketedEvent[]>(this.url+"/getTicketedEventsByCity?&name="+citySelected);
+    return this.http.get<TicketedEvent[]>(this.url+"/getTypeBasedTicketedEventsForUser?&userName="+userName+"&cityName="+citySelected);
   }
 }
