@@ -4,6 +4,7 @@ import { AlertsService } from 'angular-alert-module';
 import { TicketedInfoService} from '../ticketed-info.service';
 import {TicketedEvent} from '../ticketedEvent';
 import {Observable} from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ticketed-info',
@@ -30,13 +31,13 @@ export class TicketedInfoComponent implements OnInit {
     this.ticketedInfoObject.getEventInfo(this.event.id).subscribe(r=>{
       this.updatedEvent=r;
       // console.log("Inside onInit of ticketed-info");
-      // console.log(this.updatedEvent + "Is the updated seats");
+       console.log(this.updatedEvent + "Is the updated seats");
     })
   }
 
-  eventDescription(){
-    //console.log("inside eventDescription()");
-    if(this.event.description!=null)
+  async eventDescription(){
+    console.log("inside eventDescription()");
+    if(await this.updatedEvent.description!=null)
     return true;
     else
     return false;
