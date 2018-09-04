@@ -158,10 +158,10 @@ services:
       - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
-   links:
-    - prometheus
-   image: grafana/grafana
-   container_name: grafana
+    links:
+      - prometheus
+    image: grafana/grafana
+    container_name: grafana
         
   downstream-service:
     build: downstream-service/
