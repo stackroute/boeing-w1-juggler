@@ -35,9 +35,9 @@ export class TicketedInfoComponent implements OnInit {
     })
   }
 
-  async eventDescription(){
+   eventDescription(){
     console.log("inside eventDescription()");
-    if(await this.updatedEvent.description!=null)
+    if( this.updatedEvent.description!=null)
     return true;
     else
     return false;
