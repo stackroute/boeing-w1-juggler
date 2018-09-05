@@ -1,4 +1,7 @@
 version: '2.1'
+volumes:
+   prometheus_data: {}
+   grafana_data: {}
 
 services:
   eureka-server:
@@ -79,7 +82,7 @@ services:
     container_name: "mongodb"
     #mem_limit: 100m
     volumes:
-      - ./data/db:/data/db
+      - /data/mongo/data/db:/data/db
     ports:
       - 27000:27017
     restart: always
@@ -92,7 +95,7 @@ services:
     command: redis-server --appendonly yes
     #mem_limit: 2g
     volumes:
-      - ./data:/data
+      - /data/redis:/data
     ports:
       - 6379:6379
     restart: always
@@ -112,12 +115,11 @@ services:
      - NEO4J_apoc_import_file_enabled=true
      - NEO4J_dbms_shell_enabled=true
    volumes:
-     - ./plugins:/plugins
-     - $HOME/neo4j/data:/data
-     - ./import:/import
+     - /data/neo4j/plugins:/plugins
+     - /data/neo4j/data:/data
+     - /data/noe4j/import:/import
    healthcheck:
       test: "exit 0"
-
   prometheus:
     image: prom/prometheus
     ports:
@@ -126,7 +128,7 @@ services:
     volumes:
      - ./prometheus.yml:/etc/prometheus/prometheus.yml
      - ./prometheus/:/etc/prometheus/
-     - ./prometheus_data:/prometheus
+     - prometheus_data:/prometheus
     command:
      - '--config.file=/etc/prometheus/prometheus.yml'
      - '--storage.tsdb.path=/prometheus'
@@ -143,7 +145,7 @@ services:
       - "3000:3000"
     mem_limit: 1g
     volumes:
-      - ./grafana_data:/var/lib/grafana
+      - grafana_data:/var/lib/grafana
       - ./grafana/datasources:/etc/grafana/datasources
       - ./grafana/dashboards:/etc/grafana/dashboards
       - ./grafana/setup.sh:/setup.sh
@@ -158,6 +160,9 @@ services:
     container_name: grafana
     healthcheck:
       test: "exit 0"
+        
+
+
         
   downstream-service:
     build: downstream-service/
