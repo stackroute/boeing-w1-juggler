@@ -136,7 +136,7 @@ export class PaymentPageComponent implements OnInit {
   intervalId = 0;
   timer = "";
   seconds = 59;
-  minutes = 0;
+  minutes = 4;
   handler;
   duplicateId;
 
