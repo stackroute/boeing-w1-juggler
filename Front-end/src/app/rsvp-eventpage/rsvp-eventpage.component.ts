@@ -48,6 +48,8 @@ export class RsvpEventpageComponent implements OnInit {
    this.rsvpCreateService.updateRsvp(this.rsvpInvitationModel, this.finalId).subscribe(res=>{console.log('saved')
   });
   
+
+  this.router.navigate(["home"]);
   }
   
 

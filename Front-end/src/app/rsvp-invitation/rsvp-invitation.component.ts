@@ -109,6 +109,8 @@ export class RsvpInvitationComponent implements OnInit {
    //    this.rsvpModel.rsvpInvitation[1].inviteeEmail
    //  );
    this.callTest();
+
+   this.router.navigate(["home"]);
  }
 
  callTest() {
